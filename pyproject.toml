@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=64", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rach-causal-invariants"
+version = "0.1.0"
+description = "Robust causal admissibility and invariant extraction for qualitative generative programs."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[tool.setuptools]
+packages = ["causal_model"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
