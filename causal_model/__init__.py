@@ -67,6 +67,18 @@ from .replaceability import (
     structural_crc,
     theorem_a_certificate,
 )
+from .robust_panel_design import (
+    FinitePanelScenario,
+    PanelStrategyComparison,
+    RobustObjective,
+    RobustPanelResult,
+    ScenarioPanelRisk,
+    choose_coverage_greedy_panel,
+    choose_minimum_cost_panel,
+    choose_robust_panel,
+    compare_panel_selection_strategies,
+    evaluate_resolving_panel,
+)
 
 __all__ = [
     "AdmissibilityReport",
@@ -113,6 +125,16 @@ __all__ = [
     "panel_phase_table_markdown",
     "strict_greedy_panel_traits",
     "sweep_panel_phase_family",
+    "FinitePanelScenario",
+    "PanelStrategyComparison",
+    "RobustObjective",
+    "RobustPanelResult",
+    "ScenarioPanelRisk",
+    "choose_coverage_greedy_panel",
+    "choose_minimum_cost_panel",
+    "choose_robust_panel",
+    "compare_panel_selection_strategies",
+    "evaluate_resolving_panel",
     "Observation",
     "StructuralModel",
     "admissible_configurations",
