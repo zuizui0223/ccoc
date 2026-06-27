@@ -24,6 +24,7 @@ It proves, within that declared candidate set:
 2. **Last-driver criterion.** A mechanism is indispensable exactly when it is the only surviving driver of at least one required-present trait.
 3. **Synergistic observation design.** A set of individually uninformative competitor-witness observations can jointly make a mechanism indispensable. Therefore greedy one-step observation selection has no general guarantee.
 4. **Minimum discriminating panels.** Given feasible NULL observations and their costs, an exact dynamic program finds the cheapest panel that makes a focal mechanism indispensable while preserving all required-present observations.
+5. **Coverage-aware robustness reports.** Robust-admissibility results distinguish unanimity in sampled runs from complete claims backed by exhaustive enumeration or an external solver certificate.
 
 ## Exactness boundary
 
@@ -40,7 +41,7 @@ The initial theorem core is a clean extraction from the earlier `microdonta` wor
 ```text
 exact disjunctive theorem core + exhaustive small-model checks
 -> exact minimum discriminating observation / intervention panels
--> robust-admissibility with coverage-aware reports
+-> coverage-aware robust-admissibility reports
 -> known-truth benchmarks and error calibration
 -> broader qualitative program families
 ```
