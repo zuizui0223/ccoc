@@ -2,24 +2,18 @@
 
 The module deliberately separates a mathematical claim from a claim about nature.
 A :class:`StructuralModel` fixes a finite candidate set of mechanisms and the
-observable traits each mechanism can produce.  An observation declares traits to
-be PRESENT or NULL.  Under sign-consistent disjunctive semantics,
+observable traits each mechanism can produce. An observation declares traits to
+be PRESENT or NULL. Under sign-consistent disjunctive semantics,
 
     cline(t) <=> OR_{k in D(t)} s_k,
 
 where ``D(t)`` is the driver set of trait ``t`` and ``s_k`` is a binary mechanism
 switch.
 
-Within this declared candidate class the following are exact:
-
-* NULL observations are the only way to force a switch OFF;
-* a switch is forced ON exactly when it is the last surviving driver of a
-  required-present trait;
-* joint elimination panels may be synergistic, so a greedy strategy that stops
-  when every singleton has zero gain can fail.
-
-These results do not establish causal necessity in a natural system unless the
-candidate set, observation fidelity, and coarse mechanism labels are defensible.
+The exact theorem assumes that every switch assignment compatible with the
+observation clauses is structurally feasible. In particular, the model contains
+no hidden mutual exclusions, resource budgets, inhibitory effects, conjunctions,
+or other cross-mechanism constraints.
 """
 
 from __future__ import annotations
@@ -92,6 +86,18 @@ def null_eliminated_mechanisms(model: StructuralModel, observation: Observation)
     return frozenset(eliminated)
 
 
+def observation_is_admissible(model: StructuralModel, observation: Observation) -> bool:
+    """Whether the observation has at least one compatible structural state.
+
+    Under the declared unconstrained monotone-OR semantics, an observation is
+    feasible exactly when every required-present trait retains at least one
+    driver after the NULL observations have eliminated their driver sets.
+    """
+    _validate_observation(model, observation)
+    eliminated = null_eliminated_mechanisms(model, observation)
+    return all(model.driver_sets[trait] - eliminated for trait in observation.present)
+
+
 def admissible_configurations(
     model: StructuralModel,
     observation: Observation,
@@ -129,7 +135,11 @@ def is_last_driver_standing(
     observation: Observation,
     mechanism: int,
 ) -> tuple[str, ...]:
-    """Return present traits for which ``mechanism`` is the sole uneliminated driver."""
+    """Return present traits for which ``mechanism`` is the sole uneliminated driver.
+
+    This is a local driver-set relation. If the whole observation is infeasible,
+    use :func:`forced_on_by_theorem`, which also checks admissibility.
+    """
     if mechanism not in range(model.mechanism_count):
         raise ValueError("mechanism index is out of range")
     eliminated = null_eliminated_mechanisms(model, observation)
@@ -141,15 +151,36 @@ def is_last_driver_standing(
     return tuple(support)
 
 
+def forced_on_by_theorem(
+    model: StructuralModel,
+    observation: Observation,
+    mechanism: int,
+) -> bool:
+    """Apply Theorem A without enumerating all Boolean configurations.
+
+    ``True`` means that the observation is feasible and the mechanism is the last
+    surviving driver of at least one required-present trait. This is equivalent to
+    :func:`forced_on` on ``admissible_configurations(model, observation)`` under
+    the declared unconstrained monotone-OR semantics.
+    """
+    if mechanism not in range(model.mechanism_count):
+        raise ValueError("mechanism index is out of range")
+    if not observation_is_admissible(model, observation):
+        return False
+    return bool(is_last_driver_standing(model, observation, mechanism))
+
+
 def structural_crc(
     mechanism: int,
     configurations: Iterable[tuple[int, ...]],
     prior_on_probability: float = 0.5,
 ) -> float:
-    """Causal Replaceability Cost under an independent Bernoulli prior.
+    """Absolute OFF-state surprisal under an independent Bernoulli prior.
 
-    ``inf`` means that setting the mechanism OFF is impossible inside the
-    structural admissible region.  ``nan`` denotes an empty admissible region.
+    The returned quantity is ``-log2 P(s_j = 0 | s in A(O))``. ``inf`` means
+    that setting the mechanism OFF is impossible inside the structural admissible
+    region. ``nan`` denotes an empty admissible region. This is an absolute
+    conditional surprisal; it is not yet a baseline-adjusted evidence measure.
     """
     configs = tuple(configurations)
     if not configs:
@@ -175,12 +206,13 @@ def theorem_a_certificate(
     observation: Observation,
     mechanism: int,
 ) -> TheoremACertificate:
-    """Check the exact last-driver theorem for one mechanism and one observation."""
+    """Audit Theorem A by comparing its direct rule with exhaustive enumeration."""
     configs = admissible_configurations(model, observation)
     support = is_last_driver_standing(model, observation, mechanism)
     on = forced_on(configs, mechanism)
+    by_theorem = forced_on_by_theorem(model, observation, mechanism)
     # For an empty region we do not label a contradiction as a necessity claim.
-    holds = bool(configs) and (on == bool(support))
+    holds = bool(configs) and (on == by_theorem)
     return TheoremACertificate(
         mechanism=mechanism,
         admissible_configuration_count=len(configs),
@@ -194,8 +226,8 @@ def theorem_a_certificate(
 def canonical_synergy_model(competitor_count: int) -> tuple[StructuralModel, Observation, tuple[Observation, ...]]:
     """Construct the canonical greedy-failure family.
 
-    Mechanism zero is focal.  All mechanisms drive ``shared``.  Each competitor
-    additionally drives one private witness.  Every singleton witness-null leaves
+    Mechanism zero is focal. All mechanisms drive ``shared``. Each competitor
+    additionally drives one private witness. Every singleton witness-null leaves
     at least one competitor, whereas the full panel leaves the focal mechanism as
     the only driver of ``shared``.
     """
