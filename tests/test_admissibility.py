@@ -76,6 +76,11 @@ def test_optional_empty_cell_does_not_block_supported_invariant() -> None:
     assert report.classifications["m"].status is MotifStatus.INVARIANT
 
 
+def test_all_optional_cells_are_rejected() -> None:
+    with pytest.raises(ValueError, match="at least one required robustness cell"):
+        classify_motifs(("m",), (_cell("optional", [(True, {"m"})], required=False),))
+
+
 def test_unknown_motif_in_run_is_rejected() -> None:
     with pytest.raises(ValueError, match="unknown motifs"):
         classify_motifs(
