@@ -10,6 +10,14 @@ from .admissibility import (
     RobustnessCell,
     classify_motifs,
 )
+from .benchmarks import (
+    BenchmarkComparison,
+    CalibrationOutcome,
+    ExactCalibrationSummary,
+    FiniteBenchmarkCell,
+    calibrate_single_cell_exhaustively,
+    compare_sample_to_known_truth,
+)
 from .observation_design import (
     MinimumPanel,
     NullObservationCandidate,
@@ -36,6 +44,12 @@ __all__ = [
     "ProgramRun",
     "RobustnessCell",
     "classify_motifs",
+    "BenchmarkComparison",
+    "CalibrationOutcome",
+    "ExactCalibrationSummary",
+    "FiniteBenchmarkCell",
+    "calibrate_single_cell_exhaustively",
+    "compare_sample_to_known_truth",
     "MinimumPanel",
     "NullObservationCandidate",
     "minimum_discriminating_panel",
