@@ -26,10 +26,11 @@ It proves, within that declared candidate set:
 4. **Minimum discriminating panels.** Given feasible NULL observations and their costs, an exact dynamic program finds the cheapest panel that makes a focal mechanism indispensable while preserving all required-present observations.
 5. **Coverage-aware robustness reports.** Robust-admissibility results distinguish unanimity in sampled runs from complete claims backed by exhaustive enumeration or an external solver certificate.
 6. **Known-truth calibration.** Small fully enumerated program universes can quantify false-invariant and false-excluded rates caused by finite sampling.
+7. **Failure-mode audits.** Truth-table benchmarks show how omitted drivers, noisy NULLs, inhibition, conjunctions, and hidden compatibility constraints can produce false necessity, missed necessity, or an outright model contradiction.
 
 ## Exactness boundary
 
-The Boolean theorems are exact only when the declared model permits every switch assignment compatible with the observation clauses. They do not cover hidden mutual exclusions, resource budgets, inhibitory effects, conjunctions, thresholds, feedbacks, or latent mechanisms folded into coarse labels. See [the theorem assumptions](docs/replaceability_theorems.md#exactness-assumptions).
+The Boolean theorems are exact only when the declared model permits every switch assignment compatible with the observation clauses. They do not cover hidden mutual exclusions, resource budgets, inhibitory effects, conjunctions, thresholds, feedbacks, or latent mechanisms folded into coarse labels. See [the theorem assumptions](docs/replaceability_theorems.md#exactness-assumptions) and [scope-failure audits](docs/failure_mode_audits.md).
 
 ## Scope boundary
 
@@ -44,6 +45,7 @@ exact disjunctive theorem core + exhaustive small-model checks
 -> exact minimum discriminating observation / intervention panels
 -> coverage-aware robust-admissibility reports
 -> known-truth finite benchmarks and sampling-error calibration
--> generative benchmark families with omitted motifs and observation noise
+-> audited omitted-driver / noisy-NULL / non-OR failure modes
+-> generative benchmark families parameterized by misspecification and noise
 -> broader qualitative program families
 ```
