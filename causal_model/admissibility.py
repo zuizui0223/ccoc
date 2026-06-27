@@ -4,16 +4,6 @@ A robustness cell is a fully declared analysis context: for example a prior,
 tolerance, sampling plan, or endpoint rule. Each cell supplies sampled program
 runs and an acceptance indicator determined outside this module.
 
-For a motif m and nonempty cell c, write A_c for the accepted runs in c.
-
-    invariant in c  <=>  m is active in every r in A_c
-    excluded in c   <=>  m is inactive in every r in A_c
-
-A motif is globally invariant or excluded only when the respective relation holds
-in *every required nonempty cell*. If a required cell has no accepted runs, the
-universal conclusion is unsupported rather than silently based on the remaining
-cells.
-
 These are bookkeeping and finite-sample classifications. They are conditional on
 the declared program grammar, parameter domain, observation encoding, acceptance
 rule, and selected robustness cells. They do not identify a causal mechanism in
@@ -123,6 +113,8 @@ def _check_inputs(motifs: Iterable[str], cells: Iterable[RobustnessCell]) -> tup
     ids = [cell.cell_id for cell in cell_tuple]
     if len(set(ids)) != len(ids):
         raise ValueError("robustness cell IDs must be unique")
+    if not any(cell.required for cell in cell_tuple):
+        raise ValueError("at least one required robustness cell is required")
 
     vocabulary = set(motif_tuple)
     for cell in cell_tuple:
