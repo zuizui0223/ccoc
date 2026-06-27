@@ -98,3 +98,56 @@ def test_rejects_candidate_that_conflicts_with_required_present_trait() -> None:
             target_trait="shared",
             candidates=(NullObservationCandidate("shared"),),
         )
+
+
+def test_minimum_panel_matches_bruteforce_on_small_driver_models() -> None:
+    from itertools import combinations, product
+
+    from causal_model.replaceability import forced_on_by_theorem, observation_is_admissible
+
+    all_nonempty_sets = tuple(
+        frozenset(index for index, flag in enumerate(mask) if flag)
+        for mask in product((0, 1), repeat=3)
+        if any(mask)
+    )
+    witness_traits = ("witness_a", "witness_b", "witness_c")
+
+    for witness_driver_sets in product(all_nonempty_sets, repeat=3):
+        model = StructuralModel(
+            mechanism_count=3,
+            driver_sets={
+                "shared": frozenset({0, 1, 2}),
+                **dict(zip(witness_traits, witness_driver_sets)),
+            },
+        )
+        candidates = tuple(NullObservationCandidate(trait) for trait in witness_traits)
+        result = minimum_discriminating_panel(
+            model,
+            focal_mechanism=0,
+            target_trait="shared",
+            candidates=candidates,
+        )
+
+        expected: tuple[float, tuple[str, ...]] | None = None
+        for size in range(len(candidates) + 1):
+            for panel in combinations(candidates, size):
+                traits = tuple(candidate.trait for candidate in panel)
+                observation = Observation(present=("shared",), null=traits)
+                if not observation_is_admissible(model, observation):
+                    continue
+                if not forced_on_by_theorem(model, observation, 0):
+                    continue
+                proposal = (float(size), traits)
+                if expected is None or (proposal[0], len(proposal[1]), proposal[1]) < (
+                    expected[0],
+                    len(expected[1]),
+                    expected[1],
+                ):
+                    expected = proposal
+
+        if expected is None:
+            assert result is None
+        else:
+            assert result is not None
+            assert result.total_cost == expected[0]
+            assert result.selected_null_traits == expected[1]
