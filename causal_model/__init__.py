@@ -33,6 +33,13 @@ from .failure_modes import (
     true_admissible_configurations,
     true_forced_on,
 )
+from .generative_benchmarks import (
+    TwoDriverFamilyParameters,
+    TwoDriverSweepPoint,
+    evaluate_two_driver_family,
+    phase_table_markdown,
+    sweep_two_driver_family,
+)
 from .observation_design import (
     MinimumPanel,
     NullObservationCandidate,
@@ -78,6 +85,11 @@ __all__ = [
     "noisy_observation_audit",
     "true_admissible_configurations",
     "true_forced_on",
+    "TwoDriverFamilyParameters",
+    "TwoDriverSweepPoint",
+    "evaluate_two_driver_family",
+    "phase_table_markdown",
+    "sweep_two_driver_family",
     "MinimumPanel",
     "NullObservationCandidate",
     "minimum_discriminating_panel",
