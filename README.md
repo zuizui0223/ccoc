@@ -48,4 +48,3 @@ exact disjunctive theorem core + exhaustive small-model checks
 -> audited omitted-driver / noisy-NULL / non-OR failure modes
 -> generative benchmark families parameterized by misspecification and noise
 -> broader qualitative program families
-```
