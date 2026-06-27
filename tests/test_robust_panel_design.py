@@ -83,6 +83,7 @@ def test_shared_witness_is_cheapest_and_coverage_greedy_choice() -> None:
         target_trait="target",
         candidates=_candidates(),
         scenarios=_scenarios(),
+        max_cost=0.5,
     )
     assert comparison.minimum_cost is not None
     assert comparison.coverage_greedy is not None
@@ -93,6 +94,44 @@ def test_shared_witness_is_cheapest_and_coverage_greedy_choice() -> None:
 
 
 def test_minimax_prefers_redundant_private_witnesses_over_cheap_fragile_shared_witness() -> None:
+    # The all-three-witness panel would be safer still, but costs 2.5 and is
+    # unavailable under this budget.
+    result = choose_robust_panel(
+        _declared_model(),
+        focal_mechanism=0,
+        target_trait="target",
+        candidates=_candidates(),
+        scenarios=_scenarios(),
+        objective=RobustObjective.MINIMAX,
+        max_cost=2.0,
+    )
+    assert result is not None
+    assert result.selected_null_traits == ("witness_1", "witness_2")
+    assert result.total_cost == 2.0
+    assert result.worst_case_risk == pytest.approx(21.0 / 142.0)
+    assert result.weighted_mean_risk == pytest.approx(105.0 / 781.0)
+
+
+def test_weighted_mean_can_prefer_a_hybrid_panel_when_rarer_fragility_is_downweighted() -> None:
+    # At this budget the private pair and all-three panel are unavailable. The
+    # weighted-mean objective keeps the cheap shared witness and adds one private
+    # witness as insurance against the inhibited shared channel.
+    result = choose_robust_panel(
+        _declared_model(),
+        focal_mechanism=0,
+        target_trait="target",
+        candidates=_candidates(),
+        scenarios=_scenarios(),
+        objective=RobustObjective.WEIGHTED_MEAN,
+        max_cost=1.5,
+    )
+    assert result is not None
+    assert result.selected_null_traits == ("shared", "witness_1")
+    assert result.weighted_mean_risk == pytest.approx(1.0 / 44.0)
+    assert result.worst_case_risk == pytest.approx(1.0 / 4.0)
+
+
+def test_unconstrained_minimax_uses_all_redundant_witnesses_when_they_remove_every_declared_risk() -> None:
     result = choose_robust_panel(
         _declared_model(),
         focal_mechanism=0,
@@ -102,25 +141,9 @@ def test_minimax_prefers_redundant_private_witnesses_over_cheap_fragile_shared_w
         objective=RobustObjective.MINIMAX,
     )
     assert result is not None
-    assert result.selected_null_traits == ("witness_1", "witness_2")
-    assert result.total_cost == 2.0
-    assert result.worst_case_risk == pytest.approx(21.0 / 142.0)
-    assert result.weighted_mean_risk == pytest.approx(105.0 / 781.0)
-
-
-def test_weighted_mean_can_prefer_cheap_shared_panel_when_fragile_scenario_is_rare() -> None:
-    result = choose_robust_panel(
-        _declared_model(),
-        focal_mechanism=0,
-        target_trait="target",
-        candidates=_candidates(),
-        scenarios=_scenarios(),
-        objective=RobustObjective.WEIGHTED_MEAN,
-    )
-    assert result is not None
-    assert result.selected_null_traits == ("shared",)
-    assert result.weighted_mean_risk == pytest.approx(3.0 / 88.0)
-    assert result.worst_case_risk == pytest.approx(3.0 / 8.0)
+    assert result.selected_null_traits == ("shared", "witness_1", "witness_2")
+    assert result.total_cost == 2.5
+    assert result.worst_case_risk == 0.0
 
 
 def test_per_scenario_risks_separate_measurement_and_structural_fragility() -> None:
@@ -138,7 +161,8 @@ def test_per_scenario_risks_separate_measurement_and_structural_fragility() -> N
         selected_candidates=_candidates()[1:],
         scenarios=_scenarios(),
     )
-    assert [risk.focal_off_probability for risk in shared.scenario_risks] == [0.0, pytest.approx(3.0 / 8.0)]
+    assert shared.scenario_risks[0].focal_off_probability == 0.0
+    assert shared.scenario_risks[1].focal_off_probability == pytest.approx(3.0 / 8.0)
     assert private.scenario_risks[0].focal_off_probability == pytest.approx(21.0 / 142.0)
     assert private.scenario_risks[1].focal_off_probability == 0.0
 
