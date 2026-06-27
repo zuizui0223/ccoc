@@ -27,6 +27,7 @@ It proves, within that declared candidate set:
 5. **Coverage-aware robustness reports.** Robust-admissibility results distinguish unanimity in sampled runs from complete claims backed by exhaustive enumeration or an external solver certificate.
 6. **Known-truth calibration.** Small fully enumerated program universes can quantify false-invariant and false-excluded rates caused by finite sampling.
 7. **Failure-mode audits.** Truth-table benchmarks show how omitted drivers, noisy NULLs, inhibition, conjunctions, and hidden compatibility constraints can produce false necessity, missed necessity, or an outright model contradiction.
+8. **Exact misspecification phase benchmarks.** A finite generative family sweeps latent routes, witness sensitivity, inhibition, conjunctions, and compatibility constraints to calculate posterior false-necessity risk without Monte Carlo error. See [the benchmark guide](docs/generative_misspecification_benchmarks.md).
 
 ## Exactness boundary
 
@@ -46,5 +47,7 @@ exact disjunctive theorem core + exhaustive small-model checks
 -> coverage-aware robust-admissibility reports
 -> known-truth finite benchmarks and sampling-error calibration
 -> audited omitted-driver / noisy-NULL / non-OR failure modes
--> generative benchmark families parameterized by misspecification and noise
+-> exact generative phase benchmarks for misspecification and noise
+-> multi-driver, correlated-context, and panel-selection benchmark families
 -> broader qualitative program families
+```
