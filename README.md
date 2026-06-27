@@ -25,6 +25,7 @@ It proves, within that declared candidate set:
 3. **Synergistic observation design.** A set of individually uninformative competitor-witness observations can jointly make a mechanism indispensable. Therefore greedy one-step observation selection has no general guarantee.
 4. **Minimum discriminating panels.** Given feasible NULL observations and their costs, an exact dynamic program finds the cheapest panel that makes a focal mechanism indispensable while preserving all required-present observations.
 5. **Coverage-aware robustness reports.** Robust-admissibility results distinguish unanimity in sampled runs from complete claims backed by exhaustive enumeration or an external solver certificate.
+6. **Known-truth calibration.** Small fully enumerated program universes can quantify false-invariant and false-excluded rates caused by finite sampling.
 
 ## Exactness boundary
 
@@ -42,6 +43,7 @@ The initial theorem core is a clean extraction from the earlier `microdonta` wor
 exact disjunctive theorem core + exhaustive small-model checks
 -> exact minimum discriminating observation / intervention panels
 -> coverage-aware robust-admissibility reports
--> known-truth benchmarks and error calibration
+-> known-truth finite benchmarks and sampling-error calibration
+-> generative benchmark families with omitted motifs and observation noise
 -> broader qualitative program families
 ```
