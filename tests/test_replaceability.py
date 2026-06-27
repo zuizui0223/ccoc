@@ -55,11 +55,9 @@ def test_joint_elimination_has_greedy_failure_witness() -> None:
     assert greedy_failure_witness(5)
 
 
-def test_contradictory_observation_has_empty_region_not_necessity() -> None:
-    model = StructuralModel(1, {"trait": frozenset({0})})
-    observation = Observation(present=("trait",), null=("trait",))
+def test_contradictory_observation_is_rejected_at_construction() -> None:
     with pytest.raises(ValueError, match="both present and null"):
-        admissible_configurations(model, observation)
+        Observation(present=("trait",), null=("trait",))
 
 
 def test_invalid_driver_index_is_rejected() -> None:
