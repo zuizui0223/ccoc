@@ -2,6 +2,8 @@
 
 from .admissibility import (
     AdmissibilityReport,
+    ClaimCoverage,
+    CoverageMode,
     MotifClassification,
     MotifStatus,
     ProgramRun,
@@ -27,6 +29,8 @@ from .replaceability import (
 
 __all__ = [
     "AdmissibilityReport",
+    "ClaimCoverage",
+    "CoverageMode",
     "MotifClassification",
     "MotifStatus",
     "ProgramRun",
