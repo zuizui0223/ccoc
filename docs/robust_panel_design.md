@@ -67,25 +67,28 @@ Candidate costs are:
 
 Thus minimum-cost and coverage-greedy selection choose `shared`.
 
-The benchmark then evaluates two true scenarios:
+The benchmark evaluates two true scenarios:
 
 1. **Frequent private-noise scenario** (weight 10): private witnesses have sensitivity 0.9, while `shared` is reliable.
 2. **Rare shared-inhibition scenario** (weight 1): `shared` is absent whenever \(h=1\), even if a competitor is active; private witnesses remain reliable.
 
-The exact results are:
+Some key exact values are:
 
-| Panel | Cost | Worst-case risk | Weighted mean risk |
+| Panel | Cost | Frequent-scenario risk | Rare-scenario risk |
 |---|---:|---:|---:|
-| `shared` | 0.5 | \(3/8\) | \(3/88\) |
-| `witness_1,witness_2` | 2 | \(21/142\) | \(105/781\) |
+| `shared` | 0.5 | 0 | \(3/8\) |
+| `witness_1,witness_2` | 2 | \(21/142\) | 0 |
+| `shared,witness_1` | 1.5 | 0 | \(1/4\) |
+| `shared,witness_1,witness_2` | 2.5 | 0 | 0 |
 
-Consequently:
+The role of a budget is therefore central:
 
-- minimum-cost and coverage-greedy choose `shared`;
-- minimax chooses `witness_1,witness_2` because \(21/142 < 3/8\);
-- weighted-mean risk chooses `shared` because the shared-inhibition scenario has low declared weight.
+- **Budget 0.5:** only `shared` resolves the declared model.
+- **Budget 1.5:** weighted-mean risk selects `shared,witness_1`, whose average risk is \(1/44\). It retains cheap broad coverage while adding partial redundancy.
+- **Budget 2.0:** minimax selects `witness_1,witness_2`; its worst-case risk is \(21/142\), lower than the shared panel's \(3/8\).
+- **No cost bound:** minimax selects all three witnesses because the redundant panel has zero risk across these declared scenarios.
 
-This is not an inconsistency. It exposes the decision commitment hidden in every observation plan.
+This is not an inconsistency. It exposes the decision commitment hidden in every observation plan: a robust objective without a cost constraint naturally buys all available redundancy.
 
 ## Example
 
@@ -107,7 +110,7 @@ result = choose_robust_panel(
     candidates=candidates,
     scenarios=scenarios,
     objective=RobustObjective.MINIMAX,
-    max_cost=5.0,
+    max_cost=2.0,
 )
 ```
 
