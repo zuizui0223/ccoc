@@ -4,6 +4,8 @@
 
 The classifier accepts a predeclared motif vocabulary and one or more **robustness cells**. A cell is an analysis context such as a prior family, tolerance value, endpoint convention, or sampling plan. It contains evaluated program runs with an externally determined acceptance flag.
 
+At least one cell must be marked `required`. Optional cells are retained for reporting but cannot, by themselves, support a cross-cell universal claim. This rejects the vacuous case in which every supplied cell is optional and `all(...)` would otherwise classify every motif as invariant.
+
 The module does not decide whether a run should be accepted. That decision belongs to the program-specific pattern distance, constraint predicate, and tolerance rule.
 
 ## Cell-level definitions
@@ -40,14 +42,14 @@ If any required cell has \(A_c=\varnothing\), both universal claims are marked *
 
 ## What the label means
 
-A robust-invariant label means only:
+A robust-invariant label currently means only:
 
 ```text
 Within the declared grammar, parameter domain, acceptance rule,
-and required robustness cells, every accepted sampled program includes m.
+required robustness cells, and evaluated accepted runs, every accepted run includes m.
 ```
 
-It is not a posterior probability and not a universal statement about nature. Finite sampling can miss admissible counterexamples; the next roadmap slice therefore adds known-truth benchmarks and error calibration.
+It is not a posterior probability and not a universal statement about nature. More importantly, it is not yet proof over all programs in a cell: finite search can miss an admissible counterexample. The next implementation stage will add coverage metadata, such as `sampled`, `exhaustive`, or `solver-backed`, so reports cannot blur sampled unanimity with exhaustive necessity.
 
 ## Relation to the exact replaceability core
 
