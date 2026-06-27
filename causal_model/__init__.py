@@ -1,5 +1,13 @@
-"""RACH causal-invariant theorem and benchmark modules."""
+"""RACH causal-invariant theorem and robust-admissibility modules."""
 
+from .admissibility import (
+    AdmissibilityReport,
+    MotifClassification,
+    MotifStatus,
+    ProgramRun,
+    RobustnessCell,
+    classify_motifs,
+)
 from .replaceability import (
     Observation,
     StructuralModel,
@@ -11,6 +19,12 @@ from .replaceability import (
 )
 
 __all__ = [
+    "AdmissibilityReport",
+    "MotifClassification",
+    "MotifStatus",
+    "ProgramRun",
+    "RobustnessCell",
+    "classify_motifs",
     "Observation",
     "StructuralModel",
     "admissible_configurations",
