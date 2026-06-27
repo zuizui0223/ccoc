@@ -30,6 +30,15 @@ It proves, within that declared candidate set:
 8. **Exact misspecification phase benchmarks.** A finite generative family sweeps latent routes, witness sensitivity, inhibition, conjunctions, and compatibility constraints to calculate posterior false-necessity risk without Monte Carlo error. See [the benchmark guide](docs/generative_misspecification_benchmarks.md).
 9. **Multi-competitor panel benchmarks.** Exact joint-panel design is compared against strict one-step greedy selection under multiple competitors, latent routes, and correlated environmental contexts. See [the panel benchmark guide](docs/multi_competitor_panel_phase_benchmarks.md).
 10. **Risk-robust panel design.** Cost-first, coverage-greedy, minimax-risk, and weighted-mean-risk panel selection can be compared over explicit finite true-model scenarios, including shared witnesses and measurement channels. See [the robust-panel guide](docs/robust_panel_design.md).
+11. **Reproducible benchmark suite.** A dependency-free runner regenerates the paper-facing finite-enumeration CSV tables for phase risks, joint-panel synergy, and budgeted robust design. See [the experiment guide](experiments/README.md).
+
+## Reproduce benchmark tables
+
+```bash
+python experiments/run_all_benchmarks.py --output results
+```
+
+The generated tables are exact finite weighted enumerations under their declared benchmark families. They are not empirical estimates and contain no Monte Carlo uncertainty.
 
 ## Exactness boundary
 
@@ -52,6 +61,7 @@ exact disjunctive theorem core + exhaustive small-model checks
 -> exact generative phase benchmarks for misspecification and noise
 -> multi-driver correlated-context comparisons: exact panel versus strict greedy
 -> cost-aware minimax and weighted-risk robust panel optimization
+-> reproducible paper-facing exact benchmark tables
 -> scalable solver-backed robust design and empirical scenario calibration
 -> broader qualitative program families
 ```
