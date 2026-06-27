@@ -45,6 +45,17 @@ from .observation_design import (
     NullObservationCandidate,
     minimum_discriminating_panel,
 )
+from .panel_phase_benchmarks import (
+    MultiCompetitorFamilyParameters,
+    MultiCompetitorPanelComparison,
+    PanelStrategy,
+    PanelStrategyResult,
+    compare_panel_strategies,
+    declared_multi_competitor_model,
+    panel_phase_table_markdown,
+    strict_greedy_panel_traits,
+    sweep_panel_phase_family,
+)
 from .replaceability import (
     Observation,
     StructuralModel,
@@ -93,6 +104,15 @@ __all__ = [
     "MinimumPanel",
     "NullObservationCandidate",
     "minimum_discriminating_panel",
+    "MultiCompetitorFamilyParameters",
+    "MultiCompetitorPanelComparison",
+    "PanelStrategy",
+    "PanelStrategyResult",
+    "compare_panel_strategies",
+    "declared_multi_competitor_model",
+    "panel_phase_table_markdown",
+    "strict_greedy_panel_traits",
+    "sweep_panel_phase_family",
     "Observation",
     "StructuralModel",
     "admissible_configurations",
