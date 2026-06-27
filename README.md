@@ -28,6 +28,7 @@ It proves, within that declared candidate set:
 6. **Known-truth calibration.** Small fully enumerated program universes can quantify false-invariant and false-excluded rates caused by finite sampling.
 7. **Failure-mode audits.** Truth-table benchmarks show how omitted drivers, noisy NULLs, inhibition, conjunctions, and hidden compatibility constraints can produce false necessity, missed necessity, or an outright model contradiction.
 8. **Exact misspecification phase benchmarks.** A finite generative family sweeps latent routes, witness sensitivity, inhibition, conjunctions, and compatibility constraints to calculate posterior false-necessity risk without Monte Carlo error. See [the benchmark guide](docs/generative_misspecification_benchmarks.md).
+9. **Multi-competitor panel benchmarks.** Exact joint-panel design is compared against strict one-step greedy selection under multiple competitors, latent routes, and correlated environmental contexts. See [the panel benchmark guide](docs/multi_competitor_panel_phase_benchmarks.md).
 
 ## Exactness boundary
 
@@ -48,6 +49,7 @@ exact disjunctive theorem core + exhaustive small-model checks
 -> known-truth finite benchmarks and sampling-error calibration
 -> audited omitted-driver / noisy-NULL / non-OR failure modes
 -> exact generative phase benchmarks for misspecification and noise
--> multi-driver, correlated-context, and panel-selection benchmark families
+-> multi-driver correlated-context comparisons: exact panel versus strict greedy
+-> cost-aware and risk-robust panel optimization across misspecification grids
 -> broader qualitative program families
 ```
