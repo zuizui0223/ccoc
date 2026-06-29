@@ -10,6 +10,14 @@ from .admissibility import (
     RobustnessCell,
     classify_motifs,
 )
+from .anytime_confidence_lifting import (
+    AnytimeJointCoverageCertificate,
+    AnytimeLiftingWitness,
+    AnytimeRACHSoundnessGuarantee,
+    SequentialConfidenceSetSnapshot,
+    anytime_soundness_guarantee_from_coverage,
+    deterministic_anytime_lifting_witness,
+)
 from .benchmarks import (
     BenchmarkComparison,
     CalibrationOutcome,
@@ -136,6 +144,12 @@ __all__ = [
     "ProgramRun",
     "RobustnessCell",
     "classify_motifs",
+    "AnytimeJointCoverageCertificate",
+    "SequentialConfidenceSetSnapshot",
+    "AnytimeLiftingWitness",
+    "AnytimeRACHSoundnessGuarantee",
+    "deterministic_anytime_lifting_witness",
+    "anytime_soundness_guarantee_from_coverage",
     "BenchmarkComparison",
     "CalibrationOutcome",
     "ExactCalibrationSummary",
