@@ -39,6 +39,8 @@ It proves, within that declared candidate set:
 15. **Confidence-set lifting theorem.** Any external procedure that returns simultaneously valid candidate confidence sets from arbitrary random data can be lifted into a finite-sample RACH family-wise false-decisive bound. See [the theorem](docs/confidence_set_lifting_theorem.md).
 16. **Anytime confidence-set lifting theorem.** An externally valid time-uniform candidate confidence sequence controls false decisive conclusions across every certified look and every data-dependent stopping rule. See [the anytime theorem](docs/anytime_confidence_set_lifting.md).
 17. **Symbolic candidate-set lifting.** A solver-backed feasible set over an arbitrary, including continuous or uncountable, candidate space can support RACH classification from SAT/UNSAT certificates; solver semantic risk is added explicitly to statistical miscoverage. See [the symbolic theorem](docs/symbolic_candidate_set_lifting.md).
+18. **Proof-carrying rational linear feasibility.** Exact rational witnesses and Farkas certificates are verified before a linear symbolic `SAT` or `UNSAT` claim can become decisive. See [the verifier guide](docs/linear_proof_verifier.md).
+19. **Anytime symbolic lifting theorem.** Arbitrary candidate spaces, arbitrary sequential random data, optional stopping, and solver-certificate validity are combined into one time-uniform false-decisive bound. See [the theorem](docs/anytime_symbolic_candidate_set_lifting.md).
 
 ## Reproduce benchmark tables
 
@@ -98,7 +100,25 @@ If statistical retained-set coverage fails with probability at most \(\alpha\), 
 P(any false INVARIANT or false EXCLUDED conclusion) <= min(1, alpha + beta).
 ```
 
-No independence between the two failure sources is needed. With a deterministic proof-carrying solver and trusted verifier, \(\beta=0\). RACH still does not implement a solver or convert a timeout into evidence.
+No independence between the two failure sources is needed. With a deterministic proof-carrying solver and trusted verifier, \(\beta=0\). The first concrete verifier checks rational linear SAT witnesses and Farkas infeasibility certificates using exact arithmetic; it is a verifier, not an LP search engine.
+
+## Anytime symbolic candidate-set layer
+
+The broadest current theorem combines the two prior requirements over one fixed target: an arbitrary candidate space, a fixed motif vocabulary, fixed required cells, and a finite or all-look analysis scope.
+
+```text
+P(true candidate is retained in every required cell at every certified look) >= 1 - alpha
+P(all decisive solver certificates are semantically valid over the same scope) >= 1 - beta
+```
+
+Then
+
+```text
+P(any false INVARIANT or false EXCLUDED conclusion,
+  at any certified look, across all motifs) <= min(1, alpha + beta).
+```
+
+The same upper bound applies after any data-dependent stopping rule within that scope. Neither independence nor a particular data distribution is required. A finite proof-carrying solver verifier can set \(\beta=0\) only for the queries it actually verifies; a timeout or unverified numerical result remains `UNSUPPORTED`.
 
 ## Ecological-program inference
 
@@ -112,7 +132,7 @@ The Boolean theorems are exact only when the declared model permits every switch
 
 The ecological-program module can represent a finite subset of those features, but it does not turn a candidate grammar into a universal model of nature. Its results remain conditional on the declared rules, feasible states, observation error model, acceptance rule, and candidate-program coverage.
 
-The confidence-set lifting theorem controls false decisive conclusions only when the external procedure's simultaneous statistical coverage claim is valid and the true mechanism belongs to the declared candidate universe. The anytime theorem additionally requires coverage to hold across every certified look. The symbolic theorem additionally needs valid decisive solver certificates. None of these results can create power from data that do not distinguish candidates, repair an omitted mechanism, or certify their own assumptions.
+The confidence-set lifting theorem controls false decisive conclusions only when the external procedure's simultaneous statistical coverage claim is valid and the true mechanism belongs to the declared candidate universe. The anytime theorem additionally requires coverage to hold across every certified look. The symbolic theorem additionally needs valid decisive solver certificates. The anytime symbolic theorem requires both of those all-look conditions over the same target. None of these results can create power from data that do not distinguish candidates, repair an omitted mechanism, or certify their own assumptions.
 
 ## Relationship to domain models
 
@@ -143,5 +163,7 @@ exact disjunctive theorem core + exhaustive small-model checks
 -> distribution-agnostic confidence-set lifting with finite-sample error control
 -> anytime confidence-set lifting with optional-stopping-safe error control
 -> symbolic continuous / infinite candidate sets with solver-backed feasibility
--> real solver adapters with proof/error certificates and scalable robust design
+-> exact rational proof-carrying linear feasibility verification
+-> anytime symbolic lifting over arbitrary candidate spaces
+-> proof-format adapters, nonlinear certificates, and scalable robust design
 ```
