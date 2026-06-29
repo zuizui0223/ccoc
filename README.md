@@ -37,6 +37,7 @@ It proves, within that declared candidate set:
 13. **Finite noisy-observation special case.** Repeated binary detections have declared sensitivity and false-positive rates, allowing exact finite-state likelihood and panel calculations under their stated assumptions.
 14. **Exact observation-channel envelopes.** A known finite generator can be passed through all possible repeated-detection outcomes to quantify exact invariant, excluded, unresolved, unsupported, false-invariant, and false-excluded probabilities. See [the envelope guide](docs/exact_observation_envelopes.md).
 15. **Confidence-set lifting theorem.** Any external procedure that returns simultaneously valid candidate confidence sets from arbitrary random data can be lifted into a finite-sample RACH family-wise false-decisive bound. See [the theorem](docs/confidence_set_lifting_theorem.md).
+16. **Anytime confidence-set lifting theorem.** An externally valid time-uniform candidate confidence sequence controls false decisive conclusions across every certified look and every data-dependent stopping rule. See [the anytime theorem](docs/anytime_confidence_set_lifting.md).
 
 ## Reproduce benchmark tables
 
@@ -62,6 +63,23 @@ P(any false INVARIANT or false EXCLUDED conclusion across all motifs) <= alpha.
 
 The implication is pointwise and therefore does not require RACH to assume i.i.d. observations, normality, discreteness, continuity, or a particular data dimension. The external method must establish its own coverage conditions; RACH only preserves and lifts that guarantee. Observationally indistinguishable candidates necessarily remain unresolved with high probability under any honest low-error procedure.
 
+## Sequential / anytime layer
+
+At each interim look, a fixed-time candidate confidence set is not enough to justify repeated peeking. For a certified look scope \(\mathcal T\), the external method must establish
+
+```text
+P(true candidate is retained in every required cell at every t in T) >= 1 - alpha.
+```
+
+Only then does RACH guarantee
+
+```text
+P(any false INVARIANT or false EXCLUDED conclusion
+  at any certified look, across all motifs) <= alpha.
+```
+
+Therefore a data-dependent stopping rule is safe only when its selected look lies inside the all-look certificate scope. RACH does not turn separately valid fixed-time intervals into an anytime guarantee; it requires an external confidence sequence, a jointly valid finite-look construction, or another documented time-uniform coverage method.
+
 ## Ecological-program inference
 
 The original disjunctive theorem remains exact only for its declared monotone OR assumptions. The ecological-program layer is a separate finite-state inference workflow: candidate programs are evaluated against repeated noisy observations, then passed to the existing robust-admissibility classifier across required analysis cells. It supports exact joint observation-panel design over a finite library, but its exhaustive search is deliberately limited to small, auditable candidate sets.
@@ -74,7 +92,7 @@ The Boolean theorems are exact only when the declared model permits every switch
 
 The ecological-program module can represent a finite subset of those features, but it does not turn a candidate grammar into a universal model of nature. Its results remain conditional on the declared rules, feasible states, observation error model, acceptance rule, and candidate-program coverage.
 
-The confidence-set lifting theorem controls false decisive conclusions only when the external procedure's simultaneous statistical coverage claim is valid and the true mechanism belongs to the declared candidate universe. It cannot create power from data that do not distinguish candidates, repair an omitted mechanism, or certify its own assumptions.
+The confidence-set lifting theorem controls false decisive conclusions only when the external procedure's simultaneous statistical coverage claim is valid and the true mechanism belongs to the declared candidate universe. The anytime theorem additionally requires coverage to hold across every certified look. Neither result can create power from data that do not distinguish candidates, repair an omitted mechanism, or certify its own assumptions.
 
 ## Relationship to domain models
 
@@ -103,6 +121,7 @@ exact disjunctive theorem core + exhaustive small-model checks
 -> finite ecological-program grammar + repeated-observation likelihoods
 -> exact observation-channel risk envelopes over finite candidate universes
 -> distribution-agnostic confidence-set lifting with finite-sample error control
--> uniform, sequential, and solver-backed extensions of the general theorem
+-> anytime confidence-set lifting with optional-stopping-safe error control
+-> continuous / infinite candidate sets and solver-backed set representations
 -> scalable robust design and broader qualitative program families
 ```
