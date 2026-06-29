@@ -8,18 +8,20 @@ Run:
     python examples/linear_proof_verifier.py
 """
 
-from causal_model import (
+from causal_model.linear_proof_verifier import (
     FarkasInfeasibilityCertificate,
-    FeasibilityStatus,
     LinearFeasibilityProof,
     LinearFeasibilityQuery,
     LinearInequality,
     LinearMotifQueryBundle,
     RationalLinearSystem,
     RationalWitness,
+    linear_bundles_to_symbolic_cell,
+)
+from causal_model.symbolic_candidate_sets import (
+    FeasibilityStatus,
     SymbolicCandidateSpace,
     classify_symbolic_candidate_sets,
-    linear_bundles_to_symbolic_cell,
 )
 
 
