@@ -1,4 +1,5 @@
 from itertools import combinations
+from math import isclose
 
 import pytest
 
@@ -74,8 +75,8 @@ def test_joint_coverage_certificate_lifts_to_simultaneous_false_decisive_bound()
         ),
     )
 
-    assert guarantee.family_wise_false_decisive_upper_bound == 0.05
-    assert guarantee.false_invariant_upper_bounds["focal"] == 0.05
+    assert isclose(guarantee.family_wise_false_decisive_upper_bound, 0.05)
+    assert isclose(guarantee.false_invariant_upper_bounds["focal"], 0.05)
     assert guarantee.false_excluded_upper_bounds["focal"] == 0.0
     assert guarantee.certificate_assumptions == ("coverage is simultaneous over left and right",)
 
@@ -92,7 +93,7 @@ def test_active_truth_has_only_false_exclusion_risk() -> None:
     )
 
     assert guarantee.false_invariant_upper_bounds["focal"] == 0.0
-    assert guarantee.false_excluded_upper_bounds["focal"] == 0.1
+    assert isclose(guarantee.false_excluded_upper_bounds["focal"], 0.1)
 
 
 def test_unknown_retained_candidate_is_rejected() -> None:
@@ -110,5 +111,5 @@ def test_unknown_retained_candidate_is_rejected() -> None:
 
 
 def test_indistinguishable_pair_requires_abstention_at_small_error() -> None:
-    assert indistinguishability_abstention_lower_bound(0.05) == 0.9
+    assert isclose(indistinguishability_abstention_lower_bound(0.05), 0.9)
     assert indistinguishability_abstention_lower_bound(0.6) == 0.0
