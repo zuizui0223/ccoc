@@ -59,32 +59,26 @@ def channel_cell(cell_id: str) -> ObservationEnvelopeCell:
 
 
 def main() -> None:
-    designs = {
-        "one channel": (channel_cell("evidence"),),
-        "two independent required cells": (
-            channel_cell("evidence_a"),
-            channel_cell("evidence_b"),
-        ),
-    }
-    points = sweep_exact_observation_envelopes(
+    one_cell = sweep_exact_observation_envelopes(
         (ACTIVE, INACTIVE),
         ("focal",),
-        designs,
+        {"one channel": (channel_cell("evidence"),)},
         true_candidate_id="inactive_focal",
         true_states={"evidence": (0,)},
     )
-
-    # The two-cell design has different cell IDs, so evaluate it separately with
-    # matching true states rather than silently assuming contexts are identical.
-    two_cell = sweep_exact_observation_envelopes(
+    two_cells = sweep_exact_observation_envelopes(
         (ACTIVE, INACTIVE),
         ("focal",),
-        {"two independent required cells": designs["two independent required cells"]},
+        {
+            "two independent required cells": (
+                channel_cell("evidence_a"),
+                channel_cell("evidence_b"),
+            )
+        },
         true_candidate_id="inactive_focal",
         true_states={"evidence_a": (0,), "evidence_b": (0,)},
     )
-    one_cell = points[:1]
-    print(observation_envelope_table_markdown((*one_cell, *two_cell), "focal", digits=4))
+    print(observation_envelope_table_markdown((*one_cell, *two_cells), "focal", digits=4))
 
 
 if __name__ == "__main__":
