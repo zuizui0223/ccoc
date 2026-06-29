@@ -8,8 +8,10 @@ from causal_model.replaceability import (
     admissible_configurations,
     forced_off,
     forced_on,
+    forced_on_by_theorem,
     greedy_failure_witness,
     null_eliminated_mechanisms,
+    observation_is_admissible,
     structural_crc,
     theorem_a_certificate,
 )
@@ -42,6 +44,7 @@ def test_last_driver_criterion_certifies_indispensability() -> None:
     assert certificate.holds
     assert certificate.forced_on
     assert certificate.supporting_traits == ("shared",)
+    assert forced_on_by_theorem(_model(), observation, 0)
     assert isinf(structural_crc(0, configs))
 
 
@@ -53,6 +56,21 @@ def test_positive_shared_observation_does_not_make_any_driver_indispensable() ->
 def test_joint_elimination_has_greedy_failure_witness() -> None:
     assert greedy_failure_witness(2)
     assert greedy_failure_witness(5)
+
+
+def test_infeasible_observation_has_no_direct_indispensability_claim() -> None:
+    model = StructuralModel(
+        mechanism_count=2,
+        driver_sets={
+            "shared": frozenset({0, 1}),
+            "private_0": frozenset({0}),
+            "private_1": frozenset({1}),
+        },
+    )
+    observation = Observation(present=("shared",), null=("private_0", "private_1"))
+    assert not observation_is_admissible(model, observation)
+    assert not forced_on_by_theorem(model, observation, 0)
+    assert not theorem_a_certificate(model, observation, 0).holds
 
 
 def test_contradictory_observation_is_rejected_at_construction() -> None:
