@@ -33,6 +33,7 @@ It proves, within that declared candidate set:
 11. **Reproducible benchmark suite.** A dependency-free runner regenerates the paper-facing finite-enumeration CSV tables for phase risks, joint-panel synergy, and budgeted robust design. See [the experiment guide](experiments/README.md).
 12. **Finite ecological-program layer.** A separate Boolean program API represents conjunction, alternative pathways, inhibition snapshots, and explicit feasible-state constraints without silently extending the OR theorem. See [the ecological-program guide](docs/ecological_program_inference.md).
 13. **Noisy repeated observations and empirical protocol.** Repeated detections have declared sensitivity and false-positive rates; an island flower-colour data contract provides a pre-analysis route for field, common-garden, pollinator, and genomic evidence. See [the empirical template](examples/island_flower_colour/README.md).
+14. **Exact observation-channel envelopes.** A known finite generator can be passed through all possible repeated-detection outcomes to quantify exact invariant, excluded, unresolved, unsupported, false-invariant, and false-excluded probabilities. See [the envelope guide](docs/exact_observation_envelopes.md).
 
 ## Reproduce benchmark tables
 
@@ -66,6 +67,23 @@ but it does not turn a candidate grammar into a universal model of nature. Its
 results remain conditional on the declared rules, feasible states, observation
 error model, acceptance rule, and candidate-program coverage.
 
+## Relationship to domain models
+
+RACH is deliberately **not** a floral-trait, pollination, fitness, population-genetic,
+or site-level model. It stores generic qualitative programs, binary observation
+channels, acceptance rules, coverage labels, and exact self-calibration
+benchmarks. It answers whether a motif would be classified as indispensable or
+excluded within those declared abstractions.
+
+[`campanula-channel-identification`](https://github.com/zuizui0223/campanula-channel-identification)
+is a separate domain repository. It specifies a Campanula / island-floral-trait
+life cycle, including local reproduction versus establishment, nectar-guide
+routes, handling and pollen placement, selfing, recruitment, spatial structure,
+and prospective field measurements. It can translate a small predeclared set of
+its scenarios into a RACH candidate universe for an audit, but RACH does not
+contain those biological equations and must not be presented as evidence for a
+Campanula mechanism.
+
 ## Scope boundary
 
 This repository is the active methods home for RACH causal invariants. It does **not** claim that an inferred motif is universally true in nature. Every conclusion is conditional on the declared candidate mechanisms, observation fidelity, program grammar, and—for sampled program families—search coverage.
@@ -85,6 +103,7 @@ exact disjunctive theorem core + exhaustive small-model checks
 -> cost-aware minimax and weighted-risk robust panel optimization
 -> reproducible paper-facing exact benchmark tables
 -> finite ecological-program grammar + repeated-observation likelihoods
+-> exact observation-channel risk envelopes over finite candidate universes
 -> empirical scenario calibration with predeclared field/genetic/pollination data
 -> scalable solver-backed robust design and broader qualitative program families
 ```
