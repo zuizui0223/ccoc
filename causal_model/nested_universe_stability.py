@@ -1,26 +1,20 @@
 """Nested candidate-universe stability audits for RACH.
 
-RACH conclusions are always conditional on a declared candidate universe. This
-module does not pretend to prove that the universe contains nature. Instead it
-makes the remaining scope sensitivity explicit: analysts can predeclare nested
-finite candidate universes, with every retained set in an inner universe a
-subset of the corresponding retained set in an outer universe, and ask which
-motif conclusions survive each expansion.
+RACH conclusions are conditional on a declared candidate universe. This module
+does not pretend to prove that the universe contains nature. It instead makes
+scope sensitivity explicit: analysts predeclare nested finite candidate universes
+whose retained sets grow by inclusion, then keep only motif conclusions that
+survive the outer envelope.
 
-The central deterministic theorem is monotonicity under candidate-set expansion:
+For non-empty nested retained sets, candidate-set expansion is monotone:
 
 * an outer `INVARIANT` implies an inner `INVARIANT`;
 * an outer `EXCLUDED` implies an inner `EXCLUDED`; and
 * an inner `UNRESOLVED` implies an outer `UNRESOLVED`.
 
-Therefore only a decisive conclusion that survives the outer envelope should be
-called extension-stable. An inner decisive conclusion that becomes unresolved
-under a declared expansion is scope-fragile, not falsified.
-
-This finite implementation is exact and enumerates no unobserved mechanisms.
-For arbitrary symbolic spaces, an external inclusion certificate for retained
-sets can play the same role; the general confidence-set lifting theorem then
-applies to the outermost declared envelope.
+An inner decisive conclusion lost after expansion is scope-fragile, not thereby
+proven false. The implementation is exact for explicit finite tiers; arbitrary
+symbolic extensions need an external inclusion certificate.
 """
 
 from __future__ import annotations
@@ -33,12 +27,12 @@ from .admissibility import MotifStatus
 
 @dataclass(frozen=True)
 class FiniteUniverseTier:
-    """One explicit candidate universe and its retained sets across required cells.
+    """One explicit, supported candidate universe across required cells.
 
-    Candidate IDs shared by two nested tiers denote the same candidate and must
-    retain the same declared motif set. `retained_by_cell` contains the candidates
-    compatible with the observations in that tier; it may be smaller than the
-    declared universe but must be a subset of it.
+    Candidate IDs shared by nested tiers denote the same candidate and must retain
+    the same motif assignment. Every required retained set must be non-empty.
+    Empty retained sets are ordinary RACH `UNSUPPORTED` cases and are deliberately
+    outside this monotonicity theorem, avoiding vacuous universal statements.
     """
 
     tier_id: str
@@ -71,6 +65,8 @@ class FiniteUniverseTier:
             raise ValueError("retained_by_cell must contain exactly the required cell IDs")
         candidates = set(self.candidate_motifs)
         for cell_id, retained in self.retained_by_cell.items():
+            if not retained:
+                raise ValueError("nested-universe stability requires non-empty retained sets")
             if not set(retained) <= candidates:
                 raise ValueError(f"retained set for {cell_id!r} contains undeclared candidates")
 
@@ -80,8 +76,6 @@ class FiniteUniverseTier:
         if motif not in self.motifs:
             raise ValueError(f"unknown motif: {motif!r}")
         retained = self.retained_by_cell[cell_id]
-        if not retained:
-            return MotifStatus.UNSUPPORTED
         active = {candidate_id for candidate_id in retained if motif in self.candidate_motifs[candidate_id]}
         if len(active) == len(retained):
             return MotifStatus.INVARIANT
@@ -91,8 +85,6 @@ class FiniteUniverseTier:
 
     def motif_status(self, motif: str) -> MotifStatus:
         statuses = tuple(self.cell_status(cell_id, motif) for cell_id in self.required_cell_ids)
-        if any(status is MotifStatus.UNSUPPORTED for status in statuses):
-            return MotifStatus.UNSUPPORTED
         if all(status is MotifStatus.INVARIANT for status in statuses):
             return MotifStatus.INVARIANT
         if all(status is MotifStatus.EXCLUDED for status in statuses):
@@ -177,17 +169,16 @@ def _assert_monotonicity(inner: FiniteUniverseTier, outer: FiniteUniverseTier) -
 def audit_nested_universe_stability(
     tiers: Iterable[FiniteUniverseTier],
 ) -> NestedUniverseStabilityReport:
-    """Classify all tiers and retain only conclusions stable through every expansion.
+    """Classify a nested chain and retain only outer-envelope decisive conclusions.
 
     The first tier is the narrowest declared universe and the last is the widest
-    outer envelope. A motif is extension-stable exactly when its status is
-    `INVARIANT` or `EXCLUDED` in the outermost tier. By the monotonicity theorem,
-    that same decisive status then holds in every earlier nested tier.
+    declared outer envelope. A motif is extension-stable exactly when the
+    outermost tier reports `INVARIANT` or `EXCLUDED`; the monotonicity theorem then
+    guarantees the same status at every inner tier.
 
-    A motif is scope-fragile when it was decisive in at least one narrower tier
-    but is not decisive with the same status in the outermost envelope. This is a
-    diagnostic of declared-model sensitivity, not evidence that the narrow model
-    was false.
+    A motif is scope-fragile when some narrower tier is decisive but the outermost
+    envelope does not preserve that same status. This diagnoses declared-model
+    sensitivity without treating the narrower model as falsified.
     """
 
     tier_tuple = tuple(tiers)
