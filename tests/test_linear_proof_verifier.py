@@ -2,20 +2,22 @@ from fractions import Fraction
 
 import pytest
 
-from causal_model import (
-    CoverageMode,
+from causal_model.admissibility import CoverageMode
+from causal_model.linear_proof_verifier import (
     FarkasInfeasibilityCertificate,
-    FeasibilityStatus,
     LinearFeasibilityProof,
     LinearFeasibilityQuery,
     LinearInequality,
     LinearMotifQueryBundle,
     RationalLinearSystem,
     RationalWitness,
-    SymbolicCandidateSpace,
-    classify_symbolic_candidate_sets,
     linear_bundles_to_symbolic_cell,
     verify_linear_query,
+)
+from causal_model.symbolic_candidate_sets import (
+    FeasibilityStatus,
+    SymbolicCandidateSpace,
+    classify_symbolic_candidate_sets,
 )
 
 
