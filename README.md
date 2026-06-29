@@ -31,6 +31,8 @@ It proves, within that declared candidate set:
 9. **Multi-competitor panel benchmarks.** Exact joint-panel design is compared against strict one-step greedy selection under multiple competitors, latent routes, and correlated environmental contexts. See [the panel benchmark guide](docs/multi_competitor_panel_phase_benchmarks.md).
 10. **Risk-robust panel design.** Cost-first, coverage-greedy, minimax-risk, and weighted-mean-risk panel selection can be compared over explicit finite true-model scenarios, including shared witnesses and measurement channels. See [the robust-panel guide](docs/robust_panel_design.md).
 11. **Reproducible benchmark suite.** A dependency-free runner regenerates the paper-facing finite-enumeration CSV tables for phase risks, joint-panel synergy, and budgeted robust design. See [the experiment guide](experiments/README.md).
+12. **Finite ecological-program layer.** A separate Boolean program API represents conjunction, alternative pathways, inhibition snapshots, and explicit feasible-state constraints without silently extending the OR theorem. See [the ecological-program guide](docs/ecological_program_inference.md).
+13. **Noisy repeated observations and empirical protocol.** Repeated detections have declared sensitivity and false-positive rates; an island flower-colour data contract provides a pre-analysis route for field, common-garden, pollinator, and genomic evidence. See [the empirical template](examples/island_flower_colour/README.md).
 
 ## Reproduce benchmark tables
 
@@ -40,9 +42,29 @@ python experiments/run_all_benchmarks.py --output results
 
 The generated tables are exact finite weighted enumerations under their declared benchmark families. They are not empirical estimates and contain no Monte Carlo uncertainty.
 
+## Ecological-program inference
+
+The original disjunctive theorem remains exact only for its declared monotone OR
+assumptions. The ecological-program layer is a separate finite-state inference
+workflow: candidate programs are evaluated against repeated noisy observations,
+then passed to the existing robust-admissibility classifier across required
+analysis cells. It supports exact joint observation-panel design over a finite
+library, but its exhaustive search is deliberately limited to small, auditable
+candidate sets.
+
+The analyst must predeclare the candidate program universe, feasible-state
+constraints, observation channels, acceptance thresholds, and search coverage.
+A `sampled` candidate universe must not be reported as complete merely because
+the state space within each sampled program was enumerated exactly.
+
 ## Exactness boundary
 
 The Boolean theorems are exact only when the declared model permits every switch assignment compatible with the observation clauses. They do not cover hidden mutual exclusions, resource budgets, inhibitory effects, conjunctions, thresholds, feedbacks, or latent mechanisms folded into coarse labels. See [the theorem assumptions](docs/replaceability_theorems.md#exactness-assumptions) and [scope-failure audits](docs/failure_mode_audits.md).
+
+The ecological-program module can represent a finite subset of those features,
+but it does not turn a candidate grammar into a universal model of nature. Its
+results remain conditional on the declared rules, feasible states, observation
+error model, acceptance rule, and candidate-program coverage.
 
 ## Scope boundary
 
@@ -62,6 +84,7 @@ exact disjunctive theorem core + exhaustive small-model checks
 -> multi-driver correlated-context comparisons: exact panel versus strict greedy
 -> cost-aware minimax and weighted-risk robust panel optimization
 -> reproducible paper-facing exact benchmark tables
--> scalable solver-backed robust design and empirical scenario calibration
--> broader qualitative program families
+-> finite ecological-program grammar + repeated-observation likelihoods
+-> empirical scenario calibration with predeclared field/genetic/pollination data
+-> scalable solver-backed robust design and broader qualitative program families
 ```
