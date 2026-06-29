@@ -38,6 +38,7 @@ It proves, within that declared candidate set:
 14. **Exact observation-channel envelopes.** A known finite generator can be passed through all possible repeated-detection outcomes to quantify exact invariant, excluded, unresolved, unsupported, false-invariant, and false-excluded probabilities. See [the envelope guide](docs/exact_observation_envelopes.md).
 15. **Confidence-set lifting theorem.** Any external procedure that returns simultaneously valid candidate confidence sets from arbitrary random data can be lifted into a finite-sample RACH family-wise false-decisive bound. See [the theorem](docs/confidence_set_lifting_theorem.md).
 16. **Anytime confidence-set lifting theorem.** An externally valid time-uniform candidate confidence sequence controls false decisive conclusions across every certified look and every data-dependent stopping rule. See [the anytime theorem](docs/anytime_confidence_set_lifting.md).
+17. **Symbolic candidate-set lifting.** A solver-backed feasible set over an arbitrary, including continuous or uncountable, candidate space can support RACH classification from SAT/UNSAT certificates; solver semantic risk is added explicitly to statistical miscoverage. See [the symbolic theorem](docs/symbolic_candidate_set_lifting.md).
 
 ## Reproduce benchmark tables
 
@@ -80,6 +81,25 @@ P(any false INVARIANT or false EXCLUDED conclusion
 
 Therefore a data-dependent stopping rule is safe only when its selected look lies inside the all-look certificate scope. RACH does not turn separately valid fixed-time intervals into an anytime guarantee; it requires an external confidence sequence, a jointly valid finite-look construction, or another documented time-uniform coverage method.
 
+## Symbolic continuous / infinite candidate-set layer
+
+The general lifting argument also does not require a finite candidate universe. For an arbitrary retained set \(C_r\subseteq\Theta\), RACH asks an external solver whether the set is non-empty and whether it contains candidates with and without each motif.
+
+```text
+non-empty + motif-inactive UNSAT  -> INVARIANT
+non-empty + motif-active UNSAT    -> EXCLUDED
+both motif values SAT             -> UNRESOLVED
+any required query UNKNOWN        -> UNSUPPORTED
+```
+
+If statistical retained-set coverage fails with probability at most \(\alpha\), and the solver's decisive SAT/UNSAT certificates are semantically invalid with probability at most \(\beta\), then
+
+```text
+P(any false INVARIANT or false EXCLUDED conclusion) <= min(1, alpha + beta).
+```
+
+No independence between the two failure sources is needed. With a deterministic proof-carrying solver and trusted verifier, \(\beta=0\). RACH still does not implement a solver or convert a timeout into evidence.
+
 ## Ecological-program inference
 
 The original disjunctive theorem remains exact only for its declared monotone OR assumptions. The ecological-program layer is a separate finite-state inference workflow: candidate programs are evaluated against repeated noisy observations, then passed to the existing robust-admissibility classifier across required analysis cells. It supports exact joint observation-panel design over a finite library, but its exhaustive search is deliberately limited to small, auditable candidate sets.
@@ -92,7 +112,7 @@ The Boolean theorems are exact only when the declared model permits every switch
 
 The ecological-program module can represent a finite subset of those features, but it does not turn a candidate grammar into a universal model of nature. Its results remain conditional on the declared rules, feasible states, observation error model, acceptance rule, and candidate-program coverage.
 
-The confidence-set lifting theorem controls false decisive conclusions only when the external procedure's simultaneous statistical coverage claim is valid and the true mechanism belongs to the declared candidate universe. The anytime theorem additionally requires coverage to hold across every certified look. Neither result can create power from data that do not distinguish candidates, repair an omitted mechanism, or certify its own assumptions.
+The confidence-set lifting theorem controls false decisive conclusions only when the external procedure's simultaneous statistical coverage claim is valid and the true mechanism belongs to the declared candidate universe. The anytime theorem additionally requires coverage to hold across every certified look. The symbolic theorem additionally needs valid decisive solver certificates. None of these results can create power from data that do not distinguish candidates, repair an omitted mechanism, or certify their own assumptions.
 
 ## Relationship to domain models
 
@@ -122,6 +142,6 @@ exact disjunctive theorem core + exhaustive small-model checks
 -> exact observation-channel risk envelopes over finite candidate universes
 -> distribution-agnostic confidence-set lifting with finite-sample error control
 -> anytime confidence-set lifting with optional-stopping-safe error control
--> continuous / infinite candidate sets and solver-backed set representations
--> scalable robust design and broader qualitative program families
+-> symbolic continuous / infinite candidate sets with solver-backed feasibility
+-> real solver adapters with proof/error certificates and scalable robust design
 ```
