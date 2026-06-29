@@ -29,9 +29,6 @@ def nonempty_subsets(items):
 
 
 def test_nested_status_monotonicity_exhaustively_holds_over_small_candidate_sets():
-    # a and c are motif-active; b is motif-inactive. The inner universe uses
-    # only a/b and the outer universe may add c. Every inner retained set is a
-    # subset of the outer retained set.
     inner_candidates = {"a": frozenset({"focal"}), "b": frozenset()}
     outer_candidates = {**inner_candidates, "c": frozenset({"focal"})}
     for inner_retained in nonempty_subsets(inner_candidates):
@@ -65,7 +62,6 @@ def test_inner_invariant_becomes_scope_fragile_after_competitor_expansion():
             ),
         )
     )
-
     assert report.tier_statuses["narrow"]["focal"] is MotifStatus.INVARIANT
     assert report.outermost_statuses["focal"] is MotifStatus.UNRESOLVED
     assert report.extension_stable_motifs == ()
@@ -83,7 +79,6 @@ def test_outer_decisive_status_is_extension_stable():
             ),
         )
     )
-
     assert report.outermost_statuses["focal"] is MotifStatus.INVARIANT
     assert report.extension_stable_motifs == ("focal",)
     assert report.scope_fragile_motifs == ()
@@ -103,11 +98,7 @@ def test_extension_rejects_retained_set_contraction():
     with pytest.raises(ValueError, match="contain the corresponding inner retained sets"):
         audit_nested_universe_stability(
             (
-                tier(
-                    "inner",
-                    {"a": frozenset({"focal"}), "b": frozenset()},
-                    {"a", "b"},
-                ),
+                tier("inner", {"a": frozenset({"focal"}), "b": frozenset()}, {"a", "b"}),
                 tier(
                     "outer",
                     {"a": frozenset({"focal"}), "b": frozenset(), "c": frozenset({"focal"})},
@@ -115,3 +106,8 @@ def test_extension_rejects_retained_set_contraction():
                 ),
             )
         )
+
+
+def test_empty_retained_set_is_outside_supported_extension_theorem():
+    with pytest.raises(ValueError, match="non-empty retained"):
+        tier("unsupported", {"a": frozenset({"focal"})}, set())
