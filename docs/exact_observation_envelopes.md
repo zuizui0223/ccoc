@@ -3,13 +3,13 @@
 ## Purpose
 
 RACH can be assessed before empirical data exist, but only as a conditional
-methodological system.  This module asks a narrow, auditable question:
+methodological system. This module asks a narrow, auditable question:
 
 > Given a finite declared candidate universe, a declared known generator inside
 > that universe, and declared binary observation channels, how often would RACH
 > report each motif as invariant, excluded, unresolved, or unsupported?
 
-The result is an **exact finite self-calibration**.  It is not an estimate from
+The result is an **exact finite self-calibration**. It is not an estimate from
 field data and not a claim that the declared generator is true in nature.
 
 ## What is enumerated
@@ -26,8 +26,8 @@ DetectionChannelDesign(
 ```
 
 For a true program state, every count from zero through `trials` is a possible
-reported outcome.  The module enumerates the Cartesian product across all cells
-and channels and gives every outcome its exact binomial probability.  It then
+reported outcome. The module enumerates the Cartesian product across all cells
+and channels and gives every outcome its exact binomial probability. It then
 runs the existing pipeline unchanged:
 
 ```text
@@ -45,7 +45,7 @@ The output for each motif includes:
 - false-excluded probability when the known true candidate has the motif; and
 - the corresponding correct decisive probabilities.
 
-This makes the asymmetry of a decisive conclusion visible.  An apparently
+This makes the asymmetry of a decisive conclusion visible. An apparently
 strong invariant can be a false invariant under a sufficiently permissive
 acceptance threshold, false-positive channel, or omitted candidate mechanism.
 
@@ -61,11 +61,11 @@ The enumeration is exact only conditional on all of the following:
 6. the stated coverage labels.
 
 Enumerating all possible **observations** does not make a sampled candidate
-universe exhaustive.  `coverage_mode` therefore continues to describe only the
+universe exhaustive. `coverage_mode` therefore continues to describe only the
 completeness of the program-family search.
 
 The algorithm rejects envelope calculations larger than `max_outcomes` rather
-than silently using Monte Carlo.  Use this module for small transparent
+than silently using Monte Carlo. Use this module for small transparent
 universes, or develop a separate approximation/solver method with its own error
 statement.
 
@@ -83,7 +83,7 @@ not interchangeable.
 
 A Campanula study may use RACH after translating a small, predeclared collection
 of its biological scenarios into qualitative candidate programs and observation
-clauses.  But RACH must not absorb the Campanula life-history model, and the
+clauses. But RACH must not absorb the Campanula life-history model, and the
 Campanula repository must not present RACH's finite self-calibration as
 empirical validation of a floral mechanism.
 
@@ -96,8 +96,22 @@ python examples/exact_observation_envelope.py
 ```
 
 The example defines two generic candidates: one asserts a `focal` motif and can
-produce a binary signal; the other lacks the motif and cannot.  It sweeps a
-single detection channel over several repeated-trial / false-positive settings.
-It demonstrates a general fact: increasing repetitions can reduce a
-false-invariant risk, but only relative to the declared observation model and
-likelihood threshold.
+produce a binary signal; the other lacks the motif and cannot. It compares one
+required cell with two independent required cells under the same false-positive
+channel. The second design reduces the probability of a false invariant only by
+requiring consistent evidence across cells; mixed evidence is retained as
+`unresolved`, not forced into a decision.
+
+## Broad exact grid
+
+Run:
+
+```bash
+python experiments/run_observation_envelope_grid.py \
+  --output results/observation_envelope_grid.csv
+```
+
+The grid varies detector sensitivity, false-positive rate, acceptance threshold,
+and the number of independent required cells. It produces exact finite CSV rows
+for a deliberately generic known-truth universe. It is a stress test of RACH's
+conditional classifier, not a recommendation for any biological sample size.
