@@ -134,6 +134,20 @@ from .robust_panel_design import (
     compare_panel_selection_strategies,
     evaluate_resolving_panel,
 )
+from .symbolic_candidate_sets import (
+    FeasibilityCertificate,
+    FeasibilityStatus,
+    SolverSemanticValidityCertificate,
+    SymbolicAdmissibilityReport,
+    SymbolicCandidateSpace,
+    SymbolicConfidenceSetCell,
+    SymbolicJointCoverageCertificate,
+    SymbolicMotifClassification,
+    SymbolicMotifQueries,
+    SymbolicRACHSoundnessGuarantee,
+    classify_symbolic_candidate_sets,
+    symbolic_soundness_guarantee,
+)
 
 __all__ = [
     "AdmissibilityReport",
@@ -246,4 +260,16 @@ __all__ = [
     "observation_is_admissible",
     "structural_crc",
     "theorem_a_certificate",
+    "FeasibilityStatus",
+    "FeasibilityCertificate",
+    "SymbolicMotifQueries",
+    "SymbolicCandidateSpace",
+    "SymbolicConfidenceSetCell",
+    "SymbolicMotifClassification",
+    "SymbolicAdmissibilityReport",
+    "SymbolicJointCoverageCertificate",
+    "SolverSemanticValidityCertificate",
+    "SymbolicRACHSoundnessGuarantee",
+    "classify_symbolic_candidate_sets",
+    "symbolic_soundness_guarantee",
 ]
