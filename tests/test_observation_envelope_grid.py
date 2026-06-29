@@ -1,10 +1,14 @@
 from math import isclose
+from pathlib import Path
+from runpy import run_path
 
-from experiments.run_observation_envelope_grid import rows
+
+ROOT = Path(__file__).resolve().parents[1]
+GRID = run_path(ROOT / "experiments" / "run_observation_envelope_grid.py")
 
 
 def test_generic_observation_envelope_grid_has_expected_exact_anchor() -> None:
-    table = rows()
+    table = GRID["rows"]()
 
     assert len(table) == 72
     anchor = next(
