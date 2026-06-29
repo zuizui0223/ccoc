@@ -68,6 +68,16 @@ from .observation_design import (
     NullObservationCandidate,
     minimum_discriminating_panel,
 )
+from .observation_envelope import (
+    DetectionChannelDesign,
+    ExactObservationEnvelope,
+    MotifEnvelopeProfile,
+    ObservationEnvelopeCell,
+    ObservationEnvelopeSweepPoint,
+    evaluate_exact_observation_envelope,
+    observation_envelope_table_markdown,
+    sweep_exact_observation_envelopes,
+)
 from .panel_phase_benchmarks import (
     MultiCompetitorFamilyParameters,
     MultiCompetitorPanelComparison,
@@ -160,6 +170,14 @@ __all__ = [
     "MinimumPanel",
     "NullObservationCandidate",
     "minimum_discriminating_panel",
+    "DetectionChannelDesign",
+    "ObservationEnvelopeCell",
+    "MotifEnvelopeProfile",
+    "ExactObservationEnvelope",
+    "ObservationEnvelopeSweepPoint",
+    "evaluate_exact_observation_envelope",
+    "sweep_exact_observation_envelopes",
+    "observation_envelope_table_markdown",
     "MultiCompetitorFamilyParameters",
     "MultiCompetitorPanelComparison",
     "PanelStrategy",
