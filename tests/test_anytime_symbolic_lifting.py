@@ -166,7 +166,7 @@ def test_all_look_coverage_combines_with_a_finite_solver_scope() -> None:
 
 
 def test_snapshot_outside_finite_solver_scope_is_rejected() -> None:
-    coverage_certificate, solver_certificate = certificates(coverage_looks=(1, 2), solver_looks=(1, 2))
+    coverage_certificate, solver_certificate = certificates(solver_looks=(1, 2))
     with pytest.raises(ValueError, match="outside the solver certificate's declared scope"):
         deterministic_anytime_symbolic_lifting_witness(
             SPACE,
