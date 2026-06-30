@@ -118,6 +118,14 @@ def invariant_bundle(prefix, retained, *, inner):
     )
 
 
+def nondecisive_bundle(prefix, retained, witness):
+    return LinearMotifQueryBundle(
+        nonempty=sat_query(f"{prefix}/nonempty", retained, witness),
+        active=sat_query(f"{prefix}/active", retained, witness),
+        inactive=sat_query(f"{prefix}/inactive", retained, witness),
+    )
+
+
 def base_query():
     return RationalPolyhedralInclusionQuery(
         query_id="base-in-outer",
@@ -202,12 +210,20 @@ def test_admitted_exact_snapshots_bind_outer_solver_and_inclusion_at_any_look():
 def test_rejects_inner_system_that_drops_a_base_row():
     verified = verified_schema()
     weakened_inner = system(row((1,), "3/4", "only new row"), description="weakened inner")
+    proposed = ExactPolyhedralExtensionLook(
+        look=1,
+        inner_cells_by_id={
+            "primary": ExactLinearProofCell(
+                description="weakened inner cell",
+                motif_bundles={"focal": nondecisive_bundle("weakened", weakened_inner, 0)},
+            )
+        },
+        outer_cells_by_id=admitted_look(1).outer_cells_by_id,
+        evidence_reference="proof://weakened-inner",
+    )
 
     with pytest.raises(ValueError, match="retain every base inequality"):
-        admit_exact_polyhedral_extension_look(
-            verified,
-            admitted_look(1, inner_retained=weakened_inner),
-        )
+        admit_exact_polyhedral_extension_look(verified, proposed)
 
 
 def test_rejects_outer_retained_system_drift_before_stability_claim():
