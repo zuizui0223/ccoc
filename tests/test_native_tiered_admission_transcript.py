@@ -326,7 +326,7 @@ def test_unknown_role_remains_in_status_table_but_is_not_a_v2_decisive_proof_bin
     verify_native_tiered_admission_transcript(one)
 
 
-def test_tampering_native_v2_manifest_or_source_v1_digest_breaks_transcript_verification():
+def test_tampering_native_v2_manifest_or_source_v1_digest_is_rejected():
     schema, coverage_certificate, source, transcript = transcript_fixture()
     one = append(transcript, schema, coverage_certificate, source, 1)
     entry = one.entries[0]
@@ -339,15 +339,8 @@ def test_tampering_native_v2_manifest_or_source_v1_digest_breaks_transcript_veri
             media_type="application/json",
         ),
     )
-    altered_bundle = replace(entry.evidence.tiered_bundle, manifest=altered_manifest)
-    altered_entry = replace(entry, evidence=replace(entry.evidence, tiered_bundle=altered_bundle))
-    altered = NativeTieredAdmissionTranscript(
-        header=one.header,
-        chain=one.chain,
-        entries=(altered_entry,),
-    )
     with pytest.raises(ValueError, match="does not hash the canonical v2 manifest"):
-        verify_native_tiered_admission_transcript(altered)
+        replace(entry.evidence.tiered_bundle, manifest=altered_manifest)
 
     changed_source = replace(
         entry.evidence.tiered_bundle,
@@ -363,13 +356,18 @@ def test_tampering_native_v2_manifest_or_source_v1_digest_breaks_transcript_veri
         verify_native_tiered_admission_transcript(changed)
 
 
-def test_live_source_v1_manifest_drift_rejects_future_append_without_rewriting_history():
+def test_live_source_v1_manifest_target_artifact_drift_rejects_future_append_without_rewriting_history():
     schema, coverage_certificate, source, transcript = transcript_fixture()
     one = append(transcript, schema, coverage_certificate, source, 1)
-    drifted = replace(
-        source,
-        solver_assertion=replace(source.solver_assertion, method="different verifier assertion"),
+    drifted_target = replace(
+        source.target,
+        candidate_space_artifact=ArtifactReference.from_payload(
+            "candidate-space",
+            b'{"variables":["changed"]}',
+            media_type="application/json",
+        ),
     )
+    drifted = replace(source, target=drifted_target)
     with pytest.raises(ValueError, match="live compiler schema or source v1 manifest"):
         append_native_tiered_admitted_look(
             one,
