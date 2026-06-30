@@ -22,7 +22,7 @@ itself.
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Mapping, Protocol, runtime_checkable
+from typing import Mapping, Protocol
 
 from .anytime_symbolic_lifting import AnytimeSymbolicJointCoverageCertificate
 from .certificate_manifest import ArtifactReference, ManifestTarget, canonical_json, sha256_digest
@@ -66,7 +66,7 @@ class AllLookCoverageContract:
     ``retained_set_encoder_artifact`` identifies the data-prefix-to-retained-set
     construction; ``coverage_proof_artifact`` identifies the method-specific
     theorem, derivation, certificate, or proof program that establishes the
-    event.  The actual proof semantics are checked only by a named external
+event.  The actual proof semantics are checked only by a named external
     verifier supplied to ``verify_all_look_coverage_contract``.
     """
 
@@ -179,7 +179,6 @@ class CoverageProofVerificationReceipt:
             raise ValueError("coverage proof verification receipt result must be 'valid'")
 
 
-@runtime_checkable
 class CoverageProofVerifier(Protocol):
     """Method-specific verifier for exact all-look coverage proof artifacts."""
 
@@ -308,11 +307,15 @@ def verify_all_look_coverage_contract(
         coverage_certificate=coverage_certificate,
     )
     verify_all_look_coverage_contract_artifacts(contract, artifact_payloads)
-    if not isinstance(verifier, CoverageProofVerifier):
-        raise TypeError("verifier must implement CoverageProofVerifier")
-    if verifier.verifier_id != contract.coverage_verifier_id:
+    verifier_id = getattr(verifier, "verifier_id", None)
+    verify_method = getattr(verifier, "verify_all_look_coverage", None)
+    if not isinstance(verifier_id, str) or not verifier_id or not callable(verify_method):
+        raise TypeError("verifier must expose non-empty verifier_id and verify_all_look_coverage")
+    if verifier_id != contract.coverage_verifier_id:
         raise ValueError("coverage proof verifier ID does not match the contract")
-    receipt = verifier.verify_all_look_coverage(contract, artifact_payloads)
+    receipt = verify_method(contract, artifact_payloads)
+    if not isinstance(receipt, CoverageProofVerificationReceipt):
+        raise TypeError("coverage verifier must return CoverageProofVerificationReceipt")
     if receipt.contract_digest != contract.contract_digest:
         raise ValueError("coverage proof receipt does not name the exact contract digest")
     if receipt.verifier_id != contract.coverage_verifier_id:
