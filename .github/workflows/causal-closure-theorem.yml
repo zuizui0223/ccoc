@@ -32,7 +32,7 @@ jobs:
         run: python -m pytest tests/test_causal_closure_calculus.py -q
       - name: Exhaustively check finite theorem domain
         run: >-
-          python scripts/verify_causal_closure_theorems.py
+          PYTHONPATH=. python scripts/verify_causal_closure_theorems.py
           --max-state-count 4
           --output artifacts/causal_closure_exhaustive_report.json
       - name: Upload theorem regression report
