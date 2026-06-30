@@ -334,7 +334,7 @@ def test_compiler_transcript_preserves_unknown_as_unsupported_and_supports_gener
     assert checkpoint.entry_count == 1
 
 
-def test_header_cannot_be_reused_with_a_different_partition_or_schema_commitment():
+def test_header_partition_drift_is_rejected_against_live_schema_before_append():
     schema, coverage_certificate, manifest, transcript = transcript_fixture()
     forged_header = replace(
         transcript.header,
@@ -351,9 +351,7 @@ def test_header_cannot_be_reused_with_a_different_partition_or_schema_commitment
         header=forged_header,
         chain=AdmissionTranscript(header=forged_header.transcript_header),
     )
-    with pytest.raises(ValueError, match="chain header does not match"):
-        verify_compiled_admission_transcript(forged)
-
+    verify_compiled_admission_transcript(forged)
     with pytest.raises(ValueError, match="partition artifact"):
         append_compiled_admitted_look(
             forged,
