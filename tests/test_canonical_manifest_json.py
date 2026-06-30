@@ -119,6 +119,10 @@ def canonical_dump(value):
     return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=False)
 
 
+def compact_dump(value):
+    return json.dumps(value, separators=(",", ":"), ensure_ascii=False)
+
+
 def test_canonical_round_trip_preserves_manifest_and_digest():
     manifest = manifest_with_proof_order()
     document = serialize_canonical_manifest(manifest)
@@ -149,15 +153,16 @@ def test_parser_rejects_valid_but_noncanonical_whitespace_and_key_order():
     with pytest.raises(ValueError, match="not strict canonical"):
         parse_canonical_manifest(raw + b"\n")
 
+    object_value = canonical_object(manifest)
     reordered = {
-        "target": canonical_object(manifest)["target"],
-        "solver_query_proofs": canonical_object(manifest)["solver_query_proofs"],
-        "solver_assertion": canonical_object(manifest)["solver_assertion"],
-        "coverage_assertion": canonical_object(manifest)["coverage_assertion"],
-        "format_version": canonical_object(manifest)["format_version"],
+        "target": object_value["target"],
+        "solver_query_proofs": object_value["solver_query_proofs"],
+        "solver_assertion": object_value["solver_assertion"],
+        "coverage_assertion": object_value["coverage_assertion"],
+        "format_version": object_value["format_version"],
     }
     with pytest.raises(ValueError, match="not strict canonical"):
-        parse_canonical_manifest(canonical_dump(reordered))
+        parse_canonical_manifest(compact_dump(reordered))
 
 
 def test_parser_rejects_duplicate_unknown_and_missing_fields():
@@ -207,15 +212,19 @@ def test_parser_rejects_invalid_utf8_and_digest_mismatch():
         verify_canonical_manifest(raw, expected_digest="0" * 64)
 
 
-def test_expected_digest_and_semantic_content_tampering_are_detected():
+def test_expected_digest_detects_semantic_content_tampering():
     manifest = manifest_with_proof_order()
+    expected = canonical_manifest_digest(manifest)
     document = verify_canonical_manifest(
         canonical_manifest_bytes(manifest),
-        expected_digest=canonical_manifest_digest(manifest),
+        expected_digest=expected,
     )
     assert document.manifest.target.candidate_space_description == SPACE.space_description
 
     tampered = canonical_object(manifest)
     tampered["target"]["candidate_space_artifact"]["sha256"] = "1" * 64
-    with pytest.raises(ValueError, match="not strict canonical"):
-        parse_canonical_manifest(canonical_dump(tampered))
+    tampered_bytes = canonical_dump(tampered).encode("utf-8")
+    parsed = parse_canonical_manifest(tampered_bytes)
+    assert parsed.canonical_digest != expected
+    with pytest.raises(ValueError, match="does not match expected_digest"):
+        verify_canonical_manifest(tampered_bytes, expected_digest=expected)
