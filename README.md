@@ -1,169 +1,187 @@
 # RACH Causal Invariants
 
-A theorem-first framework for conditional, set-valued causal reasoning: **which causal motifs are indispensable within a declared qualitative candidate class, and when can random data support that conclusion without false certainty?**
+RACH is a theorem-first methods repository for a narrow question:
 
-RACH is a methods repository. It contains no empirical data set and makes no domain-specific causal claim.
+> **When can locally valid causal rules be promoted to a world-level conclusion, and when must candidate uncertainty leave the conclusion unresolved?**
 
-## Core question
+It contains no empirical data and makes no domain-specific causal claim.
 
-Given a causal-program grammar, a declared candidate universe, and retained candidate sets produced by an observation or statistical procedure, distinguish:
+## Current theory core
 
-```text
-possible explanation
-≠
-robustly admissible explanation
+The active core is:
+
+\[
+\text{retained candidate dynamics}
+\to
+\text{exact closure / recurrence certificates}
+\to
+\text{candidate consensus}
+\to
+\text{decisive conclusion or UNRESOLVED}.
+\]
+
+The focused import surface is:
+
+```python
+from causal_model.current_theory import (
+    FiniteDeterministicRuleSystem,
+    classify_closure,
+    ObservationRegimeRulePair,
+    classify_observation_regime_pair,
+    summarize_regime_candidates,
+)
 ```
 
-The immediate theorem core works under a finite disjunctive structural model:
+Read the [current architecture map](docs/current_architecture.md) before using
+older modules.
 
-```text
-cline(t)  <=>  at least one driver of trait t is active.
-```
+## What the core proves
 
-It proves, within that declared candidate set:
+### 1. Local transition truth does not imply global closure
 
-1. **Null-only elimination.** Positive observations cannot force a mechanism off; NULL observations eliminate the mechanisms that generate the null trait.
-2. **Last-driver criterion.** A mechanism is indispensable exactly when it is the only surviving driver of at least one required-present trait.
-3. **Synergistic observation design.** A set of individually uninformative competitor-witness observations can jointly make a mechanism indispensable. Therefore greedy one-step observation selection has no general guarantee.
-4. **Minimum discriminating panels.** Given feasible NULL observations and their costs, an exact dynamic program finds the cheapest panel that makes a focal mechanism indispensable while preserving all required-present observations.
-5. **Coverage-aware robustness reports.** Robust-admissibility results distinguish unanimity in sampled runs from complete claims backed by exhaustive enumeration or an external solver certificate.
-6. **Known-truth calibration.** Small fully enumerated program universes can quantify false-invariant and false-excluded rates caused by finite sampling.
-7. **Failure-mode audits.** Truth-table benchmarks show how omitted drivers, noisy NULLs, inhibition, conjunctions, and hidden compatibility constraints can produce false necessity, missed necessity, or an outright model contradiction.
-8. **Exact misspecification phase benchmarks.** A finite generative family sweeps latent routes, witness sensitivity, inhibition, conjunctions, and compatibility constraints to calculate posterior false-necessity risk without Monte Carlo error. See [the benchmark guide](docs/generative_misspecification_benchmarks.md).
-9. **Multi-competitor panel benchmarks.** Exact joint-panel design is compared against strict one-step greedy selection under multiple competitors, latent routes, and correlated contexts. See [the panel benchmark guide](docs/multi_competitor_panel_phase_benchmarks.md).
-10. **Risk-robust panel design.** Cost-first, coverage-greedy, minimax-risk, and weighted-mean-risk panel selection can be compared over explicit finite true-model scenarios, including shared witnesses and measurement channels. See [the robust-panel guide](docs/robust_panel_design.md).
-11. **Reproducible benchmark suite.** A dependency-free runner regenerates paper-facing finite-enumeration CSV tables for phase risks, joint-panel synergy, and budgeted robust design. See [the experiment guide](experiments/README.md).
-12. **Finite qualitative-program layer.** A separate Boolean program API represents conjunction, alternative pathways, inhibition snapshots, and explicit feasible-state constraints without silently extending the OR theorem. See [the ecological-program guide](docs/ecological_program_inference.md).
-13. **Finite noisy-observation special case.** Repeated binary detections have declared sensitivity and false-positive rates, allowing exact finite-state likelihood and panel calculations under their stated assumptions.
-14. **Exact observation-channel envelopes.** A known finite generator can be passed through all possible repeated-detection outcomes to quantify exact invariant, excluded, unresolved, unsupported, false-invariant, and false-excluded probabilities. See [the envelope guide](docs/exact_observation_envelopes.md).
-15. **Confidence-set lifting theorem.** Any external procedure that returns simultaneously valid candidate confidence sets from arbitrary random data can be lifted into a finite-sample RACH family-wise false-decisive bound. See [the theorem](docs/confidence_set_lifting_theorem.md).
-16. **Anytime confidence-set lifting theorem.** An externally valid time-uniform candidate confidence sequence controls false decisive conclusions across every certified look and every data-dependent stopping rule. See [the anytime theorem](docs/anytime_confidence_set_lifting.md).
-17. **Symbolic candidate-set lifting.** A solver-backed feasible set over an arbitrary, including continuous or uncountable, candidate space can support RACH classification from SAT/UNSAT certificates; solver semantic risk is added explicitly to statistical miscoverage. See [the symbolic theorem](docs/symbolic_candidate_set_lifting.md).
-18. **Proof-carrying rational linear feasibility.** Exact rational witnesses and Farkas certificates are verified before a linear symbolic `SAT` or `UNSAT` claim can become decisive. See [the verifier guide](docs/linear_proof_verifier.md).
-19. **Anytime symbolic lifting theorem.** Arbitrary candidate spaces, arbitrary sequential random data, optional stopping, and solver-certificate validity are combined into one time-uniform false-decisive bound. See [the theorem](docs/anytime_symbolic_candidate_set_lifting.md).
+For a finite total deterministic update map
 
-## Reproduce benchmark tables
+\[
+F:S\to S,
+\]
 
-```bash
-python experiments/run_all_benchmarks.py --output results
-```
+RACH classifies the long-run world-level behavior as exactly one of:
 
-The generated tables are exact finite weighted enumerations under their declared benchmark families. They are not empirical estimates and contain no Monte Carlo uncertainty.
+| Result | Exact certificate |
+|---|---|
+| `GLOBAL_CLOSURE` | strict integer ranking descending to one fixed point |
+| `RECURRENT_NONCLOSURE` | a directed cycle of period \(p\ge2\) |
+| `MULTISTABLE_NONCLOSURE` | two or more distinct fixed points |
 
-## Distribution-agnostic random-data layer
+Thus every local transition may be correct while repeated application fails to
+produce one stable global endpoint. See the [closure calculus](docs/causal_closure_calculus.md).
 
-The central general theorem does not prescribe a data type, likelihood, sample size, or sampling scheme. Let an external method map arbitrary random data to a retained set of candidates in each required robustness cell. If it establishes the simultaneous coverage statement
+### 2. Rules can differ between natural and observer-coupled regimes
 
-```text
-P(true candidate is retained in every required cell) >= 1 - alpha,
-```
+A candidate may declare two maps on the same state space:
 
-then RACH guarantees
+\[
+F^{(0)} \quad\text{(natural regime)},
+\qquad
+F^{(1)} \quad\text{(observer-coupled regime)}.
+\]
 
-```text
-P(any false INVARIANT or false EXCLUDED conclusion across all motifs) <= alpha.
-```
+RACH compares their certified closure classes and can report, for example:
 
-The implication is pointwise and therefore does not require RACH to assume i.i.d. observations, normality, discreteness, continuity, or a particular data dimension. The external method must establish its own coverage conditions; RACH only preserves and lifts that guarantee. Observationally indistinguishable candidates necessarily remain unresolved with high probability under any honest low-error procedure.
+- `OBSERVER_INDEPENDENT_CLOSURE`;
+- `OBSERVATION_INDUCED_CLOSURE`;
+- `OBSERVATION_INDUCED_RECURRENCE`; or
+- `REGIME_DEPENDENT_NONCLOSURE`.
 
-## Sequential / anytime layer
+This is an operational statement about two declared dynamics. It does **not**
+claim that observation creates reality, nor that empirical observation is
+necessarily invasive. See [observation-regime closure](docs/observation_regime_closure.md).
 
-At each interim look, a fixed-time candidate confidence set is not enough to justify repeated peeking. For a certified look scope \(\mathcal T\), the external method must establish
+### 3. Candidate consensus is the RACH rule
 
-```text
-P(true candidate is retained in every required cell at every t in T) >= 1 - alpha.
-```
+RACH does not require complete model identification. Let \(C_t\) be retained
+candidate systems and let \(v(\theta)\) be a claim-level verdict.
 
-Only then does RACH guarantee
+\[
+\forall\theta\in C_t,
+\quad v(\theta)=v^\star
+\quad\Longrightarrow\quad
+\text{report }v^\star.
+\]
 
-```text
-P(any false INVARIANT or false EXCLUDED conclusion
-  at any certified look, across all motifs) <= alpha.
-```
+If retained candidates disagree, the output is `UNRESOLVED`.
 
-Therefore a data-dependent stopping rule is safe only when its selected look lies inside the all-look certificate scope. RACH does not turn separately valid fixed-time intervals into an anytime guarantee; it requires an external confidence sequence, a jointly valid finite-look construction, or another documented time-uniform coverage method.
+This is the central discipline: a single convenient model must not be promoted
+to a general causal conclusion.
 
-## Symbolic continuous / infinite candidate-set layer
+## Mathematical boundary
 
-The general lifting argument also does not require a finite candidate universe. For an arbitrary retained set \(C_r\subseteq\Theta\), RACH asks an external solver whether the set is non-empty and whether it contains candidates with and without each motif.
+Current exact closure theorems apply to **finite labelled total deterministic
+maps**. They do not prove analogous facts for arbitrary continuous, stochastic,
+hidden-state, or empirical systems.
 
-```text
-non-empty + motif-inactive UNSAT  -> INVARIANT
-non-empty + motif-active UNSAT    -> EXCLUDED
-both motif values SAT             -> UNRESOLVED
-any required query UNKNOWN        -> UNSUPPORTED
-```
+For a finite theorem domain, RACH uses certificates rather than simulation
+appearance:
 
-If statistical retained-set coverage fails with probability at most \(\alpha\), and the solver's decisive SAT/UNSAT certificates are semantically invalid with probability at most \(\beta\), then
+\[
+\text{simulation evidence}
+\neq
+\text{proof of closure or recurrence}.
+\]
 
-```text
-P(any false INVARIANT or false EXCLUDED conclusion) <= min(1, alpha + beta).
-```
+A valid certificate proves only the conclusion and scope it explicitly states.
 
-No independence between the two failure sources is needed. With a deterministic proof-carrying solver and trusted verifier, \(\beta=0\). The first concrete verifier checks rational linear SAT witnesses and Farkas infeasibility certificates using exact arithmetic; it is a verifier, not an LP search engine.
+## GitHub Actions theorem regression
 
-## Anytime symbolic candidate-set layer
+Two dedicated workflows model-check the current finite theorem domains:
 
-The broadest current theorem combines the two prior requirements over one fixed target: an arbitrary candidate space, a fixed motif vocabulary, fixed required cells, and a finite or all-look analysis scope.
+- all labelled deterministic maps on one through four states:
+  \[
+  1^1+2^2+3^3+4^4=288;
+  \]
+- all ordered natural/observer-coupled map pairs on one through three states:
+  \[
+  (1^1)^2+(2^2)^2+(3^3)^2=746.
+  \]
 
-```text
-P(true candidate is retained in every required cell at every certified look) >= 1 - alpha
-P(all decisive solver certificates are semantically valid over the same scope) >= 1 - beta
-```
+Each workflow runs targeted tests, exhaustive enumeration, certificate
+verification, and uploads a deterministic JSON report. Passing these workflows
+is finite model checking of the declared domain, not a general proof assistant.
 
-Then
+## Supporting layers
 
-```text
-P(any false INVARIANT or false EXCLUDED conclusion,
-  at any certified look, across all motifs) <= min(1, alpha + beta).
-```
+The repository also contains useful supporting methods. They are not all part
+of the current theory core.
 
-The same upper bound applies after any data-dependent stopping rule within that scope. Neither independence nor a particular data distribution is required. A finite proof-carrying solver verifier can set \(\beta=0\) only for the queries it actually verifies; a timeout or unverified numerical result remains `UNSUPPORTED`.
+### Sequential evidence
 
-## Ecological-program inference
+Confidence-set lifting and anytime lifting provide a conditional bridge from
+random observations to retained candidate sets:
 
-The original disjunctive theorem remains exact only for its declared monotone OR assumptions. The ecological-program layer is a separate finite-state inference workflow: candidate programs are evaluated against repeated noisy observations, then passed to the existing robust-admissibility classifier across required analysis cells. It supports exact joint observation-panel design over a finite library, but its exhaustive search is deliberately limited to small, auditable candidate sets.
+\[
+\Pr[\theta^\star\text{ remains retained at all certified looks}]
+\ge1-\alpha
+\]
 
-The analyst must predeclare the candidate program universe, feasible-state constraints, observation channels, acceptance thresholds, and search coverage. A `sampled` candidate universe must not be reported as complete merely because the state space within each sampled program was enumerated exactly.
+can lift to a false-decisive conclusion bound. These modules control how safely
+candidate systems are removed as data accumulate; they do not by themselves
+prove closure.
 
-## Exactness boundary
+### Exact solver certificates
 
-The Boolean theorems are exact only when the declared model permits every switch assignment compatible with the observation clauses. They do not cover hidden mutual exclusions, resource budgets, inhibitory effects, conjunctions, thresholds, feedbacks, or latent mechanisms folded into coarse labels. See [the theorem assumptions](docs/replaceability_theorems.md#exactness-assumptions) and [scope-failure audits](docs/failure_mode_audits.md).
+Rational SAT witnesses, Farkas infeasibility certificates, finite polyhedral
+motif compilers, and replayable proof artifacts are available when a problem
+really fits their restricted grammar.
 
-The ecological-program module can represent a finite subset of those features, but it does not turn a candidate grammar into a universal model of nature. Its results remain conditional on the declared rules, feasible states, observation error model, acceptance rule, and candidate-program coverage.
+### Audit and provenance
 
-The confidence-set lifting theorem controls false decisive conclusions only when the external procedure's simultaneous statistical coverage claim is valid and the true mechanism belongs to the declared candidate universe. The anytime theorem additionally requires coverage to hold across every certified look. The symbolic theorem additionally needs valid decisive solver certificates. The anytime symbolic theorem requires both of those all-look conditions over the same target. None of these results can create power from data that do not distinguish candidates, repair an omitted mechanism, or certify their own assumptions.
+Manifests, append-only transcripts, replay registries, signed checkpoints, and
+canonical artifact formats preserve evidence identity and history. They are an
+optional audit shell, not the scientific theorem itself.
 
-## Relationship to domain models
+### Earlier finite-program and design modules
 
-RACH is deliberately **not** a floral-trait, pollination, fitness, population-genetic, site-level, or field-protocol model. It stores generic qualitative programs, candidate confidence sets, acceptance rules, coverage labels, and exact self-calibration benchmarks. It answers whether a motif would be classified as indispensable or excluded within those declared abstractions.
+The repository retains disjunctive theorem families, ecological-program
+inference, exact observation envelopes, observation-panel design, and benchmark
+suites. They remain supported tools, but should be used only where they serve
+the closure-and-consensus question rather than by default.
 
-[`campanula-channel-identification`](https://github.com/zuizui0223/campanula-channel-identification) is a separate domain repository. It specifies a Campanula / island-floral-trait life cycle, including local reproduction versus establishment, nectar-guide routes, handling and pollen placement, selfing, recruitment, spatial structure, and prospective field measurements. It can translate a small predeclared set of its scenarios into a RACH candidate universe for a logical audit, but RACH contains neither those biological equations nor their empirical data and must not be presented as evidence for a Campanula mechanism.
+## Development rule
+
+A new mathematical PR should contain:
+
+1. a theorem statement and explicit scope boundary;
+2. a verifier for its certificate object;
+3. fail-closed counterexample tests;
+4. exhaustive finite model checking when feasible; and
+5. an Action artifact reporting the finite enumeration.
+
+The architecture document explains where new code belongs:
+[core, sequential evidence, certificates, or audit](docs/current_architecture.md).
 
 ## Scope boundary
 
-This repository is the active methods home for RACH causal invariants. It contains no empirical data, field protocol, or domain-specific case-study contract. Every conclusion is conditional on the declared candidate mechanisms, observation or confidence-set validity, program grammar, and—for sampled program families—search coverage.
-
-The initial theorem core is a clean extraction from earlier exploratory work. Generic theorem examples and finite benchmark families are retained; field-case code, UI prototypes, historical ABMs, and domain-specific data contracts are intentionally excluded.
-
-## Development roadmap
-
-```text
-exact disjunctive theorem core + exhaustive small-model checks
--> exact minimum discriminating observation / intervention panels
--> coverage-aware robust-admissibility reports
--> known-truth finite benchmarks and sampling-error calibration
--> audited omitted-driver / noisy-NULL / non-OR failure modes
--> exact generative phase benchmarks for misspecification and noise
--> multi-driver correlated-context comparisons: exact panel versus strict greedy
--> cost-aware minimax and weighted-risk robust panel optimization
--> reproducible paper-facing exact benchmark tables
--> finite ecological-program grammar + repeated-observation likelihoods
--> exact observation-channel risk envelopes over finite candidate universes
--> distribution-agnostic confidence-set lifting with finite-sample error control
--> anytime confidence-set lifting with optional-stopping-safe error control
--> symbolic continuous / infinite candidate sets with solver-backed feasibility
--> exact rational proof-carrying linear feasibility verification
--> anytime symbolic lifting over arbitrary candidate spaces
--> proof-format adapters, nonlinear certificates, and scalable robust design
-```
+RACH is not a floral-trait, pollination, fitness, population-genetic,
+site-level, or field-protocol model. All conclusions remain conditional on the
+declared candidate systems, observation regime, certificate validity, and—when
+sequential evidence is used—the external coverage assumptions.
