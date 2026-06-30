@@ -1,0 +1,45 @@
+name: Observation-regime closure theorem regression
+
+on:
+  pull_request:
+    paths:
+      - 'causal_model/causal_closure_calculus.py'
+      - 'causal_model/observation_regime_closure.py'
+      - 'scripts/verify_observation_regime_closure_theorems.py'
+      - 'tests/test_observation_regime_closure.py'
+      - '.github/workflows/observation-regime-closure-theorem.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'causal_model/causal_closure_calculus.py'
+      - 'causal_model/observation_regime_closure.py'
+      - 'scripts/verify_observation_regime_closure_theorems.py'
+      - 'tests/test_observation_regime_closure.py'
+      - '.github/workflows/observation-regime-closure-theorem.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  exhaustive-observation-regime-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install theorem regression dependencies
+        run: python -m pip install --upgrade pip pytest
+      - name: Run targeted regime tests
+        run: python -m pytest tests/test_observation_regime_closure.py -q
+      - name: Exhaustively check all ordered regime pairs
+        run: >-
+          PYTHONPATH=. python scripts/verify_observation_regime_closure_theorems.py
+          --max-state-count 3
+          --output artifacts/observation_regime_closure_report.json
+      - name: Upload regime theorem regression report
+        uses: actions/upload-artifact@v4
+        with:
+          name: observation-regime-closure-exhaustive-report
+          path: artifacts/observation_regime_closure_report.json
+          if-no-files-found: error
