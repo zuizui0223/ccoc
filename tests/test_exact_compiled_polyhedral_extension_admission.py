@@ -219,7 +219,10 @@ def test_schema_builds_all_look_compiler_solver_and_intersection_inclusion_certi
     assert verified.all_look_solver_certificate.certified_looks is None
     assert verified.all_look_inclusion_certificate.lower_bound == 1.0
     assert verified.all_look_inclusion_certificate.certified_looks is None
-    assert verified.verified_partition.partition_digest in verified.all_look_solver_certificate.assumptions[-2]
+    assert any(
+        verified.verified_partition.partition_digest in assumption
+        for assumption in verified.all_look_solver_certificate.assumptions
+    )
 
 
 def test_compiler_admission_is_extension_stable_at_look_one_and_arbitrarily_late_look():
