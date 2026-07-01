@@ -2,257 +2,194 @@
 
 ## Why this map exists
 
-RACH accumulated several valid but differently purposed layers: finite causal
-programs, confidence-set lifting, exact proof replay, append-only transcripts,
-closure dynamics, and open-interface witnesses. They should not all be read as
-one theorem.
+RACH contains several valid but differently purposed layers: finite causal
+programs, open-interface witnesses, candidate-family logic, confidence-set
+lifting, exact proof replay, and provenance. They should not be read as one
+theorem.
 
-The active research core now has two finite structural questions:
+The research entrance is [the theorem spine](theorem_spine.md). This document
+maps that spine onto code, certificates, and workflows.
 
-\[
-\text{local transition rules}
-\to
-\text{exact long-run certificates},
-\]
+## Layer 1: active theorem core
 
-and
+`causal_model/current_theory.py` is the focused public entrance. It re-exports
+the eight active finite theorem families below. New theorem work should begin
+there, not from `causal_model.__init__`.
 
-\[
-\text{rule inside a finite observation window}
-\not\Rightarrow
-\text{rule under every allowed ecosystem-outside completion}.
-\]
+| Family | Module | Main exact object | Certificate / verifier |
+|---|---|---|---|
+| finite closure | `causal_closure_calculus.py` | global closure, recurrence, multistability | ranking, cycle, fixed-point certificates |
+| passive-window completion | `observation_window_completion.py` | passive/open trace quotient | completion and separating-word certificates |
+| closed/open compression | `extension_compression.py` | fixed-context versus open-port quotient | extension-compression certificate |
+| addressable product bounds | `addressable_completion_bounds.py` | product lower bound and gap inequality | separating-word, blanket, nonidentifiability certificates |
+| relay compilation | `relay_tree_compilation.py` | degree-three constant-local-grammar realization | protocol and macro-conjugacy certificates |
+| dynamic blankets | `dynamic_boundary_blankets.py` | coarsest dynamic interface and finite upper bounds | stabilization and dynamic-interface certificates |
+| delayed addressability | `delayed_addressability.py` | grammar-aware quotient and delayed no-go | prefix-grammar, delayed separator, relay-attachment certificates |
+| candidate-safe laws | `candidate_safe_laws.py` | universal/candidate-safe/set-valued law distinction | agreement, obstruction, response-separator certificates |
+| operational regime comparison | `observation_regime_closure.py` | two declared regime maps | regime classification and consensus certificates |
 
-Candidate consensus is the epistemic gate that decides whether such a structural
-conclusion can be reported for a retained family of candidate worlds.
+The regime module remains active but is an operational special case of changing
+a declared action grammar, not an independent ecology ontology.
 
-The rest remains useful supporting infrastructure, not the scientific claim.
+## The core dependency graph
 
-## Layer 1: theory core
+```text
+causal_closure_calculus
+        -> time-promotion certificates
 
-`causal_model/current_theory.py` is the focused public entrance.
+observation_window_completion
+        -> passive/open no-go
+        -> extension_compression
+        -> addressable_completion_bounds
+                -> dynamic_boundary_blankets
+                -> relay_tree_compilation
+                -> delayed_addressability
 
-### Finite deterministic closure
+candidate_safe_laws
+        -> candidate-induced macro maps
+        -> universal / candidate-safe / set-valued verdict
+        -> delayed_addressability (delayed discrimination grammar)
 
-`causal_model/causal_closure_calculus.py` classifies a total finite map
+current_theory
+        -> curated imports from all active theorem families
+```
 
-\[
-F:S\to S
-\]
+The arrows show conceptual reuse, not a claim that every module must be imported
+by every other module.
 
-into one of:
+## Core theorem roles
 
-- `GLOBAL_CLOSURE`, certified by strict integer ranking descent;
-- `RECURRENT_NONCLOSURE`, certified by an exact directed cycle of period at
-  least two; or
-- `MULTISTABLE_NONCLOSURE`, certified by distinct fixed points.
+### Closure over time
 
-The key separation is:
-
-\[
-\text{every local transition is specified}
-\not\Rightarrow
-\text{one globally closing world-level outcome}.
-\]
-
-### Observation-window completion
-
-`causal_model/observation_window_completion.py` makes the inside/outside
-question explicit. A finite window observes a focal output. A declared
-completion grammar specifies what hidden exterior modules and future boundary
-actions may affect the window.
-
-For the explicit family with \(m\) hidden binary exterior modules,
-
-\[
-K_{\mathrm{passive}}=1,
-\qquad
-K_{\mathrm{open}}=m+1.
-\]
-
-The module proves three things in its declared finite domain:
-
-1. every finite passive observation word is shared by distinct exterior
-   completions;
-2. an allowed future boundary probe separates those completions; and
-3. enlarging the action / completion grammar refines, never coarsens, the
-   minimal safe trace quotient.
-
-`CounterfactualCompletionCertificate` is the one-word separating object.
-`ObservationWindowCompletionCertificate` verifies the exact passive-versus-open
-partition and enumerates finite passive protocols. `RelayCompletionCertificate`
-shows the same counterexample in the degree-three constant-grammar relay
-implementation.
-
-This does not claim that passive data are useless, that every empirical window
-fails, or that arbitrary outsides can be simulated. It is an existence no-go:
-passive traces alone cannot certify closure in a model class containing the
-explicit completion family.
-
-### Extension--compression lower-bound family
-
-`causal_model/extension_compression.py` is now a special completion grammar. A
-fixed context permits one port; a declared open context permits any port later.
-For every \(m\ge1\),
+`causal_closure_calculus.py` studies total finite maps
 
 \[
-\max_i \kappa(M_m\parallel E_i)=2,
-\qquad
-\kappa_{\mathrm{open}}(M_m;\mathcal E_m)=m+1.
+F:S\to S.
 \]
 
-Thus every fixed closed extension has a four-state interface, whereas the
-open-safe interface is the full \(2^{m+1}\)-state partition.
+It distinguishes one globally closing endpoint from exact recurrence and
+multistability. This proves a time-promotion statement only; it does not answer
+whether a boundary summary is sufficient or whether a candidate family agrees.
 
-`TraceSeparationCertificate` records the current observation or future port
-probe that prevents two states from being merged.
+### Window, exterior, and composition
 
-### Bounded-degree relay-tree compilation
+`observation_window_completion.py` gives the passive/open no-go. The
+extension/compression and addressable-product modules turn it into a sharp
+interface-memory lower bound. `relay_tree_compilation.py` removes the objection
+that a growing local lookup table or high-degree focal node created the effect.
 
-`causal_model/relay_tree_compilation.py` proves that the coordinate witnesses do
-not rely on a growing local lookup table or high-degree focal node. It compiles
-every size into a binary tree with one fixed grammar:
+### Dynamic positive criterion
 
-- reader states `ready` / `fire`;
-- memory leaves with a permanent bit and three-valued transient pulse;
-- three-valued relay pulses; and
-- a binary focal root output.
+`dynamic_boundary_blankets.py` gives the converse direction within its declared
+finite deterministic controlled domain. A summary is valid only when it preserves
+output and action-conditioned update. The all-word quotient is the coarsest such
+exact deterministic interface.
 
-Messages are directed along child-to-parent edges. With one attached reader,
-every node has degree at most three. The declared sequential action grammar
-allows one reader firing followed by return to quiescence.
+### Delay as an independent axis
 
-`RelayProtocolCertificate` replays a complete micro-trajectory. The compilation
-certificate checks every quiescent coordinate state and every port in the
-declared finite range, proving that completed macro probes are conjugate to the
-coordinate action.
+`delayed_addressability.py` adds a prefix grammar to control when a future action
+is legal. It proves that each fixed finite grammar has a finite exact horizon,
+while an expanding delayed family has no shared finite closure horizon.
 
-### Candidate consensus
+### Candidate plurality
 
-A decisive result requires all retained candidate systems to share a claim-level
-verdict. Candidate disagreement is `UNRESOLVED`.
+`candidate_safe_laws.py` starts after candidate-specific macro maps have been
+specified. It asks whether they agree after candidate identity is forgotten.
+The output is deliberately typed:
 
-\[
-\forall\theta\in C_t,
-\quad v(\theta)=v^\star
-\quad\Longrightarrow\quad
-\text{report }v^\star.
-\]
+```text
+all induced maps agree                 -> universal deterministic law
+maps disagree, response type retained  -> candidate-safe deterministic law
+maps disagree, response type forgotten -> set-valued law or UNRESOLVED
+```
 
-This is the RACH discipline: do not force a single model winner when a
-structural conclusion can be shared, and do not force a structural conclusion
-when retained candidates disagree.
+## Layer 2: retained-family and sequential evidence
 
-### Observation-regime comparison
-
-`causal_model/observation_regime_closure.py` compares two declared maps on the
-same state space:
-
-\[
-F^{(0)}\quad\text{(natural regime)},
-\qquad
-F^{(1)}\quad\text{(observer-coupled regime)}.
-\]
-
-It can certify observer-independent closure, observation-induced closure,
-observation-induced recurrence, and related nonclosure transitions. This is an
-operational comparison of declared action regimes. It is not the primary
-inside/outside ontology and does not claim that observation automatically alters
-an ecosystem.
-
-## Layer 2: sequential evidence
-
-The sequential layer bridges random observations to retained candidate sets. Its
-general theorem is conditional:
-
-\[
-\Pr\left[\theta^\star\in C_t\text{ for all certified cells and looks}\right]
-\ge1-\alpha
-\]
-
-lifts to a false-decisive bound for conclusions calculated from those sets.
+This layer controls how data or solver output may remove candidate worlds. It
+does not itself prove closure, open-interface sufficiency, or universal macro
+dynamics.
 
 Relevant modules include:
 
+- `admissibility.py`;
 - `confidence_lifting.py` and `anytime_confidence_lifting.py`;
 - symbolic candidate-set lifting and exact rational feasibility verification; and
-- the finite-alphabet e-process backend when its declared finite stationary
-  assumptions are appropriate.
+- the finite-alphabet e-process backend when its narrow stationary assumptions
+  are appropriate.
 
-This layer does not decide closure, outside invariance, or open-interface
-complexity. It only controls how safely candidate worlds may be removed as data
-accumulate.
-
-## Layer 3: certificates
-
-Exact certificates prevent simulation output from being promoted directly to a
-strong conclusion.
-
-- finite closure rankings, cycles, and multistability certificates;
-- passive-indistinguishable completion and separating-boundary-word certificates;
-- open-interface trace-separation certificates;
-- bounded-degree relay protocol and macro-conjugacy certificates;
-- rational SAT witnesses and Farkas infeasibility certificates; and
-- compiler-generated finite branch systems where the restricted grammar applies.
-
-A certificate proves a stated result only in its stated mathematical domain.
-
-## Layer 4: audit and provenance
-
-Canonical manifests, replayable artifacts, append-only transcripts, signatures,
-and checkpoints are an optional audit shell.
-
-They answer:
+The future bridge must have the form
 
 \[
-\text{which evidence and proof objects were used, and has their history changed?}
+\text{data or solver output}
+\to
+\text{retained completion/mechanism family}
+\to
+\text{typed open-law verdict}.
 \]
 
-They do not establish:
+Until that bridge exists, this layer is support infrastructure, not evidence that
+an exterior grammar or candidate family is correctly specified.
 
-\[
-\text{which exterior completions remain possible},
-\quad
-\text{whether a boundary blanket is sufficient},
-\quad
-\text{or scientific truth}.
-\]
+## Layer 3: certificates and regression
 
-Auditability is useful, but it is not the main mathematical contribution.
+Each active theorem family supplies exact finite certificate objects. They are
+not screenshots of a simulation. Typical certificates include:
 
-## What is supporting, not current theory core
+- closure rankings, recurrence cycles, and multistability witnesses;
+- passive-indistinguishable completions and future separating words;
+- product-coordinate separators and blanket factorizations;
+- relay micro-trajectories and macro conjugacy;
+- grammar-aware delayed separators; and
+- candidate transition agreement, obstruction, and response-type separators.
 
-The following remain available but are not the main narrative for new work:
+The corresponding GitHub Actions workflows replay finite declared families and
+upload deterministic JSON reports. They test implementation invariants; their
+success is not a general proof assistant for ecosystems outside the declared
+domain.
 
-- disjunctive / ecological-program theorem families;
-- minimum discriminating observation panels and benchmark suites;
-- manifest v1/v2 adapters, transcript variants, and checkpoint plumbing; and
-- polyhedral admission machinery outside a problem that genuinely needs its
-  restricted grammar.
+## Layer 4: theorem red-team laboratory
 
-Reuse them only when they serve an active core question.
+The following modules are valuable when they falsify or sharpen a current theorem
+premise:
+
+- `ecological_program.py` and `failure_modes.py` for hostile finite grammars;
+- `generative_benchmarks.py` and `benchmarks.py` for exact finite sweeps;
+- `observation_envelope.py` for observation-channel ambiguity; and
+- `observation_design.py`, `robust_panel_design.py`, and related panel benchmarks
+  for later intervention-design corollaries.
+
+They are not the default ontology for new theorem work. Their job is to find the
+smallest counterexample that forces a sharper assumption.
+
+## Layer 5: audit and provenance
+
+Manifests, transcripts, signatures, checkpoints, and registries preserve proof
+identity and history. They answer which artifact was used and whether it changed.
+They do not establish which exterior completion is possible, whether a blanket is
+sufficient, or whether a law is universal.
+
+Keep this layer compatible and tested. Do not add to it absent a concrete
+publication or audit requirement.
+
+## Repository navigation rule
+
+- Start a new theorem with [theorem spine](theorem_spine.md).
+- Find modules and dependency roles here.
+- Use [the asset map](repository_asset_map.md) before reusing legacy code.
+- Use [the promotion calculus](promotion_calculus.md) to decide which promotion
+  obligation the theorem is meant to settle.
 
 ## GitHub Actions policy
 
 When a theorem is implemented over a finite declared domain, its pull request
 should contain:
 
-1. a written theorem statement and explicit scope boundary;
+1. a written theorem statement and scope boundary;
 2. an independently checkable certificate verifier;
-3. targeted counterexample and fail-closed tests;
-4. exhaustive model checking whenever the declared domain is small enough; and
-5. a workflow artifact containing the deterministic enumeration summary.
+3. targeted fail-closed and counterexample tests;
+4. finite enumeration only as replay for the stated certificate; and
+5. a deterministic workflow artifact.
 
-Current examples are:
-
-- finite closure regression over all maps on up to four states;
-- observation-regime regression over all ordered map pairs on up to three states;
-- extension--compression regression for the coordinate witness family with one
-  through six ports;
-- relay-tree compilation regression for one through six ports, all quiescent
-  states, and all reader attachments; and
-- observation-window completion regression for one through six exterior modules,
-  all passive words through a declared finite horizon, both focal states, and all
-  declared boundary ports.
-
-Passing CI is not a proof outside the finite stated domain.
+Current theorem workflows cover closure, regime comparison, extension/compression,
+relay compilation, observation-window completion, addressable bounds, dynamic
+blankets, delayed addressability, and candidate-safe laws.
