@@ -1,0 +1,68 @@
+name: Robust canonical panel certificate replay
+
+on:
+  pull_request:
+    paths:
+      - 'causal_model/canonical_boundary_blankets.py'
+      - 'causal_model/robust_canonical_panels.py'
+      - 'scripts/verify_robust_canonical_panels.py'
+      - 'tests/test_robust_canonical_panels.py'
+      - 'docs/robust_canonical_panels.md'
+      - '.github/workflows/robust-canonical-panels.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'causal_model/canonical_boundary_blankets.py'
+      - 'causal_model/robust_canonical_panels.py'
+      - 'scripts/verify_robust_canonical_panels.py'
+      - 'tests/test_robust_canonical_panels.py'
+      - 'docs/robust_canonical_panels.md'
+      - '.github/workflows/robust-canonical-panels.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  theorem-layers:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - layer: exact_and_dropout
+            selector: hypergraph or exact_panel or missing_all or two_independent or constructive_dropout
+          - layer: robust_optimality
+            selector: private_bundle or non_disjoint
+          - layer: fail_closed
+            selector: invalid_cells
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install test dependencies
+        run: python -m pip install --upgrade pip pytest
+      - name: Replay theorem layer
+        run: >-
+          python -m pytest tests/test_robust_canonical_panels.py -q
+          -k "${{ matrix.selector }}"
+
+  certificate-replay:
+    needs: theorem-layers
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Write deterministic replay report
+        run: >-
+          PYTHONPATH=. python scripts/verify_robust_canonical_panels.py
+          --max-replication 6
+          --output artifacts/robust_canonical_panels_report.json
+      - name: Upload theorem report
+        uses: actions/upload-artifact@v4
+        with:
+          name: robust-canonical-panels-report
+          path: artifacts/robust_canonical_panels_report.json
+          if-no-files-found: error
