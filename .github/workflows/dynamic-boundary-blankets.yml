@@ -1,0 +1,50 @@
+name: Dynamic boundary blanket certificate replay
+
+on:
+  pull_request:
+    paths:
+      - 'causal_model/dynamic_boundary_blankets.py'
+      - 'causal_model/addressable_completion_bounds.py'
+      - 'scripts/verify_dynamic_boundary_blankets.py'
+      - 'tests/test_dynamic_boundary_blankets.py'
+      - 'tests/test_current_theory.py'
+      - 'docs/dynamic_boundary_blankets.md'
+      - '.github/workflows/dynamic-boundary-blankets.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'causal_model/dynamic_boundary_blankets.py'
+      - 'causal_model/addressable_completion_bounds.py'
+      - 'scripts/verify_dynamic_boundary_blankets.py'
+      - 'tests/test_dynamic_boundary_blankets.py'
+      - 'tests/test_current_theory.py'
+      - 'docs/dynamic_boundary_blankets.md'
+      - '.github/workflows/dynamic-boundary-blankets.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  theorem-certificate-replay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install certificate replay dependencies
+        run: python -m pip install --upgrade pip pytest
+      - name: Replay targeted dynamic-blanket certificates
+        run: python -m pytest tests/test_dynamic_boundary_blankets.py -q
+      - name: Replay horizon and blanket theorem families
+        run: >-
+          PYTHONPATH=. python scripts/verify_dynamic_boundary_blankets.py
+          --max-delay-chain-states 8
+          --max-binary-exterior-count 6
+          --output artifacts/dynamic_boundary_blankets_report.json
+      - name: Upload dynamic-blanket theorem report
+        uses: actions/upload-artifact@v4
+        with:
+          name: dynamic-boundary-blankets-report
+          path: artifacts/dynamic_boundary_blankets_report.json
+          if-no-files-found: error
