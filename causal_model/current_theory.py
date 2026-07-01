@@ -2,7 +2,7 @@
 
 The repository contains older finite-program, observation-design, sequential,
 and audit modules. They remain supported. The active mathematical core exposes
-nine exact finite theorem families:
+ten exact finite theorem families:
 
     finite candidate rule systems
     -> exact closure/recurrent certificates per candidate
@@ -32,6 +32,10 @@ nine exact finite theorem families:
     delayed addressability
     -> prefix-grammar constrained lower bounds
     -> no uniform closure horizon across expanding delayed families;
+
+    grammar-aware dynamic blankets
+    -> exact product interfaces over system and contract-grammar state
+    -> positive legal-word factorization certificates;
 
     candidate-safe universal laws
     -> ensemble--instance separation certificates
@@ -116,6 +120,21 @@ from .extension_compression import (
     certify_extension_compression,
     exhaustive_witness_summary,
 )
+from .grammar_aware_blankets import (
+    EnabledActionMismatchCertificate,
+    GrammarAwareCanonicalInterfaceCertificate,
+    GrammarAwareDynamicBlanketCertificate,
+    GrammarAwareDynamicInterfaceCertificate,
+    GrammarAwareRefinementCertificate,
+    GrammarStateNecessityCertificate,
+    certify_grammar_aware_canonical_interface,
+    certify_grammar_aware_dynamic_blanket,
+    certify_grammar_aware_refinement,
+    certify_grammar_state_necessity,
+    explicit_grammar_aware_partition,
+    find_enabled_action_mismatch,
+    grammar_aware_output_trace,
+)
 from .joint_open_candidate_laws import (
     CandidateSafeOpenLawCertificate,
     JointExteriorMechanismProductCertificate,
@@ -168,6 +187,19 @@ from .relay_tree_compilation import (
 )
 
 __all__ = [
+    "EnabledActionMismatchCertificate",
+    "GrammarAwareCanonicalInterfaceCertificate",
+    "GrammarAwareDynamicBlanketCertificate",
+    "GrammarAwareDynamicInterfaceCertificate",
+    "GrammarAwareRefinementCertificate",
+    "GrammarStateNecessityCertificate",
+    "certify_grammar_aware_canonical_interface",
+    "certify_grammar_aware_dynamic_blanket",
+    "certify_grammar_aware_refinement",
+    "certify_grammar_state_necessity",
+    "explicit_grammar_aware_partition",
+    "find_enabled_action_mismatch",
+    "grammar_aware_output_trace",
     "CandidateSafeOpenLawCertificate",
     "JointExteriorMechanismProductCertificate",
     "JointOpenCandidateProduct",
