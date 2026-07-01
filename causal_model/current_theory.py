@@ -2,7 +2,7 @@
 
 The repository contains older finite-program, observation-design, sequential,
 and audit modules. They remain supported. The active mathematical core exposes
-three exact finite theorem families:
+four exact finite theorem families:
 
     finite candidate rule systems
     -> exact closure/recurrent certificates per candidate
@@ -11,11 +11,15 @@ three exact finite theorem families:
 
     fixed closed extension interfaces
     -> declared open-port interfaces
-    -> exact extension--compression separation certificates; and
+    -> exact extension--compression separation certificates;
 
     coordinate-level open-port witnesses
     -> constant-grammar, degree-three relay-tree protocols
-    -> exact macro-time conjugacy certificates.
+    -> exact macro-time conjugacy certificates; and
+
+    finite passive observation windows
+    -> exterior completion counterexamples
+    -> counterfactual interface-inflation certificates.
 
 This module intentionally re-exports only that core. It introduces no new
 mathematics and does not replace the lower-level modules.
@@ -47,6 +51,15 @@ from .observation_regime_closure import (
     RegimeConsensusKind,
     classify_observation_regime_pair,
     summarize_regime_candidates,
+)
+from .observation_window_completion import (
+    CounterfactualCompletionCertificate,
+    ObservationWindowCompletionCertificate,
+    RelayCompletionCertificate,
+    certify_observation_window_completion,
+    completion_counterexample_certificate,
+    exhaustive_observation_window_summary,
+    relay_completion_certificate,
 )
 from .relay_tree_compilation import (
     BoundedDegreeCompilationCertificate,
@@ -80,6 +93,13 @@ __all__ = [
     "certify_bounded_degree_compilation",
     "certify_relay_protocol",
     "exhaustive_compilation_summary",
+    "CounterfactualCompletionCertificate",
+    "ObservationWindowCompletionCertificate",
+    "RelayCompletionCertificate",
+    "certify_observation_window_completion",
+    "completion_counterexample_certificate",
+    "exhaustive_observation_window_summary",
+    "relay_completion_certificate",
     "ObservationRegimeClassification",
     "ObservationRegimeRulePair",
     "ObservationRegimeVerdict",
