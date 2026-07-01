@@ -80,5 +80,7 @@ def test_invalid_cardinalities_and_empty_chains_fail_closed():
         certify_inert_attachment_boundedness(0)
     with pytest.raises(ValueError, match="at least one"):
         certify_cumulative_addressability_chain(2, ())
+    with pytest.raises(ValueError, match="at least two"):
+        certify_cumulative_addressability_chain(2, (1, 2))
     with pytest.raises(ValueError, match="at least one"):
         certify_uniform_dynamic_blanket_chain((0,), ())
