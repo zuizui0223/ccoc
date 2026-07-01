@@ -59,14 +59,14 @@ def test_stage_must_realize_the_schema_successor_when_an_action_is_legal():
 
 def test_schema_and_labels_fail_closed_on_invalid_inputs():
     assert not ConservativeMacroSchema(("a",), (0,), ((2,),)).verify()
-    with pytest.raises(ValueError, match="labels"):
-        ConservativeStageProjection(
-            GrammarAwareControlledSystem(
-                FiniteControlledOutputSystem(("a",), ((0,),), (0,)),
-                FinitePrefixGrammar(("a",), ((0,),)),
-            ),
-            (),
-        ).verify()
+    invalid_stage = ConservativeStageProjection(
+        GrammarAwareControlledSystem(
+            FiniteControlledOutputSystem(("a",), ((0,),), (0,)),
+            FinitePrefixGrammar(("a",), ((0,),)),
+        ),
+        (),
+    )
+    assert not invalid_stage.verify()
     assert not ConservativeSchemaChainCertificate(
         ConservativeMacroSchema(("a",), (0,), ((0,),)), (), ()
     ).verify()
