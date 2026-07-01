@@ -1,0 +1,68 @@
+name: Witnessed boundary evidence certificate replay
+
+on:
+  pull_request:
+    paths:
+      - 'causal_model/canonical_boundary_blankets.py'
+      - 'causal_model/witnessed_boundary_evidence.py'
+      - 'scripts/verify_witnessed_boundary_evidence.py'
+      - 'tests/test_witnessed_boundary_evidence.py'
+      - 'docs/witnessed_boundary_evidence.md'
+      - '.github/workflows/witnessed-boundary-evidence.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'causal_model/canonical_boundary_blankets.py'
+      - 'causal_model/witnessed_boundary_evidence.py'
+      - 'scripts/verify_witnessed_boundary_evidence.py'
+      - 'tests/test_witnessed_boundary_evidence.py'
+      - 'docs/witnessed_boundary_evidence.md'
+      - '.github/workflows/witnessed-boundary-evidence.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  theorem-layers:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - layer: witnessed_lower_bounds
+            selector: observed_separation or partial_panel or monotone or nonnested or invalid_samples
+          - layer: coverage_exactness
+            selector: completion_coverage or missing_canonical
+          - layer: free_completion_no_go
+            selector: free_completion or extension_requires
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install test dependencies
+        run: python -m pip install --upgrade pip pytest
+      - name: Replay theorem layer
+        run: >-
+          python -m pytest tests/test_witnessed_boundary_evidence.py -q
+          -k "${{ matrix.selector }}"
+
+  certificate-replay:
+    needs: theorem-layers
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Write deterministic replay report
+        run: >-
+          PYTHONPATH=. python scripts/verify_witnessed_boundary_evidence.py
+          --max-fresh-completions 6
+          --output artifacts/witnessed_boundary_evidence_report.json
+      - name: Upload theorem report
+        uses: actions/upload-artifact@v4
+        with:
+          name: witnessed-boundary-evidence-report
+          path: artifacts/witnessed_boundary_evidence_report.json
+          if-no-files-found: error
