@@ -1,13 +1,11 @@
 """Coherent portable macro-laws over nested finite compositions.
 
-A uniform bound on quotient size is weaker than one portable macro-law.  This
-module requires a common finite macro dynamics and embeddings that preserve its
-summary labels.  Under those premises every stage, and the direct union of the
-nested stages, has the same exact macro transition system.
+A uniform bound on quotient size is weaker than one portable macro-law. This
+module requires common finite macro dynamics and embeddings that preserve summary
+labels. Under those premises every stage has the same exact macro system.
 
-It also provides a concrete future-word obstruction: an old pair merged by a
-proposed portable summary cannot remain merged if a newly legal word separates
-their embedded images.
+A separate trajectory embedding handles the negative case: a newly legal word
+can refute a proposed merge before that proposed target summary is itself exact.
 """
 
 from __future__ import annotations
@@ -35,8 +33,7 @@ def _canonical_labels(labels: Iterable[int], count: int) -> tuple[int, ...]:
 def _pair_at(system: GrammarAwareControlledSystem, index: int) -> tuple[int, int]:
     if not isinstance(index, int) or isinstance(index, bool) or not 0 <= index < system.product_state_count:
         raise ValueError("product index is outside the constrained system")
-    grammar_count = system.grammar.state_count
-    return index // grammar_count, index % grammar_count
+    return index // system.grammar.state_count, index % system.grammar.state_count
 
 
 def _product_successor_index(system: GrammarAwareControlledSystem, index: int, action: str) -> int:
@@ -80,9 +77,8 @@ class PortableMacroDynamics:
                     return False
                 if any(action not in self.actions for action in legal):
                     return False
-                for target in row:
-                    if target is not None and (not isinstance(target, int) or not 0 <= target < self.state_count):
-                        return False
+                if any(target is not None and (not isinstance(target, int) or not 0 <= target < self.state_count) for target in row):
+                    return False
             return True
         except (TypeError, ValueError):
             return False
@@ -119,13 +115,10 @@ class StageMacroProjection:
             outputs.append(self.constrained_system.system.output(state))
             legal = self.constrained_system.grammar.legal_actions(grammar_state)
             legal_rows.append(legal)
-            row: list[int | None] = []
-            for action in actions:
-                if action not in legal:
-                    row.append(None)
-                else:
-                    row.append(self.summary_labels[_product_successor_index(self.constrained_system, representative, action)])
-            transitions.append(tuple(row))
+            transitions.append(tuple(
+                None if action not in legal else self.summary_labels[_product_successor_index(self.constrained_system, representative, action)]
+                for action in actions
+            ))
         macro = PortableMacroDynamics(actions, tuple(outputs), tuple(legal_rows), tuple(transitions))
         if not macro.verify():
             raise AssertionError("induced macro dynamics did not verify")
@@ -134,16 +127,19 @@ class StageMacroProjection:
     def verify(self) -> bool:
         try:
             labels = _canonical_labels(self.summary_labels, self.constrained_system.product_state_count)
-            if labels != self.summary_labels or tuple(sorted(set(labels))) != tuple(range(self.summary_state_count)):
-                return False
-            return self.interface.verify() and self.induced_macro().verify()
+            return (
+                labels == self.summary_labels
+                and tuple(sorted(set(labels))) == tuple(range(self.summary_state_count))
+                and self.interface.verify()
+                and self.induced_macro().verify()
+            )
         except (AssertionError, TypeError, ValueError):
             return False
 
 
 @dataclass(frozen=True)
 class StageEmbedding:
-    """Injective embedding of old grammar-aware product states into the next stage."""
+    """Exact embedding of one projected stage into the next projected stage."""
 
     source: StageMacroProjection
     target: StageMacroProjection
@@ -153,25 +149,45 @@ class StageEmbedding:
         try:
             if not self.source.verify() or not self.target.verify():
                 return False
-            if self.source.constrained_system.system.actions != self.target.constrained_system.system.actions:
+            trajectory = TrajectoryEmbedding(self.source.constrained_system, self.target.constrained_system, self.target_indices)
+            if not trajectory.verify(equal_legal_actions=True):
                 return False
-            if len(self.target_indices) != self.source.constrained_system.product_state_count:
+            return True
+        except (TypeError, ValueError):
+            return False
+
+
+@dataclass(frozen=True)
+class TrajectoryEmbedding:
+    """Embedding preserving old outputs and all trajectories legal at the old stage."""
+
+    source_system: GrammarAwareControlledSystem
+    target_system: GrammarAwareControlledSystem
+    target_indices: tuple[int, ...]
+
+    def verify(self, equal_legal_actions: bool = False) -> bool:
+        try:
+            if self.source_system.system.actions != self.target_system.system.actions:
+                return False
+            if len(self.target_indices) != self.source_system.product_state_count:
                 return False
             if len(set(self.target_indices)) != len(self.target_indices):
                 return False
-            if any(not isinstance(index, int) or not 0 <= index < self.target.constrained_system.product_state_count for index in self.target_indices):
+            if any(not isinstance(index, int) or not 0 <= index < self.target_system.product_state_count for index in self.target_indices):
                 return False
-            source_system = self.source.constrained_system
-            target_system = self.target.constrained_system
             for source_index, target_index in enumerate(self.target_indices):
-                source_state, source_grammar = _pair_at(source_system, source_index)
-                target_state, target_grammar = _pair_at(target_system, target_index)
-                if source_system.system.output(source_state) != target_system.system.output(target_state):
+                source_state, source_grammar = _pair_at(self.source_system, source_index)
+                target_state, target_grammar = _pair_at(self.target_system, target_index)
+                if self.source_system.system.output(source_state) != self.target_system.system.output(target_state):
                     return False
-                if source_system.grammar.legal_actions(source_grammar) != target_system.grammar.legal_actions(target_grammar):
+                source_legal = self.source_system.grammar.legal_actions(source_grammar)
+                target_legal = self.target_system.grammar.legal_actions(target_grammar)
+                if not set(source_legal).issubset(target_legal):
                     return False
-                for action in source_system.grammar.legal_actions(source_grammar):
-                    if self.target_indices[_product_successor_index(source_system, source_index, action)] != _product_successor_index(target_system, target_index, action):
+                if equal_legal_actions and source_legal != target_legal:
+                    return False
+                for action in source_legal:
+                    if self.target_indices[_product_successor_index(self.source_system, source_index, action)] != _product_successor_index(self.target_system, target_index, action):
                         return False
             return True
         except (AssertionError, TypeError, ValueError):
@@ -188,19 +204,15 @@ class CoherentPortableMacroLawCertificate:
 
     def verify(self) -> bool:
         try:
-            if not self.macro.verify() or not self.stages:
+            if not self.macro.verify() or not self.stages or len(self.embeddings) != len(self.stages) - 1:
                 return False
-            if len(self.embeddings) != len(self.stages) - 1:
+            if any(not stage.verify() or stage.induced_macro() != self.macro for stage in self.stages):
                 return False
-            for stage in self.stages:
-                if not stage.verify() or stage.induced_macro() != self.macro:
-                    return False
             for index, embedding in enumerate(self.embeddings):
                 if not embedding.verify() or embedding.source != self.stages[index] or embedding.target != self.stages[index + 1]:
                     return False
-                for source_index, target_index in enumerate(embedding.target_indices):
-                    if embedding.source.summary_labels[source_index] != embedding.target.summary_labels[target_index]:
-                        return False
+                if any(embedding.source.summary_labels[source_index] != embedding.target.summary_labels[target_index] for source_index, target_index in enumerate(embedding.target_indices)):
+                    return False
             return True
         except (AssertionError, TypeError, ValueError):
             return False
@@ -222,27 +234,15 @@ def inert_portable_chain(max_module_count: int) -> CoherentPortableMacroLawCerti
     if not isinstance(max_module_count, int) or isinstance(max_module_count, bool) or max_module_count < 1:
         raise ValueError("max_module_count must be positive")
     actions = ("observe", "connect")
-    macro = PortableMacroDynamics(
-        actions=actions,
-        outputs=("inert-window",),
-        legal_action_rows=(actions,),
-        transition_rows=((0, 0),),
-    )
+    macro = PortableMacroDynamics(actions, ("inert-window",), (actions,), ((0, 0),))
     stages: list[StageMacroProjection] = []
     for module_count in range(1, max_module_count + 1):
         state_count = 2 ** module_count
-        system = FiniteControlledOutputSystem(
-            actions=actions,
-            transition_table=tuple((state, state) for state in range(state_count)),
-            outputs=("inert-window",) * state_count,
-        )
-        grammar = FinitePrefixGrammar(actions=actions, transition_table=((0, 0),))
+        system = FiniteControlledOutputSystem(actions, tuple((state, state) for state in range(state_count)), ("inert-window",) * state_count)
+        grammar = FinitePrefixGrammar(actions, ((0, 0),))
         constrained = GrammarAwareControlledSystem(system, grammar)
         stages.append(StageMacroProjection(constrained, (0,) * constrained.product_state_count))
-    embeddings = tuple(
-        StageEmbedding(stages[index], stages[index + 1], tuple(range(stages[index].constrained_system.product_state_count)))
-        for index in range(len(stages) - 1)
-    )
+    embeddings = tuple(StageEmbedding(stages[index], stages[index + 1], tuple(range(stages[index].constrained_system.product_state_count))) for index in range(len(stages) - 1))
     return certify_coherent_portable_macro_law(macro, tuple(stages), embeddings)
 
 
@@ -250,35 +250,38 @@ def inert_portable_chain(max_module_count: int) -> CoherentPortableMacroLawCerti
 class FutureWordObstructionCertificate:
     """A newly legal future word refutes one proposed coherent summary merge."""
 
-    embedding: StageEmbedding
+    trajectory_embedding: TrajectoryEmbedding
+    source_labels: tuple[int, ...]
+    target_labels: tuple[int, ...]
     left_source_index: int
     right_source_index: int
     future_word: tuple[str, ...]
 
     def verify(self) -> bool:
         try:
-            if not self.embedding.verify():
+            if not self.trajectory_embedding.verify(equal_legal_actions=False):
+                return False
+            source = self.trajectory_embedding.source_system
+            target = self.trajectory_embedding.target_system
+            source_labels = _canonical_labels(self.source_labels, source.product_state_count)
+            target_labels = _canonical_labels(self.target_labels, target.product_state_count)
+            if source_labels != self.source_labels or target_labels != self.target_labels:
                 return False
             if self.left_source_index == self.right_source_index:
                 return False
-            source = self.embedding.source
-            target = self.embedding.target
-            if not 0 <= self.left_source_index < source.constrained_system.product_state_count:
+            if not 0 <= self.left_source_index < source.product_state_count or not 0 <= self.right_source_index < source.product_state_count:
                 return False
-            if not 0 <= self.right_source_index < source.constrained_system.product_state_count:
+            if source_labels[self.left_source_index] != source_labels[self.right_source_index]:
                 return False
-            if source.summary_labels[self.left_source_index] != source.summary_labels[self.right_source_index]:
+            left_target = self.trajectory_embedding.target_indices[self.left_source_index]
+            right_target = self.trajectory_embedding.target_indices[self.right_source_index]
+            if target_labels[left_target] != target_labels[right_target]:
                 return False
-            left_target = self.embedding.target_indices[self.left_source_index]
-            right_target = self.embedding.target_indices[self.right_source_index]
-            if target.summary_labels[left_target] != target.summary_labels[right_target]:
-                return False
-            target_system = target.constrained_system
-            left_state, left_grammar = _pair_at(target_system, left_target)
-            right_state, right_grammar = _pair_at(target_system, right_target)
-            target_system.grammar.normalize_legal_word(self.future_word, left_grammar)
-            target_system.grammar.normalize_legal_word(self.future_word, right_grammar)
-            return _trace(target_system, left_target, self.future_word) != _trace(target_system, right_target, self.future_word)
+            _, left_grammar = _pair_at(target, left_target)
+            _, right_grammar = _pair_at(target, right_target)
+            target.grammar.normalize_legal_word(self.future_word, left_grammar)
+            target.grammar.normalize_legal_word(self.future_word, right_grammar)
+            return _trace(target, left_target, self.future_word) != _trace(target, right_target, self.future_word)
         except (TypeError, ValueError):
             return False
 
@@ -286,23 +289,23 @@ class FutureWordObstructionCertificate:
 def newly_legal_word_obstruction() -> FutureWordObstructionCertificate:
     """Two old states merge before a new legal action exposes their difference."""
     actions = ("stay", "reveal")
-    old_system = FiniteControlledOutputSystem(
-        actions=actions,
-        transition_table=((0, 0), (1, 1)),
-        outputs=(0, 0),
+    old_system = FiniteControlledOutputSystem(actions, ((0, 0), (1, 1)), (0, 0))
+    old_grammar = FinitePrefixGrammar(actions, ((0, None),))
+    new_system = FiniteControlledOutputSystem(actions, ((0, 0), (1, 2), (2, 2)), (0, 0, 1))
+    new_grammar = FinitePrefixGrammar(actions, ((0, 0),))
+    trajectory = TrajectoryEmbedding(
+        GrammarAwareControlledSystem(old_system, old_grammar),
+        GrammarAwareControlledSystem(new_system, new_grammar),
+        (0, 1),
     )
-    old_grammar = FinitePrefixGrammar(actions=actions, transition_table=((0, None),))
-    old = StageMacroProjection(GrammarAwareControlledSystem(old_system, old_grammar), (0, 0))
-    new_system = FiniteControlledOutputSystem(
-        actions=actions,
-        transition_table=((0, 0), (1, 2), (2, 2)),
-        outputs=(0, 0, 1),
+    certificate = FutureWordObstructionCertificate(
+        trajectory_embedding=trajectory,
+        source_labels=(0, 0),
+        target_labels=(0, 0, 1),
+        left_source_index=0,
+        right_source_index=1,
+        future_word=("reveal",),
     )
-    new_grammar = FinitePrefixGrammar(actions=actions, transition_table=((0, 0),))
-    proposed = StageMacroProjection(GrammarAwareControlledSystem(new_system, new_grammar), (0, 0, 1))
-    # The source's old legal behavior embeds exactly; the new action is newly legal.
-    embedding = StageEmbedding(old, proposed, (0, 1))
-    certificate = FutureWordObstructionCertificate(embedding, 0, 1, ("reveal",))
     if not certificate.verify():
         raise AssertionError("future-word obstruction certificate did not verify")
     return certificate
