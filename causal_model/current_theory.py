@@ -2,7 +2,7 @@
 
 The repository contains older finite-program, observation-design, sequential,
 and audit modules. They remain supported. The active mathematical core exposes
-seven exact finite theorem families:
+eight exact finite theorem families:
 
     finite candidate rule systems
     -> exact closure/recurrent certificates per candidate
@@ -27,11 +27,16 @@ seven exact finite theorem families:
 
     dynamic boundary blankets
     -> exact extension-stable macro interfaces
-    -> finite counterfactual-horizon certificates; and
+    -> finite counterfactual-horizon certificates;
 
     delayed addressability
     -> prefix-grammar constrained lower bounds
-    -> no uniform closure horizon across expanding delayed families.
+    -> no uniform closure horizon across expanding delayed families; and
+
+    candidate-safe universal laws
+    -> ensemble--instance separation certificates
+    -> deterministic universal, deterministic candidate-safe, or set-valued
+       macro-law verdicts.
 
 This module intentionally re-exports only that core. It introduces no new
 mathematics and does not replace the lower-level modules.
@@ -47,6 +52,22 @@ from .addressable_completion_bounds import (
     certify_finite_boundary_blanket,
     certify_passive_closure_nonidentifiability,
     separating_word_certificate,
+)
+from .candidate_safe_laws import (
+    CandidateInducedLaw,
+    CandidateLawFamily,
+    CandidateResponseSeparationCertificate,
+    CandidateSafeProductCertificate,
+    DelayedCandidateDiscriminationCertificate,
+    SetValuedMacroLawCertificate,
+    UniversalLawObstructionCertificate,
+    UniversalMacroLawCertificate,
+    certify_candidate_safe_product,
+    certify_delayed_candidate_discrimination,
+    certify_set_valued_macro_law,
+    certify_universal_macro_law,
+    find_candidate_response_separator,
+    universal_law_obstruction_certificate,
 )
 from .causal_closure_calculus import (
     ClosureClassification,
@@ -119,6 +140,20 @@ from .relay_tree_compilation import (
 )
 
 __all__ = [
+    "CandidateInducedLaw",
+    "CandidateLawFamily",
+    "CandidateResponseSeparationCertificate",
+    "CandidateSafeProductCertificate",
+    "DelayedCandidateDiscriminationCertificate",
+    "SetValuedMacroLawCertificate",
+    "UniversalLawObstructionCertificate",
+    "UniversalMacroLawCertificate",
+    "certify_candidate_safe_product",
+    "certify_delayed_candidate_discrimination",
+    "certify_set_valued_macro_law",
+    "certify_universal_macro_law",
+    "find_candidate_response_separator",
+    "universal_law_obstruction_certificate",
     "DelayedAddressabilityCertificate",
     "DelayedClosureNonidentifiabilityCertificate",
     "DelayedReaderGrammar",
