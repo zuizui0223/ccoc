@@ -25,11 +25,11 @@ finite observation window
    |
 retained candidate family
    |
-   +-- do all candidates induce the same macro transition?
-          |
-          +-- yes: universal deterministic law
-          +-- no, type retained: candidate-safe deterministic law
-          +-- no, type forgotten: set-valued law or UNRESOLVED
+   +-- do all candidates induce the same open macro transition?
+           |
+           +-- yes: universal deterministic open law
+           +-- no, type retained: candidate-safe deterministic open law
+           +-- no, type forgotten: set-valued law or UNRESOLVED
 ```
 
 The authoritative map is [the theorem spine](docs/theorem_spine.md). Read it
@@ -114,6 +114,25 @@ K_{\mathrm{candidate\text{-}safe}}
 When response type is forgotten, the exact prediction is set-valued rather than
 silently deterministic.
 
+### 7. Exterior and mechanism information add only under joint separation
+
+A universal **open** law requires both an update-closed interface in every
+retained candidate and agreement of the induced macro maps across candidates.
+For a jointly realizable product family with a concrete legal separator for each
+unequal state,
+
+\[
+K_{\mathrm{joint\text{-}safe}}
+\ge
+\log_2|I|+
+\sum_j\log_2|E_j|+
+\log_2|R|.
+\]
+
+The canonical structural witness attains this bound using one fixed local action
+alphabet. This is not an automatic sum of earlier lower bounds: the explicit
+joint-separation premise is essential.
+
 ## Start here
 
 The public theory entrance is intentionally small:
@@ -126,6 +145,7 @@ from causal_model.current_theory import (
     certify_dynamic_boundary_blanket,
     certify_delayed_addressability,
     certify_candidate_safe_product,
+    certify_joint_exterior_mechanism_product,
 )
 ```
 
@@ -146,6 +166,7 @@ research entrance for new theorem work.
    - [dynamic boundary blankets](docs/dynamic_boundary_blankets.md)
    - [delayed addressability](docs/delayed_addressability.md)
    - [candidate-safe universal laws](docs/candidate_safe_universal_laws.md)
+   - [joint open-candidate laws](docs/joint_open_candidate_laws.md)
 
 ## Certificate discipline
 
