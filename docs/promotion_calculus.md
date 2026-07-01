@@ -7,95 +7,102 @@ RACH asks:
 > **When may a rule discovered inside a finite observation window be promoted to a
 > portable causal law, and which certificate is required for that promotion?**
 
-A law can be exactly correct for the observed inside and still fail to export to
-longer time scales, to counterfactual ecosystem-outsides, or to a retained family
-of candidate worlds.
+A rule can be exactly correct at one level and still fail at the next. The
+repository therefore treats promotion as a sequence of explicit proof
+obligations, not as an informal jump from good local fit to general law.
 
-## Three structural axes and one epistemic gate
+Read [the theorem spine](theorem_spine.md) for the compact status of every
+proved result and its boundary.
 
-| Axis | Invalid automatic promotion | RACH object that blocks it | Current finite certificate |
+## Four failure modes and one epistemic gate
+
+| Axis | Invalid automatic promotion | What can go wrong | Exact RACH response |
 |---|---|---|---|
-| **Time** | specified local update \(\Rightarrow\) one world-level endpoint | finite closure calculus | ranking descent, recurrent cycle, or multistability witness |
-| **Window / outside** | rule inside a passive observation window \(\Rightarrow\) rule under every allowed exterior completion | completion lower bounds plus dynamic-blanket factorization | separating boundary word, canonical open quotient, or update-closed boundary summary |
-| **Knowledge** | one convenient candidate \(\Rightarrow\) justified conclusion | candidate consensus | unanimity over the retained candidate family; otherwise `UNRESOLVED` |
+| **Time** | specified local update \(\Rightarrow\) one long-run endpoint | cycles or multiple attractors | ranking, recurrent-cycle, or multistability certificate |
+| **Outside memory** | small closed-context rule \(\Rightarrow\) small open rule | independently addressable exterior completions | separating-word product lower bound or dynamic blanket certificate |
+| **Outside delay** | no difference within the present horizon \(\Rightarrow\) no future difference | a boundary event becomes legal only later | prefix-grammar delayed separator and horizon certificate |
+| **Mechanism plurality** | small law per retained candidate \(\Rightarrow\) one universal deterministic law | candidates induce different macro transitions | universal-law agreement, candidate-safe law, or set-valued law |
+| **Evidence gate** | convenient selected model \(\Rightarrow\) justified retained family | data or solver pruning discarded a live mechanism | simultaneous retained-family coverage; otherwise `UNRESOLVED` |
 
-The first two are structural. The third is epistemic: it controls when a
-structural result may be reported despite incomplete model knowledge.
+The first four are mathematical structure once a finite theorem domain is
+declared. The evidence gate is epistemic: it controls which candidate families
+may honestly enter the structural theorems.
 
-## Boundary grammars are the central object
+## The central objects
 
-Let \(W\) be a finite observation window. Its outside is not simply “everything
-outside a geographic patch.” It is the declared grammar \(\Gamma\) of external
-completions, boundary inputs, attachments, and future actions that may influence
-\(W\).
-
-A rule inside \(W\) becomes an open-system law only when exterior effects can be
-omitted or stored in a finite dynamic boundary summary without changing every
-future window trace:
+Let \(W\) be an observation window. Its outside is not merely the geographic
+exterior of a plot. It is a declared boundary contract consisting of:
 
 \[
-R_W(x,e,w)=R_W(x,e',w)
+(W,\Gamma,C),
 \]
 
-for all allowed exterior completions \(e,e'\) and boundary words
-\(w\in\Gamma^*\), after conditioning on that summary.
+where
 
-Thus closure means neither “the outside does not exist” nor “nothing entered
-while we watched.” It means that, under the declared counterfactual grammar, the
-outside can be represented by a summary whose update is itself well defined.
+- \(\Gamma\) is a grammar of admissible exterior completions, attachments,
+  events, and future actions; and
+- \(C\) is a retained candidate family of mechanisms or completion models.
 
-## Active theorem spine
+For candidate \(\theta\), completion \(e\), and legal boundary word
+\(w\in\Gamma^*\), write the window trace as
+
+\[
+R_W^\theta(x,e,w).
+\]
+
+A portable deterministic law has to say what summary may replace the hidden
+outside and whether that replacement works across the intended retained family.
+
+Closure therefore means neither “the outside does not exist” nor “nothing
+entered while we watched.” It means that, under a declared grammar, the outside
+has a dynamically sufficient summary and the desired macro transition is
+well-defined at the intended candidate level.
+
+## The theorem spine in one diagram
 
 ```text
 finite observation window W
         |
-        +-- passive inside traces
+        +-- passive traces
         |       |
         |       +-- completion no-go:
-        |               same passive trace, different boundary counterfactual
+        |               same passive trace, different future boundary response
         |
-        +-- declared completion grammar Gamma
+        +-- declared exterior grammar Gamma
         |       |
-        |       +-- canonical all-word open quotient
-        |       +-- lower bounds from distinguishable completions
-        |       +-- dynamic blanket upper bounds
-        |       +-- finite counterfactual horizon when a finite blanket exists
+        |       +-- addressable-completion lower bounds
+        |       +-- dynamic-blanket upper bounds
+        |       +-- grammar-aware finite horizons for fixed systems
+        |       +-- delayed no-uniform-horizon families
+        |
+retained candidate family C
+        |
+        +-- induced macro maps G_a^theta
+        |       |
+        |       +-- all agree -> universal deterministic law
+        |       +-- disagree but type retained -> candidate-safe deterministic law
+        |       +-- type forgotten -> set-valued law or UNRESOLVED
         |
 local transition rules
         |
-        +-- time promotion -> closure / recurrence certificates
-        |
-retained candidate family
-        |
-        +-- knowledge gate -> shared conclusion or UNRESOLVED
+        +-- time promotion -> closure / recurrence / multistability certificates
 ```
 
-The extension--compression and relay-tree results are now interpreted as a
-specific boundary-completion family. They show that every fixed closed context
-can have a small exact interface while the interface safe for all declared future
-attachments is exponentially larger.
+The coordinate extension/compression witness and its relay-tree compilation are
+one concrete exterior grammar inside this picture. They are not a claim that all
+open ecosystems have a binary tree structure.
 
-## The lower-bound side
+## What is now proved
 
-The observation-window witness proves, for every \(m\ge1\),
+### 1. Exterior memory cannot be ignored by closed-context compression
 
-\[
-K_{\mathrm{passive}}=1,
-\qquad
-K_{\mathrm{open}}=m+1.
-\]
-
-The passive window sees only a focal bit. It is compatible with
-\(2^m\) exterior completion states for each focal output. A single permitted
-boundary probe can expose any one of the hidden completion bits.
-
-The addressable-completion product theorem generalizes this. If
+For operationally addressable coordinates
 
 \[
-I\times E_1\times\cdots\times E_q
+I\times E_1\times\cdots\times E_q,
 \]
 
-is operationally readable by concrete boundary words, then
+concrete future separating words imply
 
 \[
 K_{\mathrm{open}}
@@ -104,15 +111,26 @@ K_{\mathrm{open}}
 \sum_j\log_2|E_j|.
 \]
 
-The witness is compiled to one fixed local grammar with pairwise messages and
-maximum degree three. It therefore does not rely on an unbounded local lookup
-table or a high-degree focal node.
+If every fixed closed context reads only one coordinate, the open versus closed
+interface gap is bounded below by the omitted coordinate information. The binary
+relay family realizes the sharp values
 
-## The positive side: dynamic blanket completeness
+\[
+K_{\mathrm{open}}=q+1,
+\qquad
+\max_iK_{\mathrm{closed},i}=2.
+\]
 
-A finite exterior summary is sufficient only when it is dynamically closed. If
-\(q=(\alpha,\beta)\) stores inside and boundary states and both output and every
-allowed action update factor through \(q\), then it is an exact open interface:
+### 2. Finite dynamic blankets are the positive criterion
+
+A summary is an exact open macro-interface only when it is output preserving and
+update closed under every permitted action. If
+
+\[
+q=(\alpha,\beta)
+\]
+
+is such a dynamic inside-plus-boundary summary, then
 
 \[
 K_{\mathrm{open}}
@@ -122,69 +140,118 @@ K_{\mathrm{open}}
 \log_2|I|+\log_2|B|.
 \]
 
-For a finite controlled system, the canonical all-word quotient stabilizes after
-at most \(|\operatorname{im}q|-1\) counterfactual refinement rounds. Conversely,
-the canonical quotient is the coarsest exact extension-stable deterministic
-interface.
+The canonical all-word quotient is the coarsest exact deterministic interface.
+For each fixed finite controlled system it stabilizes after a finite horizon.
 
-Combining both directions gives a sharp family-level conclusion. In the binary
-addressable-completion family, any exact blanket has at least \(m\) bits:
+### 3. A finite horizon is not uniform across delayed outside families
 
-\[
-\log_2|B_m|\ge m.
-\]
-
-Hence there is no blanket of size bounded independently of the number of
-possible future exterior attachments.
-
-## Operational regime comparison is now a special case
-
-`observation_regime_closure.py` remains valuable. It compares two declared action
-or observation regimes on the same state space. In the promotion calculus it is
-not the principal inside/outside axis; it is a special operational case of
-changing the declared action grammar.
-
-For example, an observer-coupled map may be one permitted boundary action in
-\(\Gamma\). The module should be reused when that exact two-regime comparison is
-the claim, not as a generic slogan that observation changes ecosystems.
-
-## Candidate uncertainty fits as an epistemic shadow
-
-Mechanistic uncertainty is not the headline theorem. A retained candidate family
-may specify different allowed completions or different boundary grammar. A
-candidate-safe interface must preserve every future response that remains live
-in that family:
+For every memory scale \(m\) and delay \(H\), the delayed-addressability family
+has
 
 \[
-\text{retained completion grammars}
-\longrightarrow
-\text{candidate-safe open interface}
-\longrightarrow
-\text{shared law, set-valued law, or UNRESOLVED}.
+\max_iK_{\mathrm{closed},i}=2,
+\qquad
+K_{\mathrm{open}}=m+1,
+\qquad
+H_\star=H+1.
 \]
 
-The general bridge from data to retained completion grammars is not implemented
-yet. It must not be faked by relabelling old motif-specific code.
+No legal trace before \(\mathrm{wait}^H\mathrm{fire}\) can expose the relevant
+exterior bit. Hence no fixed finite-horizon trace procedure certifies closure
+uniformly over the union of such delayed families.
 
-## What counts as a successful next theorem
+### 4. Candidate-specific laws do not automatically form a universal law
 
-A new theorem should strengthen one of these claims:
+For a retained candidate family on shared macrostate space \(Q\), a universal
+deterministic law exists exactly when
 
-1. **Grammar-growth lower bound.** Specify extension grammars for which increasing
-   reachable exterior structure forces a non-stabilizing family of blanket sizes.
-2. **Regular-language completion theorem.** Extend finite-horizon certification
-   from a free finite action alphabet to a declared regular boundary grammar.
-3. **Uniform-law criterion.** Separate a safe interface from existence of one
-   candidate-independent deterministic macro transition across a family.
-4. **Candidate-family bridge.** Learn or retain completion grammars from data only
-   after the structural theorem specifies the object that evidence must certify.
+\[
+G_a^\theta=G_a^{\theta'}
+\quad
+\forall\theta,\theta',a.
+\]
 
-A larger coordinate table, an extra provenance format, or a generic statistical
-backend is not a new core theorem by itself.
+When the induced maps disagree, candidate identity cannot be silently discarded.
+Under uniform response separation, retaining response type adds the lower bound
+
+\[
+K_{\mathrm{candidate\text{-}safe}}
+\ge
+\log_2|Q|+
+\log_2R.
+\]
+
+Forgetting response type yields the set-valued law
+
+\[
+F_a(q)=\{G_a^\theta(q):\theta\in C\}.
+\]
+
+It is deterministic if and only if all retained response types agree.
+
+## The law-reporting rule
+
+RACH's output is determined by the strongest certificate actually present.
+
+| What has been certified | Reportable output |
+|---|---|
+| fixed candidate, fixed grammar, exact dynamic summary | candidate-specific deterministic open law |
+| common summary and common induced maps across candidates | universal deterministic open law |
+| common summary but multiple retained response types | candidate-safe deterministic law on an augmented state |
+| response type omitted while candidate transitions disagree | set-valued law or `UNRESOLVED` |
+| exterior separator or delayed separator violates the proposed summary/horizon | no closure certificate at that scale; report the counterexample or lower bound |
+
+This avoids two opposite mistakes: declaring a universal law from one convenient
+candidate, and declaring the entire problem hopeless when a rigorous set-valued
+or candidate-safe statement remains available.
+
+## Observation-regime comparison is a special case
+
+`observation_regime_closure.py` compares two declared action regimes on the same
+state space. In the promotion calculus it is one operational way to alter the
+boundary grammar; it is not a generic statement that observing an ecosystem
+necessarily changes it.
+
+## What remains outside the current theorem core
+
+The current results are conditional on finite labelled deterministic systems,
+explicit state spaces, action alphabets, grammars, and retained candidate
+families. They do not prove corresponding results for arbitrary continuous,
+stochastic, hidden-state, simultaneous, or empirical systems.
+
+The general bridge
+
+\[
+\text{data or solver output}
+\longrightarrow
+\text{retained completion/mechanism family}
+\longrightarrow
+\text{candidate-safe open-law verdict}
+\]
+
+is not implemented yet. Existing evidence modules remain staging for that
+bridge; they must not be presented as if they already infer an exterior grammar.
+
+## Next theorem targets
+
+1. **Joint open-and-candidate criterion.** Characterize when a family of
+   candidate-specific dynamic blankets induces one common deterministic open
+   macro-law, one candidate-safe law, or only a set-valued law.
+2. **Joint lower bound.** State and prove a non-circular joint separation
+   condition under which exterior completion memory and response-type memory are
+   additive.
+3. **Regular-grammar blanket factorization.** Extend dynamic blanket
+   factorization to grammar-state-aware summaries rather than only using grammar
+   state for finite-horizon stabilization.
+4. **Evidence bridge.** Connect data or solver output to retained completion and
+   response-type families behind explicit coverage assumptions.
+
+A larger coordinate table, a new provenance wrapper, or a generic statistical
+backend unconnected to these objects is not a new core theorem.
 
 ## Boundary
 
 RACH does not claim that every ecosystem has a finite-state representation, that
-passive data are useless, or that an arbitrary outside can be exhaustively
-simulated. Every statement is conditional on a declared observation window,
-action grammar, completion class, horizon, and candidate family.
+passive data are useless, or that arbitrary outside conditions can be exhausted.
+Every result remains conditional on its declared observation window, action
+grammar, completion family, candidate family, and certificate assumptions.
