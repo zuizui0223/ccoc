@@ -1,0 +1,45 @@
+name: Extension-compression theorem regression
+
+on:
+  pull_request:
+    paths:
+      - 'causal_model/extension_compression.py'
+      - 'scripts/verify_extension_compression_theorem.py'
+      - 'tests/test_extension_compression.py'
+      - 'docs/extension_compression_noncommutation.md'
+      - '.github/workflows/extension-compression-theorem.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'causal_model/extension_compression.py'
+      - 'scripts/verify_extension_compression_theorem.py'
+      - 'tests/test_extension_compression.py'
+      - 'docs/extension_compression_noncommutation.md'
+      - '.github/workflows/extension-compression-theorem.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  finite-witness-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install theorem regression dependencies
+        run: python -m pip install --upgrade pip pytest
+      - name: Run targeted witness tests
+        run: python -m pytest tests/test_extension_compression.py -q
+      - name: Verify finite witness family
+        run: >-
+          PYTHONPATH=. python scripts/verify_extension_compression_theorem.py
+          --max-module-count 6
+          --output artifacts/extension_compression_witness_report.json
+      - name: Upload finite witness report
+        uses: actions/upload-artifact@v4
+        with:
+          name: extension-compression-witness-report
+          path: artifacts/extension_compression_witness_report.json
+          if-no-files-found: error

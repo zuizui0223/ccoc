@@ -4,9 +4,10 @@
 
 RACH accumulated several valid but differently purposed layers: finite causal
 programs, confidence-set lifting, exact proof replay, append-only transcripts,
-and more recent closure dynamics.  They should not all be read as one theorem.
+closure dynamics, and open-interface witnesses. They should not all be read as
+one theorem.
 
-The active research core is now deliberately small:
+The active research core now has two deliberately narrow finite theorem threads:
 
 \[
 \text{retained candidate dynamics}
@@ -15,7 +16,15 @@ The active research core is now deliberately small:
 \to
 \text{candidate consensus}
 \to
-\text{closure/regime conclusion or UNRESOLVED}.
+\text{closure/regime conclusion or UNRESOLVED},
+\]
+
+and
+
+\[
+\text{small causal interface for every fixed closed extension}
+\not\Rightarrow
+\text{small interface for a declared open composition}.
 \]
 
 The rest remains useful supporting infrastructure, not the scientific claim.
@@ -76,9 +85,37 @@ claim-level verdict. Candidate disagreement is `UNRESOLVED`.
 \text{report }v^\star.
 \]
 
-This is the RACH contribution retained in the core: do not force a single model
-winner when a structural conclusion can be shared, and do not force a
-structural conclusion when retained candidates disagree.
+This is the RACH discipline: do not force a single model winner when a
+structural conclusion can be shared, and do not force a structural conclusion
+when retained candidates disagree.
+
+### Extension--compression witness
+
+`causal_model/extension_compression.py` formalizes a different no-go question.
+It declares a finite focal-bit system with attachable ports. A fixed closed
+context permits one specified port; a declared open port grammar permits any
+specified port to be probed in the future.
+
+For each \(m\ge1\), its exact certificate proves
+
+\[
+\max_i \kappa(M_m\parallel E_i)=2,
+\qquad
+\kappa_{\mathrm{open}}(M_m;\mathcal E_m)=m+1.
+\]
+
+Thus every fixed closed extension has a four-state interface, whereas the
+open-safe interface is the full \(2^{m+1}\)-state microstate partition.
+
+`TraceSeparationCertificate` is the lower-bound object: for every unequal pair
+of states it records either `observe` or a declared `probe:i` action whose
+one-step focal-output traces differ. This is an explicit finite proof object,
+not a simulation summary.
+
+This is currently an interface-level theorem. The planned stronger theorem must
+compile the witness to a constant local grammar with pairwise, bounded-degree
+interactions while preserving the lower bound. It must not be described as a
+literal ecological model before that compilation is proved.
 
 ## Layer 2: sequential evidence
 
@@ -99,8 +136,8 @@ Relevant modules include:
 - the finite-alphabet e-process backend, when its declared finite stationary
   assumptions are appropriate.
 
-This layer does not decide closure by itself. It only controls how safely
-candidate dynamics may be removed as data accumulate.
+This layer does not decide closure or open-interface complexity by itself. It
+only controls how safely candidate dynamics may be removed as data accumulate.
 
 ## Layer 3: certificates
 
@@ -108,6 +145,7 @@ Exact certificates prevent simulation output from being promoted directly to a
 strong conclusion.
 
 - finite closure rankings, cycles, and multistability certificates;
+- open-interface trace-separation certificates;
 - rational SAT witnesses and Farkas infeasibility certificates;
 - compiler-generated finite branch systems where the restricted grammar is
   applicable.
@@ -148,15 +186,15 @@ The following remain available but are not the main narrative for new work:
 - polyhedral admission machinery outside a problem that genuinely needs its
   restricted grammar.
 
-They should be reused only when they serve the closure-and-consensus research
-question, not because they already exist.
+They should be reused only when they serve an active core question, not because
+they already exist.
 
 ## GitHub Actions policy
 
 When a theorem is implemented over a finite declared domain, its pull request
 should contain:
 
-1. a written theorem statement and scope boundary;
+1. a written theorem statement and explicit scope boundary;
 2. an independently checkable certificate verifier;
 3. targeted counterexample and fail-closed tests;
 4. exhaustive model checking whenever the declared domain is small enough; and
@@ -164,8 +202,10 @@ should contain:
 
 Current examples are:
 
-- finite closure theorem regression over all maps on up to four states; and
+- finite closure theorem regression over all maps on up to four states;
 - observation-regime theorem regression over all ordered map pairs on up to
-  three states.
+  three states; and
+- extension--compression regression for the explicit finite witness family with
+  one through six ports.
 
 Passing CI is not a proof of a theorem outside its finite stated domain.

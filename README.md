@@ -8,7 +8,7 @@ It contains no empirical data and makes no domain-specific causal claim.
 
 ## Current theory core
 
-The active core is:
+The active core contains two complementary finite questions:
 
 \[
 \text{retained candidate dynamics}
@@ -17,7 +17,15 @@ The active core is:
 \to
 \text{candidate consensus}
 \to
-\text{decisive conclusion or UNRESOLVED}.
+\text{decisive conclusion or UNRESOLVED},
+\]
+
+and
+
+\[
+\text{small interfaces in fixed closed extensions}
+\not\Rightarrow
+\text{a small interface for the declared open composition}.
 \]
 
 The focused import surface is:
@@ -29,6 +37,7 @@ from causal_model.current_theory import (
     ObservationRegimeRulePair,
     classify_observation_regime_pair,
     summarize_regime_candidates,
+    certify_extension_compression,
 )
 ```
 
@@ -94,11 +103,31 @@ If retained candidates disagree, the output is `UNRESOLVED`.
 This is the central discipline: a single convenient model must not be promoted
 to a general causal conclusion.
 
+### 4. Compression need not survive declared ecological extension
+
+For every \(m\ge1\), the extension--compression witness contains a focal output
+bit and \(m\) dormant boundary-memory bits. If a closed context permits access
+to only one fixed port, its exact causal interface has four states. If the
+future context may access any declared port, every microstate is distinguishable
+by either current output or one allowed probe.
+
+\[
+\max_i \kappa(M_m\parallel E_i)=2,
+\qquad
+\kappa_{\mathrm{open}}(M_m;\mathcal E_m)=m+1.
+\]
+
+Equivalently, each fixed closed extension has a four-state macro-law, while the
+open interface requires \(2^{m+1}\) states. This is a finite no-go witness for
+assuming that local or closed-system causal compression automatically transfers
+to an open system. See [extension--compression noncommutation](docs/extension_compression_noncommutation.md).
+
 ## Mathematical boundary
 
-Current exact closure theorems apply to **finite labelled total deterministic
-maps**. They do not prove analogous facts for arbitrary continuous, stochastic,
-hidden-state, or empirical systems.
+Current exact theorems apply to **finite labelled deterministic systems** with
+explicitly declared state spaces, action alphabets, and—in the extension theorem—
+explicitly declared admissible ports. They do not prove analogous facts for
+arbitrary continuous, stochastic, hidden-state, or empirical systems.
 
 For a finite theorem domain, RACH uses certificates rather than simulation
 appearance:
@@ -106,14 +135,14 @@ appearance:
 \[
 \text{simulation evidence}
 \neq
-\text{proof of closure or recurrence}.
+\text{proof of closure, recurrence, or an interface lower bound}.
 \]
 
 A valid certificate proves only the conclusion and scope it explicitly states.
 
 ## GitHub Actions theorem regression
 
-Two dedicated workflows model-check the current finite theorem domains:
+Three dedicated workflows model-check declared finite theorem domains:
 
 - all labelled deterministic maps on one through four states:
   \[
@@ -121,12 +150,14 @@ Two dedicated workflows model-check the current finite theorem domains:
   \]
 - all ordered natural/observer-coupled map pairs on one through three states:
   \[
-  (1^1)^2+(2^2)^2+(3^3)^2=746.
+  (1^1)^2+(2^2)^2+(3^3)^2=746;
   \]
+- the explicit extension--compression witness family for one through six open
+  ports.
 
-Each workflow runs targeted tests, exhaustive enumeration, certificate
-verification, and uploads a deterministic JSON report. Passing these workflows
-is finite model checking of the declared domain, not a general proof assistant.
+Each workflow runs targeted tests, certificate verification, and uploads a
+deterministic JSON report. Passing these workflows is finite model checking of
+the declared domain, not a general proof assistant.
 
 ## Supporting layers
 
@@ -183,5 +214,6 @@ The architecture document explains where new code belongs:
 
 RACH is not a floral-trait, pollination, fitness, population-genetic,
 site-level, or field-protocol model. All conclusions remain conditional on the
-declared candidate systems, observation regime, certificate validity, and—when
-sequential evidence is used—the external coverage assumptions.
+declared candidate systems, observation regime, action grammar, certificate
+validity, and—when sequential evidence is used—the external coverage
+assumptions.
