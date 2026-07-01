@@ -30,7 +30,10 @@ from .extension_compression_noncommutation import (
     certify_addressable_product_lower_bound,
     certify_relay_tree_sharpness,
 )
-from .grammar_aware_blankets import GrammarAwareDynamicInterfaceCertificate
+from .grammar_aware_blankets import (
+    GrammarAwareDynamicInterfaceCertificate,
+    certify_grammar_aware_dynamic_blanket,
+)
 from .delayed_addressability import FinitePrefixGrammar, GrammarAwareControlledSystem
 
 
@@ -71,6 +74,13 @@ class UniformFactorizationStage:
     @property
     def interface(self) -> GrammarAwareDynamicInterfaceCertificate:
         return GrammarAwareDynamicInterfaceCertificate(self.constrained_system, self.summary_labels)
+
+    @property
+    def canonical_block_count(self) -> int:
+        return certify_grammar_aware_dynamic_blanket(
+            self.constrained_system,
+            self.summary_labels,
+        ).canonical_block_count
 
     @property
     def used_summary_labels(self) -> tuple[int, ...]:
@@ -121,12 +131,12 @@ class UniformDynamicBlanketChainCertificate:
             for stage, count in zip(self.stages, self.canonical_block_counts):
                 if not stage.verify(alphabet):
                     return False
-                if count != stage.interface.summary_block_count:
+                if count != stage.canonical_block_count:
                     return False
                 if count > self.summary_state_bound:
                     return False
             return self.maximum_canonical_bits <= self.summary_bits_bound + 1e-12
-        except (TypeError, ValueError):
+        except (AssertionError, TypeError, ValueError):
             return False
 
 
@@ -144,7 +154,7 @@ def certify_uniform_dynamic_blanket_chain(
     certificate = UniformDynamicBlanketChainCertificate(
         summary_alphabet=alphabet,
         stages=normalized_stages,
-        canonical_block_counts=tuple(stage.interface.summary_block_count for stage in normalized_stages),
+        canonical_block_counts=tuple(stage.canonical_block_count for stage in normalized_stages),
     )
     if not certificate.verify():
         raise ValueError("stages do not form a uniform grammar-aware dynamic blanket chain")
