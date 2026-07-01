@@ -131,7 +131,7 @@ def test_exhaustive_small_reset_panel_certificate_replay():
     "bad_words",
     [
         ((DelayedJointAction.read(3),),),
-        ((DelayedJointAction.wait( ), DelayedJointAction.read(0)),),
+        ((DelayedJointAction.wait(), DelayedJointAction.wait()),),
         (("not-an-action",),),
     ],
 )
