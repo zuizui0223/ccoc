@@ -1,0 +1,49 @@
+name: Extension-compression noncommutation replay
+
+on:
+  pull_request:
+    paths:
+      - 'causal_model/extension_compression_noncommutation.py'
+      - 'causal_model/extension_compression.py'
+      - 'causal_model/relay_tree_compilation.py'
+      - 'tests/test_extension_compression_noncommutation.py'
+      - 'scripts/verify_extension_compression_noncommutation.py'
+      - 'docs/extension_compression_noncommutation.md'
+      - '.github/workflows/extension-compression-noncommutation.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'causal_model/extension_compression_noncommutation.py'
+      - 'causal_model/extension_compression.py'
+      - 'causal_model/relay_tree_compilation.py'
+      - 'tests/test_extension_compression_noncommutation.py'
+      - 'scripts/verify_extension_compression_noncommutation.py'
+      - 'docs/extension_compression_noncommutation.md'
+      - '.github/workflows/extension-compression-noncommutation.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  theorem-replay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install test dependencies
+        run: python -m pip install --upgrade pip pytest
+      - name: Run noncommutation theorem tests
+        run: python -m pytest tests/test_extension_compression_noncommutation.py -q
+      - name: Write deterministic replay report
+        run: >-
+          PYTHONPATH=. python scripts/verify_extension_compression_noncommutation.py
+          --max-module-count 5
+          --output artifacts/extension_compression_noncommutation_report.json
+      - name: Upload theorem report
+        uses: actions/upload-artifact@v4
+        with:
+          name: extension-compression-noncommutation-report
+          path: artifacts/extension_compression_noncommutation_report.json
+          if-no-files-found: error
