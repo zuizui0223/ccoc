@@ -1,34 +1,30 @@
 # RACH Causal Invariants
 
-RACH is a theorem-first methods repository for a narrow question:
+RACH is a theorem-first methods repository for one narrow question:
 
-> **When can locally valid causal rules be promoted to a world-level conclusion, and when must candidate uncertainty leave the conclusion unresolved?**
+> **When may a local or conditional causal statement be promoted to a portable
+> macro-law, and which certificate is needed for that promotion?**
 
 It contains no empirical data and makes no domain-specific causal claim.
 
+## RACH is a promotion calculus
+
+A causal statement can fail to promote along four distinct axes:
+
+| Axis | Invalid automatic promotion | RACH response |
+|---|---|---|
+| Time | local update rule \(\Rightarrow\) one global endpoint | closure, recurrence, or multistability certificate |
+| Regime | natural-regime law \(\Rightarrow\) observer-coupled law | paired-regime verdict |
+| Composition | small law in every fixed closed context \(\Rightarrow\) small law in an open system | open-safe interface certificate |
+| Knowledge | one convenient candidate \(\Rightarrow\) justified claim | unanimity across retained candidates or `UNRESOLVED` |
+
+Read [the promotion calculus](docs/promotion_calculus.md) for the unifying
+relation, and [the asset map](docs/repository_asset_map.md) before extending an
+older module.
+
 ## Current theory core
 
-The active core contains two complementary finite questions:
-
-\[
-\text{retained candidate dynamics}
-\to
-\text{exact closure / recurrence certificates}
-\to
-\text{candidate consensus}
-\to
-\text{decisive conclusion or UNRESOLVED},
-\]
-
-and
-
-\[
-\text{small interfaces in fixed closed extensions}
-\not\Rightarrow
-\text{a small interface for the declared open composition}.
-\]
-
-The focused import surface is:
+The focused public entrance is deliberately small:
 
 ```python
 from causal_model.current_theory import (
@@ -38,11 +34,12 @@ from causal_model.current_theory import (
     classify_observation_regime_pair,
     summarize_regime_candidates,
     certify_extension_compression,
+    certify_bounded_degree_compilation,
 )
 ```
 
-Read the [current architecture map](docs/current_architecture.md) before using
-older modules.
+New theorem work should begin here, not from the broad legacy package exports.
+See [the current architecture map](docs/current_architecture.md).
 
 ## What the core proves
 
@@ -54,7 +51,7 @@ For a finite total deterministic update map
 F:S\to S,
 \]
 
-RACH classifies the long-run world-level behavior as exactly one of:
+RACH classifies the long-run behavior as exactly one of:
 
 | Result | Exact certificate |
 |---|---|
@@ -63,7 +60,8 @@ RACH classifies the long-run world-level behavior as exactly one of:
 | `MULTISTABLE_NONCLOSURE` | two or more distinct fixed points |
 
 Thus every local transition may be correct while repeated application fails to
-produce one stable global endpoint. See the [closure calculus](docs/causal_closure_calculus.md).
+produce one stable world-level endpoint. See the
+[closure calculus](docs/causal_closure_calculus.md).
 
 ### 2. Rules can differ between natural and observer-coupled regimes
 
@@ -82,11 +80,11 @@ RACH compares their certified closure classes and can report, for example:
 - `OBSERVATION_INDUCED_RECURRENCE`; or
 - `REGIME_DEPENDENT_NONCLOSURE`.
 
-This is an operational statement about two declared dynamics. It does **not**
-claim that observation creates reality, nor that empirical observation is
-necessarily invasive. See [observation-regime closure](docs/observation_regime_closure.md).
+This is an operational comparison of declared dynamics. It does **not** claim
+that observation creates reality or that empirical observation is necessarily
+invasive. See [observation-regime closure](docs/observation_regime_closure.md).
 
-### 3. Candidate consensus is the RACH rule
+### 3. Candidate consensus is the RACH epistemic rule
 
 RACH does not require complete model identification. Let \(C_t\) be retained
 candidate systems and let \(v(\theta)\) be a claim-level verdict.
@@ -100,8 +98,9 @@ candidate systems and let \(v(\theta)\) be a claim-level verdict.
 
 If retained candidates disagree, the output is `UNRESOLVED`.
 
-This is the central discipline: a single convenient model must not be promoted
-to a general causal conclusion.
+This is not the open-composition theorem itself. It is the rule that prevents
+one selected candidate from being promoted to a general conclusion without a
+retained-family certificate.
 
 ### 4. Compression need not survive declared ecological extension
 
@@ -120,14 +119,31 @@ by either current output or one allowed probe.
 Equivalently, each fixed closed extension has a four-state macro-law, while the
 open interface requires \(2^{m+1}\) states. This is a finite no-go witness for
 assuming that local or closed-system causal compression automatically transfers
-to an open system. See [extension--compression noncommutation](docs/extension_compression_noncommutation.md).
+to an open system. See
+[extension--compression noncommutation](docs/extension_compression_noncommutation.md).
+
+### 5. The separation survives a bounded-degree local compilation
+
+The coordinate witness is compiled into a one-token reader / memory-leaf /
+relay / root protocol with:
+
+- one fixed finite local grammar;
+- edge-local child-to-parent pairwise messages;
+- maximum graph degree three, including one attached reader; and
+- quiescent macro-time between sequential probes.
+
+The completed protocol exactly implements the coordinate probe action, so the
+same \(2\) versus \(m+1\) separation survives without a high-degree root or a
+growing local lookup table. See
+[bounded-degree relay-tree compilation](docs/bounded_degree_relay_compilation.md).
 
 ## Mathematical boundary
 
 Current exact theorems apply to **finite labelled deterministic systems** with
-explicitly declared state spaces, action alphabets, and—in the extension theorem—
-explicitly declared admissible ports. They do not prove analogous facts for
-arbitrary continuous, stochastic, hidden-state, or empirical systems.
+explicitly declared state spaces, action alphabets, and—in the extension
+theorem—explicitly declared admissible ports. They do not prove analogous facts
+for arbitrary continuous, stochastic, hidden-state, simultaneous, or empirical
+systems.
 
 For a finite theorem domain, RACH uses certificates rather than simulation
 appearance:
@@ -142,7 +158,7 @@ A valid certificate proves only the conclusion and scope it explicitly states.
 
 ## GitHub Actions theorem regression
 
-Three dedicated workflows model-check declared finite theorem domains:
+Dedicated workflows model-check declared finite theorem domains:
 
 - all labelled deterministic maps on one through four states:
   \[
@@ -152,50 +168,33 @@ Three dedicated workflows model-check declared finite theorem domains:
   \[
   (1^1)^2+(2^2)^2+(3^3)^2=746;
   \]
-- the explicit extension--compression witness family for one through six open
-  ports.
+- the explicit coordinate extension--compression family for one through six
+  ports; and
+- the degree-three relay-tree compilation for one through six ports, every
+  quiescent state, and every declared reader attachment.
 
 Each workflow runs targeted tests, certificate verification, and uploads a
 deterministic JSON report. Passing these workflows is finite model checking of
 the declared domain, not a general proof assistant.
 
-## Supporting layers
+## Supporting assets: where the old work belongs
 
-The repository also contains useful supporting methods. They are not all part
-of the current theory core.
+The repository contains valuable earlier work. It is not all the current theory
+core.
 
-### Sequential evidence
+- **Evidence gateway:** confidence-set lifting, anytime lifting, symbolic
+  candidate sets, and the finite-alphabet e-process work can eventually supply
+  retained composition families from data.
+- **Counterexample miner:** rational proof checking, polyhedral inclusion, and
+  replayable exact artifacts can certify finite countermodels to bad conjectures.
+- **Adversarial model lab:** ecological-program grammars, failure modes,
+  observation envelopes, design algorithms, and exact benchmarks can red-team
+  theorem assumptions.
+- **Frozen provenance:** manifests, transcripts, signatures, and checkpoints
+  preserve artifact identity but do not establish the scientific claim.
 
-Confidence-set lifting and anytime lifting provide a conditional bridge from
-random observations to retained candidate sets:
-
-\[
-\Pr[\theta^\star\text{ remains retained at all certified looks}]
-\ge1-\alpha
-\]
-
-can lift to a false-decisive conclusion bound. These modules control how safely
-candidate systems are removed as data accumulate; they do not by themselves
-prove closure.
-
-### Exact solver certificates
-
-Rational SAT witnesses, Farkas infeasibility certificates, finite polyhedral
-motif compilers, and replayable proof artifacts are available when a problem
-really fits their restricted grammar.
-
-### Audit and provenance
-
-Manifests, append-only transcripts, replay registries, signed checkpoints, and
-canonical artifact formats preserve evidence identity and history. They are an
-optional audit shell, not the scientific theorem itself.
-
-### Earlier finite-program and design modules
-
-The repository retains disjunctive theorem families, ecological-program
-inference, exact observation envelopes, observation-panel design, and benchmark
-suites. They remain supported tools, but should be used only where they serve
-the closure-and-consensus question rather than by default.
+The [asset map](docs/repository_asset_map.md) names the concrete modules and
+states when each should be reused or frozen.
 
 ## Development rule
 
@@ -206,9 +205,6 @@ A new mathematical PR should contain:
 3. fail-closed counterexample tests;
 4. exhaustive finite model checking when feasible; and
 5. an Action artifact reporting the finite enumeration.
-
-The architecture document explains where new code belongs:
-[core, sequential evidence, certificates, or audit](docs/current_architecture.md).
 
 ## Scope boundary
 
