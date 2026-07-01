@@ -1,9 +1,9 @@
 """Exact grammar-aware dynamic blanket certificates.
 
 A finite prefix grammar is part of a boundary contract: it specifies which
-counterfactual actions are legal from the present contract state.  A summary of
+counterfactual actions are legal from the present contract state. A summary of
 physical system state alone can therefore be insufficient even when all current
-outputs agree.  This module gives the positive theorem complementing delayed
+outputs agree. This module gives the positive theorem complementing delayed
 addressability:
 
 * a summary on ``system_state x grammar_state`` is exact for all legal future
@@ -13,7 +13,7 @@ addressability:
 * a finite grammar-aware blanket gives both a memory upper bound and a finite
   horizon bound for each fixed constrained system.
 
-The grammar state is a declared contract state.  The theorem does not interpret
+The grammar state is a declared contract state. The theorem does not interpret
 it automatically as an unobserved physical or biological variable.
 """
 
@@ -34,7 +34,6 @@ from .delayed_addressability import (
 from .dynamic_boundary_blankets import FiniteControlledOutputSystem
 
 Action = str
-GrammarState = int
 ProductState = tuple[int, int]
 SummaryLabel = Hashable
 Partition = tuple[tuple[int, ...], ...]
@@ -70,9 +69,56 @@ def _partition_from_labels(labels: tuple[int, ...]) -> Partition:
 def _validate_product_state(constrained_system: GrammarAwareControlledSystem, pair: ProductState) -> None:
     if not isinstance(pair, tuple) or len(pair) != 2:
         raise ValueError("product state must be a (system_state, grammar_state) pair")
-    system_state, grammar_state = pair
-    constrained_system.system.validate_state(system_state)
-    constrained_system.grammar.validate_state(grammar_state)
+    constrained_system.system.validate_state(pair[0])
+    constrained_system.grammar.validate_state(pair[1])
+
+
+def _valid_summary_shape(
+    constrained_system: GrammarAwareControlledSystem,
+    summary_labels: tuple[SummaryLabel, ...],
+) -> bool:
+    try:
+        if not isinstance(summary_labels, tuple):
+            return False
+        if len(summary_labels) != constrained_system.product_state_count:
+            return False
+        for label in summary_labels:
+            hash(label)
+        return True
+    except TypeError:
+        return False
+
+
+def _local_dynamic_conditions(
+    constrained_system: GrammarAwareControlledSystem,
+    summary_labels: tuple[SummaryLabel, ...],
+) -> bool:
+    """Check output, enabled-action, and enabled-successor right congruence."""
+    if not _valid_summary_shape(constrained_system, summary_labels):
+        return False
+    system = constrained_system.system
+    grammar = constrained_system.grammar
+    pairs = constrained_system.product_states
+    for left_index, (left_state, left_grammar) in enumerate(pairs):
+        for right_index, (right_state, right_grammar) in enumerate(pairs):
+            if summary_labels[left_index] != summary_labels[right_index]:
+                continue
+            if system.output(left_state) != system.output(right_state):
+                return False
+            left_actions = grammar.legal_actions(left_grammar)
+            right_actions = grammar.legal_actions(right_grammar)
+            if left_actions != right_actions:
+                return False
+            for action in left_actions:
+                left_successor = constrained_system.product_index(
+                    (system.transition(left_state, action), grammar.transition(left_grammar, action))
+                )
+                right_successor = constrained_system.product_index(
+                    (system.transition(right_state, action), grammar.transition(right_grammar, action))
+                )
+                if summary_labels[left_successor] != summary_labels[right_successor]:
+                    return False
+    return True
 
 
 def grammar_aware_output_trace(
@@ -96,30 +142,22 @@ def explicit_grammar_aware_partition(
     constrained_system: GrammarAwareControlledSystem,
     horizon: int,
 ) -> Partition:
-    """Partition product states by explicit legal-word trace signatures.
-
-    The legal word itself is included in the signature.  This means two product
-    states with different enabled future languages are not silently treated as
-    equivalent merely because their currently available output values agree.
-    """
+    """Partition product states by explicit legal-word trace signatures."""
     _validate_nonnegative_integer(horizon, "horizon")
     signatures = []
     for pair in constrained_system.product_states:
-        _, grammar_state = pair
-        words = constrained_system.grammar.legal_words_through(horizon, start_state=grammar_state)
-        signatures.append(
-            tuple((word, grammar_aware_output_trace(constrained_system, pair, word)) for word in words)
-        )
+        words = constrained_system.grammar.legal_words_through(horizon, start_state=pair[1])
+        signatures.append(tuple((word, grammar_aware_output_trace(constrained_system, pair, word)) for word in words))
     return _partition_from_labels(_canonical_labels(signatures))
 
 
 @dataclass(frozen=True)
 class GrammarAwareDynamicInterfaceCertificate:
-    """An exact partial macro-interface on system-state × grammar-state.
+    """Exact partial macro-interface on system-state × grammar-state.
 
-    Equal summary labels must have equal current output, exactly the same enabled
-    action set, and equal summary labels after each enabled action.  These are the
-    finite partial-transition right-congruence conditions for all legal words.
+    Equal labels must have equal current output, exactly the same enabled actions,
+    and equal labels after every enabled action. These conditions induce a partial
+    deterministic macro system over the summary blocks.
     """
 
     constrained_system: GrammarAwareControlledSystem
@@ -168,37 +206,15 @@ class GrammarAwareDynamicInterfaceCertificate:
 
     def verify(self) -> bool:
         try:
-            system = self.constrained_system.system
-            grammar = self.constrained_system.grammar
-            pairs = self.constrained_system.product_states
-            if not isinstance(self.summary_labels, tuple) or len(self.summary_labels) != len(pairs):
+            if not _local_dynamic_conditions(self.constrained_system, self.summary_labels):
                 return False
-            for label in self.summary_labels:
-                hash(label)
-            for left_index, (left_state, left_grammar) in enumerate(pairs):
-                for right_index, (right_state, right_grammar) in enumerate(pairs):
-                    if self.summary_labels[left_index] != self.summary_labels[right_index]:
-                        continue
-                    if system.output(left_state) != system.output(right_state):
-                        return False
-                    left_actions = grammar.legal_actions(left_grammar)
-                    right_actions = grammar.legal_actions(right_grammar)
-                    if left_actions != right_actions:
-                        return False
-                    for action in left_actions:
-                        left_successor = self.constrained_system.product_index(
-                            (system.transition(left_state, action), grammar.transition(left_grammar, action))
-                        )
-                        right_successor = self.constrained_system.product_index(
-                            (system.transition(right_state, action), grammar.transition(right_grammar, action))
-                        )
-                        if self.summary_labels[left_successor] != self.summary_labels[right_successor]:
+            stabilization = certify_grammar_horizon_stabilization(self.constrained_system)
+            final_labels = self.constrained_system.horizon_labels(stabilization.stabilization_horizon)
+            for left_index in range(self.constrained_system.product_state_count):
+                for right_index in range(self.constrained_system.product_state_count):
+                    if self.summary_labels[left_index] == self.summary_labels[right_index]:
+                        if final_labels[left_index] != final_labels[right_index]:
                             return False
-            canonical = certify_grammar_aware_canonical_interface(self.constrained_system)
-            for left_index in range(len(pairs)):
-                for right_index in range(len(pairs)):
-                    if self.summary_labels[left_index] == self.summary_labels[right_index] and canonical.canonical_labels[left_index] != canonical.canonical_labels[right_index]:
-                        return False
             return True
         except (AssertionError, TypeError, ValueError):
             return False
@@ -243,13 +259,11 @@ class GrammarAwareCanonicalInterfaceCertificate:
             expected = self.constrained_system.horizon_labels(self.stabilization_horizon)
             if self.canonical_labels != expected:
                 return False
-            if len(self.canonical_labels) != self.constrained_system.product_state_count:
+            if not _local_dynamic_conditions(self.constrained_system, self.canonical_labels):
                 return False
             if self.canonical_block_count != self.stabilization.canonical_product_block_count:
                 return False
-            if self.stabilization_horizon > self.product_state_bound:
-                return False
-            return GrammarAwareDynamicInterfaceCertificate(self.constrained_system, self.canonical_labels).verify()
+            return self.stabilization_horizon <= self.product_state_bound
         except (AssertionError, TypeError, ValueError):
             return False
 
@@ -309,12 +323,7 @@ def certify_grammar_aware_refinement(
 
 @dataclass(frozen=True)
 class GrammarAwareDynamicBlanketCertificate:
-    """Finite positive blanket certificate for the product semantic state.
-
-    ``summary_labels`` can be any finite summary of physical state, boundary
-    state, and grammar-contract state.  Its block count upper-bounds the canonical
-    legal-word interface, and therefore also bounds the finite refinement horizon.
-    """
+    """Finite positive blanket certificate for the product semantic state."""
 
     constrained_system: GrammarAwareControlledSystem
     summary_labels: tuple[SummaryLabel, ...]
@@ -349,9 +358,7 @@ class GrammarAwareDynamicBlanketCertificate:
                 return False
             if self.stabilization_horizon > self.summary_horizon_bound:
                 return False
-            if self.canonical_interface_bits > self.blanket_upper_bound_bits + 1e-12:
-                return False
-            return True
+            return self.canonical_interface_bits <= self.blanket_upper_bound_bits + 1e-12
         except (AssertionError, TypeError, ValueError):
             return False
 
@@ -387,7 +394,7 @@ class EnabledActionMismatchCertificate:
         try:
             _validate_product_state(self.constrained_system, self.left)
             _validate_product_state(self.constrained_system, self.right)
-            if not isinstance(self.summary_labels, tuple) or len(self.summary_labels) != self.constrained_system.product_state_count:
+            if not _valid_summary_shape(self.constrained_system, self.summary_labels):
                 return False
             left_index = self.constrained_system.product_index(self.left)
             right_index = self.constrained_system.product_index(self.right)
@@ -407,11 +414,12 @@ def find_enabled_action_mismatch(
     summary_labels: tuple[SummaryLabel, ...],
 ) -> EnabledActionMismatchCertificate | None:
     """Return a concrete enabled-action obstruction for an invalid proposed merge."""
-    if not isinstance(summary_labels, tuple) or len(summary_labels) != constrained_system.product_state_count:
-        raise ValueError("summary_labels must provide one label per product state")
-    for left_index, left in enumerate(constrained_system.product_states):
-        for right_index in range(left_index + 1, constrained_system.product_state_count):
-            right = constrained_system.product_states[right_index]
+    if not _valid_summary_shape(constrained_system, summary_labels):
+        raise ValueError("summary_labels must provide one hashable label per product state")
+    pairs = constrained_system.product_states
+    for left_index, left in enumerate(pairs):
+        for right_index in range(left_index + 1, len(pairs)):
+            right = pairs[right_index]
             if summary_labels[left_index] != summary_labels[right_index]:
                 continue
             left_actions = constrained_system.grammar.legal_actions(left[1])
@@ -432,7 +440,7 @@ def find_enabled_action_mismatch(
 
 
 def delayed_prefix_grammar(delay: int) -> FinitePrefixGrammar:
-    """A finite grammar with exactly ``wait^delay fire`` as the revealing word."""
+    """Finite prefix grammar whose unique nonempty revealing word is wait^delay fire."""
     _validate_nonnegative_integer(delay, "delay")
     rows = []
     for state in range(delay):
@@ -443,7 +451,7 @@ def delayed_prefix_grammar(delay: int) -> FinitePrefixGrammar:
 
 
 def constant_output_delayed_system(delay: int) -> GrammarAwareControlledSystem:
-    """One physical state, one constant output, but multiple legal-future states."""
+    """One physical state, one output, and multiple distinct legal-future states."""
     _validate_positive_integer(delay, "delay")
     system = FiniteControlledOutputSystem(
         actions=(WAIT, FIRE),
@@ -466,12 +474,7 @@ class GrammarStateNecessityCertificate:
     def verify(self) -> bool:
         try:
             _validate_positive_integer(self.delay, "delay")
-            expected = constant_output_delayed_system(self.delay)
-            if self.constrained_system != expected:
-                return False
-            if self.constrained_system.system.state_count != 1:
-                return False
-            if len(set(self.constrained_system.system.outputs)) != 1:
+            if self.constrained_system != constant_output_delayed_system(self.delay):
                 return False
             if self.omitted_grammar_summary_labels != ("omit-grammar",) * self.constrained_system.product_state_count:
                 return False
@@ -498,14 +501,14 @@ class GrammarStateNecessityCertificate:
 
 def certify_grammar_state_necessity(delay: int) -> GrammarStateNecessityCertificate:
     constrained_system = constant_output_delayed_system(delay)
-    omitted_labels = ("omit-grammar",) * constrained_system.product_state_count
-    obstruction = find_enabled_action_mismatch(constrained_system, omitted_labels)
+    labels = ("omit-grammar",) * constrained_system.product_state_count
+    obstruction = find_enabled_action_mismatch(constrained_system, labels)
     if obstruction is None:
         raise AssertionError("constant grammar witness did not expose enabled-action mismatch")
     certificate = GrammarStateNecessityCertificate(
         delay=delay,
         constrained_system=constrained_system,
-        omitted_grammar_summary_labels=omitted_labels,
+        omitted_grammar_summary_labels=labels,
         enabled_action_obstruction=obstruction,
         canonical=certify_grammar_aware_canonical_interface(constrained_system),
     )
