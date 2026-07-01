@@ -1,27 +1,26 @@
 # Budgeted quotient ladder for delayed joint reset panels
 
-## Why a middle theorem is needed
+## What this theorem adds
 
-There are now two endpoints for the delayed joint family:
+There are two established endpoints for the delayed joint family:
 
-- without a fixed contract-wide horizon over an expanding delay family, passive
-  stability does not certify open closure; and
-- for one fixed family member, enough fresh resettable trials exactly recover
-  every coordinate.
+- over an expanding family of delays, finite passive stability does not certify
+  open closure; and
+- for one fixed family, enough fresh resettable trials identify every joint
+  coordinate.
 
-Most finite observation designs sit between those endpoints. They neither prove
-full closure nor yield no information. This theorem gives the exact quotient that
-a limited reset panel identifies.
+Most experimental designs lie between them. They determine neither the full
+state nor nothing at all: they determine an exact **partial quotient**.
 
 \[
 \boxed{
-\text{partial experimental coverage}
+\text{partial terminal-probe coverage}
 \Longleftrightarrow
 \text{a precise partial open-state quotient}.
 }
 \]
 
-## Delayed joint panel model
+## Observation contract and reset panel
 
 Fix
 
@@ -29,8 +28,17 @@ Fix
 x=(y,b_1,\ldots,b_m,r)\in\{0,1\}^{m+2}
 \]
 
-and delay \(H\). Every trial begins from a fresh copy of the same unknown initial
-state. A legal terminal probe is one of
+and delay \(H\). The contract contains one **zero-action baseline observation**
+
+\[
+\operatorname{base}(x)=y.
+\]
+
+This baseline is available before any resettable trial and does **not** consume a
+trial or action budget.
+
+Every later trial begins from a fresh copy of the same unknown initial state. A
+legal information-bearing terminal word is one of
 
 \[
 \mathrm{wait}^{H}\mathrm{read}_i,
@@ -43,8 +51,20 @@ or
 \mathrm{wait}^{H}\mathrm{intervene}.
 \]
 
-A panel \(P\) may also contain wait-only trials or duplicate terminal probes.
-Define its canonical coverage by
+A panel \(P=(w_1,\ldots,w_N)\) may additionally contain wait-only words or
+duplicate probes. Its full observed record is
+
+\[
+\Sigma_P(x)=
+\left(
+ y,
+ \operatorname{Tr}(x,w_1),
+ \ldots,
+ \operatorname{Tr}(x,w_N)
+\right).
+\]
+
+Define canonical terminal-probe coverage by
 
 \[
 R(P)=\left\{i:
@@ -61,12 +81,12 @@ J(P)=
 \right\}.
 \]
 
-The order and multiplicity of trials are deliberately absent from this definition.
+The order and multiplicity of trials do not enter this coverage definition.
 
 ## Theorem 1 — Exact panel quotient formula
 
-For every legal reset panel \(P\), two initial states have the same complete
-panel record exactly when they agree on
+For every legal reset panel \(P\), two initial states have the same record
+\(\Sigma_P\) exactly when they agree on
 
 \[
 y,
@@ -76,15 +96,15 @@ y,
 r\ \text{when}\ J(P)=1.
 \]
 
-Equivalently,
+Consequently,
 
 \[
 \boxed{
-|X/\!\sim_P|=2^{1+|R(P)|+J(P)}.
+|X/\!\sim_P|=2^{1+|R(P)|+J(P)}
 }
 \]
 
-Every panel-signature block has the same residual cardinality
+and every signature block has uniform residual cardinality
 
 \[
 \boxed{
@@ -92,7 +112,7 @@ Every panel-signature block has the same residual cardinality
 }
 \]
 
-Thus the exact retained interface complexity is
+Thus exact retained interface complexity is
 
 \[
 \boxed{
@@ -102,21 +122,28 @@ K(P)=1+|R(P)|+J(P).
 
 ### Proof
 
-Every trial trace begins with \(y\). A wait-only word leaves the state unchanged,
-so it provides no coordinate beyond \(y\). The terminal read at port \(i\)
-returns \(b_i\), while terminal intervention returns \(y\oplus r\); combined
-with the initial \(y\), this determines \(r\).
+The baseline records \(y\) even when \(P\) is empty. A wait-only trial leaves
+all coordinates unchanged and adds no coordinate beyond this baseline. A covered
+read at port \(i\) exposes \(b_i\). A covered intervention exposes
+\(y\oplus r\), and the already recorded \(y\) therefore determines \(r\).
 
-Therefore agreement on the displayed coordinates is sufficient for equal panel
-records. It is necessary because every covered terminal probe explicitly reveals
-its displayed coordinate. All uncovered \(b_i\) coordinates and, when
-\(J(P)=0\), the response bit may vary freely within a panel-signature block.
-There are exactly \(1+|R(P)|+J(P)\) retained binary coordinates and the stated
-number of omitted binary coordinates. \(\square\)
+Hence agreement on the displayed coordinates is sufficient for identical panel
+records. It is necessary because every covered terminal probe exposes its stated
+coordinate. All uncovered exterior bits and, when \(J(P)=0\), the response bit
+remain free. Counting retained and free binary coordinates proves both formulas.
+\(\square\)
+
+In particular, the empty panel has
+
+\[
+K(\varnothing)=1,
+\]
+
+not zero: it knows the focal baseline and nothing else.
 
 ## Theorem 2 — Sharp trial-budget frontier
 
-Let at most \(N\) fresh resettable trials be allowed. Then
+With at most \(N\) fresh resettable trials,
 
 \[
 \boxed{
@@ -124,24 +151,20 @@ K_N^{\max}=1+\min\{N,m+1\}.
 }
 \]
 
-A panel consisting of any \(\min\{N,m+1\}\) distinct terminal probes attains
-this value.
+Any \(\min\{N,m+1\}\) distinct terminal probes attain this bound. Every legal
+trial has at most one terminal event before the grammar terminates, so no trial
+can cover two independently addressable non-focal coordinates.
 
-No panel with \(N\) trials can cover more than \(N\) terminal probes: every
-legal trial reaches at most one terminal event before the grammar terminates.
-Since each terminal probe adds only one of the \(m+1\) non-focal coordinates,
-the bound is sharp.
-
-The residual ambiguity at the frontier is
+The frontier residual cardinality is
 
 \[
 2^{m+2-K_N^{\max}}.
 \]
 
-## Theorem 3 — Sharp total-action budget frontier
+## Theorem 3 — Sharp total-action frontier
 
-Let the total number of actions across all fresh trials be at most \(A\). Each
-information-bearing terminal probe has length \(H+1\). Therefore
+With total trial-action budget \(A\), every information-bearing terminal probe
+costs exactly \(H+1\) actions. Therefore
 
 \[
 \boxed{
@@ -157,15 +180,13 @@ K_A^{\max}
 
 This is attained by the corresponding number of distinct terminal probes.
 
-This theorem distinguishes total effort from the number of experimental units:
-three trials at depth four and one trial at depth twelve may have the same action
-count, but only the former can cover three separately addressable terminal
-coordinates under the declared grammar.
+Thus total effort and replica count are not interchangeable: one long trial
+cannot replace several distinct terminal probes, because a trial terminates after
+its first boundary event.
 
 ## Theorem 4 — Depth gate
 
-Suppose fresh trials are unlimited but each trial may contain at most \(D\)
-actions. Then
+With unlimited fresh copies but maximum trial depth \(D\),
 
 \[
 \boxed{
@@ -177,29 +198,27 @@ m+2, & D\ge H+1.
 }
 \]
 
-No number of shallow trials crosses the delayed boundary event. Once a trial can
-reach it, unlimited resettable replicas can cover every terminal probe.
-
-This makes the resource axes non-interchangeable:
+No number of shallow trials crosses the delayed boundary. Once depth reaches
+\(H+1\), unlimited replicas can cover every terminal probe.
 
 \[
 \boxed{
-\text{trial count},\quad
+\text{replicate count},\quad
 \text{total action effort},\quad
 \text{and per-trial temporal depth}
-\text{ are distinct constraints.}
+\text{ are distinct resources.}
 }
 \]
 
-## Theorem 5 — Exact marginal value and saturation
+## Theorem 5 — Marginal value and saturation
 
-Adding one legal trial to a panel has only two possible exact effects:
+Adding one legal trial has only two possible exact effects:
 
 \[
 \Delta K=
 \begin{cases}
-1, & \text{the trial covers a previously uncovered terminal probe},\\
-0, & \text{the trial is wait-only or duplicates a covered probe}.
+1, & \text{it covers a previously uncovered terminal probe},\\
+0, & \text{it is wait-only or duplicates an existing probe}.
 \end{cases}
 \]
 
@@ -209,38 +228,33 @@ When \(\Delta K=1\), residual ambiguity is halved:
 |[x]_{P\cup\{w\}}|=\frac12|[x]_P|.
 \]
 
-When \(\Delta K=0\), it is unchanged. After all \(m+1\) terminal probes are
-covered, the panel is exact and every additional trial has zero marginal exact
+When \(\Delta K=0\), it is unchanged. Once all \(m+1\) terminal probes are
+covered, the panel is exact and every further trial has zero marginal exact
 value.
 
-## What this does and does not mean ecologically
+## Ecological projection and scope
 
-The theorem says that, **under a declared finite deterministic reset model**, every
-independently targeted boundary exposure has a transparent value: it resolves one
-explicitly named ambiguity factor, not a vague fraction of “complexity.”
+Under a declared finite deterministic reset model, each independently targeted
+boundary exposure resolves one named exterior or mechanism ambiguity factor. A
+partial panel can therefore support an honest conditional law that retains
+exactly the uncovered coordinates; it cannot justify silently discarding them or
+claiming universal closure.
 
-Ecologically, this gives a disciplined language for partial resolution. A set of
-replicated assays, plots, or controlled exposures may justify a conditional law
-that retains only the still-uncovered exterior/mechanism coordinates. It does not
-justify silently discarding them, and it does not turn partial coverage into a
-claim of universal closure.
-
-The theorem does not assume real ecosystems are resettable, binary, noise-free,
-or governed by this one-prefix grammar. Testing whether a biological design
-approximately meets those assumptions is a separate empirical task.
+The theorem does **not** say field systems are resettable, binary, noise-free, or
+governed by this prefix grammar. It also does not treat the zero-action baseline
+as free empirical measurement in every application; whether it is observable is
+part of the stated boundary contract. The result is an exact theorem conditional
+on that contract.
 
 ## Executable certificates
 
 `causal_model.delayed_joint_budgeted_quotients` provides:
 
-- `TerminalProbeCoverage`, which canonically reduces a panel to covered terminal
-  probes;
-- `PanelQuotientCertificate`, which verifies exact agreement between full panel
-  signatures and the covered-coordinate projection;
+- `TerminalProbeCoverage`, a canonical coverage summary;
+- `PanelQuotientCertificate`, equality of the full baseline-plus-panel partition
+  and the covered-coordinate projection;
 - trial-, action-, and depth-budget frontier certificates; and
-- `MarginalProbeValueCertificate`, which verifies one-bit-or-zero incremental
-  value.
+- `MarginalProbeValueCertificate`, one-bit-or-zero incremental value.
 
-The replay workflow checks finite parameter instances and writes a deterministic
-report. It is certificate replay for the stated theorem, not a stochastic power
-calculation.
+The Action workflow replays finite certificates and writes a deterministic
+report. It is theorem regression, not stochastic power analysis.
