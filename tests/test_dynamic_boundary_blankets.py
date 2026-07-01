@@ -1,4 +1,5 @@
 import math
+from itertools import product
 
 import pytest
 
@@ -11,6 +12,25 @@ from causal_model.dynamic_boundary_blankets import (
     delay_chain_system,
     redundant_boundary_system,
 )
+
+
+def _explicit_trace_partition(system: FiniteControlledOutputSystem, horizon: int):
+    words = tuple(
+        word
+        for length in range(horizon + 1)
+        for word in product(system.actions, repeat=length)
+    )
+    buckets = {}
+    for state in system.states:
+        signature = tuple(system.output_trace(state, word) for word in words)
+        buckets.setdefault(signature, []).append(state)
+    return tuple(sorted((tuple(block) for block in buckets.values()), key=lambda block: block[0]))
+
+
+def test_horizon_refinement_matches_explicit_all_word_traces():
+    system, _inside, _boundary = redundant_boundary_system()
+    for horizon in range(4):
+        assert system.horizon_partition(horizon) == _explicit_trace_partition(system, horizon)
 
 
 def test_delay_chain_reaches_its_exact_open_quotient_after_linear_counterfactual_depth():
