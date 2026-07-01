@@ -107,8 +107,9 @@ def test_private_bundle_panel_loses_robustness_exactly_when_loss_budget_reaches_
 def test_non_disjoint_pair_collection_cannot_be_used_as_a_packing_lower_bound():
     system = private_bundle_response_table(1)
     hypergraph = build_canonical_separation_hypergraph(system, system.words)
+    # (0,1) is separated only by the left bundle; (1,2) also uses that bundle.
     with pytest.raises(ValueError, match="not a nonempty disjoint"):
-        certify_disjoint_separation_packing(hypergraph, 0, ((0, 1), (0, 3)))
+        certify_disjoint_separation_packing(hypergraph, 0, ((0, 1), (1, 2)))
 
 
 def test_invalid_cells_loss_budgets_and_trivial_blankets_fail_closed():
@@ -119,9 +120,8 @@ def test_invalid_cells_loss_budgets_and_trivial_blankets_fail_closed():
     with pytest.raises(ValueError, match="non-negative"):
         certify_robust_canonical_panel(hypergraph, ((0, "read"),), loss_budget=-1)
 
-    trivial = private_bundle_response_table(1)
-    # Use only one declared word and choose a response table with one raw exterior completion
-    # to confirm the theorem does not pretend a loss tolerance exists without a class pair.
+    # A one-class exterior has no pairwise separation problem; the theorem does
+    # not pretend that it has a meaningful finite loss-tolerance bottleneck.
     from causal_model.canonical_boundary_blankets import FiniteBoundaryResponseTable
 
     one_class = FiniteBoundaryResponseTable(
