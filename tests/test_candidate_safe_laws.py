@@ -11,7 +11,6 @@ from causal_model.candidate_safe_laws import (
     certify_delayed_candidate_discrimination,
     certify_set_valued_macro_law,
     certify_universal_macro_law,
-    delayed_identity_flip_family,
     find_candidate_response_separator,
     universal_law_obstruction_certificate,
 )
@@ -122,7 +121,7 @@ def test_invalid_candidate_laws_fail_closed(bad_law):
 
 def test_incompatible_shared_macrospace_fails_closed():
     left = CandidateInducedLaw("left", ("a",), ((0,),), (0,))
-    right = CandidateInducedLaw("right", ("a",), ((0, 1), (0, 1)), (0, 1))
+    right = CandidateInducedLaw("right", ("a",), ((0,), (0,)), (0, 1))
     with pytest.raises(ValueError, match="macrostate space"):
         CandidateLawFamily((left, right))
 
