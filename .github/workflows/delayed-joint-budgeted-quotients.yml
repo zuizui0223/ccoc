@@ -25,8 +25,15 @@ permissions:
   contents: read
 
 jobs:
-  certificate-replay:
+  theorem-layers:
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        layer:
+          - quotient_identity
+          - budget_frontiers
+          - marginal_value
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -34,8 +41,19 @@ jobs:
           python-version: '3.12'
       - name: Install test dependencies
         run: python -m pip install --upgrade pip pytest
-      - name: Run budgeted quotient tests
-        run: python -m pytest tests/test_delayed_joint_budgeted_quotients.py -q
+      - name: Replay theorem layer
+        run: >-
+          python -m pytest tests/test_delayed_joint_budgeted_quotients.py -q
+          -k '${{ matrix.layer == '"'"'quotient_identity'"'"' && '"'"'arbitrary or empty or coverage'"'"' || matrix.layer == '"'"'budget_frontiers'"'"' && '"'"'trial_budget or action_budget or depth_frontier or canonical_covered or exhaustive'"'"' || '"'"'marginal or terminal_events or illegal_trial_words'"'"' }}'
+
+  certificate-replay:
+    needs: theorem-layers
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
       - name: Write deterministic replay report
         run: >-
           PYTHONPATH=. python scripts/verify_delayed_joint_budgeted_quotients.py
