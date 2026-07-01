@@ -31,8 +31,8 @@ def test_arbitrary_panel_quotient_is_exactly_its_covered_coordinate_projection()
     assert certificate.coverage.covers_intervention
     assert certificate.retained_interface_bits == 4
     assert certificate.signature_block_count == 16
-    assert certificate.minimum_signature_block_cardinality == 4
-    assert certificate.maximum_signature_block_cardinality == 4
+    assert certificate.minimum_signature_block_cardinality == 2
+    assert certificate.maximum_signature_block_cardinality == 2
 
     # Uncovered b_1 is exactly the remaining ambiguity factor.
     left = (0, 0, 0, 0, 0)
@@ -44,7 +44,7 @@ def test_arbitrary_panel_quotient_is_exactly_its_covered_coordinate_projection()
     assert certificate.panel.signature(left) != certificate.panel.signature((0, 0, 0, 0, 1))
 
 
-def test_empty_wait_only_and_duplicate_panels_all_have_only_the_focal_two_block_quotient():
+def test_empty_wait_only_and_duplicate_panels_have_exactly_their_covered_quotients():
     family = DelayedJointFamily(exterior_port_count=2, delay=2)
     read_zero, _, _ = required_terminal_words(family)
     panels = (
