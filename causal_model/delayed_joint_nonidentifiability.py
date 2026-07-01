@@ -1,39 +1,34 @@
 """Delayed joint exterior--mechanism nonidentifiability certificates.
 
-The static joint product theorem shows that independently addressable exterior
-coordinates and response type may require additive open-interface memory.  The
-delayed-addressability theorem shows that an exterior coordinate may be legally
-revealed only after an arbitrarily long prefix.  This module composes those two
-facts in one exact binary family.
+This module combines two already separate RACH facts in one finite binary
+family: an exterior coordinate can be legally addressable only after a delay,
+and a retained response type can require additional open-interface memory.
 
-For each exterior-port count ``m`` and delay ``H`` the macro state is
+For exterior-port count ``m`` and delay ``H``, the macro state is
 
     (y, b_1, ..., b_m, r) in {0, 1}^{m + 2}.
 
-The declared action kinds are the fixed alphabet ``{wait, read, intervene}``.
-A read port is a structural attachment context, not a growing action label.  For
-``H`` steps only ``wait`` is legal.  At readiness,
+The declared action *kinds* are the fixed alphabet ``{wait, read, intervene}``.
+A read port is a structural attachment context, not a growing action label. For
+``H`` steps only ``wait`` is legal. At readiness, ``read`` at port ``i`` applies
+``y <- b_i`` and ``intervene`` applies ``y <- y xor r``.
 
-* ``read`` attached to port ``i`` applies ``y <- b_i``; and
-* ``intervene`` applies ``y <- y xor r``.
-
-Thus all legal words through horizon ``H`` see only ``y``, whereas words of
-length ``H + 1`` separate both exterior coordinates and response type.  The
-module proves the exact initial-slice quotient jump
+Thus all initial legal traces through horizon ``H`` see only ``y``, while words
+of length ``H + 1`` separate both exterior coordinates and response type:
 
     K_<=H = 1,
     K_full = m + 2,
     H_star = H + 1.
 
-For each fixed finite grammar the quotient remains finite, as required by the
-positive grammar-aware blanket theorem.  The no-go is only family-level: no one
-finite horizon works uniformly as the delay grows.
+Every fixed member still has a finite exact grammar-aware quotient. The no-go is
+family-level: as the declared delay grows, no single finite legal-word horizon
+certifies candidate-safe open closure uniformly.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass
-from itertools import combinations, product
+from itertools import product
 from math import log2
 from typing import Hashable, Iterable
 
@@ -73,14 +68,14 @@ def _canonical_labels(values: Iterable[Hashable]) -> tuple[int, ...]:
 
 def _partition_from_labels(labels: tuple[int, ...]) -> tuple[tuple[int, ...], ...]:
     blocks: dict[int, list[int]] = {}
-    for state_index, label in enumerate(labels):
-        blocks.setdefault(label, []).append(state_index)
+    for index, label in enumerate(labels):
+        blocks.setdefault(label, []).append(index)
     return tuple(tuple(blocks[label]) for label in sorted(blocks))
 
 
 @dataclass(frozen=True)
 class DelayedJointAction:
-    """One action kind plus a structural attachment context for ``read``."""
+    """One fixed action kind plus a structural exterior attachment for ``read``."""
 
     kind: ActionKind
     read_port: int | None = None
@@ -101,11 +96,11 @@ class DelayedJointAction:
         _validate_positive_integer(exterior_port_count, "exterior_port_count")
         if self.kind == WAIT:
             if self.read_port is not None:
-                raise ValueError("wait has no reader attachment")
+                raise ValueError("wait has no structural reader attachment")
             return
         if self.kind == READ:
             if not isinstance(self.read_port, int) or isinstance(self.read_port, bool):
-                raise ValueError("read requires one structural exterior port")
+                raise ValueError("read requires one structural exterior attachment")
             if not 0 <= self.read_port < exterior_port_count:
                 raise ValueError("read port is outside the exterior-port range")
             return
@@ -118,7 +113,7 @@ class DelayedJointAction:
 
 @dataclass(frozen=True)
 class DelayedJointGrammar:
-    """Finite prefix grammar with delayed structural reads and intervention."""
+    """Finite prefix grammar with one delayed branching boundary event."""
 
     delay: int
     exterior_port_count: int
@@ -189,18 +184,18 @@ class DelayedJointGrammar:
         start_state: int | None = None,
     ) -> tuple[tuple[DelayedJointAction, ...], ...]:
         _validate_nonnegative_integer(horizon, "horizon")
-        initial = self.initial_state if start_state is None else start_state
-        self.validate_state(initial)
+        grammar_state = self.initial_state if start_state is None else start_state
+        self.validate_state(grammar_state)
         words: list[tuple[DelayedJointAction, ...]] = [()]
-        frontier: list[tuple[int, tuple[DelayedJointAction, ...]]] = [(initial, ())]
+        frontier: list[tuple[int, tuple[DelayedJointAction, ...]]] = [(grammar_state, ())]
         for _ in range(horizon):
             next_frontier: list[tuple[int, tuple[DelayedJointAction, ...]]] = []
-            for grammar_state, prefix in frontier:
-                for action in self.legal_actions(grammar_state):
-                    next_state = self.transition(grammar_state, action)
+            for current, prefix in frontier:
+                for action in self.legal_actions(current):
+                    successor = self.transition(current, action)
                     word = prefix + (action,)
                     words.append(word)
-                    next_frontier.append((next_state, word))
+                    next_frontier.append((successor, word))
             frontier = next_frontier
         return tuple(words)
 
@@ -221,8 +216,8 @@ class DelayedJointGrammar:
         try:
             if self.state_count != self.delay + 2:
                 return False
-            for grammar_state in range(self.ready_state):
-                if self.legal_actions(grammar_state) != (DelayedJointAction.wait(),):
+            for state in range(self.ready_state):
+                if self.legal_actions(state) != (DelayedJointAction.wait(),):
                     return False
             expected_ready = tuple(DelayedJointAction.read(port) for port in range(self.exterior_port_count)) + (
                 DelayedJointAction.intervene(),
@@ -233,16 +228,18 @@ class DelayedJointGrammar:
                 return False
             if len(self.legal_words_through(self.delay)) != self.delay + 1:
                 return False
-            return all(len(word) == self.delay + 1 for word in (self.revealing_intervene_word,) + tuple(
-                self.revealing_read_word(port) for port in range(self.exterior_port_count)
-            ))
+            return all(
+                len(word) == self.delay + 1
+                for word in (self.revealing_intervene_word,)
+                + tuple(self.revealing_read_word(port) for port in range(self.exterior_port_count))
+            )
         except ValueError:
             return False
 
 
 @dataclass(frozen=True)
 class DelayedJointFamily:
-    """Binary joint macro system under one delayed structural grammar."""
+    """Binary exterior-plus-response product under one delayed grammar."""
 
     exterior_port_count: int
     delay: int
@@ -301,7 +298,6 @@ class DelayedJointFamily:
     def state_transition(self, state: DelayedJointState, action: DelayedJointAction) -> DelayedJointState:
         self.validate_state(state)
         action.validate(self.exterior_port_count)
-        y = self.output(state)
         exterior = state[1:-1]
         response = self.response_type(state)
         if action.kind == WAIT:
@@ -310,8 +306,8 @@ class DelayedJointFamily:
             assert action.read_port is not None
             return (exterior[action.read_port],) + exterior + (response,)
         if action.kind == INTERVENE:
-            return (y ^ response,) + exterior + (response,)
-        raise AssertionError("validated action had no state transition")
+            return (self.output(state) ^ response,) + exterior + (response,)
+        raise AssertionError("validated action had no macro transition")
 
     def run(
         self,
@@ -340,7 +336,11 @@ class DelayedJointFamily:
             values.append(self.output(current_state))
         return tuple(values)
 
-    def horizon_signature(self, state: DelayedJointState, horizon: int) -> tuple[tuple[tuple[DelayedJointAction, ...], tuple[int, ...]], ...]:
+    def horizon_signature(
+        self,
+        state: DelayedJointState,
+        horizon: int,
+    ) -> tuple[tuple[tuple[DelayedJointAction, ...], tuple[int, ...]], ...]:
         _validate_nonnegative_integer(horizon, "horizon")
         self.validate_state(state)
         return tuple((word, self.trace(state, word)) for word in self.grammar.legal_words_through(horizon))
@@ -355,24 +355,28 @@ class DelayedJointFamily:
         self.validate_state(left)
         self.validate_state(right)
         if left == right:
-            raise ValueError("a separator requires two distinct states")
-        if left[0] != right[0]:
-            reason = "inside"
-            word: tuple[DelayedJointAction, ...] = ()
+            raise ValueError("a separator requires distinct states")
+        if self.output(left) != self.output(right):
+            certificate = DelayedJointSeparatorCertificate(self, left, right, "inside", ())
         else:
             differing_port = next(
-                (port for port in range(self.exterior_port_count) if self.exterior_bit(left, port) != self.exterior_bit(right, port)),
+                (
+                    port
+                    for port in range(self.exterior_port_count)
+                    if self.exterior_bit(left, port) != self.exterior_bit(right, port)
+                ),
                 None,
             )
             if differing_port is not None:
-                reason = "exterior"
-                word = self.grammar.revealing_read_word(differing_port)
+                certificate = DelayedJointSeparatorCertificate(
+                    self, left, right, "exterior", self.grammar.revealing_read_word(differing_port)
+                )
+            elif self.response_type(left) != self.response_type(right):
+                certificate = DelayedJointSeparatorCertificate(
+                    self, left, right, "response", self.grammar.revealing_intervene_word
+                )
             else:
-                if self.response_type(left) == self.response_type(right):
-                    raise AssertionError("distinct binary joint states had no differing coordinate")
-                reason = "response"
-                word = self.grammar.revealing_intervene_word
-        certificate = DelayedJointSeparatorCertificate(self, left, right, reason, word)
+                raise AssertionError("distinct binary joint states had no differing coordinate")
         if not certificate.verify():
             raise AssertionError("constructed delayed joint separator did not verify")
         return certificate
@@ -380,7 +384,7 @@ class DelayedJointFamily:
 
 @dataclass(frozen=True)
 class DelayedJointSeparatorCertificate:
-    """Concrete legal word that separates one unequal delayed joint state pair."""
+    """One concrete legal word separating unequal delayed joint states."""
 
     family: DelayedJointFamily
     left: DelayedJointState
@@ -402,11 +406,10 @@ class DelayedJointSeparatorCertificate:
             self.family.validate_state(self.right)
             if self.left == self.right:
                 return False
-            normalized = self.family.grammar.normalize_legal_word(self.word)
-            if normalized != self.word:
+            if self.family.grammar.normalize_legal_word(self.word) != self.word:
                 return False
             if self.reason == "inside":
-                if self.left[0] == self.right[0] or self.word != ():
+                if self.output_pair_equal() or self.word != ():
                     return False
             elif self.reason == "exterior":
                 if len(self.word) != self.family.first_revealing_horizon:
@@ -421,7 +424,7 @@ class DelayedJointSeparatorCertificate:
                     return False
                 if self.word != self.family.grammar.revealing_intervene_word:
                     return False
-                if self.left[0] != self.right[0] or self.response_bits_equal():
+                if not self.output_pair_equal() or self.response_bits_equal():
                     return False
             else:
                 return False
@@ -429,27 +432,22 @@ class DelayedJointSeparatorCertificate:
         except (AssertionError, ValueError):
             return False
 
+    def output_pair_equal(self) -> bool:
+        return self.family.output(self.left) == self.family.output(self.right)
+
     def response_bits_equal(self) -> bool:
         return self.family.response_type(self.left) == self.family.response_type(self.right)
 
 
 @dataclass(frozen=True)
 class DelayedJointQuotientJumpCertificate:
-    """Exact early/full quotient jump for one delayed joint family member."""
+    """Exact quotient jump from delayed early traces to full legal traces."""
 
     family: DelayedJointFamily
     early_block_count: int
     full_block_count: int
     first_revealing_horizon: int
     all_pair_separator_count: int
-
-    @property
-    def expected_early_block_count(self) -> int:
-        return 2
-
-    @property
-    def expected_full_block_count(self) -> int:
-        return self.family.state_count
 
     @property
     def expected_separator_count(self) -> int:
@@ -465,9 +463,7 @@ class DelayedJointQuotientJumpCertificate:
                 return False
             if self.full_block_count != len(self.family.horizon_partition(self.first_revealing_horizon)):
                 return False
-            if self.early_block_count != self.expected_early_block_count:
-                return False
-            if self.full_block_count != self.expected_full_block_count:
+            if self.early_block_count != 2 or self.full_block_count != self.family.state_count:
                 return False
             if self.all_pair_separator_count != self.expected_separator_count:
                 return False
@@ -475,14 +471,13 @@ class DelayedJointQuotientJumpCertificate:
             for left_index, left in enumerate(self.family.states):
                 for right_index in range(left_index + 1, self.family.state_count):
                     right = self.family.states[right_index]
-                    if left[0] == right[0] and early_labels[left_index] != early_labels[right_index]:
-                        return False
-                    if left[0] != right[0] and early_labels[left_index] == early_labels[right_index]:
+                    if self.family.output(left) == self.family.output(right):
+                        if early_labels[left_index] != early_labels[right_index]:
+                            return False
+                    elif early_labels[left_index] == early_labels[right_index]:
                         return False
                     if not self.family.separator_for_pair(left, right).verify():
                         return False
-            if len(self.family.horizon_partition(self.family.first_revealing_horizon - 1)) != 2:
-                return False
             return self.family.full_interface_bits == log2(self.full_block_count)
         except (AssertionError, ValueError):
             return False
@@ -492,7 +487,7 @@ def certify_delayed_joint_quotient_jump(
     exterior_port_count: int,
     delay: int,
 ) -> DelayedJointQuotientJumpCertificate:
-    family = DelayedJointFamily(exterior_port_count=exterior_port_count, delay=delay)
+    family = DelayedJointFamily(exterior_port_count, delay)
     certificate = DelayedJointQuotientJumpCertificate(
         family=family,
         early_block_count=len(family.horizon_partition(family.early_horizon)),
@@ -507,7 +502,7 @@ def certify_delayed_joint_quotient_jump(
 
 @dataclass(frozen=True)
 class DelayedJointNoUniformHorizonCertificate:
-    """For one proposed horizon, a later joint exterior/type separator exists."""
+    """For any proposed horizon, one later exterior-plus-response witness exists."""
 
     proposed_horizon: int
     exterior_port_count: int
@@ -525,12 +520,6 @@ class DelayedJointNoUniformHorizonCertificate:
                 return False
             self.family.validate_state(self.left)
             self.family.validate_state(self.right)
-            if self.left[0] != self.right[0]:
-                return False
-            if self.family.horizon_signature(self.left, self.proposed_horizon) != self.family.horizon_signature(
-                self.right, self.proposed_horizon
-            ):
-                return False
             if not self.exterior_separator.verify() or not self.response_separator.verify():
                 return False
             if self.exterior_separator.left != self.left or self.exterior_separator.right != self.right:
@@ -539,11 +528,14 @@ class DelayedJointNoUniformHorizonCertificate:
                 return False
             if self.exterior_separator.reason != "exterior" or self.response_separator.reason != "response":
                 return False
-            if len(self.exterior_separator.word) != self.proposed_horizon + 1:
+            if self.family.horizon_signature(self.left, self.proposed_horizon) != self.family.horizon_signature(
+                self.right, self.proposed_horizon
+            ):
                 return False
-            if len(self.response_separator.word) != self.proposed_horizon + 1:
-                return False
-            return True
+            return (
+                len(self.exterior_separator.word) == self.proposed_horizon + 1
+                and len(self.response_separator.word) == self.proposed_horizon + 1
+            )
         except (AssertionError, ValueError):
             return False
 
@@ -563,13 +555,11 @@ def certify_delayed_joint_no_uniform_horizon(
         family=family,
         left=left,
         right=right,
-        exterior_separator=family.separator_for_pair(left, right),
+        exterior_separator=DelayedJointSeparatorCertificate(
+            family, left, right, "exterior", family.grammar.revealing_read_word(0)
+        ),
         response_separator=DelayedJointSeparatorCertificate(
-            family=family,
-            left=left,
-            right=(0,) + (0,) * exterior_port_count + (1,),
-            reason="response",
-            word=family.grammar.revealing_intervene_word,
+            family, left, right, "response", family.grammar.revealing_intervene_word
         ),
     )
     if not certificate.verify():
