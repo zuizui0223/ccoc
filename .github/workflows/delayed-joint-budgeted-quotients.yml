@@ -1,0 +1,51 @@
+name: Delayed joint budgeted quotient certificate replay
+
+on:
+  pull_request:
+    paths:
+      - 'causal_model/delayed_joint_nonidentifiability.py'
+      - 'causal_model/delayed_joint_reset_panels.py'
+      - 'causal_model/delayed_joint_budgeted_quotients.py'
+      - 'scripts/verify_delayed_joint_budgeted_quotients.py'
+      - 'tests/test_delayed_joint_budgeted_quotients.py'
+      - 'docs/delayed_joint_budgeted_quotients.md'
+      - '.github/workflows/delayed-joint-budgeted-quotients.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'causal_model/delayed_joint_nonidentifiability.py'
+      - 'causal_model/delayed_joint_reset_panels.py'
+      - 'causal_model/delayed_joint_budgeted_quotients.py'
+      - 'scripts/verify_delayed_joint_budgeted_quotients.py'
+      - 'tests/test_delayed_joint_budgeted_quotients.py'
+      - 'docs/delayed_joint_budgeted_quotients.md'
+      - '.github/workflows/delayed-joint-budgeted-quotients.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  certificate-replay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install test dependencies
+        run: python -m pip install --upgrade pip pytest
+      - name: Run budgeted quotient tests
+        run: python -m pytest tests/test_delayed_joint_budgeted_quotients.py -q
+      - name: Write deterministic replay report
+        run: >-
+          PYTHONPATH=. python scripts/verify_delayed_joint_budgeted_quotients.py
+          --max-exterior-port-count 4
+          --max-delay 3
+          --max-budget 6
+          --output artifacts/delayed_joint_budgeted_quotients_report.json
+      - name: Upload theorem report
+        uses: actions/upload-artifact@v4
+        with:
+          name: delayed-joint-budgeted-quotients-report
+          path: artifacts/delayed_joint_budgeted_quotients_report.json
+          if-no-files-found: error
