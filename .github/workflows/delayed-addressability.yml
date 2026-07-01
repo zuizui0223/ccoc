@@ -1,0 +1,52 @@
+name: Delayed addressability certificate replay
+
+on:
+  pull_request:
+    paths:
+      - 'causal_model/delayed_addressability.py'
+      - 'causal_model/dynamic_boundary_blankets.py'
+      - 'causal_model/relay_tree_compilation.py'
+      - 'scripts/verify_delayed_addressability.py'
+      - 'tests/test_delayed_addressability.py'
+      - 'tests/test_current_theory.py'
+      - 'docs/delayed_addressability.md'
+      - '.github/workflows/delayed-addressability.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'causal_model/delayed_addressability.py'
+      - 'causal_model/dynamic_boundary_blankets.py'
+      - 'causal_model/relay_tree_compilation.py'
+      - 'scripts/verify_delayed_addressability.py'
+      - 'tests/test_delayed_addressability.py'
+      - 'tests/test_current_theory.py'
+      - 'docs/delayed_addressability.md'
+      - '.github/workflows/delayed-addressability.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  theorem-certificate-replay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install certificate replay dependencies
+        run: python -m pip install --upgrade pip pytest
+      - name: Replay delayed addressability certificates
+        run: python -m pytest tests/test_delayed_addressability.py -q
+      - name: Replay memory-horizon rectangle families
+        run: >-
+          PYTHONPATH=. python scripts/verify_delayed_addressability.py
+          --max-module-count 5
+          --max-delay 5
+          --output artifacts/delayed_addressability_report.json
+      - name: Upload delayed-addressability theorem report
+        uses: actions/upload-artifact@v4
+        with:
+          name: delayed-addressability-report
+          path: artifacts/delayed_addressability_report.json
+          if-no-files-found: error
