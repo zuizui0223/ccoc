@@ -1,0 +1,52 @@
+name: Candidate-safe law certificate replay
+
+on:
+  pull_request:
+    paths:
+      - 'causal_model/candidate_safe_laws.py'
+      - 'causal_model/delayed_addressability.py'
+      - 'causal_model/dynamic_boundary_blankets.py'
+      - 'scripts/verify_candidate_safe_laws.py'
+      - 'tests/test_candidate_safe_laws.py'
+      - 'tests/test_current_theory.py'
+      - 'docs/candidate_safe_universal_laws.md'
+      - '.github/workflows/candidate-safe-laws.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'causal_model/candidate_safe_laws.py'
+      - 'causal_model/delayed_addressability.py'
+      - 'causal_model/dynamic_boundary_blankets.py'
+      - 'scripts/verify_candidate_safe_laws.py'
+      - 'tests/test_candidate_safe_laws.py'
+      - 'tests/test_current_theory.py'
+      - 'docs/candidate_safe_universal_laws.md'
+      - '.github/workflows/candidate-safe-laws.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  theorem-certificate-replay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install certificate replay dependencies
+        run: python -m pip install --upgrade pip pytest
+      - name: Replay candidate-safe theorem certificates
+        run: python -m pytest tests/test_candidate_safe_laws.py -q
+      - name: Replay agreement, response-type, and delayed discrimination families
+        run: >-
+          PYTHONPATH=. python scripts/verify_candidate_safe_laws.py
+          --max-cyclic-size 5
+          --max-delay 6
+          --output artifacts/candidate_safe_laws_report.json
+      - name: Upload candidate-safe theorem report
+        uses: actions/upload-artifact@v4
+        with:
+          name: candidate-safe-laws-report
+          path: artifacts/candidate_safe_laws_report.json
+          if-no-files-found: error
