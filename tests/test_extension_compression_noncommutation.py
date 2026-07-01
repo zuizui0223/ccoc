@@ -15,7 +15,7 @@ def test_product_decoder_injection_uses_a_concrete_coordinate_for_every_distinct
     certificate = certify_addressable_product_lower_bound(3, (2, 4, 5))
     assert certificate.verify()
     assert certificate.open_state_lower_bound == 3 * 2 * 4 * 5
-    assert certificate.checked_distinct_pairs == 60 * 59 // 2
+    assert certificate.checked_distinct_pairs == 120 * 119 // 2
     assert certificate.base_word_decodes_inside
     assert certificate.module_words_decode_exteriors == (True, True, True)
 
