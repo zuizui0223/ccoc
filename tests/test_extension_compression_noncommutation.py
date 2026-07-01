@@ -1,3 +1,5 @@
+from math import log2
+
 import pytest
 
 from causal_model.extension_compression_noncommutation import (
@@ -31,7 +33,7 @@ def test_closed_context_factorization_yields_the_noncommutation_inequality():
     assert certificate.verify()
     assert certificate.closed_context_state_counts == (6, 12, 24)
     assert certificate.product_certificate.open_state_lower_bound == 192
-    assert certificate.product_certificate.open_bits_lower_bound == pytest.approx(192.0.bit_length() - 1, abs=1.0)
+    assert certificate.product_certificate.open_bits_lower_bound == log2(192)
     assert certificate.expected_gap_lower_bound == 1.0 + 2.0 + 3.0 - 3.0
     assert certificate.noncommutation_gap_lower_bound == certificate.expected_gap_lower_bound
 
