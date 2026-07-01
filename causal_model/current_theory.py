@@ -2,7 +2,7 @@
 
 The repository contains older finite-program, observation-design, sequential,
 and audit modules. They remain supported. The active mathematical core exposes
-eight exact finite theorem families:
+nine exact finite theorem families:
 
     finite candidate rule systems
     -> exact closure/recurrent certificates per candidate
@@ -31,12 +31,17 @@ eight exact finite theorem families:
 
     delayed addressability
     -> prefix-grammar constrained lower bounds
-    -> no uniform closure horizon across expanding delayed families; and
+    -> no uniform closure horizon across expanding delayed families;
 
     candidate-safe universal laws
     -> ensemble--instance separation certificates
     -> deterministic universal, deterministic candidate-safe, or set-valued
-       macro-law verdicts.
+       macro-law verdicts; and
+
+    joint open-candidate laws
+    -> common dynamic-interface and induced-map criterion
+    -> joint exterior-memory plus response-type lower bounds under explicit
+       structural separation.
 
 This module intentionally re-exports only that core. It introduces no new
 mathematics and does not replace the lower-level modules.
@@ -111,6 +116,29 @@ from .extension_compression import (
     certify_extension_compression,
     exhaustive_witness_summary,
 )
+from .joint_open_candidate_laws import (
+    CandidateSafeOpenLawCertificate,
+    JointExteriorMechanismProductCertificate,
+    JointOpenCandidateProduct,
+    JointOpenLawObstructionCertificate,
+    JointStructuralSeparationCertificate,
+    OpenLawCandidate,
+    OpenLawFamily,
+    OpenLawReportKind,
+    SetValuedOpenLawCertificate,
+    StructuralQuery,
+    TypedOpenLawVerdictCertificate,
+    UniversalOpenLawCertificate,
+    UniversalOpenLawObstructionCertificate,
+    certify_candidate_safe_open_law,
+    certify_joint_exterior_mechanism_product,
+    certify_set_valued_open_law,
+    certify_universal_open_law,
+    classify_open_law_family,
+    joint_open_law_obstruction_certificate,
+    joint_structural_separator_certificate,
+    universal_open_law_obstruction_certificate,
+)
 from .observation_regime_closure import (
     ObservationRegimeClassification,
     ObservationRegimeRulePair,
@@ -140,6 +168,27 @@ from .relay_tree_compilation import (
 )
 
 __all__ = [
+    "CandidateSafeOpenLawCertificate",
+    "JointExteriorMechanismProductCertificate",
+    "JointOpenCandidateProduct",
+    "JointOpenLawObstructionCertificate",
+    "JointStructuralSeparationCertificate",
+    "OpenLawCandidate",
+    "OpenLawFamily",
+    "OpenLawReportKind",
+    "SetValuedOpenLawCertificate",
+    "StructuralQuery",
+    "TypedOpenLawVerdictCertificate",
+    "UniversalOpenLawCertificate",
+    "UniversalOpenLawObstructionCertificate",
+    "certify_candidate_safe_open_law",
+    "certify_joint_exterior_mechanism_product",
+    "certify_set_valued_open_law",
+    "certify_universal_open_law",
+    "classify_open_law_family",
+    "joint_open_law_obstruction_certificate",
+    "joint_structural_separator_certificate",
+    "universal_open_law_obstruction_certificate",
     "CandidateInducedLaw",
     "CandidateLawFamily",
     "CandidateResponseSeparationCertificate",
