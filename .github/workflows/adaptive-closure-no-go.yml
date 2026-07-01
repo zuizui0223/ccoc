@@ -1,0 +1,47 @@
+name: Adaptive closure no-go certificate replay
+
+on:
+  pull_request:
+    paths:
+      - 'causal_model/adaptive_closure_no_go.py'
+      - 'scripts/verify_adaptive_closure_no_go.py'
+      - 'tests/test_adaptive_closure_no_go.py'
+      - 'docs/adaptive_closure_no_go.md'
+      - '.github/workflows/adaptive-closure-no-go.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'causal_model/adaptive_closure_no_go.py'
+      - 'scripts/verify_adaptive_closure_no_go.py'
+      - 'tests/test_adaptive_closure_no_go.py'
+      - 'docs/adaptive_closure_no_go.md'
+      - '.github/workflows/adaptive-closure-no-go.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  theorem-replay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install test dependencies
+        run: python -m pip install --upgrade pip pytest
+      - name: Run adaptive closure no-go tests
+        run: python -m pytest tests/test_adaptive_closure_no_go.py -q
+      - name: Write deterministic replay report
+        run: >-
+          PYTHONPATH=. python scripts/verify_adaptive_closure_no_go.py
+          --max-depth 3
+          --max-address-bits 2
+          --max-upper-bound 15
+          --output artifacts/adaptive_closure_no_go_report.json
+      - name: Upload theorem report
+        uses: actions/upload-artifact@v4
+        with:
+          name: adaptive-closure-no-go-report
+          path: artifacts/adaptive_closure_no_go_report.json
+          if-no-files-found: error
