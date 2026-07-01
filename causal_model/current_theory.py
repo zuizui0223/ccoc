@@ -2,7 +2,7 @@
 
 The repository contains older finite-program, observation-design, sequential,
 and audit modules. They remain supported. The active mathematical core exposes
-four exact finite theorem families:
+five exact finite theorem families:
 
     finite candidate rule systems
     -> exact closure/recurrent certificates per candidate
@@ -15,16 +15,31 @@ four exact finite theorem families:
 
     coordinate-level open-port witnesses
     -> constant-grammar, degree-three relay-tree protocols
-    -> exact macro-time conjugacy certificates; and
+    -> exact macro-time conjugacy certificates;
 
     finite passive observation windows
     -> exterior completion counterexamples
-    -> counterfactual interface-inflation certificates.
+    -> counterfactual interface-inflation certificates; and
+
+    addressable exterior completion products
+    -> separating-word lower bounds
+    -> finite boundary-blanket upper bounds.
 
 This module intentionally re-exports only that core. It introduces no new
 mathematics and does not replace the lower-level modules.
 """
 
+from .addressable_completion_bounds import (
+    AddressableCompletionProductCertificate,
+    CanonicalAddressableProduct,
+    FiniteBoundaryBlanketCertificate,
+    PassiveClosureNonidentifiabilityCertificate,
+    SeparatingWordCertificate,
+    certify_addressable_completion_product,
+    certify_finite_boundary_blanket,
+    certify_passive_closure_nonidentifiability,
+    separating_word_certificate,
+)
 from .causal_closure_calculus import (
     ClosureClassification,
     ClosureKind,
@@ -72,6 +87,15 @@ from .relay_tree_compilation import (
 )
 
 __all__ = [
+    "AddressableCompletionProductCertificate",
+    "CanonicalAddressableProduct",
+    "FiniteBoundaryBlanketCertificate",
+    "PassiveClosureNonidentifiabilityCertificate",
+    "SeparatingWordCertificate",
+    "certify_addressable_completion_product",
+    "certify_finite_boundary_blanket",
+    "certify_passive_closure_nonidentifiability",
+    "separating_word_certificate",
     "ClosureClassification",
     "ClosureKind",
     "FiniteDeterministicRuleSystem",
