@@ -155,11 +155,11 @@ def test_invalid_common_interface_is_rejected_before_any_universal_claim():
         candidate_id="not-update-closed",
         system=FiniteControlledOutputSystem(
             actions=("step",),
-            transition_table=((0,), (1,)),
-            outputs=(0, 0),
+            transition_table=((0,), (2,), (2,)),
+            outputs=(0, 0, 1),
         ),
-        macro_labels=(0, 0),
-        macro_outputs=(0,),
+        macro_labels=(0, 0, 1),
+        macro_outputs=(0, 1),
     )
     family = OpenLawFamily((invalid,))
     assert not family.verify_candidate_interfaces()
