@@ -39,7 +39,10 @@ jobs:
       - name: Write layer diagnostic
         run: PYTHONPATH=. python scripts/debug_extension_compression_noncommutation.py
       - name: Run noncommutation theorem tests
-        run: python -m pytest tests/test_extension_compression_noncommutation.py -q
+        shell: bash
+        run: |
+          set -o pipefail
+          python -m pytest tests/test_extension_compression_noncommutation.py -q 2>&1 | tee artifacts/noncommutation_pytest.txt
       - name: Write deterministic replay report
         run: >-
           PYTHONPATH=. python scripts/verify_extension_compression_noncommutation.py
@@ -51,6 +54,13 @@ jobs:
         with:
           name: extension-compression-noncommutation-diagnostic
           path: artifacts/noncommutation_diagnostic.json
+          if-no-files-found: error
+      - name: Upload pytest output
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: extension-compression-noncommutation-pytest
+          path: artifacts/noncommutation_pytest.txt
           if-no-files-found: error
       - name: Upload theorem report
         if: success()
