@@ -13,6 +13,8 @@ claim about real ecosystems.
 
 - [Portability core v1](docs/portability_core_v1.md) — the canonical structural
   theorem family.
+- [Claim-status audit](docs/claim_status_audit.md) — exact domains, sufficient
+  criteria, lower bounds, witnesses, no-go results, and explicit non-claims.
 - [Research priorities and theorem freeze](docs/research_priorities.md) — what
   is active, what is companion work, and what is deliberately paused.
 - [Theorem spine](docs/theorem_spine.md) — detailed statements and scope.
@@ -124,8 +126,8 @@ A passing finite workflow is not a claim about arbitrary ecosystems. Every activ
 mathematical result must state:
 
 1. its finite domain and legal grammar;
-2. whether it is an exact theorem, sufficient criterion, lower bound, or sharp
-   witness;
+2. whether it is an exact theorem, sufficient criterion, lower bound, sharp
+   witness, no-go theorem, or unresolved boundary;
 3. an independently checkable certificate;
 4. fail-closed and counterexample tests; and
 5. finite replay only as verification inside the declared domain.
