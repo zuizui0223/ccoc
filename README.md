@@ -1,68 +1,51 @@
 # RACH Causal Invariants
 
-RACH is a theorem-first methods repository for one narrow question:
+RACH is a theorem-first methods repository about one question:
 
 > **When may a rule discovered inside a finite observation window be promoted to
-> a portable causal law, and which certificate is needed for that promotion?**
+> a portable causal law, and what certificate is required for that promotion?**
 
-It contains no empirical data and makes no domain-specific causal claim.
+It contains no empirical dataset and makes no domain-specific ecological claim.
+Every theorem is conditional on an explicitly declared finite state space, action
+or boundary grammar, completion family, and—when relevant—retained candidate
+family.
 
-## RACH is a promotion calculus
+## The central result in one picture
 
-| Axis | Invalid automatic promotion | RACH response |
-|---|---|---|
-| Time | local update \(\Rightarrow\) one global endpoint | closure, recurrence, or multistability certificate |
-| Window / outside | rule inside a passive observed window \(\Rightarrow\) rule under every allowed exterior completion | lower-bound, dynamic-blanket, and counterfactual-horizon certificates |
-| Knowledge | one convenient candidate \(\Rightarrow\) justified claim | unanimity across retained candidates or `UNRESOLVED` |
-
-Read [the promotion calculus](docs/promotion_calculus.md) for the unifying
-relation and [the asset map](docs/repository_asset_map.md) before extending an
-older module.
-
-## Current theory core
-
-The focused public entrance is deliberately small:
-
-```python
-from causal_model.current_theory import (
-    FiniteDeterministicRuleSystem,
-    classify_closure,
-    certify_observation_window_completion,
-    certify_addressable_completion_product,
-    certify_dynamic_boundary_blanket,
-)
+```text
+local rule
+   |
+   +-- time: does it close, cycle, or have multiple attractors?
+   |
+finite observation window
+   |
+   +-- outside memory: can unobserved completions be separated later?
+   +-- outside delay: can a legal exterior event occur only after the horizon?
+   +-- dynamic blanket: can outside influence be stored in an update-closed summary?
+   |
+retained candidate family
+   |
+   +-- do all candidates induce the same macro transition?
+          |
+          +-- yes: universal deterministic law
+          +-- no, type retained: candidate-safe deterministic law
+          +-- no, type forgotten: set-valued law or UNRESOLVED
 ```
 
-New theorem work should begin here, not from the broad legacy package exports.
-See [the current architecture map](docs/current_architecture.md).
+The authoritative map is [the theorem spine](docs/theorem_spine.md). Read it
+before extending an older module.
 
-## What the core proves
+## What is proved in the active core
 
-### 1. Local transition truth does not imply global closure
+### 1. Local truth does not imply global closure
 
-For a finite total deterministic update map
+A finite deterministic update map can have a recurrence or multiple fixed
+points even when every local transition is specified. RACH certifies global
+closure, recurrent nonclosure, or multistability exactly.
 
-\[
-F:S\to S,
-\]
+### 2. Passive agreement does not imply open-system validity
 
-RACH classifies long-run behavior as exactly one of:
-
-| Result | Exact certificate |
-|---|---|
-| `GLOBAL_CLOSURE` | strict integer ranking descending to one fixed point |
-| `RECURRENT_NONCLOSURE` | a directed cycle of period \(p\ge2\) |
-| `MULTISTABLE_NONCLOSURE` | two or more distinct fixed points |
-
-Thus every local transition may be correct while repeated application fails to
-produce one stable world-level endpoint. See the
-[closure calculus](docs/causal_closure_calculus.md).
-
-### 2. Finite passive observation does not certify causal closure
-
-An observation window can hide exterior completion states. In the explicit
-family, passive actions never reveal them, but a declared future boundary action
-can.
+For the explicit window-completion family,
 
 \[
 K_{\mathrm{passive}}=1,
@@ -70,193 +53,114 @@ K_{\mathrm{passive}}=1,
 K_{\mathrm{open}}=m+1.
 \]
 
-Thus each visible focal output is compatible with \(2^m\) exterior completion
-states even under arbitrarily long passive observation. This is an existence
-no-go in a declared bounded-degree model class, not a universal claim that
-passive data are useless. See
-[observation-window completion](docs/observation_window_completion.md).
+Distinct exterior completions can agree under every passive trace and be
+separated by a declared future boundary action.
 
 ### 3. Closed-context compression need not survive open composition
 
-For operationally addressable exterior coordinates
-
-\[
-I\times E_1\times\cdots\times E_q,
-\]
-
-concrete separating boundary words imply
+For operationally addressable exterior coordinates,
 
 \[
 K_{\mathrm{open}}
 \ge
 \log_2|I|+
-\sum_{j=1}^q\log_2|E_j|.
+\sum_j\log_2|E_j|.
 \]
 
-If a fixed closed context reads only \(E_c\),
-
-\[
-K_{\mathrm{open}}-\max_cK_{\mathrm{closed},c}
-\ge
-\sum_j\log_2|E_j|-\max_c\log_2|E_c|.
-\]
-
-For binary exterior modules, the relay-tree family attains
+For binary coordinates the bounded-degree relay-tree family attains
 
 \[
 K_{\mathrm{open}}=q+1,
 \qquad
-\max_cK_{\mathrm{closed},c}=2.
+\max_iK_{\mathrm{closed},i}=2.
 \]
 
-See [addressable-completion product bounds](docs/addressable_completion_product_bound.md).
+### 4. A finite dynamic blanket is the positive criterion
 
-### 4. The lower bound survives a bounded-degree local implementation
+An exterior summary is sufficient only when it preserves outputs **and** updates
+consistently after every allowed action. Such a dynamic blanket gives a finite
+exact open interface and a finite counterfactual-horizon bound for each fixed
+finite system.
 
-The coordinate witness is compiled into a one-token reader / memory-leaf /
-relay / root protocol with:
+### 5. No horizon works uniformly across delayed outside families
 
-- one fixed finite local grammar;
-- edge-local child-to-parent pairwise messages;
-- maximum graph degree three, including one attached reader; and
-- quiescent macro-time between sequential probes.
-
-The completed protocol exactly implements the coordinate probe action, so the
-same lower bounds survive without a high-degree root or a growing local lookup
-table. See [bounded-degree relay-tree compilation](docs/bounded_degree_relay_compilation.md).
-
-### 5. Dynamic boundary blankets are the positive criterion
-
-An exterior summary is an exact open interface only if it is dynamically closed:
-equal summaries must have equal current outputs and must update to equal future
-summaries under every allowed action.
-
-For a finite controlled system, the all-word trace quotient is the coarsest exact
-extension-stable deterministic interface. If an inside-plus-boundary pair
-\((\alpha,\beta)\) is dynamically closed, then
+The delayed-addressability family independently controls exterior memory and the
+first legal time it can be revealed:
 
 \[
-K_{\mathrm{open}}
-\le
-\log_2|\operatorname{im}(\alpha,\beta)|
-\le
-\log_2|I|+\log_2|B|.
+K_{\mathrm{open}}=m+1,
+\qquad
+H_\star=H+1.
 \]
 
-The same finite summary bounds the counterfactual depth needed to certify the
-canonical quotient:
+Thus finite certification for every fixed system does not imply a common finite
+closure horizon for an expanding family.
+
+### 6. Instance laws need not form a universal law
+
+Each retained candidate can have a small exact macro-law while inducing a
+different macro transition from the same observable state. A universal
+deterministic law exists exactly when all induced candidate maps agree.
+
+Under uniform response separation,
 
 \[
-H_\star\le |\operatorname{im}(\alpha,\beta)|-1.
+K_{\mathrm{candidate\text{-}safe}}
+\ge
+\log_2|Q|+
+\log_2R.
 \]
 
-Conversely, the addressable binary family forces
+When response type is forgotten, the exact prediction is set-valued rather than
+silently deterministic.
 
-\[
-\log_2|B_m|\ge m,
-\]
+## Start here
 
-so no uniformly bounded blanket can serve every growing exterior-completion
-family. See [dynamic boundary blankets](docs/dynamic_boundary_blankets.md).
+The public theory entrance is intentionally small:
 
-### 6. Candidate consensus is the epistemic gate
+```python
+from causal_model.current_theory import (
+    classify_closure,
+    certify_observation_window_completion,
+    certify_addressable_completion_product,
+    certify_dynamic_boundary_blanket,
+    certify_delayed_addressability,
+    certify_candidate_safe_product,
+)
+```
 
-RACH does not require complete model identification. Let \(C_t\) be retained
-candidate systems and let \(v(\theta)\) be a claim-level verdict.
+`causal_model.__init__` remains broad for backwards compatibility. It is not the
+research entrance for new theorem work.
 
-\[
-\forall\theta\in C_t,
-\quad v(\theta)=v^\star
-\quad\Longrightarrow\quad
-\text{report }v^\star.
-\]
+## Reading order
 
-If retained candidates disagree, the output is `UNRESOLVED`.
+1. [Theorem spine](docs/theorem_spine.md) — proved claims, scope, and frontier.
+2. [Promotion calculus](docs/promotion_calculus.md) — how the claims fit together.
+3. [Current architecture](docs/current_architecture.md) — code, certificate, and
+   workflow map.
+4. [Asset map](docs/repository_asset_map.md) — active core versus future gold and
+   frozen infrastructure.
+5. Individual theorem documents:
+   - [observation-window completion](docs/observation_window_completion.md)
+   - [addressable-completion product bound](docs/addressable_completion_product_bound.md)
+   - [dynamic boundary blankets](docs/dynamic_boundary_blankets.md)
+   - [delayed addressability](docs/delayed_addressability.md)
+   - [candidate-safe universal laws](docs/candidate_safe_universal_laws.md)
 
-This does not itself prove an open-system law. It prevents one selected candidate
-from being promoted to a general conclusion without a retained-family
-certificate.
+## Certificate discipline
 
-### 7. Observation-regime comparison is an operational special case
+A passing finite workflow is not a claim about arbitrary ecosystems. Every new
+mathematical PR should provide:
 
-`observation_regime_closure.py` compares two declared maps on the same state
-space, for example a natural and an observer-coupled regime. It remains useful
-when that exact two-regime question is the claim. In the current architecture it
-is one way of changing a declared action grammar, rather than a generic claim
-that observation changes ecosystems.
-
-## Mathematical boundary
-
-Current exact theorems apply to **finite labelled deterministic systems** with
-explicitly declared state spaces, action alphabets, completion grammars, and—when
-needed—admissible ports. They do not prove analogous facts for arbitrary
-continuous, stochastic, hidden-state, simultaneous, or empirical systems.
-
-For a finite theorem domain, RACH uses certificates rather than simulation
-appearance:
-
-\[
-\text{simulation evidence}
-\neq
-\text{proof of closure or open-system validity}.
-\]
-
-A finite calculation can find a completion counterexample or replay a declared
-certificate. It cannot establish validity against an unbounded outside without a
-separate dynamic-boundary theorem.
-
-## GitHub Actions theorem regression
-
-Dedicated workflows replay declared finite theorem certificates for:
-
-- all labelled deterministic maps on one through four states;
-- all ordered natural/observer-coupled map pairs on one through three states;
-- the coordinate extension--compression family for one through six ports;
-- the degree-three relay-tree compilation for one through six ports;
-- the observation-window completion family for one through six exterior modules;
-- binary and nonbinary addressable-completion products; and
-- finite-horizon stabilization, dynamic-blanket factorization, and uniform
-  blanket obstruction families.
-
-Each workflow runs targeted tests, certificate verification, and uploads a
-deterministic JSON report. Passing these workflows is finite certificate replay
-for the declared domain, not a general proof assistant.
-
-## Supporting assets: where the old work belongs
-
-The repository contains valuable earlier work. It is not all the current theory
-core.
-
-- **Evidence gateway:** confidence lifting, anytime lifting, symbolic candidate
-  sets, and the finite-alphabet e-process work can eventually supply retained
-  completion families from data.
-- **Counterexample miner:** rational proof checking, polyhedral inclusion, and
-  replayable exact artifacts can certify finite countermodels to bad blanket or
-  preservation conjectures.
-- **Adversarial model lab:** ecological-program grammars, failure modes,
-  observation envelopes, design algorithms, and exact benchmarks can red-team
-  completion-theorem assumptions.
-- **Frozen provenance:** manifests, transcripts, signatures, and checkpoints
-  preserve artifact identity but do not establish the scientific claim.
-
-The [asset map](docs/repository_asset_map.md) names concrete modules and states
-when each should be reused or frozen.
-
-## Development rule
-
-A new mathematical PR should contain:
-
-1. a theorem statement and explicit scope boundary;
-2. a verifier for its certificate object;
-3. fail-closed counterexample tests;
-4. exhaustive finite model checking only when it checks a declared certificate;
-   and
-5. an Action artifact reporting the deterministic replay.
+1. a theorem statement and exact scope boundary;
+2. an independently checkable certificate object;
+3. fail-closed and counterexample tests;
+4. finite enumeration only as certificate replay in a declared domain; and
+5. a deterministic Action report.
 
 ## Scope boundary
 
-RACH is not a floral-trait, pollination, fitness, population-genetic,
-site-level, or field-protocol model. All conclusions remain conditional on the
-declared observation window, completion grammar, candidate systems, action
-regime, certificate validity, and—when sequential evidence is used—the external
-coverage assumptions.
+RACH does not prove that empirical ecosystems are finite deterministic systems,
+that passive data are useless, or that arbitrary exterior conditions can be
+exhausted. It gives precise finite-domain statements about when a proposed
+promotion is certified, obstructed, candidate-safe, or necessarily set-valued.
