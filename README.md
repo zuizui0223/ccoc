@@ -19,6 +19,23 @@ claim about real ecosystems.
 - [Legacy shelf](docs/legacy/README.md) — valid but frozen experiment-design
   branches.
 
+### Public imports
+
+The structural research entrance is deliberately narrow:
+
+```python
+import causal_model.portability_core as rach
+```
+
+Finite-evidence and retained-mechanism questions have a separate entrance:
+
+```python
+import causal_model.identifiability_companion as rach_id
+```
+
+`causal_model.current_theory` remains a broad historical compatibility aggregate;
+it is not the entry point for new theorem work.
+
 ## The portability core in one page
 
 ### Positive side

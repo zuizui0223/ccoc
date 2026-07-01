@@ -1,209 +1,119 @@
 # Current RACH architecture
 
-## Why this map exists
+## Purpose
 
-RACH contains several valid but differently purposed layers: finite causal
-programs, open-interface witnesses, candidate-family logic, confidence-set
-lifting, exact proof replay, and provenance. They should not be read as one
-theorem.
+RACH contains valid results with different questions. They are no longer
+presented as one linear theorem chain. This document maps the current logical
+packages, public import surfaces, certificates, and workflows.
 
-The research entrance is [the theorem spine](theorem_spine.md). This document
-maps that spine onto code, certificates, and workflows.
+Read [portability core v1](portability_core_v1.md) first, then
+[research priorities](research_priorities.md).
 
-## Layer 1: active theorem core
+## Public surfaces
 
-`causal_model/current_theory.py` is the focused public entrance. It re-exports
-nine exact finite theorem families below. New theorem work should begin there,
-not from `causal_model.__init__`.
+### 1. Portability core
 
-| Family | Module | Main exact object | Certificate / verifier |
-|---|---|---|---|
-| finite closure | `causal_closure_calculus.py` | global closure, recurrence, multistability | ranking, cycle, fixed-point certificates |
-| passive-window completion | `observation_window_completion.py` | passive/open trace quotient | completion and separating-word certificates |
-| closed/open compression | `extension_compression.py` | fixed-context versus open-port quotient | extension-compression certificate |
-| addressable product bounds | `addressable_completion_bounds.py` | product lower bound and gap inequality | separating-word, blanket, nonidentifiability certificates |
-| relay compilation | `relay_tree_compilation.py` | degree-three constant-local-grammar realization | protocol and macro-conjugacy certificates |
-| dynamic blankets | `dynamic_boundary_blankets.py` | coarsest dynamic interface and finite upper bounds | stabilization and dynamic-interface certificates |
-| delayed addressability | `delayed_addressability.py` | grammar-aware quotient and delayed no-go | prefix-grammar, delayed separator, relay-attachment certificates |
-| candidate-safe laws | `candidate_safe_laws.py` | universal/candidate-safe/set-valued law distinction | agreement, obstruction, response-separator certificates |
-| joint open-candidate laws | `joint_open_candidate_laws.py` | common dynamic interface, universal open-law criterion, joint lower bound | dynamic-interface agreement, joint obstruction, joint separator certificates |
-| operational regime comparison | `observation_regime_closure.py` | two declared regime maps | regime classification and consensus certificates |
-
-The regime module remains active but is an operational special case of changing
-a declared action grammar, not an independent ecology ontology.
-
-## The core dependency graph
-
-```text
-causal_closure_calculus
-        -> time-promotion certificates
-
-observation_window_completion
-        -> passive/open no-go
-        -> extension_compression
-        -> addressable_completion_bounds
-                -> dynamic_boundary_blankets
-                -> relay_tree_compilation
-                -> delayed_addressability
-
-candidate_safe_laws
-        -> candidate-induced macro maps
-        -> universal / candidate-safe / set-valued verdict
-
-joint_open_candidate_laws
-        -> candidate-specific dynamic interfaces
-        -> common induced-map criterion
-        -> joint exterior x response-type separator injection
-
-current_theory
-        -> curated imports from all active theorem families
+```python
+import causal_model.portability_core as rach
 ```
 
-The arrows show conceptual reuse, not a claim that every module must be imported
-by every other module.
-
-## Core theorem roles
-
-### Closure over time
-
-`causal_closure_calculus.py` studies total finite maps
+This is the research entrance for the structural question:
 
 \[
-F:S\to S.
+\text{When does an exact finite macro-law survive declared composition changes?}
 \]
 
-It distinguishes one globally closing endpoint from exact recurrence and
-multistability. This proves a time-promotion statement only; it does not answer
-whether a boundary summary is sufficient or whether a candidate family agrees.
+| Role | Modules |
+|---|---|
+| finite-model prerequisite | `causal_closure_calculus.py` |
+| exact grammar-aware factorization | `dynamic_boundary_blankets.py`, `grammar_aware_blankets.py` |
+| central lower bound | `extension_compression_noncommutation.py` |
+| sharpness witness | `extension_compression.py`, `relay_tree_compilation.py` |
+| portability ladder | `compositional_boundedness.py`, `coherent_portable_macrolaw.py`, `conservative_macro_schema.py` |
 
-### Window, exterior, and composition
-
-`observation_window_completion.py` gives the passive/open no-go. The
-extension/compression and addressable-product modules turn it into a sharp
-interface-memory lower bound. `relay_tree_compilation.py` removes the objection
-that a growing local lookup table or high-degree focal node created the effect.
-
-### Dynamic positive criterion
-
-`dynamic_boundary_blankets.py` gives the converse direction within its declared
-finite deterministic controlled domain. A summary is valid only when it preserves
-output and action-conditioned update. The all-word quotient is the coarsest such
-exact deterministic interface.
-
-### Delay as an independent axis
-
-`delayed_addressability.py` adds a prefix grammar to control when a future action
-is legal. It proves that each fixed finite grammar has a finite exact horizon,
-while an expanding delayed family has no shared finite closure horizon.
-
-### Candidate plurality and joint open laws
-
-`candidate_safe_laws.py` asks whether induced macro maps agree once candidate
-identity is forgotten. `joint_open_candidate_laws.py` adds the missing positive
-condition: candidate-specific macro interfaces must first be dynamic, and then
-their induced maps must agree for one universal deterministic **open** law.
-
-The joint module distinguishes:
+The dependency order is conceptual:
 
 ```text
-common dynamic interfaces + common maps -> universal deterministic open law
-common dynamic interfaces + distinct maps, type retained -> candidate-safe open law
-common dynamic interfaces + distinct maps, type forgotten -> set-valued open law
+finite closure prerequisite
+        -> exact dynamic factorization
+        -> addressability obstruction / lower bound
+        -> boundedness -> coherent law -> conservative grammar extension
 ```
 
-Its additive exterior-plus-response-type lower bound is available only after
-jointly realizable states and a concrete legal separator for every unequal pair
-have been supplied.
+The final three arrows are a theorem ladder, not three independent research
+programs. The relay tree is a witness that the lower bound survives constant
+local grammar, pairwise interactions, and degree three; it is not a separate
+headline theory.
 
-## Layer 2: retained-family and sequential evidence
+### 2. Identifiability companion
 
-This layer controls how data or solver output may remove candidate worlds. It
-does not itself prove closure, open-interface sufficiency, or universal macro
-dynamics.
+```python
+import causal_model.identifiability_companion as rach_id
+```
 
-Relevant modules include:
-
-- `admissibility.py`;
-- `confidence_lifting.py` and `anytime_confidence_lifting.py`;
-- symbolic candidate-set lifting and exact rational feasibility verification; and
-- the finite-alphabet e-process backend when its narrow stationary assumptions
-  are appropriate.
-
-The future bridge must have the form
+This package asks a distinct question:
 
 \[
-\text{data or solver output}
-\to
-\text{retained completion/mechanism family}
-\to
-\text{typed open-law verdict}.
+\text{What can finite evidence or retained mechanism families justify?}
 \]
 
-Until that bridge exists, this layer is support infrastructure, not evidence that
-an exterior grammar or candidate family is correctly specified.
+| Role | Modules |
+|---|---|
+| delayed horizon and finite-adaptive evidence limits | `delayed_addressability.py`, `adaptive_closure_no_go.py` |
+| candidate mechanism agreement | `candidate_safe_laws.py` |
+| joint exterior–mechanism conditions | `joint_open_candidate_laws.py` |
+| retained-family support | `admissibility.py`, confidence-lifting modules, `symbolic_candidate_sets.py` |
 
-## Layer 3: certificates and regression
+These results can conclude candidate-safe, set-valued, or `UNRESOLVED`. They do
+not become premises of the structural portability theorem merely because they
+also concern open systems.
 
-Each active theorem family supplies exact finite certificate objects. They are
-not screenshots of a simulation. Typical certificates include:
+### 3. Compatibility aggregate
 
-- closure rankings, recurrence cycles, and multistability witnesses;
-- passive-indistinguishable completions and future separating words;
-- product-coordinate separators and blanket factorizations;
-- relay micro-trajectories and macro conjugacy;
-- grammar-aware delayed separators;
-- candidate transition agreement, obstruction, and response-type separators; and
-- joint product-state separators and common-open-law certificates.
+```python
+import causal_model.current_theory as historical
+```
 
-The corresponding GitHub Actions workflows replay finite declared families and
-upload deterministic JSON reports. They test implementation invariants; their
-success is not a general proof assistant for ecosystems outside the declared
-domain.
+`current_theory.py` remains a broad backward-compatible aggregate for earlier
+imports and regressions. It is **not** the research entrance for new theorem
+work. New code should import one of the two facades above or an explicit
+lower-level module.
 
-## Layer 4: theorem red-team laboratory
+### 4. Experimental-design legacy shelf
 
-The following modules are valuable when they falsify or sharpen a current theorem
-premise:
+Reset panels, witnessed evidence, panel robustness, common-mode failure, and
+observation-regime special cases remain executable in their original modules.
+They are not public theorem surfaces because they begin after a quotient, reset,
+coverage, or failure contract has been selected. See [legacy/README.md](legacy/README.md).
 
-- `ecological_program.py` and `failure_modes.py` for hostile finite grammars;
-- `generative_benchmarks.py` and `benchmarks.py` for exact finite sweeps;
-- `observation_envelope.py` for observation-channel ambiguity; and
-- `observation_design.py`, `robust_panel_design.py`, and related panel benchmarks
-  for later intervention-design corollaries.
+## Certificate and workflow discipline
 
-They are not the default ontology for new theorem work. Their job is to find the
-smallest counterexample that forces a sharper assumption.
+Every existing theorem module retains its own finite certificate objects and
+replay workflow. A workflow replays a declared finite domain; it does not prove
+claims about arbitrary ecosystems outside that domain.
 
-## Layer 5: audit and provenance
+A new structural theorem may be added only after the v1 freeze is lifted and it
+changes one canonical claim in the portability core or a deliberately selected
+identifiability direction. It must include:
 
-Manifests, transcripts, signatures, checkpoints, and registries preserve proof
-identity and history. They answer which artifact was used and whether it changed.
-They do not establish which exterior completion is possible, whether a blanket is
-sufficient, or whether a law is universal.
+1. exact finite domain and grammar;
+2. statement status: theorem, sufficient criterion, lower bound, witness, or
+   unresolved boundary;
+3. independently checkable certificate;
+4. fail-closed and counterexample tests; and
+5. deterministic replay artifact.
 
-Keep this layer compatible and tested. Do not add to it absent a concrete
-publication or audit requirement.
+## Shared infrastructure
 
-## Repository navigation rule
+`causal_model.__init__` stays broad for compatibility. Manifests, transcripts,
+signatures, checkpoints, and artifact registries preserve provenance only. They
+must remain stable but do not determine closure, portability, or universal
+mechanism laws.
 
-- Start a new theorem with [the theorem spine](theorem_spine.md).
-- Find modules and dependency roles here.
-- Use [the asset map](repository_asset_map.md) before reusing legacy code.
-- Use [the promotion calculus](promotion_calculus.md) to decide which promotion
-  obligation the theorem is meant to settle.
+## Navigation
 
-## GitHub Actions policy
-
-When a theorem is implemented over a finite declared domain, its pull request
-should contain:
-
-1. a written theorem statement and scope boundary;
-2. an independently checkable certificate verifier;
-3. targeted fail-closed and counterexample tests;
-4. finite enumeration only as replay for the stated certificate; and
-5. a deterministic workflow artifact.
-
-Current theorem workflows cover closure, regime comparison, extension/compression,
-relay compilation, observation-window completion, addressable bounds, dynamic
-blankets, delayed addressability, candidate-safe laws, and joint open-candidate
-laws.
+- [Portability core v1](portability_core_v1.md)
+- [Research priorities](research_priorities.md)
+- [Theorem map](theorem_spine.md)
+- [Asset map](repository_asset_map.md)
+- [Legacy shelf](legacy/README.md)
