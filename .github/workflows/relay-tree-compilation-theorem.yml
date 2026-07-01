@@ -1,0 +1,47 @@
+name: Bounded-degree relay-tree theorem regression
+
+on:
+  pull_request:
+    paths:
+      - 'causal_model/relay_tree_compilation.py'
+      - 'causal_model/extension_compression.py'
+      - 'scripts/verify_relay_tree_compilation.py'
+      - 'tests/test_relay_tree_compilation.py'
+      - 'docs/bounded_degree_relay_compilation.md'
+      - '.github/workflows/relay-tree-compilation-theorem.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'causal_model/relay_tree_compilation.py'
+      - 'causal_model/extension_compression.py'
+      - 'scripts/verify_relay_tree_compilation.py'
+      - 'tests/test_relay_tree_compilation.py'
+      - 'docs/bounded_degree_relay_compilation.md'
+      - '.github/workflows/relay-tree-compilation-theorem.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  bounded-degree-compilation-regression:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install theorem regression dependencies
+        run: python -m pip install --upgrade pip pytest
+      - name: Run relay-tree compilation tests
+        run: python -m pytest tests/test_relay_tree_compilation.py -q
+      - name: Verify finite relay-tree compilation family
+        run: >-
+          PYTHONPATH=. python scripts/verify_relay_tree_compilation.py
+          --max-module-count 6
+          --output artifacts/bounded_degree_relay_compilation_report.json
+      - name: Upload relay-tree theorem report
+        uses: actions/upload-artifact@v4
+        with:
+          name: bounded-degree-relay-compilation-report
+          path: artifacts/bounded_degree_relay_compilation_report.json
+          if-no-files-found: error
