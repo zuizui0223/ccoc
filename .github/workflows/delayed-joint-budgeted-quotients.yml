@@ -30,10 +30,13 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        layer:
-          - quotient_identity
-          - budget_frontiers
-          - marginal_value
+        include:
+          - layer: quotient_identity
+            selector: arbitrary or empty or coverage
+          - layer: budget_frontiers
+            selector: trial_budget or action_budget or depth_frontier or canonical_covered or exhaustive
+          - layer: marginal_value
+            selector: marginal or terminal_events or illegal_trial_words
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -44,7 +47,7 @@ jobs:
       - name: Replay theorem layer
         run: >-
           python -m pytest tests/test_delayed_joint_budgeted_quotients.py -q
-          -k '${{ matrix.layer == '"'"'quotient_identity'"'"' && '"'"'arbitrary or empty or coverage'"'"' || matrix.layer == '"'"'budget_frontiers'"'"' && '"'"'trial_budget or action_budget or depth_frontier or canonical_covered or exhaustive'"'"' || '"'"'marginal or terminal_events or illegal_trial_words'"'"' }}'
+          -k "${{ matrix.selector }}"
 
   certificate-replay:
     needs: theorem-layers
