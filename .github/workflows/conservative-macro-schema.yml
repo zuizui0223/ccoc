@@ -1,0 +1,44 @@
+name: Conservative macro-schema replay
+
+on:
+  pull_request:
+    paths:
+      - 'causal_model/conservative_macro_schema.py'
+      - 'causal_model/coherent_portable_macrolaw.py'
+      - 'tests/test_conservative_macro_schema.py'
+      - 'scripts/verify_conservative_macro_schema.py'
+      - 'docs/conservative_macro_schema.md'
+      - '.github/workflows/conservative-macro-schema.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'causal_model/conservative_macro_schema.py'
+      - 'causal_model/coherent_portable_macrolaw.py'
+      - 'tests/test_conservative_macro_schema.py'
+      - 'scripts/verify_conservative_macro_schema.py'
+      - 'docs/conservative_macro_schema.md'
+      - '.github/workflows/conservative-macro-schema.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  theorem-replay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install test dependencies
+        run: python -m pip install --upgrade pip pytest
+      - name: Run conservative macro-schema tests
+        run: python -m pytest tests/test_conservative_macro_schema.py -q
+      - name: Write deterministic replay report
+        run: PYTHONPATH=. python scripts/verify_conservative_macro_schema.py
+      - name: Upload theorem report
+        uses: actions/upload-artifact@v4
+        with:
+          name: conservative-macro-schema-report
+          path: artifacts/conservative_macro_schema_report.json
+          if-no-files-found: error
