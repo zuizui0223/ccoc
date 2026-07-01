@@ -1,0 +1,47 @@
+name: Coherent portable macro-law replay
+
+on:
+  pull_request:
+    paths:
+      - 'causal_model/coherent_portable_macrolaw.py'
+      - 'causal_model/grammar_aware_blankets.py'
+      - 'tests/test_coherent_portable_macrolaw.py'
+      - 'scripts/verify_coherent_portable_macrolaw.py'
+      - 'docs/coherent_portable_macrolaw.md'
+      - '.github/workflows/coherent-portable-macrolaw.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'causal_model/coherent_portable_macrolaw.py'
+      - 'causal_model/grammar_aware_blankets.py'
+      - 'tests/test_coherent_portable_macrolaw.py'
+      - 'scripts/verify_coherent_portable_macrolaw.py'
+      - 'docs/coherent_portable_macrolaw.md'
+      - '.github/workflows/coherent-portable-macrolaw.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  theorem-replay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install test dependencies
+        run: python -m pip install --upgrade pip pytest
+      - name: Run coherent macro-law tests
+        run: python -m pytest tests/test_coherent_portable_macrolaw.py -q
+      - name: Write deterministic replay report
+        run: >-
+          PYTHONPATH=. python scripts/verify_coherent_portable_macrolaw.py
+          --max-module-count 5
+          --output artifacts/coherent_portable_macrolaw_report.json
+      - name: Upload theorem report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coherent-portable-macrolaw-report
+          path: artifacts/coherent_portable_macrolaw_report.json
+          if-no-files-found: error
