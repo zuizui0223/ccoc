@@ -13,7 +13,6 @@ from causal_model.delayed_addressability import (
     certify_delayed_closure_nonidentifiability,
     certify_delayed_relay_attachment,
     certify_grammar_horizon_stabilization,
-    coordinate_states,
     delayed_separating_word_certificate,
 )
 from causal_model.dynamic_boundary_blankets import FiniteControlledOutputSystem
@@ -100,7 +99,8 @@ def test_general_prefix_grammar_product_stabilizes_by_product_state_bound():
 
 
 def test_relay_realization_keeps_attachment_structural_and_degree_bounded():
-    state = (0, 0, 1, 0, 1)
+    # Port 2 means the third memory leaf, whose bit is 1 in this fixture.
+    state = (0, 0, 0, 1, 0)
     certificate = certify_delayed_relay_attachment(module_count=4, delay=5, port=2, initial_state=state)
     assert certificate.verify()
     assert len(certificate.wait_configurations) == 6
