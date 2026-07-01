@@ -2,7 +2,7 @@
 
 The repository contains older finite-program, observation-design, sequential,
 and audit modules. They remain supported. The active mathematical core exposes
-five exact finite theorem families:
+six exact finite theorem families:
 
     finite candidate rule systems
     -> exact closure/recurrent certificates per candidate
@@ -19,11 +19,15 @@ five exact finite theorem families:
 
     finite passive observation windows
     -> exterior completion counterexamples
-    -> counterfactual interface-inflation certificates; and
+    -> counterfactual interface-inflation certificates;
 
     addressable exterior completion products
     -> separating-word lower bounds
-    -> finite boundary-blanket upper bounds.
+    -> static finite boundary-blanket upper bounds; and
+
+    dynamic boundary blankets
+    -> exact extension-stable macro interfaces
+    -> finite counterfactual-horizon certificates.
 
 This module intentionally re-exports only that core. It introduces no new
 mathematics and does not replace the lower-level modules.
@@ -51,6 +55,16 @@ from .causal_closure_calculus import (
     verify_global_closure_certificate,
     verify_multistability_certificate,
     verify_recurrent_cycle_certificate,
+)
+from .dynamic_boundary_blankets import (
+    DynamicBoundaryBlanketCertificate,
+    DynamicInterfaceCertificate,
+    FiniteControlledOutputSystem,
+    FiniteHorizonStabilizationCertificate,
+    UniformBlanketObstructionCertificate,
+    certify_dynamic_boundary_blanket,
+    certify_finite_horizon_stabilization,
+    certify_uniform_blanket_obstruction,
 )
 from .extension_compression import (
     ExtensionCompressionCertificate,
@@ -87,6 +101,14 @@ from .relay_tree_compilation import (
 )
 
 __all__ = [
+    "DynamicBoundaryBlanketCertificate",
+    "DynamicInterfaceCertificate",
+    "FiniteControlledOutputSystem",
+    "FiniteHorizonStabilizationCertificate",
+    "UniformBlanketObstructionCertificate",
+    "certify_dynamic_boundary_blanket",
+    "certify_finite_horizon_stabilization",
+    "certify_uniform_blanket_obstruction",
     "AddressableCompletionProductCertificate",
     "CanonicalAddressableProduct",
     "FiniteBoundaryBlanketCertificate",
