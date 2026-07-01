@@ -1,107 +1,120 @@
-# RACH asset map: active core, evidence gold, and legacy shelf
+# RACH asset map: portability core, identifiability companion, and legacy shelf
 
-Read [the theorem spine](theorem_spine.md) first. This map answers one practical
-question: **which assets may receive the next theorem work?**
+Read [portability core v1](portability_core_v1.md) before extending any module.
+This map answers one practical question:
+
+> **Which assets may receive active theorem work, and which assets are frozen?**
 
 ## Classification rule
 
-An asset is active only when it directly proves a current promotion obligation.
-An asset is gold when it may connect evidence or sharpen a future active theorem.
-An asset is legacy when it is mathematically valid but only addresses design or
-bookkeeping after a structural theorem contract has already been fixed.
+An asset belongs to the portability core only when it changes one of the
+canonical structural claims:
 
-## Active core
+\[
+\text{exact factorization},
+\quad
+\text{addressability obstruction},
+\quad
+\text{or conservative portability under composition}.
+\]
 
-| Asset | Present mathematical role |
+An identifiability asset asks what finite evidence or retained mechanism families
+can justify. A legacy asset is mathematically valid but begins only after a
+structural contract has already been fixed.
+
+## A. Portability core
+
+Use the stable public facade:
+
+```python
+import causal_model.portability_core as rach
+```
+
+| Asset | Present role |
 |---|---|
-| `causal_closure_calculus.py` | exact finite time closure / recurrence / multistability |
-| `addressable_completion_bounds.py` | operational product injection and exterior-memory lower bound |
-| `extension_compression.py` | sharp binary closed/open witness |
-| `relay_tree_compilation.py` | constant-grammar, pairwise, degree-three sharp realization |
-| `extension_compression_noncommutation.py` | theorem bridge from product injection to sharp relay equality |
-| `dynamic_boundary_blankets.py` | update-closed finite boundary summaries |
-| `grammar_aware_blankets.py` | positive legal-word factorization on physical state × grammar state |
-| `delayed_addressability.py` | no uniform delay horizon across growing families |
-| `adaptive_closure_no_go.py` | no finite adaptive transcript-only certificate of closure without bounds |
-| `candidate_safe_laws.py` | universal deterministic law criterion under retained mechanisms |
+| `causal_closure_calculus.py` | finite-model prerequisite: closure / recurrence / multistability |
+| `dynamic_boundary_blankets.py` | exact update-closed finite boundary summary |
+| `grammar_aware_blankets.py` | exact factorization over physical state × declared grammar state |
+| `extension_compression_noncommutation.py` | operational addressability lower bound and noncommutation inequality |
+| `extension_compression.py` | binary coordinate sharpness witness |
+| `relay_tree_compilation.py` | constant-grammar, pairwise, degree-three sharpness realization |
+| `compositional_boundedness.py` | boundedness versus cumulative growth criteria across nested stages |
+| `coherent_portable_macrolaw.py` | same macro law under label-coherent nested embeddings |
+| `conservative_macro_schema.py` | safe monotone legal-action expansion and fiber-split obstruction |
+| `portability_core.py` | core-only public facade |
+
+The composition modules are one portability ladder, not independent headline
+theories:
+
+\[
+\text{bounded memory}
+\subset
+\text{coherent portable law}
+\subset
+\text{conservative grammar extension}.
+\]
+
+Relay trees are sharpness witnesses; they do not independently justify a new
+structural research branch.
+
+## B. Identifiability companion
+
+Use the separate public facade:
+
+```python
+import causal_model.identifiability_companion as rach_id
+```
+
+| Asset | Present role |
+|---|---|
+| `delayed_addressability.py` | no uniform horizon across expanding delayed families |
+| `adaptive_closure_no_go.py` | finite adaptive transcript-only evidence cannot certify closure without an independent bound |
+| `candidate_safe_laws.py` | universal versus candidate-safe versus set-valued macro laws |
 | `joint_open_candidate_laws.py` | justified joint exterior–mechanism separation |
-| `current_theory.py` | public active theorem entrance |
+| `admissibility.py`, `confidence_lifting.py`, `anytime_confidence_lifting.py` | evidence-to-retained-candidate adapters |
+| `symbolic_candidate_sets.py` | finite symbolic retained-family support |
+| `identifiability_companion.py` | companion-only public facade |
 
-The core claim is a chain, not one omnibus theorem:
+These modules are active only when the next selected research direction is
+identifiability or mechanism uncertainty. They are not premises of the
+portability core theorem family.
 
-\[
-\text{time validity}
-+
-\text{extension-stable compression}
-+
-\text{finite dynamic blanket}
-+
-\text{bounded delay contract}
-+
-\text{mechanism agreement}
-\]
+## C. Experimental-design legacy shelf
 
-are all required at the level claimed by a portable deterministic law.
+No new feature or theorem work without an explicit dependency from a selected
+core or companion question.
 
-## Evidence gold
-
-Keep these stable, but do not expand them before the next structural theorem
-says exactly what must be retained:
-
-- `admissibility.py`, `confidence_lifting.py`, `anytime_confidence_lifting.py`;
-- `symbolic_candidate_sets.py`;
-- the finite-alphabet e-process backend and related retained-family adapters;
-- `failure_modes.py`, `generative_benchmarks.py`, and `observation_envelope.py`
-  as counterexample-search and restricted-domain tools.
-
-Their role is:
-
-\[
-\text{data / solver output}
-\to
-\text{retained candidate family}
-\to
-\text{universal, candidate-safe, set-valued, or UNRESOLVED verdict}.
-\]
-
-They do not themselves prove outside invariance or extension-stable compression.
-
-## Legacy shelf: no new feature work
-
-The following branches are frozen in place with regression tests and workflows:
-
-| Branch | Why it is legacy |
+| Branch | Why frozen |
 |---|---|
-| `delayed_joint_budgeted_quotients.py` | reset-budget identification is a conditional experiment-design theorem |
-| `witnessed_boundary_evidence.py` | finite evidence lower bounds are not a closure theorem |
-| `robust_canonical_panels.py` | panel robustness begins only after a quotient/panel is fixed |
-| `common_mode_canonical_panels.py` | shared failure domains are field architecture, not causal composition theory |
-| `observation_regime_closure.py` | narrow operational special case, not a current spine obligation |
+| `delayed_joint_budgeted_quotients.py` | reset-budget identification is conditional design theory |
+| `witnessed_boundary_evidence.py` | evidence lower bounds are not a closure theorem |
+| `robust_canonical_panels.py` | robustness begins after quotient/panel selection |
+| `common_mode_canonical_panels.py` | shared failure domains are field architecture |
+| `observation_regime_closure.py` | narrow operational special case |
 
-See [the legacy shelf](legacy/README.md). Do not add new definitions, workflows,
-or abstractions to these branches without a written dependency from an active
-core theorem.
+See [legacy/README.md](legacy/README.md).
 
-## Frozen infrastructure
+## D. Frozen infrastructure
 
 Certificate manifests, transcript registries, signed checkpoints, coverage
 adapters, and tiered artifact formats preserve provenance. Keep them passing, but
-add no new audit feature unless a theorem certificate needs it for publication.
+add no audit feature unless a publication-grade certificate needs it.
 
-## Immediate queue
+## Current priority order
 
-1. **Compositional boundedness dichotomy.** For nested future grammars, prove a
-   positive fixed-summary condition for bounded interface memory and a relative
-   addressability condition forcing cumulative growth.
-2. **Joint micro-compilation.** Only after (1), compile the multi-valued joint
-   witness to degree-three pairwise dynamics or prove the sharp restricted limit.
-3. **Counterexample miner.** Search small grammar/candidate families to red-team
-   proposed boundedness or additivity conditions.
-4. **Evidence bridge.** Connect data only after the structural interface contract
-   is fixed.
+1. **P1 proof hygiene:** use the public facades, remove duplicate public claims,
+   and classify every statement as theorem, sufficient criterion, lower bound,
+   witness, or unresolved region.
+2. **P2 logical package boundary:** keep one repository but preserve the three
+   public surfaces above; do not physically split until imports stabilize.
+3. **P3 one research direction:** only after core v1 stop criteria are met,
+   choose exactly one of non-nested rewiring, composition-dependent mechanisms,
+   or approximate noisy portability.
 
 ## Anti-queue
 
-Do not spend the next cycle on another panel definition, another budget ladder,
-an audit wrapper, a domain-specific ecological toy model, or a larger coordinate
-table without a new theorem-level implication.
+Do not start another panel definition, budget ladder, audit wrapper,
+domain-specific ecological toy model, action-alphabet special case, or larger
+coordinate table merely because it supplies another edge case. It must first
+change a canonical claim in [portability core v1](portability_core_v1.md) or a
+selected identifiability claim.
