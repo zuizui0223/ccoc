@@ -2,7 +2,7 @@
 
 The repository contains older finite-program, observation-design, sequential,
 and audit modules. They remain supported. The active mathematical core exposes
-six exact finite theorem families:
+seven exact finite theorem families:
 
     finite candidate rule systems
     -> exact closure/recurrent certificates per candidate
@@ -23,11 +23,15 @@ six exact finite theorem families:
 
     addressable exterior completion products
     -> separating-word lower bounds
-    -> static finite boundary-blanket upper bounds; and
+    -> static finite boundary-blanket upper bounds;
 
     dynamic boundary blankets
     -> exact extension-stable macro interfaces
-    -> finite counterfactual-horizon certificates.
+    -> finite counterfactual-horizon certificates; and
+
+    delayed addressability
+    -> prefix-grammar constrained lower bounds
+    -> no uniform closure horizon across expanding delayed families.
 
 This module intentionally re-exports only that core. It introduces no new
 mathematics and does not replace the lower-level modules.
@@ -55,6 +59,20 @@ from .causal_closure_calculus import (
     verify_global_closure_certificate,
     verify_multistability_certificate,
     verify_recurrent_cycle_certificate,
+)
+from .delayed_addressability import (
+    DelayedAddressabilityCertificate,
+    DelayedClosureNonidentifiabilityCertificate,
+    DelayedReaderGrammar,
+    DelayedRelayAttachmentCertificate,
+    FinitePrefixGrammar,
+    GrammarAwareControlledSystem,
+    GrammarHorizonStabilizationCertificate,
+    certify_delayed_addressability,
+    certify_delayed_closure_nonidentifiability,
+    certify_delayed_relay_attachment,
+    certify_grammar_horizon_stabilization,
+    delayed_separating_word_certificate,
 )
 from .dynamic_boundary_blankets import (
     DynamicBoundaryBlanketCertificate,
@@ -101,6 +119,18 @@ from .relay_tree_compilation import (
 )
 
 __all__ = [
+    "DelayedAddressabilityCertificate",
+    "DelayedClosureNonidentifiabilityCertificate",
+    "DelayedReaderGrammar",
+    "DelayedRelayAttachmentCertificate",
+    "FinitePrefixGrammar",
+    "GrammarAwareControlledSystem",
+    "GrammarHorizonStabilizationCertificate",
+    "certify_delayed_addressability",
+    "certify_delayed_closure_nonidentifiability",
+    "certify_delayed_relay_attachment",
+    "certify_grammar_horizon_stabilization",
+    "delayed_separating_word_certificate",
     "DynamicBoundaryBlanketCertificate",
     "DynamicInterfaceCertificate",
     "FiniteControlledOutputSystem",
