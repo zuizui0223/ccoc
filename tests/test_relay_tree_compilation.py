@@ -61,6 +61,24 @@ def test_every_macro_probe_equals_the_coordinate_witness_transition():
                 assert run_macro_probe(topology, initial, port) == protocol.final
 
 
+def test_macro_conjugacy_extends_to_every_finite_sequential_probe_word():
+    module_count = 3
+    topology = RelayTreeTopology.balanced(module_count)
+    for initial_coordinate_state in all_states(module_count):
+        for probe_word in product(range(module_count), repeat=3):
+            tree_state = quiescent_configuration(
+                topology,
+                initial_coordinate_state[0],
+                initial_coordinate_state[1:],
+            )
+            coordinate = initial_coordinate_state
+            for port in probe_word:
+                tree_state = run_macro_probe(topology, tree_state, port)
+                coordinate = transition(module_count, coordinate, probe_action(port))
+                assert is_quiescent(topology, tree_state)
+                assert coordinate_state(tree_state) == coordinate
+
+
 def test_compilation_certificate_preserves_two_vs_m_plus_one_separation():
     certificate = certify_bounded_degree_compilation(6)
     assert certificate.verify()
