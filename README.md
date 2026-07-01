@@ -12,7 +12,7 @@ It contains no empirical data and makes no domain-specific causal claim.
 | Axis | Invalid automatic promotion | RACH response |
 |---|---|---|
 | Time | local update \(\Rightarrow\) one global endpoint | closure, recurrence, or multistability certificate |
-| Window / outside | rule inside a passive observed window \(\Rightarrow\) rule under every allowed exterior completion | counterfactual completion and open-interface certificate |
+| Window / outside | rule inside a passive observed window \(\Rightarrow\) rule under every allowed exterior completion | lower-bound, dynamic-blanket, and counterfactual-horizon certificates |
 | Knowledge | one convenient candidate \(\Rightarrow\) justified claim | unanimity across retained candidates or `UNRESOLVED` |
 
 Read [the promotion calculus](docs/promotion_calculus.md) for the unifying
@@ -28,9 +28,8 @@ from causal_model.current_theory import (
     FiniteDeterministicRuleSystem,
     classify_closure,
     certify_observation_window_completion,
-    certify_extension_compression,
-    certify_bounded_degree_compilation,
-    summarize_regime_candidates,
+    certify_addressable_completion_product,
+    certify_dynamic_boundary_blanket,
 )
 ```
 
@@ -47,7 +46,7 @@ For a finite total deterministic update map
 F:S\to S,
 \]
 
-RACH classifies the long-run behavior as exactly one of:
+RACH classifies long-run behavior as exactly one of:
 
 | Result | Exact certificate |
 |---|---|
@@ -61,11 +60,9 @@ produce one stable world-level endpoint. See the
 
 ### 2. Finite passive observation does not certify causal closure
 
-An observation window sees an inside output while exterior completion states
-remain latent. In the explicit witness family, passive actions never reveal
-those completion bits, but a declared future boundary action can.
-
-For every \(m\ge1\),
+An observation window can hide exterior completion states. In the explicit
+family, passive actions never reveal them, but a declared future boundary action
+can.
 
 \[
 K_{\mathrm{passive}}=1,
@@ -73,32 +70,48 @@ K_{\mathrm{passive}}=1,
 K_{\mathrm{open}}=m+1.
 \]
 
-Equivalently, each visible focal output is compatible with \(2^m\) exterior
-completion states under arbitrarily long passive observation, while the
-open-safe interface must retain all completion-relevant distinctions.
-
-This proves an existence no-go, not a universal impossibility theorem:
-within a fixed bounded-degree model class, passive traces alone cannot rule out
-all future-relevant exterior completions. See
+Thus each visible focal output is compatible with \(2^m\) exterior completion
+states even under arbitrarily long passive observation. This is an existence
+no-go in a declared bounded-degree model class, not a universal claim that
+passive data are useless. See
 [observation-window completion](docs/observation_window_completion.md).
 
 ### 3. Closed-context compression need not survive open composition
 
-The same coordinate family may be viewed as a focal system with \(m\) dormant
-boundary modules. If a closed context permits one fixed port, its exact causal
-interface has four states. If a future context may probe any declared port,
-every microstate is distinguishable.
+For operationally addressable exterior coordinates
 
 \[
-\max_i \kappa(M_m\parallel E_i)=2,
-\qquad
-\kappa_{\mathrm{open}}(M_m;\mathcal E_m)=m+1.
+I\times E_1\times\cdots\times E_q,
 \]
 
-This is the extension--compression lower-bound family. See
-[extension--compression noncommutation](docs/extension_compression_noncommutation.md).
+concrete separating boundary words imply
 
-### 4. The witness survives a bounded-degree local implementation
+\[
+K_{\mathrm{open}}
+\ge
+\log_2|I|+
+\sum_{j=1}^q\log_2|E_j|.
+\]
+
+If a fixed closed context reads only \(E_c\),
+
+\[
+K_{\mathrm{open}}-\max_cK_{\mathrm{closed},c}
+\ge
+\sum_j\log_2|E_j|-\max_c\log_2|E_c|.
+\]
+
+For binary exterior modules, the relay-tree family attains
+
+\[
+K_{\mathrm{open}}=q+1,
+\qquad
+\max_cK_{\mathrm{closed},c}=2.
+\]
+
+See [addressable-completion product bounds](docs/addressable_completion_product_bound.md).
+
+### 4. The lower bound survives a bounded-degree local implementation
 
 The coordinate witness is compiled into a one-token reader / memory-leaf /
 relay / root protocol with:
@@ -112,7 +125,41 @@ The completed protocol exactly implements the coordinate probe action, so the
 same lower bounds survive without a high-degree root or a growing local lookup
 table. See [bounded-degree relay-tree compilation](docs/bounded_degree_relay_compilation.md).
 
-### 5. Candidate consensus is the epistemic gate
+### 5. Dynamic boundary blankets are the positive criterion
+
+An exterior summary is an exact open interface only if it is dynamically closed:
+equal summaries must have equal current outputs and must update to equal future
+summaries under every allowed action.
+
+For a finite controlled system, the all-word trace quotient is the coarsest exact
+extension-stable deterministic interface. If an inside-plus-boundary pair
+\((\alpha,\beta)\) is dynamically closed, then
+
+\[
+K_{\mathrm{open}}
+\le
+\log_2|\operatorname{im}(\alpha,\beta)|
+\le
+\log_2|I|+\log_2|B|.
+\]
+
+The same finite summary bounds the counterfactual depth needed to certify the
+canonical quotient:
+
+\[
+H_\star\le |\operatorname{im}(\alpha,\beta)|-1.
+\]
+
+Conversely, the addressable binary family forces
+
+\[
+\log_2|B_m|\ge m,
+\]
+
+so no uniformly bounded blanket can serve every growing exterior-completion
+family. See [dynamic boundary blankets](docs/dynamic_boundary_blankets.md).
+
+### 6. Candidate consensus is the epistemic gate
 
 RACH does not require complete model identification. Let \(C_t\) be retained
 candidate systems and let \(v(\theta)\) be a claim-level verdict.
@@ -130,7 +177,7 @@ This does not itself prove an open-system law. It prevents one selected candidat
 from being promoted to a general conclusion without a retained-family
 certificate.
 
-### 6. Observation-regime comparison is an operational special case
+### 7. Observation-regime comparison is an operational special case
 
 `observation_regime_closure.py` compares two declared maps on the same state
 space, for example a natural and an observer-coupled regime. It remains useful
@@ -154,32 +201,26 @@ appearance:
 \text{proof of closure or open-system validity}.
 \]
 
-A finite simulation can find a completion counterexample or exhaust a declared
-finite grammar. It cannot establish validity against an unbounded outside without
-a separate finite-boundary or blanket theorem.
+A finite calculation can find a completion counterexample or replay a declared
+certificate. It cannot establish validity against an unbounded outside without a
+separate dynamic-boundary theorem.
 
 ## GitHub Actions theorem regression
 
-Dedicated workflows model-check declared finite theorem domains:
+Dedicated workflows replay declared finite theorem certificates for:
 
-- all labelled deterministic maps on one through four states:
-  \[
-  1^1+2^2+3^3+4^4=288;
-  \]
-- all ordered natural/observer-coupled map pairs on one through three states:
-  \[
-  (1^1)^2+(2^2)^2+(3^3)^2=746;
-  \]
+- all labelled deterministic maps on one through four states;
+- all ordered natural/observer-coupled map pairs on one through three states;
 - the coordinate extension--compression family for one through six ports;
-- the degree-three relay-tree compilation for one through six ports, every
-  quiescent state, and every declared reader attachment; and
-- the observation-window completion family for one through six exterior modules,
-  every passive word through a declared finite horizon, both focal states, and
-  every boundary port.
+- the degree-three relay-tree compilation for one through six ports;
+- the observation-window completion family for one through six exterior modules;
+- binary and nonbinary addressable-completion products; and
+- finite-horizon stabilization, dynamic-blanket factorization, and uniform
+  blanket obstruction families.
 
 Each workflow runs targeted tests, certificate verification, and uploads a
-deterministic JSON report. Passing these workflows is finite model checking of
-the declared domain, not a general proof assistant.
+deterministic JSON report. Passing these workflows is finite certificate replay
+for the declared domain, not a general proof assistant.
 
 ## Supporting assets: where the old work belongs
 
@@ -208,8 +249,9 @@ A new mathematical PR should contain:
 1. a theorem statement and explicit scope boundary;
 2. a verifier for its certificate object;
 3. fail-closed counterexample tests;
-4. exhaustive finite model checking when feasible; and
-5. an Action artifact reporting the finite enumeration.
+4. exhaustive finite model checking only when it checks a declared certificate;
+   and
+5. an Action artifact reporting the deterministic replay.
 
 ## Scope boundary
 
