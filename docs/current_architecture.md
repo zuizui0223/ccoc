@@ -13,8 +13,8 @@ maps that spine onto code, certificates, and workflows.
 ## Layer 1: active theorem core
 
 `causal_model/current_theory.py` is the focused public entrance. It re-exports
-the eight active finite theorem families below. New theorem work should begin
-there, not from `causal_model.__init__`.
+nine exact finite theorem families below. New theorem work should begin there,
+not from `causal_model.__init__`.
 
 | Family | Module | Main exact object | Certificate / verifier |
 |---|---|---|---|
@@ -26,6 +26,7 @@ there, not from `causal_model.__init__`.
 | dynamic blankets | `dynamic_boundary_blankets.py` | coarsest dynamic interface and finite upper bounds | stabilization and dynamic-interface certificates |
 | delayed addressability | `delayed_addressability.py` | grammar-aware quotient and delayed no-go | prefix-grammar, delayed separator, relay-attachment certificates |
 | candidate-safe laws | `candidate_safe_laws.py` | universal/candidate-safe/set-valued law distinction | agreement, obstruction, response-separator certificates |
+| joint open-candidate laws | `joint_open_candidate_laws.py` | common dynamic interface, universal open-law criterion, joint lower bound | dynamic-interface agreement, joint obstruction, joint separator certificates |
 | operational regime comparison | `observation_regime_closure.py` | two declared regime maps | regime classification and consensus certificates |
 
 The regime module remains active but is an operational special case of changing
@@ -48,7 +49,11 @@ observation_window_completion
 candidate_safe_laws
         -> candidate-induced macro maps
         -> universal / candidate-safe / set-valued verdict
-        -> delayed_addressability (delayed discrimination grammar)
+
+joint_open_candidate_laws
+        -> candidate-specific dynamic interfaces
+        -> common induced-map criterion
+        -> joint exterior x response-type separator injection
 
 current_theory
         -> curated imports from all active theorem families
@@ -91,17 +96,24 @@ exact deterministic interface.
 is legal. It proves that each fixed finite grammar has a finite exact horizon,
 while an expanding delayed family has no shared finite closure horizon.
 
-### Candidate plurality
+### Candidate plurality and joint open laws
 
-`candidate_safe_laws.py` starts after candidate-specific macro maps have been
-specified. It asks whether they agree after candidate identity is forgotten.
-The output is deliberately typed:
+`candidate_safe_laws.py` asks whether induced macro maps agree once candidate
+identity is forgotten. `joint_open_candidate_laws.py` adds the missing positive
+condition: candidate-specific macro interfaces must first be dynamic, and then
+their induced maps must agree for one universal deterministic **open** law.
+
+The joint module distinguishes:
 
 ```text
-all induced maps agree                 -> universal deterministic law
-maps disagree, response type retained  -> candidate-safe deterministic law
-maps disagree, response type forgotten -> set-valued law or UNRESOLVED
+common dynamic interfaces + common maps -> universal deterministic open law
+common dynamic interfaces + distinct maps, type retained -> candidate-safe open law
+common dynamic interfaces + distinct maps, type forgotten -> set-valued open law
 ```
+
+Its additive exterior-plus-response-type lower bound is available only after
+jointly realizable states and a concrete legal separator for every unequal pair
+have been supplied.
 
 ## Layer 2: retained-family and sequential evidence
 
@@ -139,8 +151,9 @@ not screenshots of a simulation. Typical certificates include:
 - passive-indistinguishable completions and future separating words;
 - product-coordinate separators and blanket factorizations;
 - relay micro-trajectories and macro conjugacy;
-- grammar-aware delayed separators; and
-- candidate transition agreement, obstruction, and response-type separators.
+- grammar-aware delayed separators;
+- candidate transition agreement, obstruction, and response-type separators; and
+- joint product-state separators and common-open-law certificates.
 
 The corresponding GitHub Actions workflows replay finite declared families and
 upload deterministic JSON reports. They test implementation invariants; their
@@ -173,7 +186,7 @@ publication or audit requirement.
 
 ## Repository navigation rule
 
-- Start a new theorem with [theorem spine](theorem_spine.md).
+- Start a new theorem with [the theorem spine](theorem_spine.md).
 - Find modules and dependency roles here.
 - Use [the asset map](repository_asset_map.md) before reusing legacy code.
 - Use [the promotion calculus](promotion_calculus.md) to decide which promotion
@@ -192,4 +205,5 @@ should contain:
 
 Current theorem workflows cover closure, regime comparison, extension/compression,
 relay compilation, observation-window completion, addressable bounds, dynamic
-blankets, delayed addressability, and candidate-safe laws.
+blankets, delayed addressability, candidate-safe laws, and joint open-candidate
+laws.
