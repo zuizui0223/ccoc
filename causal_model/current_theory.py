@@ -9,11 +9,13 @@ three exact finite theorem families:
     -> RACH-style consensus across retained candidates
     -> observer-independent / observer-coupled regime verdicts;
 
-and
-
     fixed closed extension interfaces
     -> declared open-port interfaces
-    -> exact extension--compression separation certificates.
+    -> exact extension--compression separation certificates; and
+
+    coordinate-level open-port witnesses
+    -> constant-grammar, degree-three relay-tree protocols
+    -> exact macro-time conjugacy certificates.
 
 This module intentionally re-exports only that core. It introduces no new
 mathematics and does not replace the lower-level modules.
@@ -46,6 +48,15 @@ from .observation_regime_closure import (
     classify_observation_regime_pair,
     summarize_regime_candidates,
 )
+from .relay_tree_compilation import (
+    BoundedDegreeCompilationCertificate,
+    OneTokenRelayGrammar,
+    RelayProtocolCertificate,
+    RelayTreeTopology,
+    certify_bounded_degree_compilation,
+    certify_relay_protocol,
+    exhaustive_compilation_summary,
+)
 
 __all__ = [
     "ClosureClassification",
@@ -62,6 +73,13 @@ __all__ = [
     "TraceSeparationCertificate",
     "certify_extension_compression",
     "exhaustive_witness_summary",
+    "BoundedDegreeCompilationCertificate",
+    "OneTokenRelayGrammar",
+    "RelayProtocolCertificate",
+    "RelayTreeTopology",
+    "certify_bounded_degree_compilation",
+    "certify_relay_protocol",
+    "exhaustive_compilation_summary",
     "ObservationRegimeClassification",
     "ObservationRegimeRulePair",
     "ObservationRegimeVerdict",

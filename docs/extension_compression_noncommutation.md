@@ -113,17 +113,35 @@ For the open lower bound, take distinct \(x,x'\in X_m\). If \(y\ne y'\),
 merged by an open-safe interface. The identity partition is itself sound, so it
 is the coarsest open-safe partition. \(\square\)
 
+## Constant-grammar bounded-degree implementation
+
+The coordinate witness is now compiled by
+[`relay_tree_compilation.py`](../causal_model/relay_tree_compilation.py) into a
+one-token binary relay tree. It uses one fixed finite grammar—reader, memory
+leaf, relay, and focal root—together with child-to-parent pairwise messages and
+maximum graph degree three.
+
+At **quiescent macro-time**, firing a reader at port \(i\) and allowing the tree
+to settle implements exactly the coordinate action \(F_i\). The compiled
+protocol therefore preserves the four-state closed quotients and the
+\(2^{m+1}\)-state open quotient by exact macro-time conjugacy. See
+[bounded-degree relay-tree compilation](bounded_degree_relay_compilation.md).
+
+The declared action grammar remains sequential: one reader may fire, the tree
+must settle, and only then may the next reader fire. Simultaneous reader
+activations are intentionally outside the theorem domain.
+
 ## What is—and is not—shown
 
 This result shows that causal compression for every fixed closed extension need
 not yield a small interface for the corresponding declared open composition.
 It does not show that open-system abstraction is impossible in general.
 
-It also does not yet establish the stronger ecological compilation promised in
-Issue #35: one constant-size local grammar, pairwise interactions only, and a
-bounded-degree relay graph. The current witness is the exact semantic skeleton
-for that compilation. A future theorem must preserve the same lower bound after
-that compilation rather than merely restating this coordinate system.
+It also does not claim that every ecological network has relay-tree dynamics.
+The theorem is a sharp existence witness: the noncommutation persists despite a
+fixed finite grammar, pairwise edge-local messages, and bounded degree. A
+separate theorem would be needed for stochastic, continuous, simultaneous, or
+empirically calibrated ecological systems.
 
 Finally, an extension-safe interface is not automatically a single
 candidate-independent deterministic macro update. The latter needs a separate
@@ -132,8 +150,9 @@ uniform-dynamics condition.
 ## Executable finite regression
 
 `causal_model.extension_compression` provides explicit one-step
-`TraceSeparationCertificate` objects for every unequal pair of states. The
-workflow runs targeted tests and verifies the witness family for
-\(m=1,\ldots,6\), writing a deterministic JSON artifact. This finite regression
-checks the declared family; the general theorem proof above supplies the
-all-\(m\) argument.
+`TraceSeparationCertificate` objects for every unequal coordinate-state pair.
+`causal_model.relay_tree_compilation` provides replayable protocol certificates
+that prove each completed relay-tree macro probe equals its coordinate action.
+The workflows verify both witness families for \(m=1,\ldots,6\), writing
+deterministic JSON artifacts. These finite regressions check declared families;
+the written proofs supply the all-\(m\) arguments.

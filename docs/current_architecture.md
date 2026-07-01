@@ -91,10 +91,10 @@ when retained candidates disagree.
 
 ### Extension--compression witness
 
-`causal_model/extension_compression.py` formalizes a different no-go question.
-It declares a finite focal-bit system with attachable ports. A fixed closed
-context permits one specified port; a declared open port grammar permits any
-specified port to be probed in the future.
+`causal_model/extension_compression.py` formalizes a no-go question. It declares
+a finite focal-bit system with attachable ports. A fixed closed context permits
+one specified port; a declared open port grammar permits any specified port to
+be probed in the future.
 
 For each \(m\ge1\), its exact certificate proves
 
@@ -107,15 +107,36 @@ For each \(m\ge1\), its exact certificate proves
 Thus every fixed closed extension has a four-state interface, whereas the
 open-safe interface is the full \(2^{m+1}\)-state microstate partition.
 
-`TraceSeparationCertificate` is the lower-bound object: for every unequal pair
-of states it records either `observe` or a declared `probe:i` action whose
-one-step focal-output traces differ. This is an explicit finite proof object,
-not a simulation summary.
+`TraceSeparationCertificate` is the coordinate lower-bound object: for every
+unequal pair of states it records either `observe` or a declared `probe:i`
+action whose one-step focal-output traces differ. This is an explicit finite
+proof object, not a simulation summary.
 
-This is currently an interface-level theorem. The planned stronger theorem must
-compile the witness to a constant local grammar with pairwise, bounded-degree
-interactions while preserving the lower bound. It must not be described as a
-literal ecological model before that compilation is proved.
+### Bounded-degree relay-tree compilation
+
+`causal_model/relay_tree_compilation.py` proves that the coordinate witness is
+not relying on a growing local lookup table or a high-degree focal node. It
+compiles every size into a binary tree with one fixed grammar:
+
+- reader states `ready` / `fire`;
+- memory leaves with a permanent bit and a three-valued pulse;
+- three-valued relay pulses; and
+- a binary focal root output.
+
+Messages are directed along child-to-parent edges. With one attached reader,
+every node has degree at most three. The declared sequential action grammar
+allows one reader firing followed by return to quiescence.
+
+`RelayProtocolCertificate` replays the complete micro-trajectory for a state and
+port. `BoundedDegreeCompilationCertificate` checks every quiescent coordinate
+state and every port in the declared finite range, proving that the completed
+macro probe is exactly conjugate to the coordinate action.
+
+The existing \(2\) versus \(m+1\) separation therefore now holds under a
+constant grammar, edge-local pairwise messages, bounded degree, and quiescent
+macro-time. It still must not be described as a literal ecological model, and
+the theorem does not cover simultaneous reader firings, stochasticity, or
+undeclared environments.
 
 ## Layer 2: sequential evidence
 
@@ -146,7 +167,8 @@ strong conclusion.
 
 - finite closure rankings, cycles, and multistability certificates;
 - open-interface trace-separation certificates;
-- rational SAT witnesses and Farkas infeasibility certificates;
+- bounded-degree relay protocol and macro-conjugacy certificates;
+- rational SAT witnesses and Farkas infeasibility certificates; and
 - compiler-generated finite branch systems where the restricted grammar is
   applicable.
 
@@ -182,7 +204,7 @@ The following remain available but are not the main narrative for new work:
 
 - disjunctive / ecological-program theorem families;
 - minimum discriminating observation panels and benchmark suites;
-- manifest v1/v2 adapters, transcript variants, and checkpoint plumbing;
+- manifest v1/v2 adapters, transcript variants, and checkpoint plumbing; and
 - polyhedral admission machinery outside a problem that genuinely needs its
   restricted grammar.
 
@@ -204,8 +226,10 @@ Current examples are:
 
 - finite closure theorem regression over all maps on up to four states;
 - observation-regime theorem regression over all ordered map pairs on up to
-  three states; and
-- extension--compression regression for the explicit finite witness family with
-  one through six ports.
+  three states;
+- extension--compression regression for the explicit coordinate witness family
+  with one through six ports; and
+- relay-tree compilation regression for one through six ports, all quiescent
+  states, and all declared reader attachments.
 
 Passing CI is not a proof of a theorem outside its finite stated domain.
