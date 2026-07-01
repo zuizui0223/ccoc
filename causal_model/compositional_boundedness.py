@@ -64,6 +64,13 @@ def _canonical_cards(exterior_cardinalities: Iterable[int]) -> tuple[int, ...]:
     return cards
 
 
+def _nontrivial_cards(exterior_cardinalities: Iterable[int]) -> tuple[int, ...]:
+    cards = _canonical_cards(exterior_cardinalities)
+    if any(cardinality < 2 for cardinality in cards):
+        raise ValueError("cumulative addressability requires every exterior factor to have cardinality at least two")
+    return cards
+
+
 @dataclass(frozen=True)
 class UniformFactorizationStage:
     """One finite stage factoring through a fixed shared summary alphabet."""
@@ -226,7 +233,7 @@ class CumulativeAddressabilityChainCertificate:
     def verify(self) -> bool:
         try:
             _positive(self.inside_cardinality, "inside_cardinality")
-            cards = _canonical_cards(self.exterior_cardinalities)
+            cards = _nontrivial_cards(self.exterior_cardinalities)
             if cards != self.exterior_cardinalities:
                 return False
             if len(self.prefix_lower_bounds) != len(cards):
@@ -252,7 +259,7 @@ def certify_cumulative_addressability_chain(
     exterior_cardinalities: Iterable[int],
 ) -> CumulativeAddressabilityChainCertificate:
     _positive(inside_cardinality, "inside_cardinality")
-    cards = _canonical_cards(exterior_cardinalities)
+    cards = _nontrivial_cards(exterior_cardinalities)
     certificate = CumulativeAddressabilityChainCertificate(
         inside_cardinality=inside_cardinality,
         exterior_cardinalities=cards,
