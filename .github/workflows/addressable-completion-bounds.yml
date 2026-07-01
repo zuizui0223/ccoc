@@ -1,0 +1,47 @@
+name: Addressable-completion bound certificate replay
+
+on:
+  pull_request:
+    paths:
+      - 'causal_model/addressable_completion_bounds.py'
+      - 'scripts/verify_addressable_completion_bounds.py'
+      - 'tests/test_addressable_completion_bounds.py'
+      - 'tests/test_current_theory.py'
+      - 'docs/addressable_completion_product_bound.md'
+      - '.github/workflows/addressable-completion-bounds.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'causal_model/addressable_completion_bounds.py'
+      - 'scripts/verify_addressable_completion_bounds.py'
+      - 'tests/test_addressable_completion_bounds.py'
+      - 'tests/test_current_theory.py'
+      - 'docs/addressable_completion_product_bound.md'
+      - '.github/workflows/addressable-completion-bounds.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  theorem-certificate-replay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install certificate replay dependencies
+        run: python -m pip install --upgrade pip pytest
+      - name: Replay targeted theorem certificates
+        run: python -m pytest tests/test_addressable_completion_bounds.py -q
+      - name: Replay binary and nonbinary product certificates
+        run: >-
+          PYTHONPATH=. python scripts/verify_addressable_completion_bounds.py
+          --max-exterior-count 6
+          --output artifacts/addressable_completion_bounds_report.json
+      - name: Upload certificate replay report
+        uses: actions/upload-artifact@v4
+        with:
+          name: addressable-completion-bounds-report
+          path: artifacts/addressable_completion_bounds_report.json
+          if-no-files-found: error
