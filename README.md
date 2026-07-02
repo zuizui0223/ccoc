@@ -9,6 +9,10 @@ The active publication package is finite and deterministic. It contains no field
 datasets, fitted ecological parameters, or claim that a passing certificate
 validates an observed ecosystem.
 
+> **Archive status — frozen.** RACH is the reproducibility and provenance archive
+> for the open-composition manuscript. New mathematics belongs in a dedicated
+> successor repository; see the [freeze record](FREEZE.md).
+
 ## Paper core
 
 The manuscript uses one theorem package.
@@ -35,6 +39,8 @@ The central claim is conditional on a declared finite system and grammar:
 
 ## Start here
 
+- [Freeze record](FREEZE.md) — archive scope, permitted maintenance, successor
+  repositories, and reproducibility commands.
 - [Paper-core mathematical audit](docs/paper_core_audit.md) — formal proof versus
   finite replay, corrected assumptions, and the GitHub Actions contract.
 - [Publication-core scope](docs/manuscript_readiness_audit.md) — theorem-to-paper
