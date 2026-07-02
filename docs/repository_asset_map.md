@@ -1,6 +1,9 @@
 # RACH asset map: portability core, identifiability companion, and legacy shelf
 
 Read [portability core v1](portability_core_v1.md) before extending any module.
+Read [the package-boundary implementation plan](package_boundary_plan.md) before
+moving an asset or changing a public import.
+
 This map answers one practical question:
 
 > **Which assets may receive active theorem work, and which assets are frozen?**
@@ -33,9 +36,10 @@ import causal_model.portability_core as rach
 | Asset | Present role |
 |---|---|
 | `causal_closure_calculus.py` | finite-model prerequisite: closure / recurrence / multistability |
+| `shared_grammar.py` | shared finite prefix-grammar and controlled-system contract primitives; no theorem claim by itself |
 | `dynamic_boundary_blankets.py` | exact update-closed finite boundary summary |
 | `grammar_aware_blankets.py` | exact factorization over physical state × declared grammar state |
-| `extension_compression_noncommutation.py` | operational addressability lower bound and noncommutation inequality |
+| `extension_compression_noncommutation.py` | **canonical** operational addressability lower bound and noncommutation inequality |
 | `extension_compression.py` | binary coordinate sharpness witness |
 | `relay_tree_compilation.py` | constant-grammar, pairwise, degree-three sharpness realization |
 | `compositional_boundedness.py` | boundedness versus cumulative growth criteria across nested stages |
@@ -57,6 +61,11 @@ theories:
 Relay trees are sharpness witnesses; they do not independently justify a new
 structural research branch.
 
+`addressable_completion_bounds.py` is retained as a finite product helper and
+canonical coordinate example. It must not introduce a second public statement of
+the core lower bound; that source of truth is
+`extension_compression_noncommutation.py`.
+
 ## B. Identifiability companion
 
 Use the separate public facade:
@@ -67,12 +76,13 @@ import causal_model.identifiability_companion as rach_id
 
 | Asset | Present role |
 |---|---|
-| `delayed_addressability.py` | no uniform horizon across expanding delayed families |
+| `delayed_addressability.py` | no uniform horizon across expanding delayed families; historical re-export of shared grammar types during migration |
 | `adaptive_closure_no_go.py` | finite adaptive transcript-only evidence cannot certify closure without an independent bound |
 | `candidate_safe_laws.py` | universal versus candidate-safe versus set-valued macro laws |
 | `joint_open_candidate_laws.py` | justified joint exterior–mechanism separation |
 | `admissibility.py`, `confidence_lifting.py`, `anytime_confidence_lifting.py` | evidence-to-retained-candidate adapters |
 | `symbolic_candidate_sets.py` | finite symbolic retained-family support |
+| `observation_window_completion.py` | passive-evidence example; not a portability theorem target |
 | `identifiability_companion.py` | companion-only public facade |
 
 These modules are active only when the next selected research direction is
@@ -100,13 +110,26 @@ Certificate manifests, transcript registries, signed checkpoints, coverage
 adapters, and tiered artifact formats preserve provenance. Keep them passing, but
 add no audit feature unless a publication-grade certificate needs it.
 
+## Public-import rule
+
+New theorem code, examples, and tests must use exactly one of the two facades:
+
+```python
+import causal_model.portability_core as rach
+import causal_model.identifiability_companion as rach_id
+```
+
+`causal_model.current_theory` remains a broad historical compatibility aggregate.
+It is not a research entrance and must not receive new exports.
+
 ## Current priority order
 
 1. **P1 proof hygiene:** use the public facades, remove duplicate public claims,
    and classify every statement as theorem, sufficient criterion, lower bound,
    witness, or unresolved region.
-2. **P2 logical package boundary:** keep one repository but preserve the three
-   public surfaces above; do not physically split until imports stabilize.
+2. **P2 logical package boundary:** preserve the three public surfaces above;
+   move shared primitives and compatibility shims before considering a physical
+   repository split.
 3. **P3 one research direction:** only after core v1 stop criteria are met,
    choose exactly one of non-nested rewiring, composition-dependent mechanisms,
    or approximate noisy portability.
