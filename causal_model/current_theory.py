@@ -1,302 +1,87 @@
-"""Small public entrance to the current RACH theory core.
+"""Historical compatibility aggregate for pre-v1 RACH imports.
 
-The repository contains older finite-program, observation-design, sequential,
-and audit modules. They remain supported. The active mathematical core exposes
-ten exact finite theorem families:
+.. deprecated:: 0.1.0
 
-    finite candidate rule systems
-    -> exact closure/recurrent certificates per candidate
-    -> RACH-style consensus across retained candidates
-    -> observer-independent / observer-coupled regime verdicts;
+   New theorem work must import either :mod:`portability_core` for the structural
+   portability theorem family or :mod:`identifiability_companion` for finite
+   evidence and retained-mechanism questions.
 
-    fixed closed extension interfaces
-    -> declared open-port interfaces
-    -> exact extension--compression separation certificates;
-
-    coordinate-level open-port witnesses
-    -> constant-grammar, degree-three relay-tree protocols
-    -> exact macro-time conjugacy certificates;
-
-    finite passive observation windows
-    -> exterior completion counterexamples
-    -> counterfactual interface-inflation certificates;
-
-    addressable exterior completion products
-    -> separating-word lower bounds
-    -> static finite boundary-blanket upper bounds;
-
-    dynamic boundary blankets
-    -> exact extension-stable macro interfaces
-    -> finite counterfactual-horizon certificates;
-
-    delayed addressability
-    -> prefix-grammar constrained lower bounds
-    -> no uniform closure horizon across expanding delayed families;
-
-    grammar-aware dynamic blankets
-    -> exact product interfaces over system and contract-grammar state
-    -> positive legal-word factorization certificates;
-
-    candidate-safe universal laws
-    -> ensemble--instance separation certificates
-    -> deterministic universal, deterministic candidate-safe, or set-valued
-       macro-law verdicts; and
-
-    joint open-candidate laws
-    -> common dynamic-interface and induced-map criterion
-    -> joint exterior-memory plus response-type lower bounds under explicit
-       structural separation.
-
-This module intentionally re-exports only that core. It introduces no new
-mathematics and does not replace the lower-level modules.
+This module deliberately preserves a broad pre-v1 aggregate so old certificates,
+replays, and notebooks remain importable. It is **not** a statement that its
+exports form one theorem spine, and it must not be used as the research entrance.
+The aggregate emits a :class:`DeprecationWarning` on import.
 """
 
-from .addressable_completion_bounds import (
-    AddressableCompletionProductCertificate,
-    CanonicalAddressableProduct,
-    FiniteBoundaryBlanketCertificate,
-    PassiveClosureNonidentifiabilityCertificate,
-    SeparatingWordCertificate,
-    certify_addressable_completion_product,
-    certify_finite_boundary_blanket,
-    certify_passive_closure_nonidentifiability,
-    separating_word_certificate,
-)
-from .candidate_safe_laws import (
-    CandidateInducedLaw,
-    CandidateLawFamily,
-    CandidateResponseSeparationCertificate,
-    CandidateSafeProductCertificate,
-    DelayedCandidateDiscriminationCertificate,
-    SetValuedMacroLawCertificate,
-    UniversalLawObstructionCertificate,
-    UniversalMacroLawCertificate,
-    certify_candidate_safe_product,
-    certify_delayed_candidate_discrimination,
-    certify_set_valued_macro_law,
-    certify_universal_macro_law,
-    find_candidate_response_separator,
-    universal_law_obstruction_certificate,
-)
-from .causal_closure_calculus import (
-    ClosureClassification,
-    ClosureKind,
-    FiniteDeterministicRuleSystem,
-    GlobalClosureCertificate,
-    MultistabilityCertificate,
-    RecurrentCycleCertificate,
-    classify_closure,
-    verify_global_closure_certificate,
-    verify_multistability_certificate,
-    verify_recurrent_cycle_certificate,
-)
-from .delayed_addressability import (
-    DelayedAddressabilityCertificate,
-    DelayedClosureNonidentifiabilityCertificate,
-    DelayedReaderGrammar,
-    DelayedRelayAttachmentCertificate,
-    FinitePrefixGrammar,
-    GrammarAwareControlledSystem,
-    GrammarHorizonStabilizationCertificate,
-    certify_delayed_addressability,
-    certify_delayed_closure_nonidentifiability,
-    certify_delayed_relay_attachment,
-    certify_grammar_horizon_stabilization,
-    delayed_separating_word_certificate,
-)
-from .dynamic_boundary_blankets import (
-    DynamicBoundaryBlanketCertificate,
-    DynamicInterfaceCertificate,
-    FiniteControlledOutputSystem,
-    FiniteHorizonStabilizationCertificate,
-    UniformBlanketObstructionCertificate,
-    certify_dynamic_boundary_blanket,
-    certify_finite_horizon_stabilization,
-    certify_uniform_blanket_obstruction,
-)
-from .extension_compression import (
-    ExtensionCompressionCertificate,
-    TraceSeparationCertificate,
-    certify_extension_compression,
-    exhaustive_witness_summary,
-)
-from .grammar_aware_blankets import (
-    EnabledActionMismatchCertificate,
-    GrammarAwareCanonicalInterfaceCertificate,
-    GrammarAwareDynamicBlanketCertificate,
-    GrammarAwareDynamicInterfaceCertificate,
-    GrammarAwareRefinementCertificate,
-    GrammarStateNecessityCertificate,
-    certify_grammar_aware_canonical_interface,
-    certify_grammar_aware_dynamic_blanket,
-    certify_grammar_aware_refinement,
-    certify_grammar_state_necessity,
-    explicit_grammar_aware_partition,
-    find_enabled_action_mismatch,
-    grammar_aware_output_trace,
-)
-from .joint_open_candidate_laws import (
-    CandidateSafeOpenLawCertificate,
-    JointExteriorMechanismProductCertificate,
-    JointOpenCandidateProduct,
-    JointOpenLawObstructionCertificate,
-    JointStructuralSeparationCertificate,
-    OpenLawCandidate,
-    OpenLawFamily,
-    OpenLawReportKind,
-    SetValuedOpenLawCertificate,
-    StructuralQuery,
-    TypedOpenLawVerdictCertificate,
-    UniversalOpenLawCertificate,
-    UniversalOpenLawObstructionCertificate,
-    certify_candidate_safe_open_law,
-    certify_joint_exterior_mechanism_product,
-    certify_set_valued_open_law,
-    certify_universal_open_law,
-    classify_open_law_family,
-    joint_open_law_obstruction_certificate,
-    joint_structural_separator_certificate,
-    universal_open_law_obstruction_certificate,
-)
-from .observation_regime_closure import (
-    ObservationRegimeClassification,
-    ObservationRegimeRulePair,
-    ObservationRegimeVerdict,
-    RegimeConsensus,
-    RegimeConsensusKind,
-    classify_observation_regime_pair,
-    summarize_regime_candidates,
-)
-from .observation_window_completion import (
-    CounterfactualCompletionCertificate,
-    ObservationWindowCompletionCertificate,
-    RelayCompletionCertificate,
-    certify_observation_window_completion,
-    completion_counterexample_certificate,
-    exhaustive_observation_window_summary,
-    relay_completion_certificate,
-)
-from .relay_tree_compilation import (
-    BoundedDegreeCompilationCertificate,
-    OneTokenRelayGrammar,
-    RelayProtocolCertificate,
-    RelayTreeTopology,
-    certify_bounded_degree_compilation,
-    certify_relay_protocol,
-    exhaustive_compilation_summary,
+from __future__ import annotations
+
+import warnings
+from types import ModuleType
+
+from . import addressable_completion_bounds as _addressable_completion_bounds
+from . import candidate_safe_laws as _candidate_safe_laws
+from . import causal_closure_calculus as _causal_closure_calculus
+from . import delayed_addressability as _delayed_addressability
+from . import dynamic_boundary_blankets as _dynamic_boundary_blankets
+from . import extension_compression as _extension_compression
+from . import grammar_aware_blankets as _grammar_aware_blankets
+from . import joint_open_candidate_laws as _joint_open_candidate_laws
+from . import observation_regime_closure as _observation_regime_closure
+from . import observation_window_completion as _observation_window_completion
+from . import relay_tree_compilation as _relay_tree_compilation
+
+
+_HISTORICAL_MODULES: tuple[ModuleType, ...] = (
+    _addressable_completion_bounds,
+    _candidate_safe_laws,
+    _causal_closure_calculus,
+    _delayed_addressability,
+    _dynamic_boundary_blankets,
+    _extension_compression,
+    _grammar_aware_blankets,
+    _joint_open_candidate_laws,
+    _observation_regime_closure,
+    _observation_window_completion,
+    _relay_tree_compilation,
 )
 
-__all__ = [
-    "EnabledActionMismatchCertificate",
-    "GrammarAwareCanonicalInterfaceCertificate",
-    "GrammarAwareDynamicBlanketCertificate",
-    "GrammarAwareDynamicInterfaceCertificate",
-    "GrammarAwareRefinementCertificate",
-    "GrammarStateNecessityCertificate",
-    "certify_grammar_aware_canonical_interface",
-    "certify_grammar_aware_dynamic_blanket",
-    "certify_grammar_aware_refinement",
-    "certify_grammar_state_necessity",
-    "explicit_grammar_aware_partition",
-    "find_enabled_action_mismatch",
-    "grammar_aware_output_trace",
-    "CandidateSafeOpenLawCertificate",
-    "JointExteriorMechanismProductCertificate",
-    "JointOpenCandidateProduct",
-    "JointOpenLawObstructionCertificate",
-    "JointStructuralSeparationCertificate",
-    "OpenLawCandidate",
-    "OpenLawFamily",
-    "OpenLawReportKind",
-    "SetValuedOpenLawCertificate",
-    "StructuralQuery",
-    "TypedOpenLawVerdictCertificate",
-    "UniversalOpenLawCertificate",
-    "UniversalOpenLawObstructionCertificate",
-    "certify_candidate_safe_open_law",
-    "certify_joint_exterior_mechanism_product",
-    "certify_set_valued_open_law",
-    "certify_universal_open_law",
-    "classify_open_law_family",
-    "joint_open_law_obstruction_certificate",
-    "joint_structural_separator_certificate",
-    "universal_open_law_obstruction_certificate",
-    "CandidateInducedLaw",
-    "CandidateLawFamily",
-    "CandidateResponseSeparationCertificate",
-    "CandidateSafeProductCertificate",
-    "DelayedCandidateDiscriminationCertificate",
-    "SetValuedMacroLawCertificate",
-    "UniversalLawObstructionCertificate",
-    "UniversalMacroLawCertificate",
-    "certify_candidate_safe_product",
-    "certify_delayed_candidate_discrimination",
-    "certify_set_valued_macro_law",
-    "certify_universal_macro_law",
-    "find_candidate_response_separator",
-    "universal_law_obstruction_certificate",
-    "DelayedAddressabilityCertificate",
-    "DelayedClosureNonidentifiabilityCertificate",
-    "DelayedReaderGrammar",
-    "DelayedRelayAttachmentCertificate",
-    "FinitePrefixGrammar",
-    "GrammarAwareControlledSystem",
-    "GrammarHorizonStabilizationCertificate",
-    "certify_delayed_addressability",
-    "certify_delayed_closure_nonidentifiability",
-    "certify_delayed_relay_attachment",
-    "certify_grammar_horizon_stabilization",
-    "delayed_separating_word_certificate",
-    "DynamicBoundaryBlanketCertificate",
-    "DynamicInterfaceCertificate",
-    "FiniteControlledOutputSystem",
-    "FiniteHorizonStabilizationCertificate",
-    "UniformBlanketObstructionCertificate",
-    "certify_dynamic_boundary_blanket",
-    "certify_finite_horizon_stabilization",
-    "certify_uniform_blanket_obstruction",
-    "AddressableCompletionProductCertificate",
-    "CanonicalAddressableProduct",
-    "FiniteBoundaryBlanketCertificate",
-    "PassiveClosureNonidentifiabilityCertificate",
-    "SeparatingWordCertificate",
-    "certify_addressable_completion_product",
-    "certify_finite_boundary_blanket",
-    "certify_passive_closure_nonidentifiability",
-    "separating_word_certificate",
-    "ClosureClassification",
-    "ClosureKind",
-    "FiniteDeterministicRuleSystem",
-    "GlobalClosureCertificate",
-    "MultistabilityCertificate",
-    "RecurrentCycleCertificate",
-    "classify_closure",
-    "verify_global_closure_certificate",
-    "verify_multistability_certificate",
-    "verify_recurrent_cycle_certificate",
-    "ExtensionCompressionCertificate",
-    "TraceSeparationCertificate",
-    "certify_extension_compression",
-    "exhaustive_witness_summary",
-    "BoundedDegreeCompilationCertificate",
-    "OneTokenRelayGrammar",
-    "RelayProtocolCertificate",
-    "RelayTreeTopology",
-    "certify_bounded_degree_compilation",
-    "certify_relay_protocol",
-    "exhaustive_compilation_summary",
-    "CounterfactualCompletionCertificate",
-    "ObservationWindowCompletionCertificate",
-    "RelayCompletionCertificate",
-    "certify_observation_window_completion",
-    "completion_counterexample_certificate",
-    "exhaustive_observation_window_summary",
-    "relay_completion_certificate",
-    "ObservationRegimeClassification",
-    "ObservationRegimeRulePair",
-    "ObservationRegimeVerdict",
-    "RegimeConsensus",
-    "RegimeConsensusKind",
-    "classify_observation_regime_pair",
-    "summarize_regime_candidates",
-]
+
+def _module_public_names(module: ModuleType) -> tuple[str, ...]:
+    """Return names owned by a historical module without leaking its imports.
+
+    Modules that explicitly declare ``__all__`` retain that declaration. For
+    older modules, export classes, functions, and named constants defined in the
+    module itself. This preserves the former aggregate's theorem-facing symbols
+    while avoiding incidental imports such as ``dataclass`` or ``Iterable``.
+    """
+    declared = getattr(module, "__all__", None)
+    if declared is not None:
+        return tuple(declared)
+    return tuple(
+        name
+        for name, value in vars(module).items()
+        if not name.startswith("_")
+        and (name.isupper() or getattr(value, "__module__", None) == module.__name__)
+    )
+
+
+__all__: tuple[str, ...] = tuple(
+    dict.fromkeys(
+        name
+        for module in _HISTORICAL_MODULES
+        for name in _module_public_names(module)
+    )
+)
+
+for _module in _HISTORICAL_MODULES:
+    for _name in _module_public_names(_module):
+        globals()[_name] = getattr(_module, _name)
+
+warnings.warn(
+    "causal_model.current_theory is a historical compatibility aggregate; "
+    "use causal_model.portability_core or causal_model.identifiability_companion for new work.",
+    DeprecationWarning,
+    stacklevel=2,
+)
+
+# Keep only the compatibility symbols visible to consumers.
+del _module, _name
