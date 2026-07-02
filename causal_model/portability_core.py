@@ -1,10 +1,11 @@
-"""Public entrance for RACH portability core v1.
+"""Public entrance for RACH portability core.
 
 This facade exposes only the structural theorem family:
 
 1. exact finite grammar-aware dynamic factorization;
 2. the addressable-completion / extension--compression lower bound; and
-3. bounded, coherent, and conservative portability under nested composition.
+3. portable macro-laws under nested conservative growth or declared non-nested
+   replacement transport.
 
 Relay constructions are retained as sharpness witnesses. Delayed evidence and
 candidate-mechanism uncertainty live in :mod:`identifiability_companion`.
@@ -84,6 +85,14 @@ from .coherent_portable_macrolaw import (
     inert_portable_chain,
     newly_legal_word_obstruction,
 )
+from .non_nested_portability import (
+    ReplacementFiberSplitObstructionCertificate,
+    ReplacementTransport,
+    TransportCoherentPortableMacroLawCertificate,
+    certify_transport_coherent_portable_macro_law,
+    non_nested_replacement_witness,
+    non_nested_rewiring_obstruction,
+)
 from .conservative_macro_schema import (
     ConservativeMacroSchema,
     ConservativeSchemaChainCertificate,
@@ -136,7 +145,7 @@ __all__ = [
     "RelayProtocolCertificate",
     "RelayTreeTopology",
     "certify_bounded_degree_compilation",
-    # composition portability ladder
+    # nested composition portability ladder
     "UniformFactorizationStage",
     "UniformDynamicBlanketChainCertificate",
     "CumulativeAddressabilityChainCertificate",
@@ -154,6 +163,14 @@ __all__ = [
     "certify_coherent_portable_macro_law",
     "inert_portable_chain",
     "newly_legal_word_obstruction",
+    # non-nested replacement and rewiring portability
+    "ReplacementTransport",
+    "TransportCoherentPortableMacroLawCertificate",
+    "certify_transport_coherent_portable_macro_law",
+    "non_nested_replacement_witness",
+    "ReplacementFiberSplitObstructionCertificate",
+    "non_nested_rewiring_obstruction",
+    # conservative legal-action expansion
     "ConservativeMacroSchema",
     "ConservativeStageProjection",
     "ConservativeSchemaChainCertificate",
