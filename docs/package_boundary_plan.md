@@ -59,8 +59,9 @@ import causal_model.portability_core as rach
 import causal_model.identifiability_companion as rach_id
 ```
 
-`causal_model.current_theory` is historical compatibility only. It must not be
-used in new theorem examples, README snippets, or new tests.
+`causal_model.current_theory` is a deprecated historical compatibility aggregate.
+It may be used to replay old notebooks and certificates, but it must not be used
+in new theorem examples, README snippets, or new tests.
 
 ## Implementation status
 
@@ -74,15 +75,16 @@ Completed:
    system, injective product embedding, legal decoder words, decoder functions,
    and explicit finite closed-context factor maps. The former cardinality-only
    certificate remains a theorem-schema replay and witness helper.
+4. `current_theory.py` is now a warning-emitting historical aggregate. It retains
+   prior theorem-facing symbols but no longer describes itself as an active core
+   or a single theorem chain.
 
 Still pending:
 
-1. Mark `current_theory.py` as deprecated compatibility and replace its
-   "active core" narrative with a neutral import-compatibility notice.
-2. Add an optional reachability contract only when a chosen theorem application
+1. Add an optional reachability contract only when a chosen theorem application
    needs one. The present operational certificate verifies the supplied embedded
    subsystem; it does not infer reachability from an unstated initial condition.
-3. Do not physically split repositories before shared primitives and compatibility
+2. Do not physically split repositories before shared primitives and compatibility
    imports stabilize.
 
 ## Non-goals
