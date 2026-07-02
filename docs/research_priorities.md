@@ -63,33 +63,37 @@ public imports are genuinely stable.
 
 The one authorized post-v1 direction is declared finite replacement, extinction,
 and rewiring **without nested stage embeddings**. Issue [#90](https://github.com/zuizui0223/rach-causal-invariants/issues/90)
-is implemented by PR [#91](https://github.com/zuizui0223/rach-causal-invariants/pull/91).
+selected the direction; issue [#93](https://github.com/zuizui0223/rach-causal-invariants/issues/93)
+records the proof-strengthening target.
 
-The current result is deliberately narrow:
+The non-nested branch now has three layers:
 
-- a **transport-coherent sufficient criterion**: each stage has the same exact
-  macro dynamics and every declared replacement edge is total,
-  output/legal-action/label-preserving, and successor-closed;
-- a **local obstruction**: a newly legal word after replacement can split one
-  carried macro fiber; and
-- a positive many-to-one replacement witness plus a negative rewiring witness.
+1. **transport-coherent edge preservation:** supplied exact source and target
+   projections share one macro law across total label/output/legal-action
+   preserving, successor-closed transport;
+2. **transported target factorization:** an exact source projection plus a total,
+   target-fiber-label-consistent, output/equal-legality-preserving,
+   successor-closed relation constructs the exact target projection; and
+3. **newly legal-word obstruction:** target-only legal actions can split a carried
+   macro fiber and lie outside the equal-legality construction theorem.
 
-Its current completion task is verification hygiene, not another variant:
+The positive many-to-one replacement witness, negative rewiring witness,
+deterministic replay artifact, focused CI, and public scope audit are all part of
+the completion contract.
 
-1. keep a deterministic replay certificate and a path-scoped CI workflow;
-2. synchronize public claim-status documents; and
-3. record the genuine proof-strengthening question before extending the branch.
+### Current stop point
 
-### The next legitimate mathematical strengthening
+Do not add another non-nested relation variant merely because it is available.
+The exact target-factorization bottleneck has now been addressed. The remaining
+interesting cases require a materially different transport contract, not another
+witness:
 
-The present positive certificate assumes that every stage already factors through
-the same macro dynamics. The nontrivial next question is whether a verified
-transport from one exact source projection can **construct** an exact target
-projection, under explicit totality, label-consistency, and successor conditions.
+- conservative transport when target-only legal actions are added;
+- stochastic or approximate transport; or
+- composition-dependent candidate mechanisms.
 
-Until that is proved, describe the current result as an edge-level
-transport-coherence certificate, not as a necessary-and-sufficient theory of
-replacement portability.
+Those are mutually exclusive future directions. Choose at most one only after the
+current PR is merged and its stop criteria are reviewed.
 
 ## Explicitly paused directions
 
@@ -97,8 +101,8 @@ Do not start these in parallel:
 
 1. composition-dependent candidate-mechanism families;
 2. noisy or approximate portability;
-3. new panel, budget, robustness, coverage, or field-protocol theorems;
-4. another action-alphabet special case; or
+3. conservative transport for target-only legal actions;
+4. new panel, budget, robustness, coverage, or field-protocol theorems; or
 5. a larger coordinate-table or ecological toy witness.
 
 ## Stop rule

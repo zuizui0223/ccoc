@@ -15,7 +15,7 @@ about real ecosystems.
 - [Portability core v1](docs/portability_core_v1.md) — the canonical structural
   theorem family.
 - [Non-nested replacement portability](docs/non_nested_replacement_portability.md)
-  — the one selected post-v1 structural extension.
+  — the selected post-v1 structural extension.
 - [Claim-status audit](docs/claim_status_audit.md) — theorem domains, sufficient
   criteria, lower bounds, witnesses, no-go results, and `UNRESOLVED` boundaries.
 - [Research priorities](docs/research_priorities.md) — active branch and stop
@@ -90,20 +90,35 @@ claim.
 
 ## Selected post-v1 extension: replacement without nesting
 
-The repository's sole active structural extension handles finite replacement,
+The repository's selected structural extension handles finite replacement,
 extinction, and rewiring families that have no raw-state inclusion map between
 stages. A declared replacement edge may instead carry a total,
-output/legal-action/label-preserving, successor-closed transport relation.
+output/legal-action-preserving, successor-closed relation.
 
-The current theorem is a **sufficient transport-coherence criterion**: every
-stage must already factor through the same exact macro dynamics, and the declared
-replacement graph must be connected. A many-to-one three-state-to-two-state
-witness demonstrates that this is not merely an embedding restatement. A newly
-legal word can also refute a proposed carried merge after rewiring.
+There are two layers.
 
-It does **not** yet establish a necessary characterization, construct a target
-projection solely from a source projection and transport, or infer a replacement
-grammar from data.
+1. **Transport coherence:** when source and target already have exact projections
+   into the same macro dynamics, a label-preserving transport verifies that the
+   declared replacement edge retains that law.
+2. **Transported target factorization:** beginning with only an exact source
+   projection, a total transport that is label-consistent on every target fiber
+   constructs target labels by
+
+   \[
+   q_T(t)=q_S(s)\qquad ((s,t)\in R).
+   \]
+
+   Equal output/legal rows and successor closure then certify that the constructed
+   target projection is exact and induces the same macro dynamics.
+
+The three-state-to-two-state many-to-one witness reconstructs target labels
+\((0,1)\) without taking target labels as an input. A newly legal word can still
+refute a proposed carried merge after rewiring: target-only legal actions lie
+outside the equal-legality transport theorem.
+
+The result remains a sufficient theorem for a declared finite relation. It does
+not infer replacement grammar from data, give a necessary classification, or turn
+a failed transport into a claim of unbounded memory.
 
 ## Companion programs
 

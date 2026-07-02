@@ -7,13 +7,13 @@ This facade exposes only the structural theorem family:
 3. portable macro-laws under nested conservative growth or declared non-nested
    replacement transport.
 
+The non-nested surface includes both edge preservation of an already-supplied
+common macro-law and construction of a target exact projection from a source
+projection plus a verified finite transport.
+
 Relay constructions are retained as sharpness witnesses. Delayed evidence and
 candidate-mechanism uncertainty live in :mod:`identifiability_companion`.
 Legacy experiment-design APIs remain in their original modules.
-
-Shared grammar primitives are imported from :mod:`shared_grammar`, not from an
-identifiability module. The facade re-exports existing certificates only; it
-introduces no mathematics.
 """
 
 from .causal_closure_calculus import (
@@ -89,9 +89,12 @@ from .non_nested_portability import (
     ReplacementFiberSplitObstructionCertificate,
     ReplacementTransport,
     TransportCoherentPortableMacroLawCertificate,
+    TransportedTargetProjectionCertificate,
     certify_transport_coherent_portable_macro_law,
+    certify_transported_target_projection,
     non_nested_replacement_witness,
     non_nested_rewiring_obstruction,
+    transported_target_projection_witness,
 )
 from .conservative_macro_schema import (
     ConservativeMacroSchema,
@@ -165,6 +168,9 @@ __all__ = [
     "newly_legal_word_obstruction",
     # non-nested replacement and rewiring portability
     "ReplacementTransport",
+    "TransportedTargetProjectionCertificate",
+    "certify_transported_target_projection",
+    "transported_target_projection_witness",
     "TransportCoherentPortableMacroLawCertificate",
     "certify_transport_coherent_portable_macro_law",
     "non_nested_replacement_witness",

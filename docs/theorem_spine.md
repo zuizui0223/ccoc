@@ -80,28 +80,42 @@ not a theorem that every alternative macro-law must fail.
 ## B. Selected post-v1 extension: non-nested replacement and rewiring
 
 Nested embeddings need not exist after replacement, extinction, or rewiring.
-`non_nested_portability.py` replaces the stage inclusion relation with declared
-total, output/legal-action/label-preserving, successor-closed transports.
+`non_nested_portability.py` replaces stage inclusion by declared total transports.
 
-### B1. Transport-coherent sufficient criterion
+### B1. Transport-coherent edge preservation
 
-If every finite stage has the same exact macro dynamics and each edge in a
-connected declared replacement graph has a valid transport relation, one macro
-law remains shared across that declared family. The relation may be many-to-one
-or one-to-many, so it is not merely an embedding rephrased.
+If every finite stage already induces the same exact macro dynamics and each edge
+in a connected replacement graph has a total, label/output/legal-action
+preserving, successor-closed transport, one macro law is shared across the
+declared family. The relation may be many-to-one or one-to-many.
 
-### B2. Local replacement obstruction
+### B2. Transported target exact factorization
+
+One exact source projection can construct the target projection. When a transport
+covers both product spaces, preserves output and equal legal-action rows, is
+successor-closed, and is label-consistent on every target fiber, define
+
+\[
+q_T(t)=q_S(s)\qquad ((s,t)\in R).
+\]
+
+The target label is well-defined, grammar-aware exact, and induces the same macro
+dynamics as \(q_S\). Thus the edge transports exact factorization rather than
+merely checking labels supplied independently at both ends.
+
+### B3. Local replacement obstruction
 
 A word newly legal after replacement can split a previously carried merge. The
 certificate identifies the source pair, transport relation, future word, and
-distinct target traces.
+distinct target traces. This case lies outside B2 because equal legal-action rows
+no longer hold.
 
-### B3. Scope boundary
+### B4. Scope boundary
 
-The current result is a **transport-coherence certificate**: it assumes stage
-projections into the common macro law. It does not yet prove that one source
-projection plus a transport relation constructs the target projection, nor does
-transport failure imply unbounded memory. Those cases remain `UNRESOLVED`.
+Failure to supply a B2 transport does not imply unbounded memory or failure of
+every alternative macro-law. Target-only legal actions require an additional
+conservative-extension contract, or may split an old fiber. Unconstrained
+rewiring, stochasticity, and approximate portability remain `UNRESOLVED`.
 
 ## C. Identifiability companion
 
@@ -134,10 +148,10 @@ candidate mechanisms.
 ## F. Priority order
 
 1. Preserve the frozen v1 core and its public claim discipline.
-2. Complete verification hygiene for the selected non-nested extension; do not add
-   adjacent variants.
-3. Strengthen the selected branch only by changing its genuine bottleneck:
-   constructing target exact factorization from a source projection and declared
-   transport, or documenting why extra conditions are necessary.
-4. Keep candidate-dependent and approximate directions paused until this branch
-   reaches a new stop point.
+2. Treat B2 plus the newly-legal-word obstruction as the current stop point of the
+   non-nested structural branch; do not add adjacent replacement variants.
+3. Any future extension must change the declared transport contract itself—for
+   example, a conservative transport theorem for target-only legal actions—rather
+   than add another toy relation or witness.
+4. Keep candidate-dependent and approximate directions paused until a separate
+   research decision is made.

@@ -1,24 +1,22 @@
 """Portable macro-laws across finite non-nested replacement families.
 
-The nested portability ladder uses stage embeddings.  Replacement, extinction,
+The nested portability ladder uses stage embeddings. Replacement, extinction,
 and rewiring can instead move between finite controlled systems with no inclusion
-map from one raw state space to the next.  This module provides a deliberately
-narrow positive criterion:
+map from one raw state space to the next.
 
-* every declared stage factors exactly through the same finite macro dynamics;
-* every declared replacement edge has a total, label-preserving, successor-closed
-  transport relation; and
-* the replacement graph is connected.
+This module contains two positive finite-domain certificates.
 
-Then one exact macro-law is shared across the declared family.  A transport
-relation need not be injective: multiple old microstates may be replaced by one
-new microstate.  This is strictly more general than a chain of inclusion
-embeddings, but it remains a sufficient finite-domain criterion, not a
-classification of arbitrary rewiring processes.
+* ``ReplacementTransport`` verifies preservation of one already-supplied common
+  macro-law across a declared replacement edge.
+* ``TransportedTargetProjectionCertificate`` is stronger at one edge: from an
+  exact source projection and a total, label-consistent, output/legal-action
+  preserving, successor-closed transport relation, it *constructs* the exact
+  target projection. The target labels are not supplied as an assumption.
 
-A second certificate records the local negative case.  A replacement can make a
-previously merged pair distinguishable by a newly legal word.  That refutes the
-proposed merge, but does not itself prove that every possible macro-law must grow.
+The latter does not classify arbitrary rewiring. In particular, a newly legal
+action may invalidate the equal-legality transport premise; the local
+``ReplacementFiberSplitObstructionCertificate`` records that case without
+claiming global memory growth.
 """
 
 from __future__ import annotations
@@ -93,10 +91,10 @@ def _normalize_relation(relation: Iterable[Pair]) -> tuple[Pair, ...]:
 class ReplacementTransport:
     """A total successor-closed relation between two non-nested projected stages.
 
-    The relation is allowed to be many-to-one or one-to-many.  It is therefore a
-    transport witness rather than an inclusion embedding.  Every paired state
-    must agree in output, legal actions, and macro label; every paired legal
-    successor must again occur in the relation.
+    The relation is allowed to be many-to-one or one-to-many. It is therefore a
+    transport witness rather than an inclusion embedding. Every paired state must
+    agree in output, legal actions, and macro label; every paired legal successor
+    must again occur in the relation.
     """
 
     source: StageMacroProjection
@@ -151,6 +149,120 @@ class ReplacementTransport:
             return True
         except (AssertionError, TypeError, ValueError):
             return False
+
+
+@dataclass(frozen=True)
+class TransportedTargetProjectionCertificate:
+    """Construct an exact target projection from one exact source projection.
+
+    Let ``q_source`` be the source summary. The relation must cover both declared
+    product state spaces, preserve output and *equal* legal-action rows, and be
+    successor-closed. In addition, every target state may relate only to source
+    states with one common ``q_source`` label. The induced label
+
+    ``q_target(t) = q_source(s)`` for any ``(s, t)`` in the relation
+
+    is therefore well-defined. The certificate verifies that this constructed
+    target label vector is a grammar-aware exact interface and induces precisely
+    the source macro dynamics.
+    """
+
+    source: StageMacroProjection
+    target_system: GrammarAwareControlledSystem
+    relation: tuple[Pair, ...]
+
+    @property
+    def source_indices(self) -> tuple[int, ...]:
+        return tuple(source_index for source_index, _ in self.relation)
+
+    @property
+    def target_indices(self) -> tuple[int, ...]:
+        return tuple(target_index for _, target_index in self.relation)
+
+    def _derive_target_labels(self) -> tuple[int, ...]:
+        if not self.source.verify():
+            raise ValueError("source must be an exact grammar-aware projection")
+        relation = _normalize_relation(self.relation)
+        if relation != self.relation:
+            raise ValueError("transport relation must be canonical")
+        source_system = self.source.constrained_system
+        target_system = self.target_system
+        if source_system.system.actions != target_system.system.actions:
+            raise ValueError("source and target action alphabets must agree")
+        if any(
+            not 0 <= source_index < source_system.product_state_count
+            or not 0 <= target_index < target_system.product_state_count
+            for source_index, target_index in relation
+        ):
+            raise ValueError("transport relation contains an out-of-range product index")
+        if set(self.source_indices) != set(range(source_system.product_state_count)):
+            raise ValueError("transport relation must cover every source product state")
+        if set(self.target_indices) != set(range(target_system.product_state_count)):
+            raise ValueError("transport relation must cover every target product state")
+
+        target_labels: list[int | None] = [None] * target_system.product_state_count
+        relation_set = set(relation)
+        for source_index, target_index in relation:
+            source_state, source_grammar = _pair_at(source_system, source_index)
+            target_state, target_grammar = _pair_at(target_system, target_index)
+            source_label = self.source.summary_labels[source_index]
+            existing = target_labels[target_index]
+            if existing is None:
+                target_labels[target_index] = source_label
+            elif existing != source_label:
+                raise ValueError("transport relation is not label-consistent on a target fiber")
+            if source_system.system.output(source_state) != target_system.system.output(target_state):
+                raise ValueError("transport relation must preserve current output")
+            source_legal = source_system.grammar.legal_actions(source_grammar)
+            target_legal = target_system.grammar.legal_actions(target_grammar)
+            if source_legal != target_legal:
+                raise ValueError("transport relation must preserve equal legal-action rows")
+            for action in source_legal:
+                successor_pair = (
+                    _successor_index(source_system, source_index, action),
+                    _successor_index(target_system, target_index, action),
+                )
+                if successor_pair not in relation_set:
+                    raise ValueError("transport relation is not successor-closed")
+
+        if any(label is None for label in target_labels):
+            raise AssertionError("target coverage must assign one label to every target state")
+        labels = tuple(int(label) for label in target_labels if label is not None)
+        return _canonical_labels(labels, target_system.product_state_count)
+
+    @property
+    def target_labels(self) -> tuple[int, ...]:
+        """The target labels constructed from source labels and the relation."""
+        return self._derive_target_labels()
+
+    @property
+    def target_projection(self) -> StageMacroProjection:
+        """The constructed exact target projection, available after verification."""
+        projection = StageMacroProjection(self.target_system, self.target_labels)
+        if not projection.verify():
+            raise AssertionError("derived target labels failed exact-interface verification")
+        return projection
+
+    def verify(self) -> bool:
+        try:
+            if not self.source.verify():
+                return False
+            target = self.target_projection
+            return target.induced_macro() == self.source.induced_macro()
+        except (AssertionError, TypeError, ValueError):
+            return False
+
+
+def certify_transported_target_projection(
+    source: StageMacroProjection,
+    target_system: GrammarAwareControlledSystem,
+    relation: Iterable[Pair],
+) -> TransportedTargetProjectionCertificate:
+    """Certify and return a target projection constructed by finite transport."""
+    certificate = TransportedTargetProjectionCertificate(source, target_system, tuple(relation))
+    if not certificate.verify():
+        raise ValueError("source projection and transport do not construct an exact target projection")
+    return certificate
 
 
 @dataclass(frozen=True)
@@ -211,7 +323,7 @@ def non_nested_replacement_witness() -> TransportCoherentPortableMacroLawCertifi
     """Positive witness with three old states replaced by two new states.
 
     There can be no source-to-target injection because the source has three
-    product states and the target has two.  The many-to-one relation nevertheless
+    product states and the target has two. The many-to-one relation nevertheless
     preserves the same two-state macro dynamics exactly.
     """
     actions = ("flip",)
@@ -251,13 +363,31 @@ def non_nested_replacement_witness() -> TransportCoherentPortableMacroLawCertifi
     return certificate
 
 
+def transported_target_projection_witness() -> TransportedTargetProjectionCertificate:
+    """Construct the old witness target projection without supplying target labels."""
+    existing = non_nested_replacement_witness()
+    transport = existing.transports[0]
+    certificate = certify_transported_target_projection(
+        transport.source,
+        transport.target.constrained_system,
+        transport.relation,
+    )
+    if (
+        not certificate.verify()
+        or certificate.target_labels != transport.target.summary_labels
+        or certificate.target_projection.induced_macro() != transport.source.induced_macro()
+    ):
+        raise AssertionError("transported target projection witness did not verify")
+    return certificate
+
+
 @dataclass(frozen=True)
 class ReplacementFiberSplitObstructionCertificate:
     """A newly legal word after replacement refutes one proposed carried merge.
 
-    ``relation`` transports the old states that existed before replacement.  It
-    need not cover newly created target states.  The certificate shows that two
-    old states merged by the source summary and by a proposed target summary are
+    ``relation`` transports the old states that existed before replacement. It need
+    not cover newly created target states. The certificate shows that two old
+    states merged by the source summary and by a proposed target summary are
     separated by a word that was illegal before replacement and legal afterward.
     """
 
@@ -370,9 +500,12 @@ def non_nested_rewiring_obstruction() -> ReplacementFiberSplitObstructionCertifi
 __all__ = [
     "Pair",
     "ReplacementTransport",
+    "TransportedTargetProjectionCertificate",
+    "certify_transported_target_projection",
     "TransportCoherentPortableMacroLawCertificate",
     "certify_transport_coherent_portable_macro_law",
     "non_nested_replacement_witness",
+    "transported_target_projection_witness",
     "ReplacementFiberSplitObstructionCertificate",
     "non_nested_rewiring_obstruction",
 ]
