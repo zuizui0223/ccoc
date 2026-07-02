@@ -1,101 +1,118 @@
 # Research priorities and theorem freeze
 
-## Decision
+## Governing rule
 
-New theorem generation is paused until portability core v1 is consolidated and
-its stop criteria are met. The repository has enough valid results; the current
-risk is not lack of hypotheses but loss of a legible central claim.
+RACH develops one structural question at a time. A new theorem branch is allowed
+only when it changes a canonical claim, not merely because another special case,
+panel, or witness can be defined.
 
-## Priority 0 — consolidate, do not extend
+The current structure is:
 
-**Goal:** turn existing portability results into one coherent theorem family.
+\[
+\boxed{
+\text{portability core v1}
+\quad+\quad
+\text{one selected post-v1 extension}
+\quad+\quad
+\text{separate companion and legacy shelves}.
+}
+\]
 
-Required work:
+## Completed consolidation work
 
-1. Make [portability core v1](portability_core_v1.md) the public structural
-   entry point.
-2. Present boundedness, coherent portability, and conservative grammar extension
-   as levels of one portability ladder.
-3. Demote relay trees to sharpness witnesses.
-4. Separate delayed evidence and candidate uncertainty from the core structural
-   narrative.
-5. State every core conclusion as one of: exact theorem, sufficient criterion,
-   lower-bound obstruction, sharp witness, or `UNRESOLVED` region.
+### P0 — portability core v1: complete and frozen
 
-**Forbidden during P0:** new special-case grammar theorem, new panel theorem,
-new robustness theorem, new measurement protocol, or another witness family.
+The public core is one theorem family:
 
-## Priority 1 — proof hygiene and public interface
+1. exact grammar-aware dynamic factorization;
+2. the addressability / extension--compression lower-bound obstruction; and
+3. the nested portability ladder: boundedness, coherent portability, and
+   conservative grammar extension.
 
-**Goal:** make the repository say only what the proofs support.
+Relay trees are sharpness witnesses, not independent headline theories. Delayed
+evidence and candidate uncertainty are companions, not premises of the core.
 
-Required work:
+### P1 — proof hygiene: complete, maintain only
 
-1. Rewrite README and theorem spine around the core/companion/shelf split.
-2. Make the public theory entrance point to portability core modules only.
-3. Audit claims for these distinctions:
+The README, public facades, theorem spine, and claim-status audit distinguish:
 
-   | Claim type | Required wording |
-   |---|---|
-   | Exact finite theorem | state domain and grammar explicitly |
-   | Sufficient criterion | do not write “iff” without converse proof |
-   | Lower bound | name the decoder/joint-realizability premise |
-   | Sharpness witness | identify the family and the attained equality |
-   | Evidence limitation | distinguish `UNRESOLVED` from impossibility of a law |
+| Claim type | Required wording |
+|---|---|
+| Exact finite theorem | State the finite domain and legal grammar. |
+| Sufficient criterion | Do not write “iff” without a converse. |
+| Lower-bound obstruction | Name the operational separation premise. |
+| Sharpness witness | Identify the family and attained equality. |
+| No-go theorem | State the model/evidence class. |
+| `UNRESOLVED` | Say which premise has not been supplied. |
 
-4. Freeze experimental-design branches as regression-only.
+### P2 — logical packages: complete, preserve boundaries
 
-## Priority 2 — logical package boundaries
+Keep one repository while shared primitives remain stable, but preserve three
+public surfaces:
 
-Keep one repository until P0/P1 are complete. Use this conceptual partition:
+| Package | Question |
+|---|---|
+| `portability-core` | When does one exact macro-law survive declared composition changes? |
+| `identifiability-companion` | What can finite evidence establish about closure or retained mechanisms? |
+| `experimental-design-legacy` | How should a fixed quotient or contract be measured or protected? |
 
-| Package | Question | Contents |
-|---|---|---|
-| `portability-core` | When does an exact macro-law survive declared composition changes? | blankets, addressability lower bound, conservative portability, sharp relay witness |
-| `identifiability-companion` | What can finite evidence establish about closure or retained mechanisms? | delayed adaptive no-go, candidate-safe laws, joint uncertainty laws |
-| `experimental-design-legacy` | How should a fixed quotient/contract be measured or protected? | reset panels, witnessed evidence, robustness, common-mode failure |
+Do not physically split repositories until the shared finite-model primitives and
+public imports are genuinely stable.
 
-A physical repository split is deferred until imports and shared finite-model
-utilities stabilize. Splitting now would preserve the current conceptual clutter
-in multiple locations.
+## P3 — selected post-v1 direction: non-nested replacement and rewiring
 
-## Priority 3 — choose one next research direction only
+The one authorized post-v1 direction is declared finite replacement, extinction,
+and rewiring **without nested stage embeddings**. Issue [#90](https://github.com/zuizui0223/rach-causal-invariants/issues/90)
+is implemented by PR [#91](https://github.com/zuizui0223/rach-causal-invariants/pull/91).
 
-After portability core v1 reaches its stop criteria, select **one** direction:
+The current result is deliberately narrow:
 
-1. non-nested composition, replacement, and rewiring;
-2. composition-dependent candidate mechanism families; or
-3. noisy / approximate portability.
+- a **transport-coherent sufficient criterion**: each stage has the same exact
+  macro dynamics and every declared replacement edge is total,
+  output/legal-action/label-preserving, and successor-closed;
+- a **local obstruction**: a newly legal word after replacement can split one
+  carried macro fiber; and
+- a positive many-to-one replacement witness plus a negative rewiring witness.
 
-A new issue must state which canonical core claim it extends, why the existing
-criterion does not cover it, and whether it belongs to core or companion work.
+Its current completion task is verification hygiene, not another variant:
+
+1. keep a deterministic replay certificate and a path-scoped CI workflow;
+2. synchronize public claim-status documents; and
+3. record the genuine proof-strengthening question before extending the branch.
+
+### The next legitimate mathematical strengthening
+
+The present positive certificate assumes that every stage already factors through
+the same macro dynamics. The nontrivial next question is whether a verified
+transport from one exact source projection can **construct** an exact target
+projection, under explicit totality, label-consistency, and successor conditions.
+
+Until that is proved, describe the current result as an edge-level
+transport-coherence certificate, not as a necessary-and-sufficient theory of
+replacement portability.
+
+## Explicitly paused directions
+
+Do not start these in parallel:
+
+1. composition-dependent candidate-mechanism families;
+2. noisy or approximate portability;
+3. new panel, budget, robustness, coverage, or field-protocol theorems;
+4. another action-alphabet special case; or
+5. a larger coordinate-table or ecological toy witness.
 
 ## Stop rule
 
-Do not start a new theorem branch merely because a new edge case exists. Start
-one only if it changes one of these canonical statements:
+A new issue must identify exactly one canonical claim it changes:
 
 \[
 \text{exact factorization},
 \quad
 \text{addressability obstruction},
 \quad
-\text{conservative portability},
+\text{portable composition},
 \quad
 \text{or finite-evidence identifiability}.
 \]
 
-Otherwise record the case as a limitation, example, or legacy regression.
-
-## Completion signal for portability core v1
-
-The core is ready to stop expanding when:
-
-- the one-page core statement is stable;
-- the theorem ladder has no duplicated headline result;
-- README, theorem spine, and asset map agree;
-- companion and legacy branches are visibly separated;
-- unresolved cases are listed rather than immediately converted into new theorem
-  targets.
-
-The governing issue is [#84](https://github.com/zuizui0223/rach-causal-invariants/issues/84).
+Otherwise it belongs in an example, limitation, regression test, or legacy shelf.
