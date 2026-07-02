@@ -28,16 +28,16 @@ def test_rejects_missing_successor_closure_for_an_old_legal_action():
     actions = ("flip", "reveal")
     source = StageMacroProjection(
         GrammarAwareControlledSystem(
-            FiniteControlledOutputSystem(actions, ((2, 0), (2, 1), (0, 2)), ("low", "low", "high")),
+            FiniteControlledOutputSystem(actions, ((2, 0), (2, 1), (0, 2)), ("same", "same", "same")),
             FinitePrefixGrammar(actions=actions, transition_table=((0, None),)),
         ),
         (0, 0, 1),
     )
     target = GrammarAwareControlledSystem(
-        FiniteControlledOutputSystem(actions, ((1, 1), (0, 1)), ("low", "high")),
+        FiniteControlledOutputSystem(actions, ((1, 1), (2, 2), (0, 0)), ("same", "same", "same")),
         FinitePrefixGrammar(actions=actions, transition_table=((0, 0),)),
     )
-    certificate = ConservativeTransportedSchemaCertificate(source, target, ((0, 0), (1, 0), (2, 0)))
+    certificate = ConservativeTransportedSchemaCertificate(source, target, ((0, 0), (1, 1), (2, 2)))
 
     assert not certificate.verify()
     with pytest.raises(ValueError, match="successor-closed"):
@@ -88,7 +88,11 @@ def test_rejects_nonuniform_target_only_action_availability():
         transition_table=((0, None), (1, 1)),
     )
     target = GrammarAwareControlledSystem(target_system, target_grammar)
-    certificate = ConservativeTransportedSchemaCertificate(source, target, ((0, 0), (1, 1)))
+    certificate = ConservativeTransportedSchemaCertificate(
+        source,
+        target,
+        ((0, 0), (0, 1), (1, 2), (1, 3)),
+    )
 
     assert source.verify()
     assert not certificate.verify()
