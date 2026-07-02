@@ -10,16 +10,20 @@ no exact open-safe interface may merge two product states:
 
     K_open >= log2|I| + sum_j log2|E_j|.
 
-If a fixed closed context ``j`` factors through ``(I, E_j)``, its exact interface
-has ``|I||E_j|`` states.  Hence extension and compression need not commute:
+If a fixed closed context ``j`` admits a supplied exact interface that factors
+through ``(I, E_j)``, then that factorization gives the upper bound
+``K_closed,j <= log2|I| + log2|E_j|``.  Hence extension and compression need not
+commute:
 
     K_open - max_j K_closed,j
       >= sum_j log2|E_j| - max_j log2|E_j|.
 
 The existing coordinate witness realizes equality for binary modules.  The
-existing relay-tree compiler realizes the same sharp family with one constant
-local grammar, pairwise messages, and maximum degree three.  This module makes
-that theorem spine explicit; it does not add a new ecosystem design language.
+existing relay-tree compiler realizes the same sharp family with a constant-size
+local node/message grammar, pairwise messages, and maximum degree three.  The
+family still has a growing set of selectable ports, so this is not a claim of a
+constant-size global action alphabet.  This module makes that theorem spine
+explicit; it does not add a new ecosystem design language.
 """
 
 from __future__ import annotations
@@ -154,7 +158,13 @@ def certify_addressable_product_lower_bound(
 
 @dataclass(frozen=True)
 class ClosedContextFactorizationCertificate:
-    """Exact fixed-context interface size under the declared factorization premise."""
+    """Closed-context interface upper bound under the declared factorization premise.
+
+    ``closed_context_state_counts`` records the cardinality of the supplied
+    factorized summaries, not a claim that these summaries are minimal for every
+    possible closed system.  The resulting upper bound is exactly what the
+    noncommutation inequality needs.
+    """
 
     product_certificate: AddressableProductLowerBoundCertificate
     closed_context_state_counts: tuple[int, ...]
