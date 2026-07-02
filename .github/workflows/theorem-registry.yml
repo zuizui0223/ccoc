@@ -1,0 +1,30 @@
+name: Theorem registry integrity
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  registry:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install test dependency
+        run: python -m pip install --upgrade pip pytest
+      - name: Verify theorem registry and scope policy
+        run: python scripts/verify_theorem_registry.py --check --write-report
+      - name: Test theorem registry entry points
+        run: python -m pytest tests/test_theorem_registry.py -q
+      - name: Upload registry report
+        uses: actions/upload-artifact@v4
+        with:
+          name: theorem-registry-report
+          path: artifacts/theorem_registry_report.json
+          if-no-files-found: error
