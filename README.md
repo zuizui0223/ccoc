@@ -12,14 +12,10 @@ about real ecosystems.
 
 ## Start here
 
-- [Portability core v1](docs/portability_core_v1.md) — the canonical structural
-  theorem family.
-- [Non-nested replacement portability](docs/non_nested_replacement_portability.md)
-  — the selected post-v1 structural extension.
-- [Claim-status audit](docs/claim_status_audit.md) — theorem domains, sufficient
-  criteria, lower bounds, witnesses, no-go results, and `UNRESOLVED` boundaries.
-- [Research priorities](docs/research_priorities.md) — active branch and stop
-  rules.
+- [Portability core v1](docs/portability_core_v1.md) — the canonical structural theorem family.
+- [Non-nested replacement portability](docs/non_nested_replacement_portability.md) — the selected post-v1 structural extension.
+- [Claim-status audit](docs/claim_status_audit.md) — theorem domains, sufficient criteria, lower bounds, witnesses, no-go results, and `UNRESOLVED` boundaries.
+- [Research priorities](docs/research_priorities.md) — active branch and stop rules.
 - [Theorem spine](docs/theorem_spine.md) — the core/extension/companion map.
 - [Legacy shelf](docs/legacy/README.md) — valid but frozen experiment-design work.
 
@@ -30,16 +26,13 @@ import causal_model.portability_core as rach
 import causal_model.identifiability_companion as rach_id
 ```
 
-`causal_model.current_theory` is a broad historical compatibility aggregate, not
-a public entrance for new theorem work.
+`causal_model.current_theory` is a broad historical compatibility aggregate, not a public entrance for new theorem work.
 
 ## Portability core v1
 
 ### Positive side
 
-A finite portable macro-law is possible when every allowed future effect factors
-through one finite summary that preserves outputs, legal actions, and successor
-summaries:
+A finite portable macro-law is possible when every allowed future effect factors through one finite summary that preserves outputs, legal actions, and successor summaries:
 
 \[
 \boxed{
@@ -49,15 +42,11 @@ summaries:
 }
 \]
 
-For growing **nested** composition, a common summary alphabet only bounds memory.
-One shared law additionally requires common macro dynamics and label-coherent
-embeddings. When legal action rows grow, old macro meanings must remain fixed and
-new actions must be label-deterministic.
+For growing **nested** composition, a common summary alphabet only bounds memory. One shared law additionally requires common macro dynamics and label-coherent embeddings. When legal action rows grow, old macro meanings must remain fixed and new actions must be label-deterministic.
 
 ### Negative side
 
-When a reachable subsystem contains independently future-addressable exterior
-factors,
+When a reachable subsystem contains independently future-addressable exterior factors,
 
 \[
 S^*\cong I\times E_1\times\cdots\times E_q,
@@ -83,76 +72,50 @@ K_{\mathrm{open}}-\max_jK_{\mathrm{closed},j}
 }
 \]
 
-Thus a small law in every fixed closed context need not yield one small law
-portable to future addition, removal, reconnection, or newly permitted actions.
-The bounded-degree relay tree is a sharpness witness, not a separate headline
-claim.
+Thus a small law in every fixed closed context need not yield one small law portable to future addition, removal, reconnection, or newly permitted actions. The bounded-degree relay tree is a sharpness witness, not a separate headline claim.
 
 ## Selected post-v1 extension: replacement without nesting
 
-The repository's selected structural extension handles finite replacement,
-extinction, and rewiring families that have no raw-state inclusion map between
-stages. A declared replacement edge may instead carry a total,
-output/legal-action-preserving, successor-closed relation.
+The selected structural extension handles finite replacement, extinction, and rewiring families that have no raw-state inclusion map between stages. A declared replacement edge instead carries a finite relation.
 
-There are two layers.
+There are three layers.
 
-1. **Transport coherence:** when source and target already have exact projections
-   into the same macro dynamics, a label-preserving transport verifies that the
-   declared replacement edge retains that law.
-2. **Transported target factorization:** beginning with only an exact source
-   projection, a total transport that is label-consistent on every target fiber
-   constructs target labels by
+1. **Transport coherence:** when source and target already have exact projections into the same macro dynamics, a label-preserving transport verifies that the declared replacement edge retains that law.
+2. **Transported target factorization:** beginning with only an exact source projection, a total equal-legality transport that is label-consistent on every target fiber constructs target labels by
 
    \[
    q_T(t)=q_S(s)\qquad ((s,t)\in R).
    \]
 
-   Equal output/legal rows and successor closure then certify that the constructed
-   target projection is exact and induces the same macro dynamics.
+   The constructed target projection is exact and induces the source macro dynamics.
+3. **Conservative non-nested transport:** target-only actions are permitted when their availability and macro successor are uniform on every derived target fiber. The construction then produces one conservative macro schema: source rows are restrictions, target rows realize the expanded schema.
 
-The three-state-to-two-state many-to-one witness reconstructs target labels
-\((0,1)\) without taking target labels as an input. A newly legal word can still
-refute a proposed carried merge after rewiring: target-only legal actions lie
-outside the equal-legality transport theorem.
+The three-state-to-two-state many-to-one witness demonstrates both target-label construction and a safe target-only `reveal` action. A newly legal action that varies within a macro fiber remains a concrete local obstruction to that proposed merge.
 
-The result remains a sufficient theorem for a declared finite relation. It does
-not infer replacement grammar from data, give a necessary classification, or turn
-a failed transport into a claim of unbounded memory.
+All three are sufficient finite-domain results. They do not infer replacement or action grammars from data, give a necessary characterization, or turn a failed transport into a claim of unbounded memory.
 
 ## Companion programs
 
 ### Identifiability
 
-Delayed-addressability and adaptive-experiment results ask what finite evidence
-can establish about closure. Without an independently justified finite horizon and
-grammar contract, the honest conclusion can be `UNRESOLVED`.
+Delayed-addressability and adaptive-experiment results ask what finite evidence can establish about closure. Without an independently justified finite horizon and grammar contract, the honest conclusion can be `UNRESOLVED`.
 
-Candidate-safe and joint exterior–mechanism laws ask whether retained mechanism
-families share one macro transition. They are companion questions, not premises
-of the portability core.
+Candidate-safe and joint exterior–mechanism laws ask whether retained mechanism families share one macro transition. They are companion questions, not premises of the portability core.
 
 ### Experimental design
 
-Reset panels, evidence coverage, robustness, and common-mode failure results are
-executable legacy branches. They apply after a quotient or contract has already
-been fixed.
+Reset panels, evidence coverage, robustness, and common-mode failure results are executable legacy branches. They apply after a quotient or contract has already been fixed.
 
 ## Certificate discipline
 
-A passing finite workflow is not a claim about arbitrary ecosystems. Every active
-result must state:
+A passing finite workflow is not a claim about arbitrary ecosystems. Every active result must state:
 
 1. a finite domain and legal grammar;
-2. whether it is an exact theorem, sufficient criterion, lower bound, sharp
-   witness, no-go result, or `UNRESOLVED` boundary;
+2. whether it is an exact theorem, sufficient criterion, lower bound, sharp witness, no-go result, or `UNRESOLVED` boundary;
 3. an independently checkable certificate;
 4. fail-closed and counterexample tests; and
 5. finite replay only inside the declared domain.
 
 ## Scope boundary
 
-RACH does not prove that empirical ecosystems are finite deterministic systems,
-that passive data are useless, or that arbitrary exterior conditions can be
-exhausted. It gives precise finite-domain criteria for when a proposed macro-law
-is certified, obstructed, candidate-safe, set-valued, or unresolved.
+RACH does not prove that empirical ecosystems are finite deterministic systems, that passive data are useless, or that arbitrary exterior conditions can be exhausted. It gives precise finite-domain criteria for when a proposed macro-law is certified, obstructed, candidate-safe, set-valued, or unresolved.
