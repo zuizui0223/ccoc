@@ -46,6 +46,17 @@ from .extension_compression_noncommutation import (
     certify_closed_context_factorization,
     certify_relay_tree_sharpness,
 )
+from .operational_addressability import (
+    CanonicalOperationalProduct,
+    OperationalAddressableProductCertificate,
+    OperationalClosedContextFactorizationCertificate,
+    build_canonical_operational_product,
+    certify_canonical_operational_product,
+    certify_operational_addressable_product,
+    certify_operational_closed_context_factorization,
+    readout_value,
+    standard_closed_projection,
+)
 from .relay_tree_compilation import (
     BoundedDegreeCompilationCertificate,
     RelayProtocolCertificate,
@@ -104,12 +115,22 @@ __all__ = [
     "certify_dynamic_boundary_blanket",
     "certify_grammar_aware_canonical_interface",
     "certify_grammar_aware_dynamic_blanket",
-    # addressability obstruction and sharpness witness
+    # addressability obstruction: analytic theorem and operational applications
     "AddressableProductLowerBoundCertificate",
     "ClosedContextFactorizationCertificate",
-    "RelayTreeSharpnessCertificate",
     "certify_addressable_product_lower_bound",
     "certify_closed_context_factorization",
+    "OperationalAddressableProductCertificate",
+    "OperationalClosedContextFactorizationCertificate",
+    "certify_operational_addressable_product",
+    "certify_operational_closed_context_factorization",
+    "CanonicalOperationalProduct",
+    "build_canonical_operational_product",
+    "certify_canonical_operational_product",
+    "readout_value",
+    "standard_closed_projection",
+    # sharpness witness
+    "RelayTreeSharpnessCertificate",
     "certify_relay_tree_sharpness",
     "BoundedDegreeCompilationCertificate",
     "RelayProtocolCertificate",
