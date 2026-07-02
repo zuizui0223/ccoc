@@ -2,6 +2,7 @@
 
 import pytest
 
+import causal_model.portability_core as portability
 from causal_model.coherent_portable_macrolaw import PortableMacroDynamics, StageMacroProjection
 from causal_model.dynamic_boundary_blankets import FiniteControlledOutputSystem
 from causal_model.non_nested_portability import (
@@ -67,3 +68,10 @@ def test_transport_family_requires_connected_replacement_graph():
 
     with pytest.raises(ValueError, match="replacement transports"):
         certify_transport_coherent_portable_macro_law(macro, (first, second), ())
+
+
+def test_non_nested_certificates_are_exported_from_the_portability_facade():
+    assert portability.non_nested_replacement_witness is non_nested_replacement_witness
+    assert portability.non_nested_rewiring_obstruction is non_nested_rewiring_obstruction
+    assert "TransportCoherentPortableMacroLawCertificate" in portability.__all__
+    assert "ReplacementFiberSplitObstructionCertificate" in portability.__all__
