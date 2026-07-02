@@ -83,6 +83,27 @@ def test_transport_rejects_label_inconsistent_target_fiber():
         _ = certificate.target_labels
 
 
+def test_transport_rejects_target_only_legal_action():
+    actions = ("stay", "reveal")
+    source = StageMacroProjection(
+        GrammarAwareControlledSystem(
+            FiniteControlledOutputSystem(actions, ((0, 0), (1, 1)), ("low", "low")),
+            FinitePrefixGrammar(actions=actions, transition_table=((0, None),)),
+        ),
+        (0, 0),
+    )
+    target = GrammarAwareControlledSystem(
+        FiniteControlledOutputSystem(actions, ((0, 0), (1, 1)), ("low", "low")),
+        FinitePrefixGrammar(actions=actions, transition_table=((0, 0),)),
+    )
+    certificate = TransportedTargetProjectionCertificate(source, target, ((0, 0), (1, 1)))
+
+    assert source.verify()
+    assert not certificate.verify()
+    with pytest.raises(ValueError, match="equal legal-action rows"):
+        _ = certificate.target_labels
+
+
 def test_newly_legal_reveal_is_not_an_equal_legality_transport_certificate():
     obstruction = non_nested_rewiring_obstruction()
     certificate = TransportedTargetProjectionCertificate(
