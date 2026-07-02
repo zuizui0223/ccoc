@@ -1,100 +1,81 @@
-# Research priorities and theorem freeze
+# Research priorities: manuscript freeze and legacy policy
 
 ## Governing rule
 
-RACH develops one structural question at a time. A new theorem branch is allowed only when it changes a canonical claim, not merely because another special case, panel, or witness can be defined.
+RACH is in a **manuscript-freeze phase**. The only active objective is to
+produce a reproducible source archive for the open-composition paper:
 
 \[
-\boxed{
-\text{portability core v1}
-\quad+\quad
-\text{one selected post-v1 extension}
-\quad+\quad
-\text{separate companion and legacy shelves}.
-}
+\text{exact grammar-aware interface}
+\; + \;
+\text{extension--compression noncommutation}
+\; + \;
+\text{relay sharpness}
+\; + \;
+\text{conservative portability boundary}.
 \]
 
-RACH is a mathematical-ecology repository for finite formal models and theorem
-certificates. It does not host empirical datasets, fitted parameters, field
-inference, or claims of ecological validation. See
-[non-empirical scope](nonempirical_scope.md).
+No new theorem branch is allowed during this phase. A correction may narrow a
+claim, clarify a proof assumption, repair a regression, or improve
+reproducibility; it may not introduce an additional headline result.
 
-## Completed mathematical package
+RACH remains a mathematical-ecology repository for finite formal models and
+theorem certificates. It contains no empirical datasets, field inference, or
+claims of ecological validation.
 
-### P0 — portability core v1: complete and frozen
+## Active publication core
 
-The public core is one theorem family:
+| Asset | Role in paper |
+|---|---|
+| `CORE-1` | definition of exact grammar-aware interface |
+| `CORE-2` | main addressability / noncommutation lower bound |
+| `CORE-3` | bounded-degree binary sharpness witness |
+| `CORE-4` | sufficient conservative schema boundary |
+| `CORE-5` | local fiber-split negative boundary |
 
-1. exact grammar-aware dynamic factorization;
-2. the addressability / extension--compression lower-bound obstruction; and
-3. the nested portability ladder: boundedness, coherent portability, and conservative grammar extension.
+The active default test gate covers these assets. The complete provenance registry
+remains available, but it is not a list of current manuscript claims.
 
-Relay trees are sharpness witnesses, not independent headline theories. Delayed evidence and candidate uncertainty are companions, not premises of the core.
+## Archived during manuscript preparation
 
-### P1 — non-nested replacement: complete and frozen
+The following branches are retained under the [legacy shelf](../legacy/README.md)
+and are excluded from the active public facade and default test gate:
 
-The selected post-v1 extension covers declared finite replacement, extinction,
-and rewiring without nested stage embeddings. Its completed sequence is:
+1. finite closure classification (`CORE-0`);
+2. non-nested replacement, extinction, and rewiring (`EXT-1`--`EXT-4`);
+3. delayed exposure, finite-evidence no-go, and candidate mechanisms
+   (`ID-1`--`ID-3`);
+4. reset panels, coverage, cell loss, and common-mode design results
+   (`LEGACY-1`); and
+5. historical examples, benchmark scripts, and deprecated aggregates.
 
-1. transport-coherent edge preservation;
-2. source-to-target exact factorization;
-3. conservative transport when target-only actions are fiber-wise uniform; and
-4. local fiber-split obstruction when that uniformity fails.
-
-The many-to-one witnesses, rewiring counterexample, deterministic replay, and
-focused CI are part of the theorem package, not optional examples.
-
-### P2 — companions and legacy: preserve boundaries
-
-| Package | Question | Status |
-|---|---|---|
-| `portability-core` | When does one exact macro-law survive declared composition changes? | frozen theorem package |
-| `identifiability-companion` | What can finite evidence establish about closure or retained mechanisms? | companion theorem package |
-| `experimental-design-legacy` | How should a fixed quotient or contract be measured or protected? | frozen conditional shelf |
-
-## P3 — retrieval and provenance closure: active maintenance target
-
-The next task is not another theorem. Every public mathematical theory must be
-recoverable through [the theorem registry](theorem_registry.md):
-
-1. finite domain and assumptions;
-2. conclusion and status class;
-3. source module and public certificate;
-4. regression or deterministic replay route;
-5. documentation and non-claim; and
-6. a bounded mathematical-ecology interpretation that does not turn the theorem
-   into empirical validation.
-
-The registry checker is required maintenance infrastructure. A code or document
-change that breaks a registry path, hides a public theory, or weakens its scope
-statement is a regression.
+Use `pytest -m legacy` to replay archived tests explicitly. A legacy failure must
+not be repaired by broadening the paper's theorem or public API.
 
 ## Explicitly paused directions
 
-Do not start these in parallel:
+Do not start any of the following before the paper source is tagged:
 
-1. approximate or noisy portability;
-2. composition-dependent candidate-mechanism families;
-3. new panel, budget, robustness, coverage, or field-protocol theorems;
-4. another transport or action-alphabet variant;
-5. a larger coordinate-table or ecological toy witness; or
-6. empirical data ingestion, model fitting, or ecological case-study inference in
-   this repository.
+1. approximate, noisy, stochastic, or continuous-state portability;
+2. simultaneous-action grammars or hidden-state learning;
+3. grammar discovery from observations;
+4. candidate-mechanism or joint uncertainty extensions;
+5. new replacement / transport variants;
+6. panel, budget, coverage, robustness, or field-protocol theory;
+7. empirical data ingestion, fitting, or ecological case studies; or
+8. a larger coordinate witness or a new ecological toy system.
 
-## Unfreeze rule
+## Promotion rule after submission
 
-A future mathematics issue must identify exactly one canonical claim it changes:
+A legacy result may return to active status only if it names exactly one change to
+an existing canonical claim:
 
 \[
-\text{exact factorization},
-\quad
-\text{addressability obstruction},
-\quad
-\text{portable composition},
-\quad
+\text{exact interface},\qquad
+\text{addressability obstruction},\qquad
+\text{portable composition},\qquad
 \text{or finite-evidence identifiability}.
 \]
 
-It must also state why the existing registry entry is insufficient. Otherwise it
-belongs in documentation, a regression test, an external application repository,
-or the legacy shelf.
+It must also explain why the manuscript package is insufficient. Otherwise it
+remains a historical replay, documentation item, or future-work repository task.
