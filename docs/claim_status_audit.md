@@ -105,7 +105,7 @@ certificate from being narrated as a classification of arbitrary ecosystems.
 
 ## B. Selected post-v1 structural extension
 
-### B1. Non-nested replacement transport
+### B1. Non-nested edge preservation with supplied projections
 
 - **Status:** Sufficient finite-domain transport-coherence criterion.
 - **Module:** `non_nested_portability.py`.
@@ -113,18 +113,36 @@ certificate from being narrated as a classification of arbitrary ecosystems.
   when every stage already has the same exact macro dynamics and every edge
   supplies a total, output/legal-action/label-preserving, successor-closed
   transport relation. The transport may be many-to-one or one-to-many.
-- **Witnesses:** A three-to-two many-to-one replacement and a four-to-three
-  newly-legal-word rewiring obstruction.
-- **Domain:** Declared finite grammar-aware controlled systems, a common finite
+- **Witness:** A three-to-two many-to-one replacement.
+- **Domain:** Declared finite grammar-aware controlled systems, common finite
   macro dynamics, and explicit replacement transports.
-- **Do not claim:** Transport failure proves cumulative addressability, unbounded
-  memory, or the absence of every alternative macro-law.
-- **Proof-strength note:** The current positive criterion assumes exact stage
-  projections into the common macro law. Constructing a target projection from
-  one source projection and a transport relation is an open strengthening, not
-  part of the current theorem.
+- **Do not claim:** Edge preservation proves that a target interface can always be
+  constructed without the target-fiber consistency premise below.
 
-### B2. Non-nested newly-legal-word split
+### B2. Transported target exact factorization
+
+- **Status:** Sufficient finite-domain theorem.
+- **Module:** `non_nested_portability.py`.
+- **Claim:** Given one exact source projection and a relation covering both finite
+  product state spaces, if related states preserve output and equal legal-action
+  rows, the relation is successor-closed, and every target fiber receives one
+  source label, then
+
+  \[
+  q_T(t)=q_S(s)\quad ((s,t)\in R)
+  \]
+
+  is well-defined, is an exact grammar-aware target interface, and induces the
+  same finite macro dynamics as \(q_S\).
+- **Witness:** The target labels \((0,1)\) of a three-to-two many-to-one
+  replacement are constructed without being supplied to the certificate.
+- **Domain:** Declared finite source and target controlled systems, exact source
+  projection, and a total target-fiber-label-consistent transport.
+- **Do not claim:** This is a necessary characterization of all replacement
+  portability, or a theorem for target-only legal actions, stochasticity,
+  approximation, or data-inferred transports.
+
+### B3. Non-nested newly-legal-word split
 
 - **Status:** Local obstruction to one carried merge.
 - **Module:** `non_nested_portability.py`.
