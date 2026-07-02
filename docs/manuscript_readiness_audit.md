@@ -21,9 +21,9 @@ The relevant lower bound is conditional on operational addressability, not on sy
 | Manuscript role | RACH asset | What can be used | What must not be claimed |
 |---|---|---|---|
 | Formal setup | `CORE-1`, `grammar_aware_blankets.py` | Exact interface means preservation of output, legal actions, and successor summary on `system state × grammar state`. | This quotient is not claimed to be novel relative to fixed-grammar quotient or bisimulation theory. |
-| Main negative theorem | `CORE-2`, `extension_compression_noncommutation.py` | Under joint realization and decoder-word premises, distinct product states require distinct open interface labels. | The certificate does not infer decoder words or the ecological grammar from data. |
+| Main negative theorem | `CORE-2`, `extension_compression_noncommutation.py` | Under joint realization and uniform decoder-word premises, distinct product-indexed states require distinct open interface labels. | The certificate does not infer product structure, decoder words, reachability, or the ecological grammar from data. |
 | Sharpness construction | `CORE-3`, `extension_compression.py`, `relay_tree_compilation.py` | Binary family with closed memory 2 bits, open memory `m + 1` bits, pairwise messages, maximum degree 3, and a size-independent local node/message grammar. | Do not call the global port-labelled action alphabet constant-size. Do not generalize from the witness to arbitrary local networks. |
-| Positive boundary | `CORE-4`, `coherent_portable_macrolaw.py`, `conservative_macro_schema.py` | A finite update-consistent common summary gives a sufficient portability criterion. | The criterion is sufficient, not a necessary characterization. |
+| Positive boundary | `CORE-4`, `coherent_portable_macrolaw.py`, `conservative_macro_schema.py` | A finite update-consistent common summary gives a sufficient portability criterion for a declared finite chain. | The criterion is sufficient, not a necessary characterization or theorem about arbitrary infinite/stochastic composition. |
 | Replacement/ecological corollary | `EXT-1`--`EXT-4`, `non_nested_*` modules | Declared replacement, extinction, and rewiring relations can transport a law under stated relation and fiber-uniformity conditions. | Failure of a transport certificate is not a lower bound and not absence of every macro-law. |
 | Scope and interpretation | `docs/nonempirical_scope.md` | A focal patch plus dormant external modules can be a synthetic ecological reading. | No field validation, fitted parameters, or claim about any observed ecosystem. |
 
@@ -41,13 +41,17 @@ This is the object to which all memory statements refer.
 
 ### Theorem A: addressable-product lower bound
 
-Let a reachable declared product subsystem be
+Let a declared product-indexed subset of system states be
 
 \[
 S^* \cong I\times E_1\times\cdots\times E_q.
 \]
 
-Assume that a legal future word separates unequal values of the inside coordinate and that, for each exterior factor, a legal future word separates unequal values of that factor while all other coordinates are held fixed. Then every exact open interface is injective on `S*`, hence
+No transition closure or reachability from an unspecified initial state is needed
+for this theorem. Assume that one legal future word uniformly decodes the inside
+coordinate and that, for each exterior factor, one legal future word uniformly
+decodes that factor over every setting of the remaining coordinates. Then every
+exact open interface is injective on `S*`, hence
 
 \[
 K_{\mathrm{open}}
@@ -55,11 +59,14 @@ K_{\mathrm{open}}
 \log_2 |I|+\sum_{j=1}^{q}\log_2|E_j|.
 \]
 
-The proof is an injection argument: any two distinct product states differ in some coordinate, and the declared decoder for that coordinate produces different legal future behaviour.
+The proof is an injection argument: any two distinct product states differ in
+some coordinate, and the declared decoder for that coordinate produces different
+legal future behaviour.
 
 ### Corollary: extension--compression noncommutation
 
-For each closed context `j`, assume a supplied exact interface factors through `(I, E_j)`. This yields the **upper bound**
+For each closed context `j`, assume a supplied exact interface factors through
+`(I, E_j)`. This yields the **upper bound**
 
 \[
 K_{\mathrm{closed},j}\le \log_2|I|+\log_2|E_j|.
@@ -75,33 +82,47 @@ K_{\mathrm{open}}-
 \max_j\log_2|E_j|.
 \]
 
-The word “upper bound” is essential. A factorization through `(I, E_j)` alone does **not** imply that the closed minimal interface has exactly `|I||E_j|` states; it can be smaller. Equality is established only for the explicit binary witness.
+The word “upper bound” is essential. A factorization through `(I, E_j)` alone does
+**not** imply that the closed minimal interface has exactly `|I||E_j|` states; it
+can be smaller. Equality is established only for the explicit binary witness,
+where the closed grammar also has decoders for both retained coordinates.
 
 ### Theorem B: conservative portability criterion
 
-A common finite summary schema remains exact across declared nested or transported composition changes when old macro meanings are preserved and each newly legal action has one availability status and one macro successor inside every proposed macro fiber. This is a sufficient constructive result, not a universal dichotomy.
+A common finite summary schema remains exact across a declared finite nested
+composition chain when old macro meanings are preserved and each newly legal
+action has one availability status and one macro successor inside every proposed
+macro fiber. This is a sufficient constructive result, not a universal dichotomy.
 
 ## Robustness assessment
 
 ### What is robust now
 
 - The exact-interface semantics explicitly checks current output, legal-action rows, and successor labels; the regression suite includes output, legality, and successor counterexamples.
-- The addressability witness has explicit one-step separators for every unequal pair in its finite state space.
+- The operational addressability witness checks explicit decoder traces uniformly across all product-coordinate settings, not merely a cardinality table.
 - The relay construction verifies macro-time conjugacy to the coordinate witness while keeping node states, message alphabet, pairwise communication, and maximum degree bounded.
-- Non-nested transport checks both positive witnesses and each local failure mode: broken successor closure, nonuniform target-only action availability, and nonuniform target successor labels.
-- Registry integrity, focused theorem replays, the full test suite, and CI passed for the theorem-registry merge commit.
+- The conservative schema checks both a positive finite expansion witness and local failure modes: changed old-action meaning, nonuniform availability, and nonuniform successor labels.
+- The dedicated paper-core replay records theorem provenance, selected finite witnesses, and scope limits in a machine-readable artifact.
 
-### What must be tightened before submission
+### What must be preserved before submission
 
-1. **Proof versus replay.** `AddressableProductLowerBoundCertificate` records the decoder and product hypotheses as declared booleans. It replays their combinatorial consequence, but it cannot independently establish that a proposed ecological system has those decoder words. The manuscript must state the decoder-word contract as a definition and prove Theorem A symbolically.
-2. **Closed-context wording.** Replace every statement that treats factorization through `(I, E_j)` as an exact closed minimal size with the correct upper-bound statement. The binary witness may retain equality.
-3. **Local versus global grammar.** The relay construction has a constant local node/message grammar and degree bound, while the family still has port-specific choices whose number grows with `m`. The manuscript must say this exactly.
-4. **Finite deterministic domain.** The results do not cover noise, stochastic transitions, continuous states, simultaneous reader firings, hidden-state learning, or grammar discovery. These are domain limits, not minor technicalities.
-5. **Novelty boundary.** Fixed-grammar exact quotients are adjacent to standard automata/bisimulation and state-abstraction ideas. The paper must claim novelty only for the extension-grammar lower bound, its operational-addressability proof route, and the matching bounded-locality witness.
+1. **Proof versus replay.** The analytic injection theorem must appear as a self-contained LaTeX proof. Certificates replay declared finite instances and do not discover an ecological grammar or decoder word.
+2. **Product subset wording.** The theorem uses a declared product-indexed subset. Do not add transition closure or reachability claims unless an application separately supplies them.
+3. **Closed-context wording.** Treat factorization through `(I, E_j)` as a closed upper bound. Claim equality only when the closed grammar itself decodes both retained coordinates.
+4. **Local versus global grammar.** The relay construction has a constant local node/message grammar and degree bound, while the family still has port-specific choices whose number grows with `m`.
+5. **Finite deterministic domain.** The results do not cover noise, stochastic transitions, continuous states, simultaneous reader firings, hidden-state learning, grammar discovery, or arbitrary infinite composition processes.
+6. **Novelty boundary.** Fixed-grammar exact quotients are adjacent to standard automata/bisimulation and state-abstraction ideas. The paper must claim novelty only for the extension-grammar lower bound, its operational-addressability proof route, and the matching bounded-locality witness.
+
+See [paper-core mathematical audit](paper_core_audit.md) for the complete
+proof-versus-replay record and GitHub Actions contract.
 
 ### Robustness verdict
 
-The central theorem family is mathematically viable for a theorem-first paper **after the five tightening items above are completed**. There is no evidence in the current finite certificates of a contradiction to the main lower bound. The principal risk is overstatement of assumptions, not a failure of the injection argument.
+The central theorem family is mathematically viable for a theorem-first paper.
+There is no contradiction in the conditional injection argument, finite relay
+witness, or conservative-schema boundary. The principal risk is overstatement of
+assumptions or treating finite replay as a general proof; both are now explicit
+scope restrictions rather than hidden gaps.
 
 ## Figures and reusable material
 
@@ -150,9 +171,9 @@ Every issue moved there must begin by naming whether it changes a theorem assump
 
 ## Immediate migration checklist
 
-- [ ] Create a release tag for the frozen RACH theorem package after the wording correction below is merged.
+- [ ] Create a release tag for the frozen RACH theorem package after the audit PR is merged.
 - [ ] Create `rach-open-composition-paper` and transfer Issue #99 there as the manuscript project tracker.
-- [ ] Open the literature novelty matrix in the paper repository before drafting the Introduction.
-- [ ] Convert Theorem A, its injection proof, and the relay sharpness construction into self-contained LaTeX.
-- [ ] Keep `EXT-1`--`EXT-4` in an appendix decision log until the main theorem narrative is stable.
-- [ ] Close historical RACH issues #39 and #41 as superseded by the frozen registry; retain links to their recovered theorem IDs.
+- [x] Open the literature novelty matrix in the paper workspace before drafting the Introduction.
+- [x] Convert Theorem A, its injection proof, and the relay sharpness construction into self-contained LaTeX.
+- [x] Keep `EXT-1`--`EXT-4` outside the manuscript theorem package.
+- [x] Close historical RACH issues #39 and #41 as superseded by the frozen registry; retain links to their recovered theorem IDs.
