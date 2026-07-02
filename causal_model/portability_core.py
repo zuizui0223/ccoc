@@ -6,11 +6,13 @@ This facade exposes only the structural theorem family:
 2. the addressable-completion / extension--compression lower bound; and
 3. bounded, coherent, and conservative portability under nested composition.
 
-Relay constructions are retained as sharpness witnesses.  Delayed evidence and
+Relay constructions are retained as sharpness witnesses. Delayed evidence and
 candidate-mechanism uncertainty live in :mod:`identifiability_companion`.
 Legacy experiment-design APIs remain in their original modules.
 
-The facade re-exports existing certificates only; it introduces no mathematics.
+Shared grammar primitives are imported from :mod:`shared_grammar`, not from an
+identifiability module. The facade re-exports existing certificates only; it
+introduces no mathematics.
 """
 
 from .causal_closure_calculus import (
@@ -28,7 +30,7 @@ from .dynamic_boundary_blankets import (
     FiniteControlledOutputSystem,
     certify_dynamic_boundary_blanket,
 )
-from .delayed_addressability import FinitePrefixGrammar, GrammarAwareControlledSystem
+from .shared_grammar import FinitePrefixGrammar, GrammarAwareControlledSystem
 from .grammar_aware_blankets import (
     GrammarAwareCanonicalInterfaceCertificate,
     GrammarAwareDynamicBlanketCertificate,
