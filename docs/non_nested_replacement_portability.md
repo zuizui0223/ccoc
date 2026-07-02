@@ -75,6 +75,30 @@ The theorem is operationalized by
 exact `StageMacroProjection` only from the source projection, raw target system,
 and relation.
 
+### Finite proof
+
+Target-fiber label consistency makes \(q_T\) well-defined. Now take two target
+states \(t,t'\) with \(q_T(t)=q_T(t')\), and choose related source states
+\((s,t),(s',t')\in R\). By definition, \(q_S(s)=q_S(s')\). Exactness of
+\(q_S\) gives equal source outputs, equal source legal-action rows, and equal
+source successor labels for every legal action.
+
+Output and legal-row preservation along \(R\) transfer the first two equalities
+to \(t,t'\). For a common legal action \(a\), successor closure gives
+
+\[
+(T_S(s,a),T_T(t,a))\in R,
+\qquad
+(T_S(s',a),T_T(t',a))\in R.
+\]
+
+The source successors have equal \(q_S\)-labels, so the target successors have
+equal \(q_T\)-labels. Thus \(q_T\) satisfies the exact grammar-aware interface
+conditions. Finally, total source coverage ensures every source macro label is
+realized in the target; total target coverage and the same argument show output,
+legal rows, and successors match label by label. Hence the induced macro dynamics
+are identical.
+
 ### Why each premise matters
 
 - Without target-fiber label consistency, one target state receives incompatible
