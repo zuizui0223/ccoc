@@ -58,14 +58,16 @@ the same law survives composition changes.
 
 ### Layer P2 — addressability obstruction
 
-For a reachable product subsystem
+Let a declared **product-indexed subset** of the controlled state space satisfy
 
 \[
-S^*\cong I\times E_1\times\cdots\times E_q,
+S^*\cong I\times E_1\times\cdots\times E_q.
 \]
 
-if the declared future grammar has concrete decoder words for the inside state
-and for every exterior factor, then
+The lower bound does not require \(S^*\) to be transition-closed or reachable
+from an unstated initial condition. It requires only that the declared future
+grammar has concrete decoder words for the inside state and every exterior
+factor, uniformly over all values of the remaining coordinates. Then
 
 \[
 \boxed{
@@ -105,7 +107,8 @@ This is the Extension–Compression Noncommutation Inequality. It is the central
 negative structural result: a small law in every fixed closed context need not
 produce one small extension-stable law. A factorization through \((I,E_j)\)
 alone does not say that the closed minimal interface has exactly
-\(|I||E_j|\) states; equality is a property of the explicit witness below.
+\(|I||E_j|\) states; equality is a property of the explicit binary witness
+because its closed grammar also retains decoders for \(I\) and \(E_j\).
 
 The relay tree is a **sharpness witness**, not a separate headline theorem. It
 attains the binary bound with a constant-size local node/message grammar,
@@ -121,8 +124,8 @@ claims.
 | Level | Extra premise | Conclusion |
 |---|---|---|
 | Boundedness | Every stage factors through a common finite summary alphabet \(Q\) | \(\sup_m K_m\le\log_2|Q|\) |
-| Coherent portability | Every stage induces the same macro output, legal-action, and transition system; embeddings preserve labels | one exact macro-law is shared across the nested stages |
-| Conservative extension | Legal rows may grow inside one fixed finite action alphabet, but old meanings are unchanged and a newly legal action is label-deterministic | one finite conservative macro schema remains exact on the union grammar |
+| Coherent portability | Every stage induces the same macro output, legal-action, and transition system; embeddings preserve labels | one exact macro-law is shared across the declared finite stages |
+| Conservative extension | Legal rows may grow inside one fixed finite action alphabet, but old meanings are unchanged and a newly legal action is label-deterministic | one finite conservative macro schema remains exact on the declared finite-chain union grammar |
 
 The last level contains the fixed-legality case as the special case in which no
 legal row grows.
@@ -160,6 +163,8 @@ action or word, and the conflicting traces or successor labels.
 - It does not turn a grammar state into a biological state by definition.
 - It does not establish an evidence procedure for discovering the correct
   boundary grammar from data.
+- It does not infer reachability, product structure, decoder words, or closed
+  factorization from an unstated initial condition or observation record.
 - It does not automatically combine exterior-memory and candidate-mechanism
   memory without a joint realizability and separation premise.
 
