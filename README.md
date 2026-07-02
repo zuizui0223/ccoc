@@ -12,6 +12,7 @@ validates an observed ecosystem.
 ## Start here
 
 - [Theorem registry](docs/theorem_registry.md) — one retrieval ID for every public mathematical claim.
+- [Manuscript readiness audit](docs/manuscript_readiness_audit.md) — submission-facing theorem map, robustness findings, and the migration boundary.
 - [Non-empirical scope](docs/nonempirical_scope.md) — the data boundary and the correct role of ecology in a model contract.
 - [Portability core v1](docs/portability_core_v1.md) — the frozen structural core.
 - [Non-nested replacement portability](docs/non_nested_replacement_portability.md) — the selected extension, now frozen at finite deterministic N1–N3.
@@ -82,3 +83,10 @@ finite state space + outputs + legal grammar + completion family + interpretatio
 
 RACH proves only statements about that declared abstract object. Empirical data,
 model fitting, and field inference belong outside this repository.
+
+## Active-work boundary
+
+RACH is the frozen source archive for the finite deterministic theorem package.
+The manuscript, literature review, publication figures, and all future theorem or
+application directions belong in separate repositories under the partition set
+out in the [manuscript readiness audit](docs/manuscript_readiness_audit.md).
