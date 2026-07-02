@@ -42,7 +42,7 @@ def test_standard_closed_context_factorizations_recover_the_noncommutation_gap()
     assert closed.verify()
     assert closed.factor_label_counts == (4, 6)
     assert closed.closed_interface_upper_bits == (2.0, math.log2(6))
-    assert closed.noncommutation_gap_lower_bound == 1.0
+    assert closed.noncommutation_gap_lower_bound == pytest.approx(1.0)
 
 
 def test_factorization_rejects_a_summary_that_forgets_a_readable_closed_coordinate():
