@@ -4,12 +4,15 @@ on:
   pull_request:
     paths:
       - 'causal_model/non_nested_portability.py'
+      - 'causal_model/non_nested_conservative_transport.py'
       - 'causal_model/portability_core.py'
       - 'causal_model/coherent_portable_macrolaw.py'
+      - 'causal_model/conservative_macro_schema.py'
       - 'causal_model/grammar_aware_blankets.py'
       - 'causal_model/shared_grammar.py'
       - 'causal_model/dynamic_boundary_blankets.py'
       - 'tests/test_non_nested_portability.py'
+      - 'tests/test_non_nested_conservative_transport.py'
       - 'scripts/verify_non_nested_replacement_portability.py'
       - 'docs/non_nested_replacement_portability.md'
       - 'docs/claim_status_audit.md'
@@ -21,12 +24,15 @@ on:
     branches: [main]
     paths:
       - 'causal_model/non_nested_portability.py'
+      - 'causal_model/non_nested_conservative_transport.py'
       - 'causal_model/portability_core.py'
       - 'causal_model/coherent_portable_macrolaw.py'
+      - 'causal_model/conservative_macro_schema.py'
       - 'causal_model/grammar_aware_blankets.py'
       - 'causal_model/shared_grammar.py'
       - 'causal_model/dynamic_boundary_blankets.py'
       - 'tests/test_non_nested_portability.py'
+      - 'tests/test_non_nested_conservative_transport.py'
       - 'scripts/verify_non_nested_replacement_portability.py'
       - 'docs/non_nested_replacement_portability.md'
       - 'docs/claim_status_audit.md'
@@ -49,7 +55,7 @@ jobs:
       - name: Install test dependencies
         run: python -m pip install --upgrade pip pytest
       - name: Run non-nested portability tests
-        run: python -m pytest tests/test_non_nested_portability.py -q
+        run: python -m pytest tests/test_non_nested_portability.py tests/test_non_nested_conservative_transport.py -q
       - name: Write deterministic replay report
         run: PYTHONPATH=. python scripts/verify_non_nested_replacement_portability.py
       - name: Upload theorem report
