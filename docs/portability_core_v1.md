@@ -75,7 +75,21 @@ K_{\mathrm{open}}
 }
 \]
 
-If each fixed closed context \(j\) factors through \((I,E_j)\), then
+The decoder premise is operational: any two product states that differ in one
+coordinate have distinct legal future behaviour under a word that decodes that
+coordinate. The resulting lower bound is an injection statement about exact
+open interfaces.
+
+For each fixed closed context \(j\), suppose a supplied exact summary factors
+through \((I,E_j)\). That premise provides the closed-context **upper bound**
+
+\[
+K_{\mathrm{closed},j}
+\le
+\log_2|I|+\log_2|E_j|.
+\]
+
+Combining this upper bound with the open lower bound yields
 
 \[
 \boxed{
@@ -89,11 +103,15 @@ K_{\mathrm{open}}-
 
 This is the Extension–Compression Noncommutation Inequality. It is the central
 negative structural result: a small law in every fixed closed context need not
-produce one small extension-stable law.
+produce one small extension-stable law. A factorization through \((I,E_j)\)
+alone does not say that the closed minimal interface has exactly
+\(|I||E_j|\) states; equality is a property of the explicit witness below.
 
 The relay tree is a **sharpness witness**, not a separate headline theorem. It
-attains the binary bound with constant local grammar, pairwise messages, and
-maximum degree three.
+attains the binary bound with a constant-size local node/message grammar,
+pairwise messages, and maximum degree three. The family still has a growing set
+of selectable ports, so this is not a claim of a constant-size global action
+alphabet.
 
 ### Layer P3 — composition portability ladder
 
