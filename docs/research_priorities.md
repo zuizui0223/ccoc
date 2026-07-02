@@ -14,7 +14,12 @@ RACH develops one structural question at a time. A new theorem branch is allowed
 }
 \]
 
-## Completed consolidation work
+RACH is a mathematical-ecology repository for finite formal models and theorem
+certificates. It does not host empirical datasets, fitted parameters, field
+inference, or claims of ecological validation. See
+[non-empirical scope](nonempirical_scope.md).
+
+## Completed mathematical package
 
 ### P0 — portability core v1: complete and frozen
 
@@ -26,56 +31,59 @@ The public core is one theorem family:
 
 Relay trees are sharpness witnesses, not independent headline theories. Delayed evidence and candidate uncertainty are companions, not premises of the core.
 
-### P1 — proof hygiene: complete, maintain only
+### P1 — non-nested replacement: complete and frozen
 
-The README, public facades, theorem spine, and claim-status audit distinguish exact finite theorems, sufficient criteria, lower-bound obstructions, sharpness witnesses, no-go results, and `UNRESOLVED` boundaries.
+The selected post-v1 extension covers declared finite replacement, extinction,
+and rewiring without nested stage embeddings. Its completed sequence is:
 
-### P2 — logical packages: complete, preserve boundaries
+1. transport-coherent edge preservation;
+2. source-to-target exact factorization;
+3. conservative transport when target-only actions are fiber-wise uniform; and
+4. local fiber-split obstruction when that uniformity fails.
 
-Keep one repository while shared primitives remain stable, but preserve three public surfaces:
+The many-to-one witnesses, rewiring counterexample, deterministic replay, and
+focused CI are part of the theorem package, not optional examples.
 
-| Package | Question |
-|---|---|
-| `portability-core` | When does one exact macro-law survive declared composition changes? |
-| `identifiability-companion` | What can finite evidence establish about closure or retained mechanisms? |
-| `experimental-design-legacy` | How should a fixed quotient or contract be measured or protected? |
+### P2 — companions and legacy: preserve boundaries
 
-## P3 — selected post-v1 direction: non-nested replacement and rewiring
+| Package | Question | Status |
+|---|---|---|
+| `portability-core` | When does one exact macro-law survive declared composition changes? | frozen theorem package |
+| `identifiability-companion` | What can finite evidence establish about closure or retained mechanisms? | companion theorem package |
+| `experimental-design-legacy` | How should a fixed quotient or contract be measured or protected? | frozen conditional shelf |
 
-The authorized post-v1 direction is declared finite replacement, extinction, and rewiring **without nested stage embeddings**. Issue [#90](https://github.com/zuizui0223/rach-causal-invariants/issues/90) selected the direction; issues [#93](https://github.com/zuizui0223/rach-causal-invariants/issues/93) and [#95](https://github.com/zuizui0223/rach-causal-invariants/issues/95) record its two proof-strengthening steps.
+## P3 — retrieval and provenance closure: active maintenance target
 
-The non-nested branch now has four linked results:
+The next task is not another theorem. Every public mathematical theory must be
+recoverable through [the theorem registry](theorem_registry.md):
 
-1. **transport-coherent edge preservation:** supplied exact source and target projections share one macro law across total label/output/legal-action preserving, successor-closed transport;
-2. **transported target factorization:** an exact source projection plus a total, target-fiber-label-consistent, output/equal-legality-preserving, successor-closed relation constructs the exact target projection;
-3. **conservative target-only-action transport:** a source projection plus monotone old-action transport constructs one conservative schema when new target actions have uniform availability and macro successors in each derived target fiber; and
-4. **newly legal-word obstruction:** a new action that violates this uniformity can split one carried macro fiber.
+1. finite domain and assumptions;
+2. conclusion and status class;
+3. source module and public certificate;
+4. regression or deterministic replay route;
+5. documentation and non-claim; and
+6. a bounded mathematical-ecology interpretation that does not turn the theorem
+   into empirical validation.
 
-The many-to-one positive witnesses, negative rewiring witness, deterministic replay artifact, focused CI, and public scope audit are the branch completion contract.
-
-### Current stop point
-
-The non-nested finite deterministic direction is now mature enough to freeze. Do not add another relation variant, another special action alphabet, or another toy witness.
-
-A future branch must make a different research decision and choose **one** of:
-
-1. approximate / noisy portability;
-2. composition-dependent candidate mechanisms; or
-3. empirical model instantiation under an independently justified finite grammar.
-
-These directions must not be started in parallel.
+The registry checker is required maintenance infrastructure. A code or document
+change that breaks a registry path, hides a public theory, or weakens its scope
+statement is a regression.
 
 ## Explicitly paused directions
 
-1. approximate / noisy portability;
+Do not start these in parallel:
+
+1. approximate or noisy portability;
 2. composition-dependent candidate-mechanism families;
 3. new panel, budget, robustness, coverage, or field-protocol theorems;
-4. another transport or action-alphabet variant; and
-5. a larger coordinate-table or ecological toy witness.
+4. another transport or action-alphabet variant;
+5. a larger coordinate-table or ecological toy witness; or
+6. empirical data ingestion, model fitting, or ecological case-study inference in
+   this repository.
 
-## Stop rule
+## Unfreeze rule
 
-A new issue must identify exactly one canonical claim it changes:
+A future mathematics issue must identify exactly one canonical claim it changes:
 
 \[
 \text{exact factorization},
@@ -87,4 +95,6 @@ A new issue must identify exactly one canonical claim it changes:
 \text{or finite-evidence identifiability}.
 \]
 
-Otherwise it belongs in an example, limitation, regression test, or legacy shelf.
+It must also state why the existing registry entry is insufficient. Otherwise it
+belongs in documentation, a regression test, an external application repository,
+or the legacy shelf.
