@@ -38,6 +38,9 @@ The relay tree is retained only as a sharpness realization of item 2.
 - `extension_compression_noncommutation.py` is the canonical source for the
   addressable-product theorem and the Extension--Compression Noncommutation
   Inequality.
+- `operational_addressability.py` is the canonical finite **application** layer:
+  it verifies a supplied controlled system, product embedding, decoder words,
+  decoder functions, and finite closed-context factor maps.
 - `extension_compression.py` and `relay_tree_compilation.py` are sharpness
   witnesses only.
 - `addressable_completion_bounds.py` remains a canonical finite product helper
@@ -59,25 +62,32 @@ import causal_model.identifiability_companion as rach_id
 `causal_model.current_theory` is historical compatibility only. It must not be
 used in new theorem examples, README snippets, or new tests.
 
-## Next implementation steps
+## Implementation status
 
-1. Move `FinitePrefixGrammar` and `GrammarAwareControlledSystem` from the
-   delayed-addressability module into a shared primitive module, retaining
-   re-exports for compatibility.
-2. Change `portability_core.py` to import those primitives from `shared` rather
+Completed:
+
+1. `FinitePrefixGrammar` and `GrammarAwareControlledSystem` now live in
+   `shared_grammar.py`; historical delayed-addressability imports remain intact.
+2. `portability_core.py` now imports these neutral primitives from `shared` rather
    than from an identifiability module.
-3. Mark `current_theory.py` as deprecated compatibility and replace its
+3. The operational product certificate now checks an actual finite controlled
+   system, injective product embedding, legal decoder words, decoder functions,
+   and explicit finite closed-context factor maps. The former cardinality-only
+   certificate remains a theorem-schema replay and witness helper.
+
+Still pending:
+
+1. Mark `current_theory.py` as deprecated compatibility and replace its
    "active core" narrative with a neutral import-compatibility notice.
-4. Add one operational witness API for the product theorem: it must receive an
-   actual controlled system, product embedding, legal decoder words, decoders,
-   and closed-context factorization map rather than merely replay cardinality
-   arithmetic.
-5. Keep the old arithmetic certificate as a theorem-schema replay and witness
-   helper.
+2. Add an optional reachability contract only when a chosen theorem application
+   needs one. The present operational certificate verifies the supplied embedded
+   subsystem; it does not infer reachability from an unstated initial condition.
+3. Do not physically split repositories before shared primitives and compatibility
+   imports stabilize.
 
 ## Non-goals
 
 - No new local grammar theorem.
 - No new panel, robustness, coverage, or field-protocol abstraction.
-- No physical repository split before shared primitives and compatibility
-  imports stabilize.
+- No claim that an arbitrary empirical system satisfies a supplied product
+  embedding, legal-word family, or boundary grammar.
