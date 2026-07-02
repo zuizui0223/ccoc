@@ -6,31 +6,37 @@ from pathlib import Path
 from causal_model.non_nested_portability import (
     non_nested_replacement_witness,
     non_nested_rewiring_obstruction,
+    transported_target_projection_witness,
 )
 
 
 def main() -> None:
-    """Write a deterministic certificate for the selected post-v1 extension.
+    """Write a deterministic replay for declared finite replacement transport.
 
-    This is a finite replay within the declared theorem domain.  It is not an
-    empirical validation and does not certify arbitrary ecosystem replacement.
+    This verifies only the supplied finite systems, grammar, source projection,
+    and transport relation. It does not infer ecological replacement processes.
     """
 
     positive = non_nested_replacement_witness()
     transport = positive.transports[0]
+    constructed = transported_target_projection_witness()
     negative = non_nested_rewiring_obstruction()
 
     report = {
         "theorem_domain": (
-            "declared finite grammar-aware controlled systems linked by a connected "
-            "graph of total, output/legal-action/label-preserving, successor-closed "
-            "replacement transports"
+            "declared finite grammar-aware controlled systems, an exact source projection, "
+            "and a total target-fiber-label-consistent, output/legal-action-preserving, "
+            "successor-closed replacement transport"
         ),
         "claim_status": {
-            "positive": "sufficient finite-domain transport-coherence criterion",
+            "edge_preservation": "sufficient finite-domain transport-coherence criterion",
+            "target_construction": (
+                "sufficient finite-domain theorem constructing an exact target projection "
+                "from source labels and a transport relation"
+            ),
             "negative": "local obstruction to one carried merge",
             "non_claim": (
-                "failure to supply a transport witness does not establish cumulative "
+                "failure to supply a transport certificate does not establish cumulative "
                 "addressability, unbounded memory, or failure of every alternative macro-law"
             ),
         },
@@ -43,6 +49,14 @@ def main() -> None:
             "relation": [list(pair) for pair in transport.relation],
             "source_to_target_injective": transport.is_source_injective,
             "transport_verified": transport.verify(),
+        },
+        "constructed_target_projection": {
+            "verified": constructed.verify(),
+            "derived_target_labels": list(constructed.target_labels),
+            "target_macro_equals_source_macro": (
+                constructed.target_projection.induced_macro() == constructed.source.induced_macro()
+            ),
+            "target_labels_were_input": False,
         },
         "newly_legal_word_obstruction": {
             "verified": negative.verify(),
