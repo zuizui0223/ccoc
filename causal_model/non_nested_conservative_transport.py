@@ -17,7 +17,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Iterable
 
-from .coherent_portable_macrolaw import StageMacroProjection
+from .coherent_portable_macrolaw import PortableMacroDynamics, StageMacroProjection
 from .conservative_macro_schema import ConservativeMacroSchema, ConservativeStageProjection
 from .dynamic_boundary_blankets import FiniteControlledOutputSystem
 from .shared_grammar import FinitePrefixGrammar, GrammarAwareControlledSystem
@@ -97,7 +97,7 @@ class ConservativeTransportedSchemaCertificate:
     def target_indices(self) -> tuple[int, ...]:
         return tuple(target_index for _, target_index in self.relation)
 
-    def _derive_labels_and_source_macro(self) -> tuple[tuple[int, ...], object, tuple[Pair, ...]]:
+    def _derive_labels_and_source_macro(self) -> tuple[tuple[int, ...], PortableMacroDynamics, tuple[Pair, ...]]:
         if not self.source.verify():
             raise ValueError("source must be an exact grammar-aware projection")
         relation = _normalize_relation(self.relation)
