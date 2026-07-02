@@ -1,0 +1,60 @@
+name: Non-nested replacement portability replay
+
+on:
+  pull_request:
+    paths:
+      - 'causal_model/non_nested_portability.py'
+      - 'causal_model/portability_core.py'
+      - 'causal_model/coherent_portable_macrolaw.py'
+      - 'causal_model/grammar_aware_blankets.py'
+      - 'causal_model/shared_grammar.py'
+      - 'causal_model/dynamic_boundary_blankets.py'
+      - 'tests/test_non_nested_portability.py'
+      - 'scripts/verify_non_nested_replacement_portability.py'
+      - 'docs/non_nested_replacement_portability.md'
+      - 'docs/claim_status_audit.md'
+      - 'docs/research_priorities.md'
+      - 'docs/theorem_spine.md'
+      - 'docs/repository_asset_map.md'
+      - '.github/workflows/non-nested-replacement-portability.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'causal_model/non_nested_portability.py'
+      - 'causal_model/portability_core.py'
+      - 'causal_model/coherent_portable_macrolaw.py'
+      - 'causal_model/grammar_aware_blankets.py'
+      - 'causal_model/shared_grammar.py'
+      - 'causal_model/dynamic_boundary_blankets.py'
+      - 'tests/test_non_nested_portability.py'
+      - 'scripts/verify_non_nested_replacement_portability.py'
+      - 'docs/non_nested_replacement_portability.md'
+      - 'docs/claim_status_audit.md'
+      - 'docs/research_priorities.md'
+      - 'docs/theorem_spine.md'
+      - 'docs/repository_asset_map.md'
+      - '.github/workflows/non-nested-replacement-portability.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  theorem-replay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install test dependencies
+        run: python -m pip install --upgrade pip pytest
+      - name: Run non-nested portability tests
+        run: python -m pytest tests/test_non_nested_portability.py -q
+      - name: Write deterministic replay report
+        run: PYTHONPATH=. python scripts/verify_non_nested_replacement_portability.py
+      - name: Upload theorem report
+        uses: actions/upload-artifact@v4
+        with:
+          name: non-nested-replacement-portability-report
+          path: artifacts/non_nested_replacement_portability_report.json
+          if-no-files-found: error
