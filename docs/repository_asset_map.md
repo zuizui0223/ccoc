@@ -60,21 +60,22 @@ finite product helper; the sole public lower-bound statement is in
 ## B. Selected post-v1 structural extension: non-nested replacement
 
 This is the only authorized post-v1 direction. It replaces nested embeddings by
-declared total, successor-closed transports that may be many-to-one or
-one-to-many.
+declared total transports that may be many-to-one or one-to-many.
 
 | Asset | Present role |
 |---|---|
-| `non_nested_portability.py` | transport-coherent sufficient criterion and newly legal-word local obstruction |
-| `tests/test_non_nested_portability.py` | focused positive, rejection, connectedness, obstruction, and facade regressions |
-| `scripts/verify_non_nested_replacement_portability.py` | deterministic finite replay report |
+| `non_nested_portability.py` | edge preservation, **transported target exact factorization**, and newly legal-word obstruction |
+| `tests/test_non_nested_portability.py` | target construction plus label-consistency, successor-closure, new-action, connectedness, and facade regressions |
+| `scripts/verify_non_nested_replacement_portability.py` | deterministic replay of supplied relation, derived target labels, and obstruction |
 | `.github/workflows/non-nested-replacement-portability.yml` | path-scoped test and replay CI |
-| `docs/non_nested_replacement_portability.md` | claim, domain, verification contract, and non-claims |
+| `docs/non_nested_replacement_portability.md` | theorem, domain, verification contract, and non-claims |
 
-This branch does not replace v1. Its current positive criterion assumes exact
-stage projections into one common macro dynamics; transport validates the
-replacement edges. Constructing a target projection from a source projection and
-transport is a potential strengthening, not an already-established theorem.
+The current construction theorem takes an exact source projection and a total
+transport that preserves output and equal legal rows, is successor-closed, and is
+label-consistent on each target fiber. It derives target labels and verifies the
+resulting exact target projection. It does **not** cover target-only legal actions,
+which require a different conservative transport contract or can split a carried
+macro fiber.
 
 ## C. Identifiability companion
 
@@ -127,7 +128,9 @@ not receive new exports.
 ## Current priority order
 
 1. Preserve the core/companion/legacy boundary.
-2. Complete replay and claim-scope hygiene for non-nested replacement.
-3. Do not start candidate-dependent or approximate portability in parallel.
+2. Treat transported target factorization plus the newly legal-word obstruction as
+   the current stop point of non-nested portability.
+3. Do not start candidate-dependent, approximate, or target-only-action transport
+   branches in parallel.
 4. Add new mathematics only by changing a canonical claim, not by adding another
    special-case witness or panel.
