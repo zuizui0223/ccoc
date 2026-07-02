@@ -1,8 +1,11 @@
 """Pytest collection policy for the manuscript-focused repository surface.
 
-The old theorem branches remain in ``tests/`` until the post-submission physical
-move, but are not part of the default paper-core gate. Run ``pytest -m legacy``
-to replay the archived material explicitly.
+Only the tests that exercise the publication theorem package are unmarked. Every
+other historical test is retained as ``legacy`` until the post-submission physical
+move. This allowlist avoids silently treating old benchmarks or development-era
+checks as paper-core evidence merely because their filename lacks a legacy token.
+
+Run ``pytest -m legacy`` to replay the archived material explicitly.
 """
 
 from __future__ import annotations
@@ -12,31 +15,30 @@ from pathlib import Path
 import pytest
 
 
-# These names correspond to CORE-0, EXT-1--4, ID-1--3, the experimental-design
-# shelf, and deprecated compatibility aggregates. The active paper suite remains
-# unmarked and is selected by the default ``-m 'not legacy'`` configuration.
-LEGACY_TEST_TOKENS = (
-    "adaptive_closure",
-    "candidate_safe",
-    "causal_closure",
-    "common_mode",
-    "current_theory",
-    "delayed_addressability",
-    "delayed_joint",
-    "generative_misspecification",
-    "joint_open_candidate",
-    "multi_competitor",
-    "non_nested",
-    "observation_envelope",
-    "observation_regime",
-    "observation_window",
-    "robust_canonical",
-    "witnessed_boundary",
+ACTIVE_PAPER_TEST_FILES = frozenset(
+    {
+        # CORE-1: exact grammar-aware interface.
+        "test_dynamic_boundary_blankets.py",
+        "test_shared_grammar.py",
+        "test_grammar_aware_blankets.py",
+        # CORE-2: operational addressability and noncommutation.
+        "test_extension_compression.py",
+        "test_operational_addressability.py",
+        # CORE-3: bounded-locality sharpness.
+        "test_relay_tree_compilation.py",
+        # CORE-4 and CORE-5: conservative portability and fiber split.
+        "test_coherent_portable_macrolaw.py",
+        "test_conservative_macro_schema.py",
+        # Publication-surface and provenance protections.
+        "test_public_theory_surfaces.py",
+        "test_theorem_registry.py",
+        "test_paper_core_reproducibility.py",
+    }
 )
 
 
 def pytest_collection_modifyitems(items: list[pytest.Item]) -> None:
     for item in items:
-        filename = Path(str(item.fspath)).stem
-        if any(token in filename for token in LEGACY_TEST_TOKENS):
+        filename = Path(str(item.fspath)).name
+        if filename not in ACTIVE_PAPER_TEST_FILES:
             item.add_marker(pytest.mark.legacy)
