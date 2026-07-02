@@ -35,6 +35,8 @@ The central claim is conditional on a declared finite system and grammar:
 
 ## Start here
 
+- [Paper-core mathematical audit](docs/paper_core_audit.md) — formal proof versus
+  finite replay, corrected assumptions, and the GitHub Actions contract.
 - [Publication-core scope](docs/manuscript_readiness_audit.md) — theorem-to-paper
   map, robustness limits, and explicit non-claims.
 - [Portability core v1](docs/portability_core_v1.md) — formal source statement of
@@ -63,15 +65,20 @@ The active verifier set is restricted to the finite theorem assets behind
 criterion, addressable-product injection, relay compilation, conservative schema,
 and local fiber-split obstruction.
 
-Run the provenance check with:
+Run the paper-core finite replay locally with:
 
 ```bash
-python scripts/verify_theorem_registry.py --check --write-report
+python scripts/verify_paper_core.py --write-report
 ```
 
-A passing check confirms that documented finite certificate paths remain
-retrievable. It does not validate an ecological dataset or establish that an
-observed ecosystem satisfies the declared model contract.
+It writes `artifacts/paper_core_reproducibility_report.json`. The matching
+**Paper-core reproducibility** GitHub Actions workflow runs this replay together
+with the explicit paper-core test suite and theorem-registry provenance check.
+
+A passing check confirms that declared finite certificate paths and selected
+witnesses remain reproducible. It does not validate an ecological dataset,
+infer reachability or a grammar from observations, or establish that an observed
+ecosystem satisfies the declared model contract.
 
 ## Archive policy
 
