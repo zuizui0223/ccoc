@@ -1,4 +1,4 @@
-# RACH asset map: portability core, identifiability companion, and legacy shelf
+# RACH asset map: portability core, selected extension, companion, and legacy shelf
 
 Read [portability core v1](portability_core_v1.md) before extending any module.
 Read [the package-boundary implementation plan](package_boundary_plan.md) before
@@ -25,7 +25,7 @@ An identifiability asset asks what finite evidence or retained mechanism familie
 can justify. A legacy asset is mathematically valid but begins only after a
 structural contract has already been fixed.
 
-## A. Portability core
+## A. Portability core v1
 
 Use the stable public facade:
 
@@ -40,6 +40,7 @@ import causal_model.portability_core as rach
 | `dynamic_boundary_blankets.py` | exact update-closed finite boundary summary |
 | `grammar_aware_blankets.py` | exact factorization over physical state × declared grammar state |
 | `extension_compression_noncommutation.py` | **canonical** operational addressability lower bound and noncommutation inequality |
+| `operational_addressability.py` | system-specific decoder and closed-context factorization certificates |
 | `extension_compression.py` | binary coordinate sharpness witness |
 | `relay_tree_compilation.py` | constant-grammar, pairwise, degree-three sharpness realization |
 | `compositional_boundedness.py` | boundedness versus cumulative growth criteria across nested stages |
@@ -47,7 +48,7 @@ import causal_model.portability_core as rach
 | `conservative_macro_schema.py` | safe monotone legal-action expansion and fiber-split obstruction |
 | `portability_core.py` | core-only public facade |
 
-The composition modules are one portability ladder, not independent headline
+The v1 composition modules are one portability ladder, not independent headline
 theories:
 
 \[
@@ -66,7 +67,21 @@ canonical coordinate example. It must not introduce a second public statement of
 the core lower bound; that source of truth is
 `extension_compression_noncommutation.py`.
 
-## B. Identifiability companion
+## B. Selected post-v1 structural extension: non-nested replacement
+
+This is the one selected direction after v1. See
+[non-nested replacement portability](non_nested_replacement_portability.md) and
+issue #90.
+
+| Asset | Present role |
+|---|---|
+| `non_nested_portability.py` | transport-coherent sufficient criterion across declared non-nested replacement relations; local newly-legal-word fiber-split obstruction |
+
+This branch does **not** replace the v1 ladder. It changes the stage relation:
+label-coherent embeddings are replaced by declared total, successor-closed
+transport relations that may be many-to-one or one-to-many.
+
+## C. Identifiability companion
 
 Use the separate public facade:
 
@@ -85,11 +100,11 @@ import causal_model.identifiability_companion as rach_id
 | `observation_window_completion.py` | passive-evidence example; not a portability theorem target |
 | `identifiability_companion.py` | companion-only public facade |
 
-These modules are active only when the next selected research direction is
+These modules are active only when the selected direction concerns
 identifiability or mechanism uncertainty. They are not premises of the
 portability core theorem family.
 
-## C. Experimental-design legacy shelf
+## D. Experimental-design legacy shelf
 
 No new feature or theorem work without an explicit dependency from a selected
 core or companion question.
@@ -104,7 +119,7 @@ core or companion question.
 
 See [legacy/README.md](legacy/README.md).
 
-## D. Frozen infrastructure
+## E. Frozen infrastructure
 
 Certificate manifests, transcript registries, signed checkpoints, coverage
 adapters, and tiered artifact formats preserve provenance. Keep them passing, but
@@ -119,25 +134,24 @@ import causal_model.portability_core as rach
 import causal_model.identifiability_companion as rach_id
 ```
 
-`causal_model.current_theory` remains a broad historical compatibility aggregate.
+`causal_model.current_theory` is a deprecated historical compatibility aggregate.
 It is not a research entrance and must not receive new exports.
 
 ## Current priority order
 
-1. **P1 proof hygiene:** use the public facades, remove duplicate public claims,
-   and classify every statement as theorem, sufficient criterion, lower bound,
-   witness, or unresolved region.
-2. **P2 logical package boundary:** preserve the three public surfaces above;
-   move shared primitives and compatibility shims before considering a physical
-   repository split.
-3. **P3 one research direction:** only after core v1 stop criteria are met,
-   choose exactly one of non-nested rewiring, composition-dependent mechanisms,
-   or approximate noisy portability.
+1. **P1 proof hygiene — complete:** public facades, claim status, operational
+   witness certificates, and compatibility deprecation are in place.
+2. **P2 logical package boundary — maintain:** preserve the three public surfaces
+   and compatibility shims; defer a physical repository split until shared
+   primitives stabilize.
+3. **P3 selected direction — active:** non-nested replacement and rewiring only.
+   Do not start composition-dependent mechanisms or noisy approximation in
+   parallel.
 
 ## Anti-queue
 
 Do not start another panel definition, budget ladder, audit wrapper,
 domain-specific ecological toy model, action-alphabet special case, or larger
 coordinate table merely because it supplies another edge case. It must first
-change a canonical claim in [portability core v1](portability_core_v1.md) or a
-selected identifiability claim.
+change a canonical claim in [portability core v1](portability_core_v1.md) or the
+selected non-nested replacement claim.
