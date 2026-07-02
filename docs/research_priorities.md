@@ -2,11 +2,7 @@
 
 ## Governing rule
 
-RACH develops one structural question at a time. A new theorem branch is allowed
-only when it changes a canonical claim, not merely because another special case,
-panel, or witness can be defined.
-
-The current structure is:
+RACH develops one structural question at a time. A new theorem branch is allowed only when it changes a canonical claim, not merely because another special case, panel, or witness can be defined.
 
 \[
 \boxed{
@@ -26,29 +22,17 @@ The public core is one theorem family:
 
 1. exact grammar-aware dynamic factorization;
 2. the addressability / extension--compression lower-bound obstruction; and
-3. the nested portability ladder: boundedness, coherent portability, and
-   conservative grammar extension.
+3. the nested portability ladder: boundedness, coherent portability, and conservative grammar extension.
 
-Relay trees are sharpness witnesses, not independent headline theories. Delayed
-evidence and candidate uncertainty are companions, not premises of the core.
+Relay trees are sharpness witnesses, not independent headline theories. Delayed evidence and candidate uncertainty are companions, not premises of the core.
 
 ### P1 — proof hygiene: complete, maintain only
 
-The README, public facades, theorem spine, and claim-status audit distinguish:
-
-| Claim type | Required wording |
-|---|---|
-| Exact finite theorem | State the finite domain and legal grammar. |
-| Sufficient criterion | Do not write “iff” without a converse. |
-| Lower-bound obstruction | Name the operational separation premise. |
-| Sharpness witness | Identify the family and attained equality. |
-| No-go theorem | State the model/evidence class. |
-| `UNRESOLVED` | Say which premise has not been supplied. |
+The README, public facades, theorem spine, and claim-status audit distinguish exact finite theorems, sufficient criteria, lower-bound obstructions, sharpness witnesses, no-go results, and `UNRESOLVED` boundaries.
 
 ### P2 — logical packages: complete, preserve boundaries
 
-Keep one repository while shared primitives remain stable, but preserve three
-public surfaces:
+Keep one repository while shared primitives remain stable, but preserve three public surfaces:
 
 | Package | Question |
 |---|---|
@@ -56,53 +40,37 @@ public surfaces:
 | `identifiability-companion` | What can finite evidence establish about closure or retained mechanisms? |
 | `experimental-design-legacy` | How should a fixed quotient or contract be measured or protected? |
 
-Do not physically split repositories until the shared finite-model primitives and
-public imports are genuinely stable.
-
 ## P3 — selected post-v1 direction: non-nested replacement and rewiring
 
-The one authorized post-v1 direction is declared finite replacement, extinction,
-and rewiring **without nested stage embeddings**. Issue [#90](https://github.com/zuizui0223/rach-causal-invariants/issues/90)
-selected the direction; issue [#93](https://github.com/zuizui0223/rach-causal-invariants/issues/93)
-records the proof-strengthening target.
+The authorized post-v1 direction is declared finite replacement, extinction, and rewiring **without nested stage embeddings**. Issue [#90](https://github.com/zuizui0223/rach-causal-invariants/issues/90) selected the direction; issues [#93](https://github.com/zuizui0223/rach-causal-invariants/issues/93) and [#95](https://github.com/zuizui0223/rach-causal-invariants/issues/95) record its two proof-strengthening steps.
 
-The non-nested branch now has three layers:
+The non-nested branch now has four linked results:
 
-1. **transport-coherent edge preservation:** supplied exact source and target
-   projections share one macro law across total label/output/legal-action
-   preserving, successor-closed transport;
-2. **transported target factorization:** an exact source projection plus a total,
-   target-fiber-label-consistent, output/equal-legality-preserving,
-   successor-closed relation constructs the exact target projection; and
-3. **newly legal-word obstruction:** target-only legal actions can split a carried
-   macro fiber and lie outside the equal-legality construction theorem.
+1. **transport-coherent edge preservation:** supplied exact source and target projections share one macro law across total label/output/legal-action preserving, successor-closed transport;
+2. **transported target factorization:** an exact source projection plus a total, target-fiber-label-consistent, output/equal-legality-preserving, successor-closed relation constructs the exact target projection;
+3. **conservative target-only-action transport:** a source projection plus monotone old-action transport constructs one conservative schema when new target actions have uniform availability and macro successors in each derived target fiber; and
+4. **newly legal-word obstruction:** a new action that violates this uniformity can split one carried macro fiber.
 
-The positive many-to-one replacement witness, negative rewiring witness,
-deterministic replay artifact, focused CI, and public scope audit are all part of
-the completion contract.
+The many-to-one positive witnesses, negative rewiring witness, deterministic replay artifact, focused CI, and public scope audit are the branch completion contract.
 
 ### Current stop point
 
-Do not add another non-nested relation variant merely because it is available.
-The exact target-factorization bottleneck has now been addressed. The remaining
-interesting cases require a materially different transport contract, not another
-witness:
+The non-nested finite deterministic direction is now mature enough to freeze. Do not add another relation variant, another special action alphabet, or another toy witness.
 
-- conservative transport when target-only legal actions are added;
-- stochastic or approximate transport; or
-- composition-dependent candidate mechanisms.
+A future branch must make a different research decision and choose **one** of:
 
-Those are mutually exclusive future directions. Choose at most one only after the
-current PR is merged and its stop criteria are reviewed.
+1. approximate / noisy portability;
+2. composition-dependent candidate mechanisms; or
+3. empirical model instantiation under an independently justified finite grammar.
+
+These directions must not be started in parallel.
 
 ## Explicitly paused directions
 
-Do not start these in parallel:
-
-1. composition-dependent candidate-mechanism families;
-2. noisy or approximate portability;
-3. conservative transport for target-only legal actions;
-4. new panel, budget, robustness, coverage, or field-protocol theorems; or
+1. approximate / noisy portability;
+2. composition-dependent candidate-mechanism families;
+3. new panel, budget, robustness, coverage, or field-protocol theorems;
+4. another transport or action-alphabet variant; and
 5. a larger coordinate-table or ecological toy witness.
 
 ## Stop rule
