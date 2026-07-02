@@ -47,4 +47,4 @@ def test_registry_checker_validates_the_human_atlas_and_scope_policy():
     )
 
     assert completed.returncode == 0, completed.stderr + completed.stdout
-    assert '"theorem_count":14' in completed.stdout
+    assert json.loads(completed.stdout)["theorem_count"] == 14
