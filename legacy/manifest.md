@@ -20,7 +20,7 @@ main theorem package.
 | Registry group | Source paths | Documentation / replay paths |
 |---|---|---|
 | `CORE-0` | `causal_model/causal_closure_calculus.py` | `tests/test_causal_closure_calculus.py`, `docs/claim_status_audit.md` |
-| `EXT-1`--`EXT-4` | `causal_model/non_nested_portability.py`, `causal_model/non_nested_conservative_transport.py` | `tests/test_non_nested_portability.py`, `tests/test_non_nested_conservative_transport.py`, `docs/non_nested_replacement_portability.md`, `scripts/verify_non_nested_replacement_portability.py` |
+| `EXT-1`--`EXT-4` | frozen provenance copies: `causal_model/non_nested_portability.py`, `causal_model/non_nested_conservative_transport.py` | active successor: [`zuizui0223/EXT`](https://github.com/zuizui0223/EXT), where standalone source, tests, replay artifact, and next theorem issue live; this RACH copy remains reproducible historical provenance |
 | `ID-1` | `causal_model/delayed_addressability.py`, `causal_model/adaptive_closure_no_go.py`, `causal_model/observation_window_completion.py`, `causal_model/observation_regime_closure.py`, `causal_model/addressable_completion_bounds.py` | delayed / observation tests, docs, and replays |
 | `ID-2`, `ID-3` | `causal_model/candidate_safe_laws.py`, `causal_model/joint_open_candidate_laws.py` | candidate / joint-law tests, docs, and replays |
 | `LEGACY-1` | panel, coverage, failure-mode, and experimental-design families | `docs/legacy/README.md` and linked historical replays |
@@ -34,6 +34,9 @@ main theorem package.
 - `causal_model.current_theory` remains a deprecated compatibility aggregate.
 - The complete registry is retained as provenance, not as a list of current paper
   claims.
+- `EXT-1`--`EXT-4` now have a dedicated successor repository. Do not add new
+  replacement/rewiring theorems to RACH; develop them in `zuizui0223/EXT` and
+  cite this archive commit when provenance matters.
 
 ## Later physical move
 
