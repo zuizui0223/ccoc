@@ -32,8 +32,8 @@ new versioned freeze point.
 ## What is deliberately outside this archive
 
 - Non-nested replacement, extinction, recolonization, and rewiring transport is
-  now developed in `zuizui0223/EXT`. RACH retains the original `EXT-1`--`EXT-4`
-  assets only as historical provenance.
+  now developed in `zuizui0223/mltr` (**MLTR**, formerly `EXT`). RACH retains the
+  original `EXT-1`--`EXT-4` assets only as historical provenance.
 - Delayed exposure, finite-evidence limits, candidate mechanism uncertainty, and
   panel-design results remain legacy companions and are not paper claims.
 - Stochastic, approximate, continuous-state, simultaneous-action, and empirical
@@ -64,5 +64,5 @@ must not be moved after creation.
 | Research direction | Repository |
 |---|---|
 | Open-composition manuscript prose, bibliography, figures, and submission files | `rach-open-composition-paper` |
-| Exact macro-law transport through replacement and rewiring | `zuizui0223/EXT` |
+| Exact macro-law transport through replacement and rewiring | `zuizui0223/mltr` (formerly `EXT`) |
 | Other legacy extensions | new dedicated repository only after a separate theorem-scope decision |
