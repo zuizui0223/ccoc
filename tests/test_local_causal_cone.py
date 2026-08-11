@@ -80,14 +80,48 @@ def test_minimum_horizon_matches_first_degree_state_capacity_that_can_hold_class
     )
 
     assert horizon == 3
+    assert horizon is not None
     previous = certify_degree_bounded_causal_cone(3, 12, horizon - 1, required)
     sufficient = certify_degree_bounded_causal_cone(3, 12, horizon, required)
 
     assert previous.verify()
     assert not previous.horizon_is_large_enough
+    assert previous.finite_sufficient_horizon_exists
     assert sufficient.verify()
     assert sufficient.horizon_is_large_enough
+    assert sufficient.finite_sufficient_horizon_exists
     assert sufficient.minimum_required_horizon == horizon
+
+
+def test_degree_zero_one_and_trivial_local_states_can_have_no_finite_sufficient_horizon():
+    assert minimum_degree_bounded_horizon(3, maximum_degree=0, local_state_bound=2) is None
+    assert minimum_degree_bounded_horizon(5, maximum_degree=1, local_state_bound=2) is None
+    assert minimum_degree_bounded_horizon(2, maximum_degree=3, local_state_bound=1) is None
+
+    isolated = certify_degree_bounded_causal_cone(
+        maximum_degree=0,
+        local_state_bound=2,
+        horizon=100,
+        required_response_classes=3,
+    )
+    single_edge = certify_degree_bounded_causal_cone(
+        maximum_degree=1,
+        local_state_bound=2,
+        horizon=100,
+        required_response_classes=5,
+    )
+    trivial_states = certify_degree_bounded_causal_cone(
+        maximum_degree=3,
+        local_state_bound=1,
+        horizon=100,
+        required_response_classes=2,
+    )
+
+    for certificate in (isolated, single_edge, trivial_states):
+        assert certificate.verify()
+        assert certificate.minimum_required_horizon is None
+        assert not certificate.finite_sufficient_horizon_exists
+        assert not certificate.horizon_is_large_enough
 
 
 def test_constant_degree_and_local_state_force_logarithmic_horizon_for_exponential_classes():
@@ -99,10 +133,11 @@ def test_constant_degree_and_local_state_force_logarithmic_horizon_for_exponenti
         module_count = 2**exponent
         required = 2 ** (module_count + 1)
         horizon = minimum_degree_bounded_horizon(required, maximum_degree=3, local_state_bound=12)
+        assert horizon is not None
         samples.append((module_count, horizon))
 
-    # Doubling m eventually increases the minimum radius by at most a constant,
-    # and over this exact power-of-two sequence the lower bound tracks log2(m).
+    # Over this power-of-two sequence, the universal lower bound tracks log2(m)
+    # up to an additive constant determined by degree and local state capacity.
     for module_count, horizon in samples:
         assert horizon >= math.log2(module_count) - 4
         assert horizon <= math.log2(module_count)
@@ -114,6 +149,7 @@ def test_existing_relay_query_length_is_order_optimal_under_general_causal_cone_
         lower = minimum_degree_bounded_horizon(required, maximum_degree=3, local_state_bound=12)
         actual = 2 * int(math.log2(module_count)) + 2
 
+        assert lower is not None
         assert lower <= actual
         assert actual <= 3 * lower + 8
 
