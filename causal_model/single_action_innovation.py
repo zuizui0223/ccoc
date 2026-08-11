@@ -1,22 +1,25 @@
 """One newly legal primitive action can force linear causal-interface innovation.
 
 This module isolates the genuinely dynamic term in the post-reopening interface
-inflation decomposition.  It reuses the existing constant-alphabet, degree-three
+inflation decomposition. It reuses the existing constant-alphabet, degree-three
 binary relay.
 
-Closed operation already permits binary address routing and idle relay ticks, but
-``fire`` is excluded.  Without ``fire`` no dormant memory bit can inject a pulse
-into the focal channel, so every declared closed response trace factors through
-the focal bit alone.  Opening the system legalizes exactly the one primitive
-action ``fire``.  Together with the already available address and tick symbols,
-this makes all addressed read words legal and separates every dormant memory
-coordinate.
+For each dormant module there is one closed context. That context already permits
+routing the selector along the module's binary address and permits idle relay
+ticks, but ``fire`` is excluded. Without ``fire`` no dormant memory bit can
+inject a pulse into the focal channel, so every closed-context response trace
+factors through the focal bit alone. The union of all closed grammars therefore
+still has only the focal-bit quotient.
 
-For m=2**d memory leaves, the closed quotient has two states while the open
-quotient has 2**(m+1) states.  Thus the open-only innovation term is exactly m
-bits, even though the open global action alphabet has size four, the new
-primitive-action set has size one, local interactions are pairwise, and maximum
-degree is three.
+Opening the system legalizes exactly the one primitive action ``fire``. Together
+with the already available address and tick symbols, this makes all addressed read
+words legal and separates every dormant memory coordinate.
+
+For m=2**d memory leaves, every closed quotient and the closed-union quotient have
+two states while the open quotient has 2**(m+1) states. Thus the open-only
+innovation term is exactly m bits, even though the open global action alphabet has
+size four, the new primitive-action set has size one, local interactions are
+pairwise, and maximum degree is three.
 """
 
 from __future__ import annotations
@@ -61,33 +64,43 @@ def _validate_power_of_two_module_count(module_count: int) -> int:
     return module_count.bit_length() - 1
 
 
+def _validate_port(module_count: int, port: int) -> None:
+    _validate_power_of_two_module_count(module_count)
+    if not isinstance(port, int) or isinstance(port, bool) or not 0 <= port < module_count:
+        raise ValueError("port is outside the dormant-module family")
+
+
 def all_coordinate_states(module_count: int) -> tuple[CoordinateState, ...]:
     """All quiescent macro states ``(y,b_1,...,b_m)``."""
     _validate_power_of_two_module_count(module_count)
     return tuple(product((0, 1), repeat=module_count + 1))
 
 
-def closed_fire_free_words(module_count: int) -> tuple[RelayWord, ...]:
-    """Finite closed grammar with routing/ticks available but ``fire`` absent.
+def closed_context_fire_free_words(module_count: int, port: int) -> tuple[RelayWord, ...]:
+    """Closed context for one module: its address prefixes plus idle ticks.
 
-    The family contains every binary address prefix of length at most ``d`` and,
-    after each prefix, between zero and ``d+1`` idle ticks.  Since the relay is
-    quiescent and no pulse is ever injected, all of these words leave the focal
-    output unchanged while still demonstrating that address routing and ticks are
-    already legal on the closed side.
+    The selector genuinely moves toward the context's leaf, but ``fire`` never
+    occurs. Tick tails are included to make the already-legal relay clock
+    explicit even though no pulse is present.
     """
     depth = _validate_power_of_two_module_count(module_count)
-    prefixes: set[RelayWord] = {()}
-    for port in range(module_count):
-        address = address_bits_for_port(module_count, port)
-        for length in range(1, depth + 1):
-            prefixes.add(address[:length])
-
+    _validate_port(module_count, port)
+    address = address_bits_for_port(module_count, port)
+    prefixes = {()} | {address[:length] for length in range(1, depth + 1)}
     words = {
         prefix + (TICK,) * tick_count
         for prefix in prefixes
         for tick_count in range(depth + 2)
     }
+    return tuple(sorted(words, key=lambda word: (len(word), word)))
+
+
+def closed_fire_free_words(module_count: int) -> tuple[RelayWord, ...]:
+    """Stable union of all fire-disabled closed-context word families."""
+    _validate_power_of_two_module_count(module_count)
+    words: set[RelayWord] = set()
+    for port in range(module_count):
+        words.update(closed_context_fire_free_words(module_count, port))
     return tuple(sorted(words, key=lambda word: (len(word), word)))
 
 
@@ -117,7 +130,7 @@ def closed_response_signature(
     state: CoordinateState,
     closed_words: tuple[RelayWord, ...],
 ) -> tuple[RelayTrace, ...]:
-    """Exact declared closed response signature for one macro state."""
+    """Exact response signature for one supplied fire-free closed word family."""
     return tuple(_trace(topology, state, word) for word in closed_words)
 
 
@@ -127,7 +140,7 @@ def open_response_signature(
     closed_words: tuple[RelayWord, ...],
     probe_words: tuple[RelayWord, ...],
 ) -> tuple[RelayTrace, ...]:
-    """Full open signature: old closed responses plus addressed memory reads."""
+    """Full open signature: closed-union responses plus addressed memory reads."""
     return closed_response_signature(topology, state, closed_words) + tuple(
         _trace(topology, state, word) for word in probe_words
     )
@@ -192,11 +205,37 @@ class SingleActionInnovationCertificate:
         return NEWLY_LEGAL_PRIMITIVE_ACTIONS
 
     @cached_property
+    def closed_context_words(self) -> tuple[tuple[RelayWord, ...], ...]:
+        return tuple(
+            closed_context_fire_free_words(self.module_count, port)
+            for port in range(self.module_count)
+        )
+
+    @cached_property
     def closed_labels(self) -> tuple[tuple[RelayTrace, ...], ...]:
+        """Closed-union response labels, used to test open-only splits."""
         return tuple(
             closed_response_signature(self.topology, state, self.closed_words)
             for state in self.states
         )
+
+    @cached_property
+    def _closed_word_indices(self) -> dict[RelayWord, int]:
+        return {word: index for index, word in enumerate(self.closed_words)}
+
+    @cached_property
+    def closed_context_labels(self) -> tuple[tuple[tuple[RelayTrace, ...], ...], ...]:
+        """One exact closed response-label row per fixed module context."""
+        rows = []
+        for context_words in self.closed_context_words:
+            indices = tuple(self._closed_word_indices[word] for word in context_words)
+            rows.append(
+                tuple(
+                    tuple(self.closed_labels[state_index][word_index] for word_index in indices)
+                    for state_index in range(len(self.states))
+                )
+            )
+        return tuple(rows)
 
     @cached_property
     def open_labels(self) -> tuple[tuple[RelayTrace, ...], ...]:
@@ -211,8 +250,17 @@ class SingleActionInnovationCertificate:
         return tuple(state[0] for state in self.states)
 
     @property
-    def closed_block_count(self) -> int:
+    def closed_context_block_counts(self) -> tuple[int, ...]:
+        return tuple(len(set(labels)) for labels in self.closed_context_labels)
+
+    @property
+    def closed_union_block_count(self) -> int:
         return len(set(self.closed_labels))
+
+    @property
+    def closed_block_count(self) -> int:
+        """Compatibility alias for the closed-union block count."""
+        return self.closed_union_block_count
 
     @property
     def open_block_count(self) -> int:
@@ -220,7 +268,7 @@ class SingleActionInnovationCertificate:
 
     @property
     def closed_interface_bits(self) -> float:
-        return log2(self.closed_block_count)
+        return log2(max(self.closed_context_block_counts))
 
     @property
     def open_interface_bits(self) -> float:
@@ -230,7 +278,7 @@ class SingleActionInnovationCertificate:
     def decomposition(self) -> InterfaceInflationDecompositionCertificate:
         return certify_interface_inflation_decomposition(
             self.base_labels,
-            (self.closed_labels,),
+            self.closed_context_labels,
             self.open_labels,
         )
 
@@ -277,6 +325,14 @@ class SingleActionInnovationCertificate:
                 return False
             if not self.topology.verify() or self.maximum_degree > 3:
                 return False
+            if self.closed_context_words != tuple(
+                closed_context_fire_free_words(self.module_count, port)
+                for port in range(self.module_count)
+            ):
+                return False
+            union_words = set().union(*(set(words) for words in self.closed_context_words))
+            if union_words != set(self.closed_words):
+                return False
             if self.closed_words != closed_fire_free_words(self.module_count):
                 return False
             if self.open_probe_words != open_addressed_probe_words(self.module_count):
@@ -300,14 +356,15 @@ class SingleActionInnovationCertificate:
             if any(len(word) != 2 * depth + 2 for word in self.open_probe_words):
                 return False
 
-            # With fire excluded, every declared closed trace is a repetition of
-            # the current focal bit. Thus closed memory is exactly one bit.
+            # Every fixed closed context and their union remain blind to all
+            # dormant bits: each response trace is a repetition of focal y.
             for state, signature in zip(self.states, self.closed_labels):
                 for trace in signature:
                     if set(trace) != {state[0]}:
                         return False
-
-            if self.closed_block_count != 2:
+            if self.closed_context_block_counts != (2,) * self.module_count:
+                return False
+            if self.closed_union_block_count != 2:
                 return False
             if self.open_block_count != 2 ** (self.module_count + 1):
                 return False
@@ -324,7 +381,11 @@ class SingleActionInnovationCertificate:
             decomposition = self.decomposition
             if not decomposition.verify():
                 return False
+            if decomposition.closed_block_counts != (2,) * self.module_count:
+                return False
             if decomposition.fibered_capacity_state_count != 2:
+                return False
+            if decomposition.union_block_count != 2:
                 return False
             if abs(self.join_realizability_defect_bits) > 1e-12:
                 return False
@@ -363,6 +424,7 @@ __all__ = [
     "OPEN_PRIMITIVE_ACTIONS",
     "NEWLY_LEGAL_PRIMITIVE_ACTIONS",
     "all_coordinate_states",
+    "closed_context_fire_free_words",
     "closed_fire_free_words",
     "open_addressed_probe_words",
     "closed_response_signature",
