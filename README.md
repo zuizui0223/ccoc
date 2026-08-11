@@ -43,12 +43,18 @@ The central claim is conditional on a declared finite system and grammar:
 The active post-freeze research priority is to determine how far the product and
 joint-realisability assumptions behind the lower bound can be weakened while
 retaining a quantitative extension--compression separation and bounded-locality
-sharpness.
+sharpness. The first strengthening replaces full Cartesian realizability with an
+arbitrary operationally addressable codebook and studies the combinatorial rate
+of admissible compositions.
 
 ## Start here
 
 - [Freeze/reopening record](FREEZE.md) — historical freeze point and current
   development policy.
+- [Addressable-codebook bound](docs/addressable_codebook_bound.md) — post-reopening
+  strict weakening of the full-product premise, with comparison-domain scope.
+- [Composition code rate](docs/composition_code_rate.md) — constrained families,
+  fixed-richness asymptotics, and bounded-degree relay inheritance.
 - [Paper-core mathematical audit](docs/paper_core_audit.md) — formal proof versus
   finite replay, corrected assumptions, and the GitHub Actions contract.
 - [Publication-core scope](docs/manuscript_readiness_audit.md) — theorem-to-paper
@@ -96,6 +102,10 @@ A passing check confirms that declared finite certificate paths and selected
 witnesses remain reproducible. It does not validate an ecological dataset,
 infer reachability or a grammar from observations, or establish that an observed
 ecosystem satisfies the declared model contract.
+
+Post-reopening codebook tests are part of the ordinary test suite but are not
+silently added to the historical v1 paper-core replay until a new versioned core
+is deliberately promoted.
 
 ## Development policy
 
