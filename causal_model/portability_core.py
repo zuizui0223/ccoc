@@ -6,7 +6,7 @@ portability claims:
 
 1. exact grammar-aware dynamic interfaces;
 2. operational addressability / extension--compression lower bounds;
-3. exact union-grammar refinement capacity and defect decomposition;
+3. exact union-grammar refinement and full open-interface inflation decomposition;
 4. bounded-degree relay sharpness constructions; and
 5. conservative macro schemas plus local fiber-split obstructions.
 
@@ -72,6 +72,13 @@ from .union_grammar_refinement import (
     UnionGrammarRefinementCertificate,
     certify_partition_refinement_capacity,
     certify_union_grammar_refinement,
+)
+from .interface_inflation import (
+    InterfaceInflationDecompositionCertificate,
+    OpenOnlyWordSplitWitness,
+    OperationalInterfaceInflationCertificate,
+    certify_interface_inflation_decomposition,
+    certify_operational_interface_inflation,
 )
 from .relay_tree_compilation import (
     BoundedDegreeCompilationCertificate,
@@ -156,11 +163,16 @@ __all__ = [
     "even_parity_codebook",
     "fixed_weight_binary_codebook",
     "fixed_weight_binary_codebook_size",
-    # Exact union-grammar refinement / capacity decomposition.
+    # Exact union-grammar refinement and open-only innovation.
     "PartitionRefinementCapacityCertificate",
     "UnionGrammarRefinementCertificate",
     "certify_partition_refinement_capacity",
     "certify_union_grammar_refinement",
+    "InterfaceInflationDecompositionCertificate",
+    "OpenOnlyWordSplitWitness",
+    "OperationalInterfaceInflationCertificate",
+    "certify_interface_inflation_decomposition",
+    "certify_operational_interface_inflation",
     # Bounded-locality sharpness witnesses.
     "RelayTreeSharpnessCertificate",
     "certify_relay_tree_sharpness",
