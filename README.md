@@ -40,15 +40,30 @@ The central claim is conditional on a declared finite system and grammar:
 \text{one small exact interface for the open union grammar}.
 \]
 
-Post-reopening work strengthens the two parts most closely tied to the novelty
-claim. `CORE-2` now has an arbitrary addressable-codebook formulation and an
-exact characterization for the delimited case in which the open grammar is the
-union of the compared closed grammars: the open quotient is their common
-refinement, with a fibered capacity and an exact correlation-defect decomposition.
-Constrained parity and fixed-richness families quantify how much of that capacity
-remains jointly realizable. `CORE-3` now also has a binary-address relay with a
-constant four-symbol global action alphabet, in addition to pairwise locality,
-maximum degree three, and constant local state grammar.
+Post-reopening work now separates the sources of that inflation. `CORE-2` has an
+arbitrary addressable-codebook lower bound and, for exact closed-grammar unions,
+a common-refinement characterization with a fibered join capacity. The full open
+grammar may then add genuinely new future words that refine the closed union
+further. The resulting exact decomposition is
+
+\[
+\Delta_{\rm total}
+=
+\Delta_{\rm capacity}
+-
+\delta_{\rm join}
++
+\iota_{\rm new},
+\]
+
+where the first two terms describe simultaneous composition of closed response
+views and the last term is the extra memory forced only by open-only future
+responses. The historical `CORE-5` newly-legal-word fiber split is the local
+witness for a positive `iota_new` term. Constrained parity and fixed-richness
+families quantify the join-realizability term. `CORE-3` now also has a
+binary-address relay with a constant four-symbol global action alphabet, in
+addition to pairwise locality, maximum degree three, and constant local state
+grammar.
 
 ## Start here
 
@@ -57,8 +72,13 @@ maximum degree three, and constant local state grammar.
 - [Addressable-codebook bound](docs/addressable_codebook_bound.md) — post-reopening
   strict weakening of the full-product premise, with comparison-domain scope.
 - [Union-grammar refinement capacity](docs/union_grammar_refinement_capacity.md) —
-  exact common-refinement characterization, fibered capacity, and correlation
+  exact common-refinement characterization, fibered capacity, and join-realizability
   defect for the union-grammar subclass.
+- [Database-join ancestry](docs/database_join_ancestry.md) — classical lossless
+  natural-join ancestry and the corresponding novelty boundary.
+- [Interface inflation decomposition](docs/interface_inflation_decomposition.md) —
+  separates closed-view capacity, join-realizability loss, and open-only future
+  innovation, absorbing the fiber-split obstruction into one exact accounting.
 - [Composition code rate](docs/composition_code_rate.md) — constrained families,
   fixed-richness asymptotics, and bounded-degree relay inheritance.
 - [Constant-alphabet relay](docs/constant_alphabet_relay.md) — binary-address
