@@ -53,11 +53,19 @@ Target:
 
 ### Verified acquisition facts
 
-- DBLP identifies the primary DOI as **`10.1109/T-C.1972.223521`** and links both
-  the DOI/IEEE Computer Society edition and an Unpaywall route.
-- The available web client did not recover the primary article from the DOI, IEEE,
-  or Unpaywall route in this pass. This is a retrieval failure only; it is **not**
-  evidence that no open or institutionally accessible copy exists.
+- DBLP's actual electronic-edition link for this record resolves to the primary DOI
+  **`10.1109/T-C.1972.223432`** and also exposes IEEE Computer Society,
+  Unpaywall, and Internet Archive Scholar routes.
+- A previous version of this log incorrectly assigned DOI
+  `10.1109/T-C.1972.223521` to Newborn–Arnold. Expanding the adjacent DBLP records
+  shows that **`10.1109/T-C.1972.223521` belongs to Joonki Kim and Monroe M.
+  Newborn, *The Simplification of Sequential Machines with Input Restrictions*,
+  IEEE Transactions on Computers 21(12):1440–1443 (1972)**. The mapping is
+  corrected here rather than silently retained.
+- The available web client did not recover the Newborn–Arnold primary article from
+  the DOI, IEEE, Unpaywall, or Internet Archive Scholar routes in this pass. This is
+  a retrieval failure only; it is **not** evidence that no open or institutionally
+  accessible copy exists.
 - The exact title, authors, issue, and page range are independently indexed in
   DBLP and library databases.
 
@@ -70,8 +78,9 @@ fixed external input semantics or bounded simulation slowdown.
 
 ### Next retrieval action
 
-Acquire DOI `10.1109/T-C.1972.223521` through institutional IEEE access, document
-delivery, or a verified author/archive copy and extract:
+Acquire DOI `10.1109/T-C.1972.223432` through institutional IEEE access, document
+delivery, Internet Archive preservation, or a verified author/archive copy and
+extract:
 
 - universal-module state count;
 - input count and signal fan-out constants;
@@ -226,9 +235,10 @@ This is an acquisition result, not evidence that the missing clauses fail.
 - DBLP Newborn–Arnold record:
   <https://dblp.org/rec/journals/tc/NewbornA72>
 - Newborn–Arnold DOI:
-  <https://doi.org/10.1109/T-C.1972.223521>
-- DBLP Huang–Kain–Kinney record:
-  <https://dblp.org/rec/conf/focs/HuangKK72>
+  <https://doi.org/10.1109/T-C.1972.223432>
+- DBLP Kim–Newborn input-restriction record (for the corrected adjacent DOI
+  mapping):
+  <https://dblp.org/rec/journals/tc/KimN72>
 - Huang–Kain–Kinney DOI:
   <https://doi.org/10.1109/SWAT.1972.17>
 - DBLP Williams record:
