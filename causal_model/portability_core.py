@@ -7,7 +7,8 @@ portability claims:
 1. exact grammar-aware dynamic interfaces;
 2. operational addressability / extension--compression lower bounds;
 3. exact union-grammar refinement and full open-interface inflation decomposition;
-4. bounded-degree relay sharpness, including single-action innovation; and
+4. bounded-degree relay sharpness, including single-action innovation and its
+   absolute memory / declared-locality latency closure; and
 5. conservative macro schemas plus local fiber-split obstructions.
 
 Finite closure classification, non-nested replacement transport, candidate
@@ -109,6 +110,16 @@ from .single_action_innovation import (
     closed_fire_free_words,
     open_addressed_probe_words,
 )
+from .innovation_capacity_latency import (
+    InnovationCapacityCertificate,
+    PrefixFreeAddressLatencyCertificate,
+    RelayLocalLatencyCertificate,
+    SingleActionSharpnessClosureCertificate,
+    certify_innovation_capacity,
+    certify_prefix_free_address_latency,
+    certify_relay_local_latency,
+    certify_single_action_sharpness_closure,
+)
 from .coherent_portable_macrolaw import (
     CoherentPortableMacroLawCertificate,
     FutureWordObstructionCertificate,
@@ -209,6 +220,15 @@ __all__ = [
     "closed_fire_free_words",
     "open_addressed_probe_words",
     "certify_single_action_innovation",
+    # Absolute innovation and explicit-locality latency closure.
+    "InnovationCapacityCertificate",
+    "PrefixFreeAddressLatencyCertificate",
+    "RelayLocalLatencyCertificate",
+    "SingleActionSharpnessClosureCertificate",
+    "certify_innovation_capacity",
+    "certify_prefix_free_address_latency",
+    "certify_relay_local_latency",
+    "certify_single_action_sharpness_closure",
     # Positive conservative boundary and local obstruction.
     "PortableMacroDynamics",
     "StageMacroProjection",
