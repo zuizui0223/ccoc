@@ -72,6 +72,19 @@ from .relay_tree_compilation import (
     RelayTreeTopology,
     certify_bounded_degree_compilation,
 )
+from .constant_alphabet_relay import (
+    GLOBAL_ACTION_ALPHABET,
+    AddressedRelayConfiguration,
+    ConstantAlphabetRelaySharpnessCertificate,
+    address_bits_for_port,
+    addressed_output_trace,
+    addressed_probe_word,
+    addressed_quiescent_configuration,
+    addressed_word_trajectory,
+    apply_global_action,
+    certify_constant_alphabet_relay_sharpness,
+    run_addressed_probe,
+)
 from .coherent_portable_macrolaw import (
     CoherentPortableMacroLawCertificate,
     FutureWordObstructionCertificate,
@@ -136,13 +149,24 @@ __all__ = [
     "even_parity_codebook",
     "fixed_weight_binary_codebook",
     "fixed_weight_binary_codebook_size",
-    # Bounded-locality sharpness witness.
+    # Bounded-locality sharpness witnesses.
     "RelayTreeSharpnessCertificate",
     "certify_relay_tree_sharpness",
     "BoundedDegreeCompilationCertificate",
     "RelayProtocolCertificate",
     "RelayTreeTopology",
     "certify_bounded_degree_compilation",
+    "GLOBAL_ACTION_ALPHABET",
+    "AddressedRelayConfiguration",
+    "ConstantAlphabetRelaySharpnessCertificate",
+    "address_bits_for_port",
+    "addressed_probe_word",
+    "addressed_quiescent_configuration",
+    "addressed_word_trajectory",
+    "addressed_output_trace",
+    "apply_global_action",
+    "run_addressed_probe",
+    "certify_constant_alphabet_relay_sharpness",
     # Positive conservative boundary and local obstruction.
     "PortableMacroDynamics",
     "StageMacroProjection",
