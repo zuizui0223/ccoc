@@ -100,10 +100,32 @@ The historical `CORE-5` newly-legal-word fiber split is the local witness for a
 positive `iota_new` term. Constrained parity and fixed-richness families separately
 quantify the join-realizability term.
 
+## Novelty status
+
+The current theorem package should **not** be described as the first demonstration
+that context/input restrictions change finite-state compression.  A historical FSM
+audit found direct ancestry in Kim--Newborn input-restricted minimization,
+sequential don't-care optimization, permissible-behavior synthesis, interacting
+FSM minimization, and modern input-restriction/state-identification testing.
+
+The strongest unresolved novelty candidate is therefore the **simultaneous
+extremal package**: `m` fixed one-bit closed interfaces and a one-bit closed union /
+join capacity, real routing already legal in the closed contexts, one newly legal
+primitive action producing the absolute maximum `m` bits of new exact future-response
+memory, and the same construction retaining four global symbols, degree three,
+pairwise constant-local dynamics, and exact local-latency saturation.
+
+No firstness or “no direct precedent” statement should be made until the remaining
+quantitative input-restriction / incomplete-Mealy literature search is complete.
+See [historical FSM novelty gate](docs/novelty_gate_fsm_history.md).
+
 ## Start here
 
 - [Freeze/reopening record](FREEZE.md) — historical freeze point and current
   development policy.
+- [Historical FSM novelty gate](docs/novelty_gate_fsm_history.md) — revised
+  priority assessment against input-restricted and interacting-FSM minimization,
+  permissible behaviors, and state-identification testing.
 - [Addressable-codebook bound](docs/addressable_codebook_bound.md) — post-reopening
   strict weakening of the full-product premise, with comparison-domain scope.
 - [Union-grammar refinement capacity](docs/union_grammar_refinement_capacity.md) —
