@@ -147,20 +147,26 @@ sequential don't-care optimization, permissible-behavior synthesis, interacting
 FSM minimization, environment modeling, modular sequential-circuit realization,
 and modern input-restriction/state-identification testing.
 
-The strongest unresolved novelty candidate is therefore the **simultaneous
-bounded-local extremal package**: `m` fixed one-bit closed interfaces and a one-bit
+The quantitative audit has now identified especially close historical crossings:
+Weiner--Hopcroft (1968) gives bounded-fan-in/out realization of arbitrary
+synchronous machines using identical two-state modules, while Williams (1975)
+explicitly studies uniform decomposition of **incompletely specified** sequential
+machines. Jóźwiak--Ślusarczyk (2004) develops a general decomposition theory for
+incompletely specified sequential machines as constrained networks of
+collaborating partial machines. These make the broad combination
+“restricted/incomplete behavior + small uniform local modules” prior art territory.
+
+The strongest unresolved novelty candidate is therefore only the **simultaneous
+quantitative extremal package**: `m` fixed one-bit closed interfaces and a one-bit
 closed union / join capacity, real routing already legal in the closed contexts,
 one newly legal primitive action producing the absolute maximum `m` bits of new
-exact future-response memory, and the same construction retaining four global
-symbols, degree three, pairwise constant-local dynamics, and logarithmic local
-query latency. The causal-cone bound shows that the logarithmic scale is forced by
-bounded local information propagation, but that locality principle itself is
-classical substrate rather than a novelty claim.
+exact future-response memory, and the same construction retaining a fixed small
+global alphabet, bounded degree, pairwise constant-local dynamics, and logarithmic
+causal-access latency.
 
-No firstness or “no direct precedent” statement should be made until the remaining
-quantitative input-restriction / incomplete-Mealy / bounded-local sequential
-circuit literature search is complete. See the
-[historical FSM novelty gate](docs/novelty_gate_fsm_history.md).
+No reviewed source has yet been shown to match **all** of those columns in one
+family, but this is a negative search result rather than a priority proof. See the
+[quantitative prior-art matrix](docs/quantitative_prior_art_matrix.md).
 
 ## Start here
 
@@ -176,6 +182,10 @@ circuit literature search is complete. See the
 - [Newborn locality/memory watchlist](docs/newborn_locality_memory_watchlist.md) —
   historical modular sequential-circuit and maximal-memory sources that must be
   checked before any locality/memory priority claim.
+- [Quantitative prior-art matrix](docs/quantitative_prior_art_matrix.md) — compares
+  restricted semantics, exact minimization, state-gap evidence, newly enabled
+  symbols, interacting context, uniform modules, bounded fan-in/out, and latency
+  across the closest historical lines.
 - [Addressable-codebook bound](docs/addressable_codebook_bound.md) — post-reopening
   strict weakening of the full-product premise, with comparison-domain scope.
 - [Union-grammar refinement capacity](docs/union_grammar_refinement_capacity.md) —
