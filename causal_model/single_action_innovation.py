@@ -22,6 +22,7 @@ degree is three.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from functools import cached_property
 from itertools import product
 from math import log2
 from typing import Iterable
@@ -174,7 +175,7 @@ class SingleActionInnovationCertificate:
     def address_depth(self) -> int:
         return _validate_power_of_two_module_count(self.module_count)
 
-    @property
+    @cached_property
     def states(self) -> tuple[CoordinateState, ...]:
         return all_coordinate_states(self.module_count)
 
@@ -190,26 +191,22 @@ class SingleActionInnovationCertificate:
     def newly_legal_primitive_actions(self) -> tuple[str, ...]:
         return NEWLY_LEGAL_PRIMITIVE_ACTIONS
 
-    @property
+    @cached_property
     def closed_labels(self) -> tuple[tuple[RelayTrace, ...], ...]:
         return tuple(
             closed_response_signature(self.topology, state, self.closed_words)
             for state in self.states
         )
 
-    @property
+    @cached_property
     def open_labels(self) -> tuple[tuple[RelayTrace, ...], ...]:
         return tuple(
-            open_response_signature(
-                self.topology,
-                state,
-                self.closed_words,
-                self.open_probe_words,
-            )
-            for state in self.states
+            self.closed_labels[index]
+            + tuple(_trace(self.topology, state, word) for word in self.open_probe_words)
+            for index, state in enumerate(self.states)
         )
 
-    @property
+    @cached_property
     def base_labels(self) -> tuple[int, ...]:
         return tuple(state[0] for state in self.states)
 
@@ -229,7 +226,7 @@ class SingleActionInnovationCertificate:
     def open_interface_bits(self) -> float:
         return log2(self.open_block_count)
 
-    @property
+    @cached_property
     def decomposition(self) -> InterfaceInflationDecompositionCertificate:
         return certify_interface_inflation_decomposition(
             self.base_labels,
@@ -253,24 +250,23 @@ class SingleActionInnovationCertificate:
     def maximum_degree(self) -> int:
         return max(self.topology.core_degree(node) for node in self.topology.nodes)
 
-    @property
+    @cached_property
     def first_split_witness(self) -> RelayInnovationSplitWitness | None:
         for left_index, left_state in enumerate(self.states):
-            for right_state in self.states[left_index + 1 :]:
-                if closed_response_signature(self.topology, left_state, self.closed_words) != closed_response_signature(
-                    self.topology, right_state, self.closed_words
-                ):
+            for right_index in range(left_index + 1, len(self.states)):
+                right_state = self.states[right_index]
+                if self.closed_labels[left_index] != self.closed_labels[right_index]:
                     continue
-                for word in self.open_probe_words:
-                    left_trace = _trace(self.topology, left_state, word)
-                    right_trace = _trace(self.topology, right_state, word)
-                    if left_trace != right_trace:
+                left_probe_traces = self.open_labels[left_index][len(self.closed_words) :]
+                right_probe_traces = self.open_labels[right_index][len(self.closed_words) :]
+                for port, word in enumerate(self.open_probe_words):
+                    if left_probe_traces[port] != right_probe_traces[port]:
                         return RelayInnovationSplitWitness(
                             left_state=left_state,
                             right_state=right_state,
                             separating_word=word,
-                            left_trace=left_trace,
-                            right_trace=right_trace,
+                            left_trace=left_probe_traces[port],
+                            right_trace=right_probe_traces[port],
                         )
         return None
 
@@ -306,8 +302,8 @@ class SingleActionInnovationCertificate:
 
             # With fire excluded, every declared closed trace is a repetition of
             # the current focal bit. Thus closed memory is exactly one bit.
-            for state in self.states:
-                for trace in closed_response_signature(self.topology, state, self.closed_words):
+            for state, signature in zip(self.states, self.closed_labels):
+                for trace in signature:
                     if set(trace) != {state[0]}:
                         return False
 
@@ -317,9 +313,11 @@ class SingleActionInnovationCertificate:
                 return False
 
             # Every addressed word ends by exposing its selected dormant bit.
-            for state in self.states:
-                for port, word in enumerate(self.open_probe_words):
-                    trace = _trace(self.topology, state, word)
+            for state, signature in zip(self.states, self.open_labels):
+                probe_traces = signature[len(self.closed_words) :]
+                if len(probe_traces) != self.module_count:
+                    return False
+                for port, trace in enumerate(probe_traces):
                     if trace[-1] != state[port + 1]:
                         return False
 
