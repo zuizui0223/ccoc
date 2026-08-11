@@ -28,14 +28,14 @@ claims of ecological validation.
 
 ## Priority 1 — weaken the product assumption in CORE-2
 
-The v1 lower bound assumes a full product-indexed subset
+The v1 lower bound assumes a full product-indexed comparison set
 
 \[
 S^*\cong I\times E_1\times\cdots\times E_q.
 \]
 
 That assumption is sufficient but stronger than the injection proof actually
-needs. The immediate target is an **addressable codebook theorem**.
+needs. The immediate strengthening is an **addressable codebook theorem**.
 
 Let
 
@@ -43,17 +43,23 @@ Let
 C\subseteq I\times E_1\times\cdots\times E_q
 \]
 
-be any finite jointly realizable codebook embedded in the controlled state space.
-Assume one legal decoder word per coordinate recovers that coordinate uniformly
-on `C`. Then distinct codewords are pairwise separated by a legal future word,
-so
+be any finite jointly realizable codebook, injectively embedded as a declared
+comparison domain `D_C` in a controlled state space. Assume one legal decoder
+word per coordinate recovers that coordinate uniformly on `C`. Then the open
+response quotient restricted to `D_C` is discrete:
 
 \[
-\boxed{K_{\mathrm{open}}\ge \log_2|C|.}
+\boxed{K_{\mathrm{open}}(D_C)=\log_2|C|.}
 \]
 
-For closed context `j`, if every declared closed response factors through the
-projection
+Consequently the full open system satisfies
+
+\[
+K_{\mathrm{open}}(S)\ge\log_2|C|.
+\]
+
+For closed context `j`, if every declared closed response on the **same comparison
+domain** factors through
 
 \[
 \pi_j(i,e_1,\ldots,e_q)=(i,e_j),
@@ -62,14 +68,17 @@ projection
 then
 
 \[
-K_{\mathrm{closed},j}\le \log_2|\pi_j(C)|.
+K_{\mathrm{closed},j}(D_C)
+\le
+\log_2|\pi_j(C)|.
 \]
 
-Therefore the candidate strengthened noncommutation inequality is
+Therefore
 
 \[
 \boxed{
-K_{\mathrm{open}}-\max_jK_{\mathrm{closed},j}
+K_{\mathrm{open}}(D_C)-
+\max_jK_{\mathrm{closed},j}(D_C)
 \ge
 \log_2|C|-\max_j\log_2|\pi_j(C)|.
 }
@@ -84,57 +93,140 @@ C=I\times\prod_jE_j.
 This is a strict assumption weakening whenever `C` is correlated or constrained
 and is not a Cartesian product.
 
-### Required proof obligations
+A codebook-only closed factorization does **not** upper-bound a larger full closed
+state space outside `D_C`. A full-system gap claim needs an additional full
+closed-domain factorization or other explicit upper-bound contract.
+
+### Completed proof obligations in PR #107
 
 1. State the codebook theorem without pretending that coordinate cardinalities
    alone imply the lower bound.
-2. Prove the open lower bound by explicit pair separation / injection.
-3. Prove the closed upper bound only from a declared response factorization.
-4. Record exactly when equality holds; factorization alone gives an upper bound.
-5. Give a non-product family with an asymptotically growing gap.
-6. Check whether the bounded-degree relay construction can realize or restrict to
-   that family without enlarging local node/message grammar.
-7. Compare the codebook formulation with combinatorial rectangle, fooling-set,
-   communication-complexity, automata, and abstraction lower-bound literature
-   before making a stronger novelty claim.
+2. Prove the open codebook quotient is discrete by explicit pair separation.
+3. Separate the full-open lower bound from the restricted closed/open comparison.
+4. Prove the closed upper bound only from a declared response factorization on
+   the same domain.
+5. Record the equality caveat: factorization alone gives an upper bound.
+6. Add executable operational codebook and closed-factorization certificates.
 
-## Priority 2 — non-product sharpness family
+### Remaining obligations
 
-The first target is a binary constrained codebook whose size is exponential but
-which is not a full Cartesian product. A parity-constrained family is the
-simplest candidate:
+1. Complete the closest-literature check before promoting the codebook statement
+   itself as novel.
+2. Decide whether coordinate decoders are unnecessarily strong and can be
+   replaced by a general pair-separating future-word family.
+3. Determine whether a converse can identify a sharp combinatorial invariant in
+   a delimited model class.
+
+## Priority 2 — constrained sharpness and composition code rate
+
+The next question is not merely whether a non-product example exists. It is
+whether linear inflation survives **strong global constraints** on admissible
+compositions.
+
+### Parity code
+
+The smallest strict weakening is
 
 \[
-C_m=\{x\in\{0,1\}^{m+1}: x_0\oplus x_1\oplus\cdots\oplus x_m=0\}.
+C_m=\{x\in\{0,1\}^{m+1}:x_0\oplus x_1\oplus\cdots\oplus x_m=0\}.
 \]
 
-Then
+Then `|C_m|=2^m`, while every two-coordinate projection `(x_0,x_j)` contains all
+four pairs for `m>=2`. Therefore
 
 \[
-|C_m|=2^m,
-\]
-
-while every two-coordinate projection `(x_0,x_j)` is all of `\{0,1\}^2` for
-`m\ge2`. Hence the codebook inequality gives
-
-\[
-K_{\mathrm{open}}\ge m,
+K_{\mathrm{open}}(D_{C_m})=m,
 \qquad
-K_{\mathrm{closed},j}\le2,
-\qquad
-\boxed{K_{\mathrm{open}}-\max_jK_{\mathrm{closed},j}\ge m-2.}
+K_{\mathrm{closed},j}(D_{C_m})\le2,
 \]
 
-This witnesses a linear separation without a full product state subset. The next
-question is whether a bounded-degree relay implementation can attain equality or
-an asymptotically matching gap under the constrained global state set.
+and
 
-## Priority 3 — determine the true combinatorial invariant
+\[
+\boxed{
+K_{\mathrm{open}}-
+\max_jK_{\mathrm{closed},j}
+\ge m-2
+}
+\]
 
-The codebook size bound suggests that raw coordinate count is not fundamental.
-The quantity controlling the separation may instead be the number of jointly
-realisable, future-separable response types relative to the largest closed
-projection. Candidate invariant:
+on the declared parity-code domain.
+
+### Fixed-richness / fixed-Hamming-weight code
+
+A stronger witness fixes the number of active exterior modules exactly. Let
+
+\[
+C_{m,k}
+=
+\{(y,b_1,\ldots,b_m):y\in\{0,1\},\ b_j\in\{0,1\},\ \sum_jb_j=k\}.
+\]
+
+For `1<=k<=m-1`,
+
+\[
+|C_{m,k}|=2\binom{m}{k},
+\qquad
+|\pi_j(C_{m,k})|=4.
+\]
+
+With open coordinate decoders and closed decoders for `(y,b_j)`, the restricted
+quotients satisfy exactly
+
+\[
+K_{\mathrm{open}}(D_{C_{m,k}})
+=
+1+\log_2\binom{m}{k},
+\]
+
+\[
+K_{\mathrm{closed},j}(D_{C_{m,k}})=2,
+\]
+
+so
+
+\[
+\boxed{
+\Delta_{m,k}
+=
+\log_2\binom{m}{k}-1.
+}
+\]
+
+For `k=floor(rho m)` with fixed `0<rho<1`,
+
+\[
+\Delta_{m,k}
+=
+m h_2(\rho)-\frac12\log_2m+O(1).
+\]
+
+At half occupancy the slope approaches one:
+
+\[
+\Delta_{m,\lfloor m/2\rfloor}
+=
+m-\frac12\log_2m+O(1).
+\]
+
+Thus almost the full Cartesian linear gap survives under an exact fixed-richness
+constraint.
+
+### Bounded-degree inheritance
+
+The existing degree-three relay tree realizes every binary coordinate macrostate
+with the same constant local node/message grammar. Restricting the admissible
+quiescent macrostates to the fixed-weight codebook changes neither topology nor
+local dynamics. Each sequential port read still exposes its memory bit and
+preserves the exterior memory vector.
+
+The constrained codebook therefore inherits the bounded-degree locality witness.
+The number of selectable ports still grows with `m`.
+
+## Priority 3 — identify the true combinatorial quantity
+
+The codebook theorem suggests that raw module count and full independence are not
+fundamental. A natural zero-order quantity is
 
 \[
 \Delta_0(C)
@@ -142,9 +234,49 @@ projection. Candidate invariant:
 \log_2|C|-\max_j\log_2|\pi_j(C)|.
 \]
 
-The research question is whether `\Delta_0` is merely a sufficient counting
-lower bound or the correct sharp invariant for an explicitly delimited class of
-open/closed grammar pairs. Do not claim necessity until a converse is proved.
+For a family `C_m`, define the code rate
+
+\[
+R_0
+=
+\liminf_{m\to\infty}\frac{1}{m}\log_2|C_m|.
+\]
+
+If the largest closed factor alphabet has subexponential size,
+
+\[
+\log_2 B_m=o(m),
+\]
+
+then the codebook corollary gives
+
+\[
+\liminf_{m\to\infty}\frac{\Delta_m}{m}\ge R_0.
+\]
+
+This supports the interpretation that **positive combinatorial rate of
+future-distinguishable composition identities is sufficient for linear interface
+inflation**.
+
+Do not yet claim that `Delta_0` or `R_0` is necessary. The next mathematical
+question is whether an explicitly delimited grammar class admits a converse.
+
+## Priority 4 — novelty gate for the strengthened theorem
+
+Before the strengthened theorem becomes a headline claim, compare it with:
+
+1. Myhill--Nerode and finite-state distinguishability lower bounds;
+2. fooling sets and separating families;
+3. communication-complexity rectangle/fooling-set methods;
+4. coding-theoretic constrained code families;
+5. interface automata and compositional control abstraction; and
+6. causal/compositional abstraction.
+
+The likely novelty, if it survives, is **not** pairwise distinguishability of a
+state set by itself. The defensible target remains the cross-grammar statement:
+small exact quotients in every declared closed context can coexist with a large
+open quotient, and this separation persists under bounded locality and strong
+composition constraints.
 
 ## Historical v1 publication core
 
