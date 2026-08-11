@@ -53,17 +53,25 @@ further. The resulting exact decomposition is
 -
 \delta_{\rm join}
 +
-\iota_{\rm new},
+\iota_{\rm new}.
 \]
 
-where the first two terms describe simultaneous composition of closed response
-views and the last term is the extra memory forced only by open-only future
-responses. The historical `CORE-5` newly-legal-word fiber split is the local
-witness for a positive `iota_new` term. Constrained parity and fixed-richness
-families quantify the join-realizability term. `CORE-3` now also has a
-binary-address relay with a constant four-symbol global action alphabet, in
-addition to pairwise locality, maximum degree three, and constant local state
-grammar.
+The static first two terms have natural-join ancestry. The dynamic last term is
+now given its own sharpness family: on the degree-three binary relay, closed
+operation already permits `0/1` address routing and `tick`, but excludes only the
+single primitive action `fire`. The exact closed interface remains one bit and
+its join capacity is two states. Legalizing that one action makes all dormant
+leaf reads available and forces
+
+\[
+\boxed{\iota_{\rm new}=m}
+\]
+
+additional bits while the full action alphabet remains size four. Thus the
+entire linear gap can lie outside the static join explanation. The historical
+`CORE-5` newly-legal-word fiber split is the local witness for a positive
+`iota_new` term. Constrained parity and fixed-richness families separately
+quantify the join-realizability term.
 
 ## Start here
 
@@ -79,6 +87,9 @@ grammar.
 - [Interface inflation decomposition](docs/interface_inflation_decomposition.md) —
   separates closed-view capacity, join-realizability loss, and open-only future
   innovation, absorbing the fiber-split obstruction into one exact accounting.
+- [Single-action innovation](docs/single_action_innovation.md) — one newly legal
+  primitive action creates `m` bits of pure open-only innovation on the existing
+  bounded-degree constant-alphabet relay.
 - [Composition code rate](docs/composition_code_rate.md) — constrained families,
   fixed-richness asymptotics, and bounded-degree relay inheritance.
 - [Constant-alphabet relay](docs/constant_alphabet_relay.md) — binary-address

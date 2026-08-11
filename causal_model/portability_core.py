@@ -7,7 +7,7 @@ portability claims:
 1. exact grammar-aware dynamic interfaces;
 2. operational addressability / extension--compression lower bounds;
 3. exact union-grammar refinement and full open-interface inflation decomposition;
-4. bounded-degree relay sharpness constructions; and
+4. bounded-degree relay sharpness, including single-action innovation; and
 5. conservative macro schemas plus local fiber-split obstructions.
 
 Finite closure classification, non-nested replacement transport, candidate
@@ -98,6 +98,16 @@ from .constant_alphabet_relay import (
     apply_global_action,
     certify_constant_alphabet_relay_sharpness,
     run_addressed_probe,
+)
+from .single_action_innovation import (
+    CLOSED_PRIMITIVE_ACTIONS,
+    NEWLY_LEGAL_PRIMITIVE_ACTIONS,
+    OPEN_PRIMITIVE_ACTIONS,
+    RelayInnovationSplitWitness,
+    SingleActionInnovationCertificate,
+    certify_single_action_innovation,
+    closed_fire_free_words,
+    open_addressed_probe_words,
 )
 from .coherent_portable_macrolaw import (
     CoherentPortableMacroLawCertificate,
@@ -191,6 +201,14 @@ __all__ = [
     "apply_global_action",
     "run_addressed_probe",
     "certify_constant_alphabet_relay_sharpness",
+    "CLOSED_PRIMITIVE_ACTIONS",
+    "OPEN_PRIMITIVE_ACTIONS",
+    "NEWLY_LEGAL_PRIMITIVE_ACTIONS",
+    "RelayInnovationSplitWitness",
+    "SingleActionInnovationCertificate",
+    "closed_fire_free_words",
+    "open_addressed_probe_words",
+    "certify_single_action_innovation",
     # Positive conservative boundary and local obstruction.
     "PortableMacroDynamics",
     "StageMacroProjection",
