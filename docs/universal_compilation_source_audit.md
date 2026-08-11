@@ -42,7 +42,7 @@ Status vocabulary:
 |---|---|---:|---:|---:|---:|---:|---:|---|
 | Weiner & Hopcroft (1968), *Bounded Fan-in, Bounded Fan-out Uniform Decompositions of Synchronous Sequential Machines* | authoritative archival/catalog records; discoverable abstract reproduction, but no primary full text | PARTIAL | PARTIAL | UNKNOWN | PARTIAL | UNKNOWN | UNKNOWN | High-priority blocker. The available evidence supports a bounded-fan-in/out identical-small-module realization in broad terms, but does not settle input encoding, timing, output delay, or same-hardware grammar restriction. |
 | Arnold, Tan & Newborn (1970), *Iteratively Realized Sequential Circuits* | IBM Research primary abstract | UNKNOWN | UNKNOWN | UNKNOWN | PARTIAL | UNKNOWN | UNKNOWN | Primary abstract verifies realization of an arbitrary synchronous flow table as a regular array of identical modules. It does not provide the CCOC compiler constants or timing/restriction semantics. |
-| Newborn & Arnold (1972), *Universal Modules with Bounded Signal Fan-out* | bibliographic record/title only | UNKNOWN | UNKNOWN | UNKNOWN | UNKNOWN | UNKNOWN | UNKNOWN | Title-level evidence is insufficient. Full theorem text is required before any C1–C6 upgrade. |
+| Newborn & Arnold (1972), *Universal Modules for Bounded Signal Fan-Out Synchronous Sequential Circuits* | authoritative bibliographic record/title only | UNKNOWN | UNKNOWN | UNKNOWN | UNKNOWN | UNKNOWN | UNKNOWN | Title-level evidence is insufficient. Full theorem text is required before any C1–C6 upgrade. |
 | Williams (1975), *Uniform Decomposition of Incompletely Specified Sequential Machines* | authoritative bibliographic record; secondary abstract-style descriptions not treated as theorem evidence | UNKNOWN | UNKNOWN | UNKNOWN | UNKNOWN | UNKNOWN | UNKNOWN | Particularly dangerous because incomplete specification and uniform decomposition meet in one paper, but the decisive compiler properties remain unverified. |
 | Jóźwiak & Ślusarczyk (2004), *General decomposition of incompletely specified sequential machines with multi-state behavior realization* | primary ScienceDirect article/abstract material | NOT TARGETED | PARTIAL | UNKNOWN | PARTIAL | PARTIAL | UNKNOWN | Confirms that incomplete-specification plus constrained network decomposition is mature prior art. It does not, in the inspected passages, establish the fixed identical-module compiler contract C1–C6. |
 
@@ -50,10 +50,13 @@ Status vocabulary:
 
 ### 3.1 Weiner–Hopcroft report exists, but the decisive full text was not obtained
 
-The Princeton Digital Systems Laboratory archival record confirms the 1968 report.
-The archival finding-aid route currently exposes catalog metadata rather than a
-web-readable report. A CiNii bibliographic record independently identifies the
-technical report and a physical holding.
+The Princeton Digital Systems Laboratory archival record confirms the April 1968
+report. The archival finding-aid route exposes catalog metadata rather than a
+web-readable report, but it explicitly states that the Lewis Science and
+Engineering Library accepts questions or digitization requests for the collection.
+A CiNii bibliographic record independently identifies Digital Systems Laboratory
+Technical Report no. 61 and lists a University of Tokyo General Library physical
+holding, call number `U600:769`, record `0004766739`.
 
 A discoverable abstract reproduction describes a general decomposition of a given
 synchronous sequential machine into identical two-state modules with fan-in and
@@ -117,6 +120,12 @@ No priority or firstness claim should be made while C3/C5/C6 remain unresolved.
 
 ### Priority 1 — Weiner & Hopcroft (1968)
 
+Acquisition routes already verified:
+
+- Princeton Lewis Science and Engineering Library collection; the finding aid says
+  digitization can be requested via `englib@princeton.edu`;
+- University of Tokyo General Library, `U600:769`, record `0004766739`.
+
 Extract literally from the report:
 
 - component state count;
@@ -131,11 +140,22 @@ Extract literally from the report:
 
 ### Priority 2 — Newborn & Arnold (1972)
 
-Determine whether “universal modules with bounded signal fan-out” strengthens the
-1968 construction on input distribution, module universality, fan-out constants,
-or simulation timing. Do not infer these from the title.
+Request the exact paper:
+
+> Monroe M. Newborn and Thomas F. Arnold, *Universal Modules for Bounded Signal
+> Fan-Out Synchronous Sequential Circuits*, IEEE Transactions on Computers,
+> 21(1):63–79, 1972.
+
+Determine whether it strengthens the 1968 construction on input distribution,
+module universality, fan-out constants, or simulation timing. Do not infer these
+properties from the title.
 
 ### Priority 3 — Williams (1975)
+
+Request:
+
+> George H. Williams, *Uniform Decomposition of Incompletely Specified Sequential
+> Machines*, IEEE Transactions on Computers, 24(8):840–843, 1975.
 
 Because the paper explicitly concerns incompletely specified sequential machines,
 extract:
@@ -178,6 +198,10 @@ external input presentation, and iteration/clock semantics.
   <https://findingaids.library.upenn.edu/records/PRIN_MUDD_ENG027>
 - CiNii bibliographic record for the Weiner–Hopcroft technical report:
   <https://ci.nii.ac.jp/ncid/BA8670779X>
+- DBLP volume record for Newborn–Arnold (1972):
+  <https://dblp.org/db/journals/tc/tc21.html>
+- DBLP volume record for Williams (1975):
+  <https://dblp.org/db/journals/tc/tc24>
 - ScienceDirect, Jóźwiak–Ślusarczyk (2004):
   <https://www.sciencedirect.com/science/article/abs/pii/S1383762103001929>
 
