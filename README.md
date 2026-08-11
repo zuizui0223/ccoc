@@ -69,21 +69,23 @@ reads available and forces
 
 additional bits while the full action alphabet remains size four.
 
-This `m`-bit innovation is now also closed from above. On the declared finite
-macro domain `D_m={0,1}^{m+1}`, no open quotient can add more than
+This `m`-bit innovation is absolutely sharp on the declared finite macro domain
+`D_m={0,1}^{m+1}`: no open quotient can add more than
 
 \[
 \log_2|D_m|-\log_2|P_U|=m
 \]
 
-bits relative to the two-state closed-union quotient. The open relay quotient is
-discrete, so it attains that **absolute finite-domain innovation capacity**.
+bits relative to the two-state closed-union quotient, and the open relay quotient
+is discrete.
 
-The same family is latency-sharp under the explicit local architecture it actually
-implements: a unique selector moves at most one parent--child edge per address
-symbol, `fire` injects a pulse at one terminal memory leaf, and the pulse moves at
-most one child--parent edge per `tick` to the focal output. Prefix-free binary
-addressing plus the return path gives
+### Two distinct locality bounds
+
+The relay now has two latency statements with deliberately different scopes.
+
+**Architecture-specific exact bound.** If one retains the explicit binary
+selector plus same-tree return-path contract, prefix-free addressing and
+one-edge-per-step pulse return give
 
 \[
 L_{\rm query}^{\rm worst}
@@ -91,10 +93,46 @@ L_{\rm query}^{\rm worst}
 2\lceil\log_2m\rceil+2.
 \]
 
-For the balanced power-of-two family, every canonical probe has exactly
-`2 log2(m) + 2` actions, so the construction attains this declared-locality lower
-bound with equality. No latency claim is made for arbitrary bounded-degree systems
-with unrestricted global operations.
+For the balanced power-of-two family every canonical probe has exactly
+`2 log2(m) + 2` actions, so this narrower bound is attained with equality.
+
+**General bounded-local causal-cone bound.** Suppose instead only that a finite
+synchronous network has maximum degree `Delta`, bounded local state alphabets,
+radius-one local updates, and a focal output depending on the focal local state.
+A globally broadcast control word may be known everywhere, but it cannot
+instantaneously transmit hidden initial-state information. After `T` local rounds,
+the focal response can depend only on the initial configuration in the radius-`T`
+ball. Thus
+
+\[
+N_T
+\le
+\prod_{v\in B_T(o)}|Q_v|,
+\qquad
+K_T
+\le
+\sum_{v\in B_T(o)}\log_2|Q_v|.
+\]
+
+For fixed maximum degree `Delta>=3` and fixed local-state bound `q`, the graph ball
+has exponential size in `T`, so distinguishing
+
+\[
+N_T=2^{\Theta(m)}
+\]
+
+exact focal response classes requires
+
+\[
+\boxed{T=\Omega(\log m).}
+\]
+
+This broader order lower bound does **not** assume binary addressing, a selector
+token, prefix-free codes, or a specific return route. The existing relay's
+`2 log2(m)+2` probes are therefore order-optimal in the broader bounded-local
+class, while exact zero-slack optimality remains only a claim for the narrower
+selector-plus-return-path architecture. Bounded degree alone is not enough; the
+radius-one causal-propagation contract is essential.
 
 The historical `CORE-5` newly-legal-word fiber split is the local witness for a
 positive `iota_new` term. Constrained parity and fixed-richness families separately
@@ -103,21 +141,26 @@ quantify the join-realizability term.
 ## Novelty status
 
 The current theorem package should **not** be described as the first demonstration
-that context/input restrictions change finite-state compression.  A historical FSM
+that context/input restrictions change finite-state compression. A historical FSM
 audit found direct ancestry in Kim--Newborn input-restricted minimization,
 sequential don't-care optimization, permissible-behavior synthesis, interacting
-FSM minimization, and modern input-restriction/state-identification testing.
+FSM minimization, environment modeling, modular sequential-circuit realization,
+and modern input-restriction/state-identification testing.
 
 The strongest unresolved novelty candidate is therefore the **simultaneous
-extremal package**: `m` fixed one-bit closed interfaces and a one-bit closed union /
-join capacity, real routing already legal in the closed contexts, one newly legal
-primitive action producing the absolute maximum `m` bits of new exact future-response
-memory, and the same construction retaining four global symbols, degree three,
-pairwise constant-local dynamics, and exact local-latency saturation.
+bounded-local extremal package**: `m` fixed one-bit closed interfaces and a one-bit
+closed union / join capacity, real routing already legal in the closed contexts,
+one newly legal primitive action producing the absolute maximum `m` bits of new
+exact future-response memory, and the same construction retaining four global
+symbols, degree three, pairwise constant-local dynamics, and logarithmic local
+query latency. The causal-cone bound shows that the logarithmic scale is forced by
+bounded local information propagation, but that locality principle itself is
+classical substrate rather than a novelty claim.
 
 No firstness or “no direct precedent” statement should be made until the remaining
-quantitative input-restriction / incomplete-Mealy literature search is complete.
-See [historical FSM novelty gate](docs/novelty_gate_fsm_history.md).
+quantitative input-restriction / incomplete-Mealy / bounded-local sequential
+circuit literature search is complete. See the
+[historical FSM novelty gate](docs/novelty_gate_fsm_history.md).
 
 ## Start here
 
@@ -125,7 +168,14 @@ See [historical FSM novelty gate](docs/novelty_gate_fsm_history.md).
   development policy.
 - [Historical FSM novelty gate](docs/novelty_gate_fsm_history.md) — revised
   priority assessment against input-restricted and interacting-FSM minimization,
-  permissible behaviors, and state-identification testing.
+  permissible behaviors, environment modeling, modular realization, and
+  state-identification testing.
+- [Historical FSM novelty addendum](docs/novelty_gate_fsm_addendum.md) — the
+  centralized one-action maximal-innovation baseline and further novelty
+  reductions.
+- [Newborn locality/memory watchlist](docs/newborn_locality_memory_watchlist.md) —
+  historical modular sequential-circuit and maximal-memory sources that must be
+  checked before any locality/memory priority claim.
 - [Addressable-codebook bound](docs/addressable_codebook_bound.md) — post-reopening
   strict weakening of the full-product premise, with comparison-domain scope.
 - [Union-grammar refinement capacity](docs/union_grammar_refinement_capacity.md) —
@@ -141,7 +191,10 @@ See [historical FSM novelty gate](docs/novelty_gate_fsm_history.md).
   bounded-degree constant-alphabet relay.
 - [Innovation capacity and latency](docs/innovation_capacity_latency.md) — proves
   the `m`-bit family is absolutely memory-sharp and exactly latency-sharp under
-  its declared one-edge-per-step local selector/pulse architecture.
+  its declared selector/pulse architecture.
+- [Local causal-cone bound](docs/local_causal_cone_bound.md) — removes selector
+  assumptions from the latency **order** lower bound under an explicit radius-one
+  bounded-local-state network contract.
 - [Composition code rate](docs/composition_code_rate.md) — constrained families,
   fixed-richness asymptotics, and bounded-degree relay inheritance.
 - [Constant-alphabet relay](docs/constant_alphabet_relay.md) — binary-address
