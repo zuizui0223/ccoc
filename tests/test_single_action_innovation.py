@@ -7,12 +7,13 @@ from causal_model.constant_alphabet_relay import FIRE, GLOBAL_ACTION_ALPHABET
 from causal_model.single_action_innovation import (
     CLOSED_PRIMITIVE_ACTIONS,
     NEWLY_LEGAL_PRIMITIVE_ACTIONS,
+    closed_context_fire_free_words,
     closed_fire_free_words,
     certify_single_action_innovation,
 )
 
 
-def test_closed_grammar_has_real_routing_and_ticks_but_no_fire():
+def test_closed_contexts_have_real_routing_and_ticks_but_no_fire():
     certificate = certify_single_action_innovation(4)
 
     assert certificate.verify()
@@ -20,19 +21,32 @@ def test_closed_grammar_has_real_routing_and_ticks_but_no_fire():
     assert set(CLOSED_PRIMITIVE_ACTIONS) == {"0", "1", "tick"}
     assert NEWLY_LEGAL_PRIMITIVE_ACTIONS == (FIRE,)
     assert set(certificate.open_primitive_actions) == set(GLOBAL_ACTION_ALPHABET)
+    assert len(certificate.closed_context_words) == certificate.module_count
+
+    union = set()
+    for port, context_words in enumerate(certificate.closed_context_words):
+        assert context_words == closed_context_fire_free_words(certificate.module_count, port)
+        assert all(FIRE not in word for word in context_words)
+        assert any("tick" in word for word in context_words)
+        union.update(context_words)
+
+    assert union == set(certificate.closed_words)
     assert all(FIRE not in word for word in certificate.closed_words)
     assert any("0" in word for word in certificate.closed_words)
     assert any("1" in word for word in certificate.closed_words)
-    assert any("tick" in word for word in certificate.closed_words)
 
 
 def test_one_new_action_accounts_for_all_linear_open_only_innovation():
     for module_count in (2, 4, 8):
         certificate = certify_single_action_innovation(module_count)
 
+        assert certificate.closed_context_block_counts == (2,) * module_count
+        assert certificate.closed_union_block_count == 2
         assert certificate.closed_block_count == 2
         assert certificate.open_block_count == 2 ** (module_count + 1)
+        assert certificate.decomposition.closed_block_counts == (2,) * module_count
         assert certificate.decomposition.fibered_capacity_state_count == 2
+        assert certificate.decomposition.union_block_count == 2
         assert certificate.join_realizability_defect_bits == pytest.approx(0.0)
         assert certificate.open_only_innovation_bits == pytest.approx(module_count)
         assert certificate.total_gap_bits == pytest.approx(module_count)
@@ -54,6 +68,9 @@ def test_every_closed_trace_is_independent_of_all_dormant_memory_bits():
     assert len(by_focal[1]) == 1
     assert by_focal[0] != by_focal[1]
     assert words == certificate.closed_words
+
+    for context_labels in certificate.closed_context_labels:
+        assert len(set(context_labels)) == 2
 
 
 def test_each_open_addressed_word_reads_exactly_its_dormant_bit():
