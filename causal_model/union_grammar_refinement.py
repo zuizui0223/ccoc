@@ -51,7 +51,10 @@ def _normalize_closed_labels(
     domain_size: int,
 ) -> tuple[tuple[Label, ...], ...]:
     try:
-        normalized = tuple(_normalize_labels(labels, f"closed_labels[{index}]") for index, labels in enumerate(closed_labels))
+        normalized = tuple(
+            _normalize_labels(labels, f"closed_labels[{index}]")
+            for index, labels in enumerate(closed_labels)
+        )
     except TypeError as error:
         raise ValueError("closed_labels must be iterable") from error
     if not normalized:
@@ -75,10 +78,11 @@ def _partition_refines(fine: tuple[Label, ...], coarse: tuple[Label, ...]) -> bo
     """Return whether equality of ``fine`` labels always implies coarse equality."""
     coarse_by_fine: dict[Label, Label] = {}
     for fine_label, coarse_label in zip(fine, coarse):
-        previous = coarse_by_fine.get(fine_label)
-        if previous is not None and previous != coarse_label:
-            return False
-        coarse_by_fine[fine_label] = coarse_label
+        if fine_label in coarse_by_fine:
+            if coarse_by_fine[fine_label] != coarse_label:
+                return False
+        else:
+            coarse_by_fine[fine_label] = coarse_label
     return True
 
 
@@ -133,7 +137,9 @@ class PartitionRefinementCapacityCertificate:
     def states_in_base_block(self, base_label: Label) -> tuple[int, ...]:
         if base_label not in set(self.base_labels):
             raise ValueError("base_label is not realized")
-        return tuple(index for index, label in enumerate(self.base_labels) if label == base_label)
+        return tuple(
+            index for index, label in enumerate(self.base_labels) if label == base_label
+        )
 
     def refinement_counts_in_base_block(self, base_label: Label) -> tuple[int, ...]:
         indices = self.states_in_base_block(base_label)
@@ -224,7 +230,9 @@ def certify_partition_refinement_capacity(
     closed = _normalize_closed_labels(closed_labels, len(base))
     certificate = PartitionRefinementCapacityCertificate(base, closed)
     if not certificate.verify():
-        raise ValueError("declared closed partitions do not form a valid shared-base refinement family")
+        raise ValueError(
+            "declared closed partitions do not form a valid shared-base refinement family"
+        )
     return certificate
 
 
@@ -262,7 +270,9 @@ def _normalize_word_family(
     return normalized
 
 
-def _stable_word_union(families: tuple[tuple[Word, ...], ...]) -> tuple[Word, ...]:
+def _stable_word_union(
+    families: tuple[tuple[Word, ...], ...],
+) -> tuple[Word, ...]:
     seen: set[Word] = set()
     result: list[Word] = []
     for family in families:
@@ -300,7 +310,10 @@ class UnionGrammarRefinementCertificate:
 
     @property
     def base_labels(self) -> tuple[ResponseSignature, ...]:
-        return tuple(_signature(self.system, state, self.base_words) for state in self.domain_states)
+        return tuple(
+            _signature(self.system, state, self.base_words)
+            for state in self.domain_states
+        )
 
     @property
     def closed_labels(self) -> tuple[tuple[ResponseSignature, ...], ...]:
@@ -311,7 +324,10 @@ class UnionGrammarRefinementCertificate:
 
     @property
     def open_labels(self) -> tuple[ResponseSignature, ...]:
-        return tuple(_signature(self.system, state, self.open_words) for state in self.domain_states)
+        return tuple(
+            _signature(self.system, state, self.open_words)
+            for state in self.domain_states
+        )
 
     @property
     def joint_closed_labels(self) -> tuple[tuple[ResponseSignature, ...], ...]:
@@ -355,7 +371,11 @@ class UnionGrammarRefinementCertificate:
             if not self.closed_word_families:
                 return False
             normalized_closed = tuple(
-                _normalize_word_family(self.system, family, f"closed_word_families[{index}]")
+                _normalize_word_family(
+                    self.system,
+                    family,
+                    f"closed_word_families[{index}]",
+                )
                 for index, family in enumerate(self.closed_word_families)
             )
             if normalized_closed != self.closed_word_families:
@@ -369,7 +389,8 @@ class UnionGrammarRefinementCertificate:
             for left in range(len(domain)):
                 for right in range(len(domain)):
                     if (self.open_labels[left] == self.open_labels[right]) != (
-                        self.joint_closed_labels[left] == self.joint_closed_labels[right]
+                        self.joint_closed_labels[left]
+                        == self.joint_closed_labels[right]
                     ):
                         return False
 
@@ -393,7 +414,11 @@ def certify_union_grammar_refinement(
     domain = _normalize_domain(system, domain_states)
     base = _normalize_word_family(system, base_words, "base_words")
     closed = tuple(
-        _normalize_word_family(system, family, f"closed_word_families[{index}]")
+        _normalize_word_family(
+            system,
+            family,
+            f"closed_word_families[{index}]",
+        )
         for index, family in enumerate(closed_word_families)
     )
     certificate = UnionGrammarRefinementCertificate(system, domain, base, closed)
