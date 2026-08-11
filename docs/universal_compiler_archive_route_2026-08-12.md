@@ -44,7 +44,13 @@ Primary C3/C5 target:
 
 > Monroe M. Newborn and Thomas F. Arnold, *Universal Modules for Bounded Signal
 > Fan-Out Synchronous Sequential Circuits*, pp. 63–79,
-> DOI `10.1109/T-C.1972.223521`.
+> DOI `10.1109/T-C.1972.223432`.
+
+**DOI correction.** A previous version of this acquisition record incorrectly used
+`10.1109/T-C.1972.223521`. DBLP's actual electronic-edition links show that
+`223432` is the Newborn–Arnold article, whereas `223521` belongs to Kim–Newborn,
+*The Simplification of Sequential Machines with Input Restrictions*, 21(12):
+1440–1443 (1972).
 
 Extract C1/C2/C3/C5/C6 details, especially module input count, source-input
 presentation, clocking, output latency, and whether input-language restriction can
@@ -156,6 +162,8 @@ source retrievals.
 - Internet Archive preserved journal collection:
   `https://archive.org/details/pub_ieee-transactions-on-computers`
 - Newborn–Arnold DOI:
+  `https://doi.org/10.1109/T-C.1972.223432`
+- Kim–Newborn input-restriction DOI (to prevent future remapping confusion):
   `https://doi.org/10.1109/T-C.1972.223521`
 - Huang–Kain–Kinney DOI:
   `https://doi.org/10.1109/SWAT.1972.17`
