@@ -56,21 +56,48 @@ further. The resulting exact decomposition is
 \iota_{\rm new}.
 \]
 
-The static first two terms have natural-join ancestry. The dynamic last term is
-now given its own sharpness family: on the degree-three binary relay, closed
-operation already permits `0/1` address routing and `tick`, but excludes only the
-single primitive action `fire`. The exact closed interface remains one bit and
-its join capacity is two states. Legalizing that one action makes all dormant
-leaf reads available and forces
+The static first two terms have natural-join ancestry. The dynamic last term has a
+sharpness family on the degree-three binary relay: every fixed closed composition
+already permits its `0/1` address routing and `tick`, but excludes only the single
+primitive action `fire`. Every fixed closed quotient, their union, and the static
+join capacity remain one bit. Legalizing that one action makes all dormant leaf
+reads available and forces
 
 \[
 \boxed{\iota_{\rm new}=m}
 \]
 
-additional bits while the full action alphabet remains size four. Thus the
-entire linear gap can lie outside the static join explanation. The historical
-`CORE-5` newly-legal-word fiber split is the local witness for a positive
-`iota_new` term. Constrained parity and fixed-richness families separately
+additional bits while the full action alphabet remains size four.
+
+This `m`-bit innovation is now also closed from above. On the declared finite
+macro domain `D_m={0,1}^{m+1}`, no open quotient can add more than
+
+\[
+\log_2|D_m|-\log_2|P_U|=m
+\]
+
+bits relative to the two-state closed-union quotient. The open relay quotient is
+discrete, so it attains that **absolute finite-domain innovation capacity**.
+
+The same family is latency-sharp under the explicit local architecture it actually
+implements: a unique selector moves at most one parent--child edge per address
+symbol, `fire` injects a pulse at one terminal memory leaf, and the pulse moves at
+most one child--parent edge per `tick` to the focal output. Prefix-free binary
+addressing plus the return path gives
+
+\[
+L_{\rm query}^{\rm worst}
+\ge
+2\lceil\log_2m\rceil+2.
+\]
+
+For the balanced power-of-two family, every canonical probe has exactly
+`2 log2(m) + 2` actions, so the construction attains this declared-locality lower
+bound with equality. No latency claim is made for arbitrary bounded-degree systems
+with unrestricted global operations.
+
+The historical `CORE-5` newly-legal-word fiber split is the local witness for a
+positive `iota_new` term. Constrained parity and fixed-richness families separately
 quantify the join-realizability term.
 
 ## Start here
@@ -90,6 +117,9 @@ quantify the join-realizability term.
 - [Single-action innovation](docs/single_action_innovation.md) — one newly legal
   primitive action creates `m` bits of pure open-only innovation on the existing
   bounded-degree constant-alphabet relay.
+- [Innovation capacity and latency](docs/innovation_capacity_latency.md) — proves
+  the `m`-bit family is absolutely memory-sharp and exactly latency-sharp under
+  its declared one-edge-per-step local selector/pulse architecture.
 - [Composition code rate](docs/composition_code_rate.md) — constrained families,
   fixed-richness asymptotics, and bounded-degree relay inheritance.
 - [Constant-alphabet relay](docs/constant_alphabet_relay.md) — binary-address
