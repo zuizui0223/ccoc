@@ -118,12 +118,14 @@ No priority or firstness claim should be made while C3/C5/C6 remain unresolved.
 
 ## 5. Decisive acquisition order
 
+A dated, reproducible acquisition/search log is maintained in
+`universal_compiler_acquisition_log_2026-08-12.md`.
+
 ### Priority 1 — Weiner & Hopcroft (1968)
 
 Acquisition routes already verified:
 
-- Princeton Lewis Science and Engineering Library collection; the finding aid says
-  digitization can be requested via `englib@princeton.edu`;
+- Princeton Lewis Science and Engineering Library collection;
 - University of Tokyo General Library, `U600:769`, record `0004766739`.
 
 Extract literally from the report:
