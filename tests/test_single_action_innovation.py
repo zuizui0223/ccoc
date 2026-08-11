@@ -58,14 +58,13 @@ def test_every_closed_trace_is_independent_of_all_dormant_memory_bits():
 
 def test_each_open_addressed_word_reads_exactly_its_dormant_bit():
     certificate = certify_single_action_innovation(4)
+    closed_response_count = len(certificate.closed_words)
 
-    for state in certificate.states:
-        for port, word in enumerate(certificate.open_probe_words):
-            # The certificate's own exhaustive verification checks the full
-            # trajectory. Here the final response is the exposed coordinate.
-            from causal_model.single_action_innovation import _trace
-
-            assert _trace(certificate.topology, state, word)[-1] == state[port + 1]
+    for state, signature in zip(certificate.states, certificate.open_labels):
+        probe_traces = signature[closed_response_count:]
+        assert len(probe_traces) == certificate.module_count
+        for port, trace in enumerate(probe_traces):
+            assert trace[-1] == state[port + 1]
 
 
 def test_positive_innovation_returns_a_core5_style_local_split_witness():
