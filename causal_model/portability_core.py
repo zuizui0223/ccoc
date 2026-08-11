@@ -62,6 +62,10 @@ from .addressable_codebooks import (
     readout_symbol,
     standard_codebook_closed_projection,
 )
+from .codebook_families import (
+    fixed_weight_binary_codebook,
+    fixed_weight_binary_codebook_size,
+)
 from .relay_tree_compilation import (
     BoundedDegreeCompilationCertificate,
     RelayProtocolCertificate,
@@ -130,6 +134,8 @@ __all__ = [
     "standard_codebook_closed_projection",
     "first_differing_codebook_coordinate",
     "even_parity_codebook",
+    "fixed_weight_binary_codebook",
+    "fixed_weight_binary_codebook_size",
     # Bounded-locality sharpness witness.
     "RelayTreeSharpnessCertificate",
     "certify_relay_tree_sharpness",
