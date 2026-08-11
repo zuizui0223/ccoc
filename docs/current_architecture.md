@@ -45,6 +45,11 @@ programs. The relay tree is a witness that the lower bound survives constant
 local grammar, pairwise interactions, and degree three; it is not a separate
 headline theory.
 
+The first post-reopening structural target is to replace the full-product premise
+of the addressability obstruction with an arbitrary jointly realizable
+**addressable codebook**. The v1 product theorem remains a historical special
+case and reproducibility target until that strengthening is reviewed and merged.
+
 ### 2. Identifiability companion
 
 ```python
@@ -92,16 +97,19 @@ Every existing theorem module retains its own finite certificate objects and
 replay workflow. A workflow replays a declared finite domain; it does not prove
 claims about arbitrary ecosystems outside that domain.
 
-A new structural theorem may be added only after the v1 freeze is lifted and it
-changes one canonical claim in the portability core or a deliberately selected
-identifiability direction. It must include:
+The v1 freeze was lifted on 2026-08-11. A new structural theorem may now be added
+when it changes one canonical claim in the portability core or a deliberately
+selected identifiability direction. It must include:
 
 1. exact finite domain and grammar;
 2. statement status: theorem, sufficient criterion, lower bound, witness, or
    unresolved boundary;
 3. independently checkable certificate;
 4. fail-closed and counterexample tests; and
-5. deterministic replay artifact.
+5. deterministic replay artifact where the claim has a finite witness layer.
+
+New development must occur on a branch and enter `main` through pull request.
+The July 2026 paper-core replay remains a preserved provenance baseline.
 
 ## Shared infrastructure
 
