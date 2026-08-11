@@ -7,7 +7,7 @@
 
 ## Motivation
 
-The v1 theorem assumes a product-indexed subset
+The v1 theorem assumes a product-indexed set
 
 \[
 S^*\cong I\times E_1\times\cdots\times E_q.
@@ -19,7 +19,7 @@ coordinate labels can be recovered by declared legal future words.
 
 That observation leads to a codebook formulation.
 
-## Setup
+## Response equivalence on a declared comparison domain
 
 Let a finite deterministic controlled response system have state space `S`, a
 declared legal word family `L`, and response map
@@ -28,19 +28,36 @@ declared legal word family `L`, and response map
 R:S\times\mathcal L\to\mathcal Y.
 \]
 
-Define the exact response equivalence
+For any declared finite comparison domain `D subseteq S`, restrict response
+equivalence to `D`:
 
 \[
-s\equiv_{\mathcal L}s'
+s\equiv_{\mathcal L,D}s'
 \iff
 \forall w\in\mathcal L,\quad R(s,w)=R(s',w),
+\qquad s,s'\in D.
 \]
 
-and exact interface memory
+Define the exact interface memory on that domain by
 
 \[
-K_{\mathcal L}=\log_2|S/\!\equiv_{\mathcal L}|.
+K_{\mathcal L}(D)
+=
+\log_2|D/\!\equiv_{\mathcal L,D}|.
 \]
+
+If `D=S`, this is the full-system exact interface memory. If `D` is a declared
+subset, `K_L(D)` is the memory required to distinguish only states in that
+comparison domain. In particular,
+
+\[
+K_{\mathcal L}(S)\ge K_{\mathcal L}(D).
+\]
+
+This distinction matters: a closed factorization verified only on `D` does not,
+by itself, upper-bound the exact closed interface on all of `S`.
+
+## Addressable codebook
 
 Let
 
@@ -54,8 +71,9 @@ be any finite set of distinct codewords, together with an injective embedding
 \eta:C\hookrightarrow S.
 \]
 
-No Cartesian closure assumption is made: `C` may contain arbitrary correlations,
-constraints, forbidden combinations, or parity relations.
+Write `D_C=eta(C)` for the embedded comparison domain. No Cartesian closure
+assumption is made: `C` may contain arbitrary correlations, constraints,
+forbidden combinations, or parity relations.
 
 ## Operational coordinate addressability
 
@@ -69,12 +87,19 @@ d_k(R(\eta(c),r_k))=c_k
 
 The same word and decoder must work uniformly over the entire codebook.
 
-## Theorem — Addressable-codebook lower bound
+## Theorem 1 — Addressable-codebook lower bound
 
-Under the assumptions above,
+Under the assumptions above, the open response quotient restricted to the
+codebook is discrete:
 
 \[
-\boxed{K_{\mathrm{open}}\ge\log_2|C|.}
+\boxed{K_{\mathrm{open}}(D_C)=\log_2|C|.}
+\]
+
+Consequently the full open system obeys
+
+\[
+\boxed{K_{\mathrm{open}}(S)\ge\log_2|C|.}
 \]
 
 ### Proof
@@ -89,17 +114,17 @@ d_k(R(\eta(c),r_k))=c_k\neq c'_k=d_k(R(\eta(c'),r_k)).
 Therefore the two responses to `r_k` cannot be equal, so
 
 \[
-\eta(c)\not\equiv_{\mathcal L}\eta(c').
+\eta(c)\not\equiv_{\mathcal L,D_C}\eta(c').
 \]
 
-Thus the exact open quotient contains at least one class per codeword. Hence it
-has at least `|C|` classes, and taking base-two logarithms gives the result.
-`\square`
+Every pair of distinct embedded codewords lies in a different response class,
+so `D_C` has exactly `|C|` open classes. The full system can only have at least as
+many classes as its restriction to `D_C`. `\square`
 
 The proof is still an operational injection argument. It no longer derives the
-bound from the ambient coordinate cardinalities.
+bound from ambient coordinate cardinalities.
 
-## Closed-context upper bound
+## Theorem 2 — Closed-context upper bound on the same domain
 
 For each fixed context `j`, let
 
@@ -108,38 +133,42 @@ For each fixed context `j`, let
 \]
 
 where coordinate `0` is the inside coordinate and coordinate `j` is the relevant
-exterior coordinate. Suppose every declared closed response factors through this
-projection:
+exterior coordinate. Suppose every declared closed response on the same embedded
+codebook domain factors through this projection:
 
 \[
 R_j(\eta(c),w)=F_{j,w}(\pi_j(c))
 \qquad\forall c\in C,\ \forall w\in\mathcal L_j.
 \]
 
-Then `\pi_j` is a sound closed interface on the codebook, giving
+Then `pi_j` is a sound closed interface on `D_C`, giving
 
 \[
-\boxed{K_{\mathrm{closed},j}\le\log_2|\pi_j(C)|.}
+\boxed{
+K_{\mathrm{closed},j}(D_C)
+\le
+\log_2|\pi_j(C)|.
+}
 \]
 
 As in v1, equality needs extra closed decoder/separation assumptions; response
 factorization alone gives an upper bound.
 
-## Strengthened noncommutation inequality
+## Corollary — Codebook noncommutation inequality
 
-Combining the open lower bound and closed upper bounds gives
+Combining Theorems 1 and 2 on the same comparison domain gives
 
 \[
 \boxed{
-K_{\mathrm{open}}-
-\max_jK_{\mathrm{closed},j}
+K_{\mathrm{open}}(D_C)-
+\max_jK_{\mathrm{closed},j}(D_C)
 \ge
 \log_2|C|-
 \max_j\log_2|\pi_j(C)|.
 }
 \]
 
-Define the codebook separation quantity
+Define
 
 \[
 \Delta_0(C)
@@ -148,9 +177,27 @@ Define the codebook separation quantity
 \max_j\log_2|\pi_j(C)|.
 \]
 
-At present `\Delta_0(C)` is a proved lower-bound expression under the declared
+At present `Delta_0(C)` is a proved lower-bound expression under the declared
 operational and factorization premises. It is **not** claimed to be a necessary
 or universally complete invariant.
+
+### Lifting the comparison to full state spaces
+
+The codebook corollary is a statement on the declared codebook domain. To claim
+
+\[
+K_{\mathrm{open}}(S_{open})-
+\max_jK_{\mathrm{closed},j}(S_{closed,j})
+\ge \Delta_0(C)
+\]
+
+for full systems, one needs additional closed-system contracts that upper-bound
+each full closed quotient by `|pi_j(C)|` (or by another stated bound). A
+factorization checked only on the codebook does not supply that global upper
+bound.
+
+This scope condition is deliberate and should remain explicit in any manuscript
+claim.
 
 ## Recovery of the v1 product theorem
 
@@ -172,7 +219,8 @@ and
 |\pi_j(C)|=|I||E_j|.
 \]
 
-Therefore the codebook inequality reduces exactly to
+Therefore, on the declared product comparison domain, the codebook inequality
+reduces to
 
 \[
 K_{\mathrm{open}}-
@@ -211,10 +259,10 @@ For every exterior coordinate `j`, every pair `(x_0,x_j)` is realized when
 |\pi_j(C_m)|=4.
 \]
 
-Hence
+Hence, on the parity-code comparison domain,
 
 \[
-K_{\mathrm{open}}\ge m,
+K_{\mathrm{open}}=m,
 \qquad
 K_{\mathrm{closed},j}\le2,
 \]
@@ -254,9 +302,11 @@ claim is expanded.
 
 - `OperationalAddressableCodebookCertificate` for finite coordinate decoding;
 - `OperationalCodebookClosedContextCertificate` for finite closed
-  factorizations;
+  factorizations on the same codebook domain;
 - a canonical readout realization for arbitrary finite codebooks; and
 - `even_parity_codebook(m)` as the first non-product regression family.
 
-These are finite witness replays. The all-cardinality theorem is the symbolic
-pair-separation proof above.
+The finite certificate checks that every embedded codeword is operationally
+separated and that each declared closed response family factors through the
+supplied labels. It does not infer a full-state closed upper bound. The
+all-cardinality theorem is the symbolic pair-separation proof above.
