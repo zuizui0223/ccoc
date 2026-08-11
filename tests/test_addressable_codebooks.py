@@ -1,4 +1,4 @@
-"""Tests for addressable codebook lower bounds and non-product witnesses."""
+"""Tests for addressable codebook lower bounds and constrained witnesses."""
 
 import math
 from itertools import product
@@ -14,6 +14,15 @@ from causal_model.addressable_codebooks import (
     even_parity_codebook,
     readout_symbol,
     standard_codebook_closed_projection,
+)
+from causal_model.codebook_families import (
+    fixed_weight_binary_codebook,
+    fixed_weight_binary_codebook_size,
+)
+from causal_model.relay_tree_compilation import (
+    RelayTreeTopology,
+    quiescent_configuration,
+    run_macro_probe,
 )
 
 
@@ -58,6 +67,42 @@ def test_parity_family_scales_as_m_minus_two_for_m_at_least_two():
         assert open_certificate.open_bits_lower_bound == exterior_count
         assert closed_certificate.factor_label_counts == (4,) * exterior_count
         assert closed_certificate.noncommutation_gap_lower_bound == pytest.approx(exterior_count - 2)
+
+
+def test_fixed_weight_family_has_large_gap_under_exact_richness_constraint():
+    exterior_count = 6
+    weight = 3
+    codebook = fixed_weight_binary_codebook(exterior_count, weight)
+    open_certificate = certify_canonical_operational_codebook(codebook)
+    closed_certificate = _closed_contract(open_certificate)
+
+    assert len(codebook) == fixed_weight_binary_codebook_size(exterior_count, weight)
+    assert len(codebook) == 2 * math.comb(exterior_count, weight)
+    assert all(sum(codeword[1:]) == weight for codeword in codebook)
+    assert not open_certificate.is_full_cartesian_codebook
+    assert open_certificate.open_bits_lower_bound == pytest.approx(
+        1.0 + math.log2(math.comb(exterior_count, weight))
+    )
+    assert closed_certificate.factor_label_counts == (4,) * exterior_count
+    assert closed_certificate.noncommutation_gap_lower_bound == pytest.approx(
+        math.log2(math.comb(exterior_count, weight)) - 1.0
+    )
+
+
+def test_fixed_weight_codebook_inherits_bounded_degree_relay_readout():
+    exterior_count = 5
+    weight = 2
+    topology = RelayTreeTopology.balanced(exterior_count)
+
+    assert all(topology.maximum_degree_with_reader(port) <= 3 for port in range(exterior_count))
+    for codeword in fixed_weight_binary_codebook(exterior_count, weight):
+        inside = codeword[0]
+        exterior = codeword[1:]
+        initial = quiescent_configuration(topology, inside, exterior)
+        for port in range(exterior_count):
+            final = run_macro_probe(topology, initial, port)
+            assert final.focal_output == exterior[port]
+            assert final.memory_bits == exterior
 
 
 def test_full_cartesian_product_is_recovered_as_a_special_codebook():
@@ -106,5 +151,7 @@ def test_closed_factorization_rejects_collapsing_a_readable_projection():
 def test_codebook_certificates_are_exported_by_portability_core():
     assert portability.certify_canonical_operational_codebook is certify_canonical_operational_codebook
     assert portability.certify_operational_codebook_closed_context_factorization is certify_operational_codebook_closed_context_factorization
+    assert portability.fixed_weight_binary_codebook is fixed_weight_binary_codebook
     assert "OperationalAddressableCodebookCertificate" in portability.__all__
     assert "OperationalCodebookClosedContextCertificate" in portability.__all__
+    assert "fixed_weight_binary_codebook" in portability.__all__
