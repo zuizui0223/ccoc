@@ -1,16 +1,17 @@
-"""Public facade for the RACH open-composition manuscript core.
+"""Public facade for the RACH/CCOC open-composition theorem core.
 
-This module exposes only the finite theorem package used by the current paper:
+This module exposes the finite theorem package used by the first paper together
+with post-reopening theorem strengthenings that directly modify the canonical
+portability claims:
 
 1. exact grammar-aware dynamic interfaces;
-2. the operational-addressability / extension--compression lower bound;
-3. the bounded-degree relay sharpness construction; and
+2. operational addressability / extension--compression lower bounds;
+3. bounded-degree relay sharpness constructions; and
 4. conservative macro schemas plus local fiber-split obstructions.
 
 Finite closure classification, non-nested replacement transport, candidate
-uncertainty, delayed-evidence limits, and experimental-design branches are
-preserved in :mod:`legacy` as compatibility material. They are deliberately not
-re-exported here, because they are not premises or conclusions of the manuscript.
+uncertainty, delayed-evidence limits, and experimental-design branches remain
+separate compatibility or companion material.
 """
 
 from .dynamic_boundary_blankets import (
@@ -47,6 +48,19 @@ from .operational_addressability import (
     certify_operational_closed_context_factorization,
     readout_value,
     standard_closed_projection,
+)
+from .addressable_codebooks import (
+    CanonicalOperationalCodebook,
+    OperationalAddressableCodebookCertificate,
+    OperationalCodebookClosedContextCertificate,
+    build_canonical_operational_codebook,
+    certify_canonical_operational_codebook,
+    certify_operational_addressable_codebook,
+    certify_operational_codebook_closed_context_factorization,
+    even_parity_codebook,
+    first_differing_codebook_coordinate,
+    readout_symbol,
+    standard_codebook_closed_projection,
 )
 from .relay_tree_compilation import (
     BoundedDegreeCompilationCertificate,
@@ -90,7 +104,7 @@ __all__ = [
     "certify_grammar_aware_canonical_interface",
     "certify_grammar_aware_dynamic_blanket",
     "certify_grammar_aware_refinement",
-    # Addressability obstruction and open/closed comparison.
+    # V1 product addressability obstruction and open/closed comparison.
     "AddressableProductLowerBoundCertificate",
     "ClosedContextFactorizationCertificate",
     "certify_addressable_product_lower_bound",
@@ -104,6 +118,18 @@ __all__ = [
     "certify_canonical_operational_product",
     "readout_value",
     "standard_closed_projection",
+    # Post-reopening arbitrary-codebook strengthening.
+    "OperationalAddressableCodebookCertificate",
+    "OperationalCodebookClosedContextCertificate",
+    "certify_operational_addressable_codebook",
+    "certify_operational_codebook_closed_context_factorization",
+    "CanonicalOperationalCodebook",
+    "build_canonical_operational_codebook",
+    "certify_canonical_operational_codebook",
+    "readout_symbol",
+    "standard_codebook_closed_projection",
+    "first_differing_codebook_coordinate",
+    "even_parity_codebook",
     # Bounded-locality sharpness witness.
     "RelayTreeSharpnessCertificate",
     "certify_relay_tree_sharpness",
