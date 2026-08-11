@@ -7,8 +7,8 @@ portability claims:
 1. exact grammar-aware dynamic interfaces;
 2. operational addressability / extension--compression lower bounds;
 3. exact union-grammar refinement and full open-interface inflation decomposition;
-4. bounded-degree relay sharpness, including single-action innovation and its
-   absolute memory / declared-locality latency closure; and
+4. bounded-locality relay sharpness, including single-action innovation,
+   absolute-memory sharpness, and causal-cone latency bounds; and
 5. conservative macro schemas plus local fiber-split obstructions.
 
 Finite closure classification, non-nested replacement transport, candidate
@@ -120,6 +120,15 @@ from .innovation_capacity_latency import (
     certify_relay_local_latency,
     certify_single_action_sharpness_closure,
 )
+from .local_causal_cone import (
+    DegreeBoundedCausalConeCertificate,
+    LocalCausalConeCapacityCertificate,
+    certify_degree_bounded_causal_cone,
+    certify_local_causal_cone_capacity,
+    maximum_degree_ball_size,
+    minimum_degree_bounded_horizon,
+    radius_ball,
+)
 from .coherent_portable_macrolaw import (
     CoherentPortableMacroLawCertificate,
     FutureWordObstructionCertificate,
@@ -220,7 +229,7 @@ __all__ = [
     "closed_fire_free_words",
     "open_addressed_probe_words",
     "certify_single_action_innovation",
-    # Absolute innovation and explicit-locality latency closure.
+    # Absolute innovation and locality latency closures.
     "InnovationCapacityCertificate",
     "PrefixFreeAddressLatencyCertificate",
     "RelayLocalLatencyCertificate",
@@ -229,6 +238,13 @@ __all__ = [
     "certify_prefix_free_address_latency",
     "certify_relay_local_latency",
     "certify_single_action_sharpness_closure",
+    "LocalCausalConeCapacityCertificate",
+    "DegreeBoundedCausalConeCertificate",
+    "radius_ball",
+    "maximum_degree_ball_size",
+    "minimum_degree_bounded_horizon",
+    "certify_local_causal_cone_capacity",
+    "certify_degree_bounded_causal_cone",
     # Positive conservative boundary and local obstruction.
     "PortableMacroDynamics",
     "StageMacroProjection",
