@@ -6,8 +6,9 @@ portability claims:
 
 1. exact grammar-aware dynamic interfaces;
 2. operational addressability / extension--compression lower bounds;
-3. bounded-degree relay sharpness constructions; and
-4. conservative macro schemas plus local fiber-split obstructions.
+3. exact union-grammar refinement capacity and defect decomposition;
+4. bounded-degree relay sharpness constructions; and
+5. conservative macro schemas plus local fiber-split obstructions.
 
 Finite closure classification, non-nested replacement transport, candidate
 uncertainty, delayed-evidence limits, and experimental-design branches remain
@@ -65,6 +66,12 @@ from .addressable_codebooks import (
 from .codebook_families import (
     fixed_weight_binary_codebook,
     fixed_weight_binary_codebook_size,
+)
+from .union_grammar_refinement import (
+    PartitionRefinementCapacityCertificate,
+    UnionGrammarRefinementCertificate,
+    certify_partition_refinement_capacity,
+    certify_union_grammar_refinement,
 )
 from .relay_tree_compilation import (
     BoundedDegreeCompilationCertificate,
@@ -149,6 +156,11 @@ __all__ = [
     "even_parity_codebook",
     "fixed_weight_binary_codebook",
     "fixed_weight_binary_codebook_size",
+    # Exact union-grammar refinement / capacity decomposition.
+    "PartitionRefinementCapacityCertificate",
+    "UnionGrammarRefinementCertificate",
+    "certify_partition_refinement_capacity",
+    "certify_union_grammar_refinement",
     # Bounded-locality sharpness witnesses.
     "RelayTreeSharpnessCertificate",
     "certify_relay_tree_sharpness",

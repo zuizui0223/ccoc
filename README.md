@@ -41,11 +41,14 @@ The central claim is conditional on a declared finite system and grammar:
 \]
 
 Post-reopening work strengthens the two parts most closely tied to the novelty
-claim. The lower bound now has an arbitrary addressable-codebook formulation,
-including fixed-richness composition families with positive combinatorial rate.
-The sharpness program is also testing a binary-address relay in which the global
-action alphabet itself is constant rather than growing with the number of
-selectable exterior modules.
+claim. `CORE-2` now has an arbitrary addressable-codebook formulation and an
+exact characterization for the delimited case in which the open grammar is the
+union of the compared closed grammars: the open quotient is their common
+refinement, with a fibered capacity and an exact correlation-defect decomposition.
+Constrained parity and fixed-richness families quantify how much of that capacity
+remains jointly realizable. `CORE-3` now also has a binary-address relay with a
+constant four-symbol global action alphabet, in addition to pairwise locality,
+maximum degree three, and constant local state grammar.
 
 ## Start here
 
@@ -53,6 +56,9 @@ selectable exterior modules.
   development policy.
 - [Addressable-codebook bound](docs/addressable_codebook_bound.md) — post-reopening
   strict weakening of the full-product premise, with comparison-domain scope.
+- [Union-grammar refinement capacity](docs/union_grammar_refinement_capacity.md) —
+  exact common-refinement characterization, fibered capacity, and correlation
+  defect for the union-grammar subclass.
 - [Composition code rate](docs/composition_code_rate.md) — constrained families,
   fixed-richness asymptotics, and bounded-degree relay inheritance.
 - [Constant-alphabet relay](docs/constant_alphabet_relay.md) — binary-address
