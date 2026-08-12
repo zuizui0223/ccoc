@@ -1,10 +1,10 @@
 # Universal-compilation reduction risk for the residual CCOC witness
 
 > **Status:** conditional novelty-audit lemma. This document does **not** assert
-> that Weiner–Hopcroft (1968), Williams (1975), or Newborn–Arnold (1972) satisfy
-> the compiler contract below. It explains exactly which historical compiler
-> properties would be sufficient to subsume the remaining bounded-local
-> existence claim.
+> that Weiner–Hopcroft (1968), Hsieh–Tan–Newborn (1968), Ullman–Weiner (1969),
+> Newborn–Arnold (1972), or Williams (1975) satisfy the compiler contract below.
+> It states the properties that would be sufficient to subsume the bounded-local
+> existence claim and corrects an earlier one-way-simulation gap in that reduction.
 
 ## 1. Why this matters
 
@@ -21,22 +21,29 @@ Thus
 \iota_{\rm new}=m.
 \]
 
-The remaining CCOC novelty candidate has therefore been the fact that the same
-extremal effect has an explicit bounded-local realization.
+The remaining CCOC realization question is whether this extremal response
+separation can be implemented under bounded local resources without paying a
+large control/timing cost.
 
-But classical uniform-decomposition work is reported to compile arbitrary
-synchronous sequential machines into networks of identical small modules with
-bounded fan-in/fan-out. If such a compiler preserves external controls and timing
-well enough, **local existence follows by compilation** and is not an independent
-new phenomenon.
+Classical uniform-decomposition work is close enough that a sufficiently faithful
+compiler could make local existence generic. The compiler reduction therefore has
+to preserve **both distinctions and equivalences** of the source response
+quotient, not merely permit reconstruction of source outputs from a richer
+compiled trace.
 
-## 2. Input-preserving local compiler contract
+## 2. Corrected compiler contract
 
 Let `M` be a finite synchronous controlled machine over primitive input alphabet
-`A`, with observable output `h`.
+`A`, with declared source observable trace `Tr_M`. Let `D` be the comparison-domain
+embedding used by the CCOC witness.
 
-A compiler family `Comp` is sufficient for the reduction below if, for every
-`M`, it produces a synchronous network `N=Comp(M)` satisfying:
+A compiler `Comp` produces one synchronous network
+
+\[
+N=\operatorname{Comp}(M)
+\]
+
+with state embedding `e` and a context-independent input-word encoding `c`.
 
 ### C1. Constant local state
 
@@ -48,45 +55,105 @@ most `q` local states.
 There exists `Delta` independent of `|M|` bounding component fan-in/fan-out or
 network degree.
 
-### C3. Fixed external control semantics
+### C3. Fixed, context-independent external control encoding
 
-The compiled network is controlled by the same external alphabet `A`, or by a
-fixed-size alphabet independent of `|M|` together with an input encoding whose
-complexity is explicitly bounded.
+The same source word `w` is represented by the same compiled word `c(w)`
+regardless of which closed/open sublanguage is later being studied. The compiled
+primitive alphabet is either the original `A` or a fixed-size alphabet independent
+of `|M|`, and the cost of `c` is explicitly bounded.
 
-### C4. Behavioral simulation
+The important point is **context independence**. A construction that invents a
+new codebook or recompiles the network separately for every restricted language
+does not satisfy this contract.
 
-For every state in the declared comparison-domain embedding and every legal input
-word `w`, the compiled focal/output trace determines the original trace of `M`.
+### C4. Exact response-trace faithfulness on the embedded domain
+
+For every source word `w` in the full source control language and all embedded
+source states `s,s' in D`,
+
+\[
+\operatorname{Tr}_M(s,w)=\operatorname{Tr}_M(s',w)
+\quad\Longleftrightarrow\quad
+\operatorname{Obs}_N(e(s),c(w))=\operatorname{Obs}_N(e(s'),c(w)).
+\]
+
+Equivalent formulations are allowed, for example a decoded compiled observable
+that is exactly the source trace and contains no state-dependent side channel on
+the comparison domain.
+
+This two-way condition is stronger than merely requiring that the compiled trace
+**determines** the source trace. One-way decodability preserves source
+distinctions but can introduce spurious compiled distinctions, which would destroy
+the small closed quotient and is therefore insufficient for the CCOC reduction.
 
 ### C5. Bounded time overhead
 
-There is an explicit overhead function `tau` such that an original control word
-of length `L` is simulated within at most
+There is an explicit overhead function `tau` such that an original control word of
+length `L` is represented within
 
 \[
-T\le \tau(|M|,L).
+|c(w)|\le \tau(|M|,L),
 \]
 
-The important cases are constant slowdown, `O(L log |M|)`, or other polylogarithmic
-overhead.
+or an equivalent source-step to compiled-network-round/output-latency guarantee.
+The important cases are constant slowdown or comparable polylogarithmic overhead.
 
-### C6. Restriction compatibility
+## 3. Restriction compatibility is largely derived, not independent
 
-If the original machine is studied under a restricted input language/grammar
-`L_C`, the **same compiled network** can be studied by restricting its external
-control language accordingly. The compiler must not require a completely
-separate hardware network for every closed context.
+Earlier versions of this audit listed a separate condition C6 requiring the same
+compiled hardware to support restricted and open input grammars. Under C3 and C4
+above, that property follows immediately for ordinary sublanguage restriction.
 
-This last condition is essential to the CCOC closed/open question.
+### Restriction-compatibility lemma
 
-## 3. Conditional reduction theorem
+Let `L_C` be any source sublanguage of the full source language `L_O`. Keep the
+single compiled network `N=Comp(M)` fixed and define the corresponding compiled
+control grammars
+
+\[
+c(L_C)=\{c(w):w\in L_C\},
+\qquad
+c(L_O)=\{c(w):w\in L_O\}.
+\]
+
+Then for embedded source states `s,s'`,
+
+\[
+s\equiv_{L_C}^{M}s'
+\quad\Longleftrightarrow\quad
+ e(s)\equiv_{c(L_C)}^{N}e(s'),
+\]
+
+and likewise for `L_O`.
+
+### Proof
+
+The source equivalence is equality of source traces for every word in `L_C`.
+Apply C4 word by word. Because C3 uses one context-independent encoding and one
+fixed compiled network, restricting from `L_O` to `L_C` changes only the set of
+compiled words being quantified over. No recompilation is needed. `square`
+
+### Consequence
+
+A historical compiler theorem that already gives one fixed full-language
+realization with context-independent controls and exact response-trace faithfulness
+does **not** need a separate theorem about every restricted language. Same-hardware
+restriction is automatic.
+
+A separate C6-type audit remains relevant only when:
+
+- the historical construction is synthesized from an incompletely specified
+  machine rather than from one full machine;
+- the input encoding itself depends on the allowed language/context;
+- the compiler exposes additional observables that make C4 fail;
+- or the hardware/wiring is changed when the specification is restricted.
+
+## 4. Corrected conditional reduction theorem
 
 ### Proposition
 
-Assume a compiler satisfying C1–C6.
-Let `M_m` be any centralized single-action innovation witness whose comparison
-domain has
+Assume C1–C5 above. Let `M_m` be a centralized single-action innovation witness on
+comparison domain `D_m` with
 
 \[
 |P_U(M_m)|=2,
@@ -94,48 +161,58 @@ domain has
 |P_O(M_m)|=2^{m+1}.
 \]
 
-Then the compiled network
+Then the **same** compiled network
 
 \[
 N_m=\operatorname{Comp}(M_m)
 \]
 
-has the same closed/open exact response separation on the embedded comparison
-domain, up to the declared trace decoding. In particular,
+has, on the embedded domain `e(D_m)`, exactly the corresponding closed and open
+response quotients under `c(L_U)` and `c(L_O)`:
 
 \[
-\iota_{\rm new}(N_m)\ge m,
-\]
-
-and if the compiled trace equivalence is faithful in both directions,
-
-\[
+|P_U(N_m)|=2,
+\qquad
+|P_O(N_m)|=2^{m+1},
+\qquad
 \iota_{\rm new}(N_m)=m.
 \]
 
-Moreover C1–C2 give a constant-local-state, bounded-connectivity realization, and
-C5 transfers the query-latency bound from the centralized witness through `tau`.
+C1–C2 supply constant local state and bounded connectivity; C5 transfers the
+control/query latency through the encoding overhead.
 
-### Proof sketch
+### Proof
 
-Every pair merged under the restricted centralized grammar produces identical
-restricted traces. By C4 and C6, its compiled embeddings remain equivalent under
-the corresponding restricted compiled grammar.
+For each grammar separately, source response equivalence is equality of traces for
+all words in that grammar. By the restriction-compatibility lemma, C3–C4 preserve
+that equivalence **in both directions** on the embedded domain. Therefore the
+closed and open quotient partitions are isomorphic to the source partitions.
+Their class counts and innovation difference are unchanged. `square`
 
-Every pair separated by an open centralized word has a compiled word whose trace
-recovers the separating centralized trace. Hence all original open distinctions
-survive compilation. The quotient-size statement follows on the embedded domain.
-`C1`, `C2`, and `C5` provide the realization bounds. `square`
+## 5. Why the correction matters
 
-The proposition is elementary. Its role is novelty control: it shows why an old
-**universal compiler theorem** can subsume a new-looking explicit local witness.
+The previous proof sketch used one-way behavioral simulation to say that states
+merged by the source closed grammar remain merged after compilation. That inference
+was not valid: a simulator may preserve all source outputs while leaking extra
+state-dependent information in its compiled observable.
 
-## 4. Stronger centralized seed with logarithmic query words
+The corrected audit therefore distinguishes two levels:
 
-The centralized seed need not use a unary `advance^j` scan.
-It can itself maintain a hidden finite controller that reads a binary address over
-primitive controls `0/1`, followed by the newly legal `fire`.  With `m=2^d`
-dormant memories, the centralized query words can have
+1. **one-way simulation / source-trace decoding** — enough to preserve open
+   distinctions and give a lower bound on compiled open complexity;
+2. **two-way response-trace faithfulness** — required to preserve the small closed
+   quotient and hence the complete restricted→open separation.
+
+This makes the novelty gate more precise. It also makes the historical risk
+potentially stronger: once a classical compiler has full-language two-way
+faithfulness with a fixed encoding, same-hardware grammar restriction is no longer
+an additional escape hatch.
+
+## 6. Strong centralized seed and timing
+
+The centralized seed can maintain a hidden finite controller that reads a binary
+address over primitive controls `0/1`, followed by the newly legal `fire`.
+For `m=2^d` dormant memories, source query words have
 
 \[
 O(\log m)
@@ -143,94 +220,84 @@ O(\log m)
 
 length before compilation.
 
-Therefore, if a classical uniform decomposition preserves one original input
-symbol per compiled synchronous step with constant slowdown, it would yield a
-bounded-local maximal-innovation family with **logarithmic query latency** almost
-immediately.
+Thus a classical compiler with constant source-step slowdown would already yield a
+bounded-local maximal-innovation family with logarithmic query latency. C5 remains
+a decisive quantitative historical question.
 
-This is why the timing semantics of the old decomposition theorems are now a
-decisive novelty question.
+## 7. Revised historical extraction checklist
 
-## 5. What current historical evidence does and does not show
+The primary-source audit should now prioritize four independent resources rather
+than treating old C6 as a fully separate clause:
 
-### Weiner & Hopcroft (1968)
-
-Available bibliographic and abstract evidence supports:
-
-- arbitrary synchronous sequential machine as input;
-- interconnection of identical two-state modules;
-- fan-in/fan-out bound independent of the original state count.
-
-The current audit has **not** verified from full text:
-
-- exact external input encoding;
-- original-clock versus slowed simulation;
-- output decoding delay;
-- module count and network diameter;
-- restriction compatibility C6.
-
-These are therefore `UNKNOWN`, not negative findings.
-
-### Arnold–Tan–Newborn (1970)
-
-The IBM abstract supports arbitrary synchronous flow-table realization by an array
-of identical modules in a regular pattern. The same input/time/restriction details
-remain unresolved from the abstract.
-
-### Williams (1975)
-
-Bibliographic evidence confirms uniform decomposition of incompletely specified
-sequential machines. A secondary abstract-style copy says incomplete
-specification can reduce the number of universal two-state components. Original
-source verification and compiler-overhead details remain outstanding.
-
-### Jóźwiak–Ślusarczyk (2004)
-
-The accessible ScienceDirect text establishes a very broad theory of constrained
-network decomposition for incompletely specified sequential machines. It does not,
-in the passages reviewed so far, give the particular compiler constants needed
-to settle C1–C6 for the CCOC extremal family.
-
-## 6. Decision tree for CCOC novelty
-
-### Case A — old compiler satisfies C1–C6 with constant or logarithmic overhead
-
-Then bounded-local existence and logarithmic access are largely generic
-consequences of classical sequential-machine compilation. The current relay may
-remain useful as a clean explicit construction, but it should **not** carry the
-main mathematical novelty claim.
-
-### Case B — old compiler has bounded modules but large/nonlocal input distribution
-or large time overhead
-
-Then the explicit CCOC relay may retain a quantitative realization theorem:
-small external alphabet, degree three, radius-one pairwise updates, and
-`Theta(log m)` causal access simultaneously.
-
-### Case C — old incomplete-specification decompositions require different hardware
-for different restricted contexts
-
-Then CCOC's “same hardware, grammar opens” contract remains a meaningful
-structural distinction.
-
-## 7. Immediate literature checklist
-
-For the historical full texts, extract a literal table of:
+### H1 — local resource bounds
 
 - module state count;
-- module fan-in;
-- module fan-out;
-- number of modules as a function of original state/input count;
-- external input alphabet / distribution mechanism;
-- one-clock versus multi-clock simulation;
-- output decoding mechanism and latency;
-- whether the same decomposed network supports different admissible input
-  languages simply by restricting external inputs;
-- whether incomplete-specification optimization changes only machine behavior or
-  also changes the hardware decomposition.
+- fan-in/fan-out or graph degree;
+- number of modules and depth/diameter.
 
-Until this is resolved, the safe description is:
+### H2 — input encoding
 
-> **CCOC gives an explicit extremal bounded-local realization; whether its
-> existence follows from classical universal sequential-machine decomposition
-> with comparable overhead is an open historical-comparison question.**
+- source input convention;
+- direct versus encoded/distributed controls;
+- whether the encoding is fixed for the full source machine and independent of
+  later language restriction;
+- code length / distribution overhead.
+
+### H3 — response-trace faithfulness
+
+- what source output is reproduced;
+- whether compiled observables contain extra state-dependent information;
+- whether source trace equality implies equality of the declared compiled
+  observable trace, not only the reverse implication;
+- output decoding location and delay.
+
+### H4 — timing
+
+- one source step versus number of network rounds;
+- delay semantics;
+- output latency;
+- asymptotic slowdown.
+
+For Williams-style incomplete-specification synthesis, additionally ask whether a
+new network is synthesized for each incomplete specification. That question is
+still relevant because such a method may not begin with one fixed full-language
+compiler at all.
+
+## 8. Decision tree for CCOC realization novelty
+
+### Case A — classical compiler satisfies H1–H4 with constant/comparable overhead
+
+Then bounded-local existence and same-hardware restricted/open realization are
+largely generic consequences of classical compilation. The explicit CCOC relay is
+a clean constrained witness, not the main novelty.
+
+### Case B — one-way simulation only
+
+Then classical compilation preserves the source open distinctions but may add
+spurious closed distinctions. It does not directly subsume the complete CCOC
+closed/open quotient package.
+
+### Case C — bounded local modules but expensive input or timing resources
+
+Then CCOC may retain a quantitative realization distinction through its fixed
+four-symbol controls, degree-three radius-one dynamics, constant local grammar,
+and `Theta(log m)` addressed access.
+
+### Case D — specification-dependent resynthesis
+
+If incomplete/restricted machines are decomposed into different hardware rather
+than obtained by restricting one full-machine realization, that literature is
+strong ancestry for contextual decomposition but does not by itself provide the
+same-hardware CCOC comparison.
+
+## 9. Current safe description
+
+Until the primary historical constructions are extracted:
+
+> **CCOC gives an explicit extremal bounded-local realization. A classical
+> full-language compiler would subsume that realization if it simultaneously has
+> bounded local resources, context-independent external controls, two-way
+> response-trace faithfulness, and comparable timing overhead. Under those
+> conditions, same-hardware restriction to closed grammars follows automatically.**
+
+This is a novelty-control statement, not a priority claim.
