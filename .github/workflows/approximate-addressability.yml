@@ -1,0 +1,33 @@
+name: Approximate addressability robustness
+
+on:
+  pull_request:
+    paths:
+      - 'causal_model/approximate_addressability.py'
+      - 'tests/test_approximate_addressability.py'
+      - 'docs/approximate_addressability.md'
+      - '.github/workflows/approximate-addressability.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'causal_model/approximate_addressability.py'
+      - 'tests/test_approximate_addressability.py'
+      - 'docs/approximate_addressability.md'
+      - '.github/workflows/approximate-addressability.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  robustness-bound:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install package and test dependencies
+        run: python -m pip install -e '.[dev]'
+      - name: Run approximate-addressability regressions
+        run: python -m pytest tests/test_approximate_addressability.py -q
