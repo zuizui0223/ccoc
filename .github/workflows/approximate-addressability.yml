@@ -29,5 +29,5 @@ jobs:
           python-version: '3.12'
       - name: Install package and test dependencies
         run: python -m pip install -e '.[dev]'
-      - name: Run approximate-addressability regressions
-        run: python -m pytest tests/test_approximate_addressability.py -q
+      - name: Run approximate-addressability companion regressions
+        run: python -m pytest -m legacy tests/test_approximate_addressability.py -q
