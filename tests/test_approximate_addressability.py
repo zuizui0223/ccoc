@@ -111,5 +111,5 @@ def test_certificate_rejects_a_tolerance_smaller_than_the_measured_error():
 
 
 def test_binary_contract_rejects_error_above_random_guess_ceiling():
-    with pytest.raises(ValueError, match="\[0, 0.5\]"):
+    with pytest.raises(ValueError, match=r"\[0, 0\.5\]"):
         full_binary_product_fano_lower_bound(4, 0.5001)
