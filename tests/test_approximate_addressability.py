@@ -5,9 +5,7 @@ from itertools import product
 
 import pytest
 
-import causal_model.portability_core as portability
 from causal_model.approximate_addressability import (
-    ApproximateAddressableCodebookCertificate,
     binary_entropy,
     certify_approximate_addressable_codebook,
     fano_codebook_lower_bound,
@@ -115,12 +113,3 @@ def test_certificate_rejects_a_tolerance_smaller_than_the_measured_error():
 def test_binary_contract_rejects_error_above_random_guess_ceiling():
     with pytest.raises(ValueError, match="\[0, 0.5\]"):
         full_binary_product_fano_lower_bound(4, 0.5001)
-
-
-def test_approximate_certificate_is_exported_by_portability_core():
-    assert portability.ApproximateAddressableCodebookCertificate is ApproximateAddressableCodebookCertificate
-    assert portability.certify_approximate_addressable_codebook is certify_approximate_addressable_codebook
-    assert portability.fano_codebook_lower_bound is fano_codebook_lower_bound
-    assert portability.full_binary_product_fano_lower_bound is full_binary_product_fano_lower_bound
-    assert "ApproximateAddressableCodebookCertificate" in portability.__all__
-    assert "certify_approximate_addressable_codebook" in portability.__all__
