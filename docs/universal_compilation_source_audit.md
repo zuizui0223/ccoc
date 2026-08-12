@@ -46,9 +46,10 @@ Status vocabulary:
 |---|---|---:|---:|---:|---:|---|---|
 | **Hsieh, Tan & Newborn (1968)**, *Uniform modular realization of sequential machines* | authoritative bibliographic/DOI record plus contemporaneous IEEE literature digest; original ACM paper not yet inspected | PARTIAL | PARTIAL | UNKNOWN | PARTIAL | not established | Major fixed-input/unit-delay risk. The fixed-input positive regime is relevant because CCOC's primitive alphabet is fixed as `m` grows, but primary module/interconnect/trace details remain missing. |
 | **Weiner & Hopcroft (1968)**, *Bounded Fan-in, Bounded Fan-out Uniform Decompositions of Synchronous Sequential Machines* | Princeton/CiNii archival records plus abstract-style description; report body not yet inspected | PARTIAL | UNKNOWN | UNKNOWN | UNKNOWN | not established | Most direct bounded-local compiler risk. Accessible evidence supports identical two-state modules with state-count-independent fan-in/fan-out in broad terms, but not H2–H4. |
-| **Ullman & Weiner (1969)**, *Uniform Synthesis of Sequential Circuits* | primary Bell System journal/VTDA article route verified; 14-page PDF resolves in the web opener, but renderer cache failure prevented page inspection | UNKNOWN/PARTIAL | PARTIAL | UNKNOWN | PARTIAL | not established | Major fixed-input/fixed-module-with-delay risk. Primary PDF location is now exact, but H1/H3 and semantic H4 cannot be upgraded without reading the construction. See issue #137. |
+| **Ullman & Weiner (1969)**, *Uniform Synthesis of Sequential Circuits* | primary Bell System journal/VTDA article route verified; 14-page PDF resolves but renderer cache failure prevented page inspection; an abstract-style publication record reproduces the phrase “isomorphic realization” | UNKNOWN/PARTIAL | PARTIAL | **PARTIAL** | PARTIAL | not established | H3 is now a stronger historical risk than before: “isomorphic realization” is exactly the kind of semantic preservation that could satisfy the response-faithfulness requirement at the designated external output. The construction body is still required before marking H3 verified or inferring locality/timing constants. |
 | **Arnold, Tan & Newborn (1970)**, *Iteratively Realized Sequential Circuits* | IBM Research primary abstract | UNKNOWN | UNKNOWN | UNKNOWN | UNKNOWN | not established | Primary abstract verifies arbitrary synchronous flow-table realization as a regular array of identical modules. It does not settle the corrected reduction contract. |
-| **Newborn & Arnold (1972)**, *Universal Modules for Bounded Signal Fan-Out Synchronous Sequential Circuits* | authoritative bibliographic/DOI record only | UNKNOWN | UNKNOWN | UNKNOWN | UNKNOWN | not established | High-priority full-text source. Title-level bounded-fanout/universal-module language is not promoted to a theorem property. Correct DOI: `10.1109/T-C.1972.223432`. |
+| **Newborn & Arnold (1972)**, *Universal Modules for Bounded Signal Fan-Out Synchronous Sequential Circuits* | authoritative bibliographic/DOI records; full text not recovered | UNKNOWN | UNKNOWN | UNKNOWN | UNKNOWN | not established | High-priority full-text source. Correct DOI is `10.1109/T-C.1972.223432`. A DBLP “unpaywalled version” link currently resolves to the adjacent Kim–Newborn input-restriction DOI `10.1109/T-C.1972.223521`; this is an acquisition metadata hazard, not evidence about the theorem. |
+| **Huang, Cain & Kinney (1972)**, *Output Sufficient Modules for Uniform Decomposition of Synchronous Sequential Circuits* | bibliographic record plus abstract/summary material | NOT TARGETED/PARTIAL | **PARTIAL** | UNKNOWN | UNKNOWN | not established | The accessible summary says the number of inputs required by an output-sufficient module grows exponentially with the input count of the source sequential machines. Because CCOC holds the primitive input alphabet fixed as `m` grows, that historical lower-bound direction does **not** by itself force an `m`-dependent module-input cost. It therefore weakens H2 as an easy escape hatch, while still not proving fixed external-control distribution. |
 | **Williams (1975)**, *Uniform Decomposition of Incompletely Specified Sequential Machines* | authoritative bibliographic record; secondary abstract-style descriptions retained only as acquisition leads | UNKNOWN | UNKNOWN | UNKNOWN | UNKNOWN | **DECISIVE** | The central question is whether each incomplete specification is resynthesized into a new component set/wiring or whether one full-machine realization is merely restricted. |
 | **Jóźwiak & Ślusarczyk (2004)**, *General decomposition of incompletely specified sequential machines with multi-state behavior realization* | primary ScienceDirect article/abstract material | PARTIAL | UNKNOWN | PARTIAL/UNKNOWN | PARTIAL | specification-dependent decomposition is in scope | Confirms that incomplete-specification plus constrained network decomposition is mature prior art. It does not establish one exact full-language compiler with H1–H4. |
 
@@ -99,16 +100,24 @@ article at 48(5):1115–1127 and the direct PDF route
 page-render/screenshot backend currently returns cache-miss errors, and the local
 container cannot retrieve the host because outbound DNS is unavailable.
 
-This advances **acquisition certainty**, not theorem evidence. Issue #137 records
-the tool blocker.
+A publicly indexed abstract-style record additionally states that every binary-
+input `n`-state sequential machine has an **isomorphic realization** using copies
+of a module with delay. This is stronger claim-control evidence than generic
+“behavioral simulation”: if “isomorphic” has its standard sequential-machine
+meaning at the declared external output, then the construction is a plausible H3
+match rather than merely a one-way simulator.
+
+Do **not** upgrade H3 to VERIFIED from this abstract alone. The primary body must
+still establish what object is called isomorphic, which outputs are exposed, and
+whether any internal module signals are part of the observation contract.
 
 When render/download succeeds, extract:
 
 - the fixed module definition and its state/input count;
 - parameters in the quantitative copy-count theorem;
 - external input wiring/encoding;
-- whether the declared output realization is isomorphic/two-way trace faithful in
-  the response sense needed here;
+- the exact definition of “isomorphic realization” and whether it gives two-way
+  response-trace faithfulness on the embedded source states;
 - formal meaning of “delay” and source-step timing;
 - fanout/connectivity restrictions.
 
@@ -131,11 +140,34 @@ Correct source:
 
 A prior audit incorrectly mapped DOI `223521` to this paper; that DOI belongs to
 Kim–Newborn's *The Simplification of Sequential Machines with Input Restrictions*.
-The repository now records the correction.
+A fresh acquisition pass found a related metadata trap: DBLP's “unpaywalled
+version” link attached to the Newborn–Arnold entry currently routes to DOI
+`10.1109/T-C.1972.223521`, i.e. the Kim–Newborn paper. Therefore automated DOI
+following must validate title/authors before treating any retrieved PDF as the
+Newborn–Arnold source.
 
 No H1–H4 status is upgraded from the title alone.
 
-### 3.6 Williams (1975)
+### 3.6 Huang–Cain–Kinney (1972): why input-dimension lower bounds do not rescue H2
+
+The accessible summary for *Output Sufficient Modules for Uniform Decomposition of
+Synchronous Sequential Circuits* reports that the number of inputs needed by an
+output-sufficient universal module grows exponentially with the number of inputs
+to the source sequential machines.
+
+This is historically important but does not provide a scaling obstruction for the
+current CCOC family: the primitive source input alphabet/control dimension is held
+fixed as the number `m` of dormant coordinates grows. An exponential function of a
+fixed input count is still a constant with respect to `m`.
+
+Therefore the manuscript must **not** argue that classical universal-module
+compilers necessarily lose H2 merely because universal module input count can grow
+with source input dimension. The remaining H2 question is concrete: for a fixed
+source input alphabet, does one classical construction distribute/encode each
+source input with cost bounded independently of the source state count and of the
+later closed/open sublanguage restriction?
+
+### 3.7 Williams (1975)
 
 Williams remains important, but for a more precise reason after the compiler-
 contract correction.
@@ -177,6 +209,14 @@ provides:
 
 Nor has it proved that no such classical theorem exists.
 
+Two candidate escape hatches are now weaker than they previously appeared:
+
+- **H2:** historical input-count lower bounds do not force growth with `m` when
+  CCOC's source input dimension is fixed;
+- **H3:** Ullman–Weiner's indexed “isomorphic realization” wording is consistent
+  with exactly the sort of two-way semantic preservation the compiler reduction
+  needs, pending primary-text verification.
+
 The corrected manuscript-safe status is therefore:
 
 > Classical sequential-machine synthesis already contains closely related
@@ -192,15 +232,16 @@ The corrected manuscript-safe status is therefore:
 1. **Weiner–Hopcroft (1968)** — strongest H1 source; obtain report no. 61 and
    extract H2–H4.
 2. **Ullman–Weiner (1969)** — primary PDF location is exact; resolve renderer/tool
-   access and extract H1–H4.
+   access and verify what “isomorphic realization” means, plus H1/H2/H4.
 3. **Hsieh–Tan–Newborn (1968)** — obtain original ACM paper; fixed-input/unit-delay
    source most relevant to H2/H4.
 4. **Newborn–Arnold (1972)** — bounded-signal-fanout universal-module details and
-   relation to input distribution.
+   relation to input distribution; validate DOI/title because of the DBLP cross-link
+   metadata hazard.
 5. **Williams (1975)** — determine full-machine restriction versus per-
    specification resynthesis.
-6. **Huang–Kain–Kinney (1972)** — inspect what its universal-module input-count
-   lower/upper bounds actually count; this is an H2 resource lead.
+6. **Huang–Cain–Kinney (1972)** — inspect the primary theorem to separate module
+   input-count growth in source input dimension from source-state-count growth.
 
 ## 7. Decision rule
 
@@ -218,7 +259,9 @@ closed/open quotient separation.
 ### C. H1 holds but H2 or H4 is expensive
 
 The explicit four-symbol, degree-three, radius-one, logarithmic-access relay may
-retain a quantitative realization distinction.
+retain a quantitative realization distinction. This claim now requires actual
+state-count-dependent H2/H4 evidence; fixed source-input-dimension lower bounds are
+not enough.
 
 ### D. Incomplete-machine methods resynthesize hardware
 
@@ -242,7 +285,8 @@ Canonical supporting records in this repository:
 External source routes already verified by the audit include the Princeton/CiNii
 Weiner–Hopcroft report records, Bell System/VTDA Ullman–Weiner article route, IBM
 Research Arnold–Tan–Newborn abstract, DBLP/DOI records for Hsieh–Tan–Newborn and
-Newborn–Arnold, and the primary 2004 ScienceDirect decomposition article.
+Newborn–Arnold, the Huang–Cain–Kinney bibliographic/abstract record, and the primary
+2004 ScienceDirect decomposition article.
 
 Secondary abstract/digest records are retained only as acquisition/claim-control
 leads and never substitute for original theorem extraction.
