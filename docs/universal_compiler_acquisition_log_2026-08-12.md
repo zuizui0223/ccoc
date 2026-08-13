@@ -1,253 +1,183 @@
-# Universal-compiler source acquisition log — 2026-08-12
+# Universal-compiler source acquisition log — through 2026-08-13
 
-> **Purpose.** Record the source-retrieval work behind issue #122 without
-> upgrading theorem claims from titles, search snippets, or secondary summaries.
-> This log distinguishes bibliographic/holding verification from full-text theorem
-> extraction. Directional secondary leads are recorded separately from verified
-> compiler-contract statuses.
+> **Purpose.** Record source-retrieval work behind issue #122 so the historical audit is reproducible and does not loop over already exhausted routes. This ledger uses the corrected H1–H4 compiler contract. Bibliographic location, primary-text extraction, and secondary directional evidence are kept separate.
 
-## 1. Weiner & Hopcroft (1968)
+## Live compiler resources
+
+- **H1:** bounded local component state + state-count-independent fan-in/fan-out or degree.
+- **H2:** fixed context-independent source controls / input distribution with quantified cost.
+- **H3:** two-way response-trace faithfulness at the declared compiled output interface.
+- **H4:** bounded source-step / settling / output latency.
+
+For one fixed full-language network, same-hardware sublanguage restriction is derived from H2 + H3 and is not a separate C6 target. Incomplete-specification papers still require a resynthesis check.
+
+## 1. Ullman & Weiner (1969) — primary text partially recovered
 
 Target:
 
-> Peter Weiner and John E. Hopcroft, *Bounded Fan-in, Bounded Fan-out Uniform
-> Decompositions of Synchronous Sequential Machines*, Digital Systems Laboratory
-> Technical Report no. 61, Princeton University, April 1968; later summarized in
-> *Proceedings of the IEEE* 56(7):1219–1220.
+> J. D. Ullman and Peter Weiner, *Uniform Synthesis of Sequential Circuits*, Bell System Technical Journal 48(5):1115–1127, May–June 1969.
 
-### Verified acquisition facts
+### Acquisition routes verified
 
-- The Princeton Computer Sciences Laboratory archival finding aid contains the
-  April 1968 report as one physical item.
-- The CiNii Books record identifies the report as Digital Systems Laboratory
-  Technical Report no. 61, 7 pages plus plates, and lists one physical holding:
-  University of Tokyo General Library, call number `U600:769`, record
-  `0004766739`.
-- The Princeton finding aid exposes the archival collection, but the report itself
-  was not recovered as a web-readable scan in this pass.
+- article-level VTDA PDF `bstj48-5-1115.pdf`; web opener resolves 14 pages;
+- TCI BSTJ index identifies Internet Archive item `bstj48-5-1115`;
+- complete-issue scans exist in historical BSTJ archives;
+- a WorldRadioHistory complete-issue scan is OCR-indexed and exposes article text.
+
+### Primary text recovered on 2026-08-13
+
+The OCR-indexed **primary BSTJ article** exposes its abstract and opening paragraphs. These passages directly establish:
+
+- binary-input sequential machines are in the target class;
+- synthesis uses networks of a fixed module with delay;
+- the paper states an **isomorphic realization** result;
+- the introduction states that the required interval between source inputs need not grow with network size: it is bounded by the response time of one module after an input change;
+- diagrams omit initialization and clock-control provision.
+
+### H1–H4 status
+
+- **H1:** UNKNOWN/PARTIAL — fixed module is explicit, bounded fan-out/degree is not yet extracted.
+- **H2:** PRIMARY PARTIAL — fixed binary source input is explicit; physical input distribution cost remains unread.
+- **H3:** PRIMARY PARTIAL, strong risk — “isomorphic realization” is primary wording; formal realization/output definition remains unread.
+- **H4:** PRIMARY PARTIAL, materially strengthened — network-size-dependent per-input settling time is not an easy residual boundary; exact synchronous-round semantics remain unread.
+
+### Remaining blocker
+
+The article PDF still fails in the screenshot backend and later construction OCR has not surfaced. Do **not** search more generic mirrors. Resume only with a route exposing construction pages or searchable later OCR.
+
+Canonical detail: `ullman_weiner_primary_ocr_2026-08-13.md`; issue #137.
+
+## 2. Hsieh, Tan & Newborn (1968) — DOI corrected; primary body still missing
+
+Target:
+
+> Edward P. Hsieh, Chung-Jen Tan, Monroe M. Newborn, *Uniform modular realization of sequential machines*, ACM National Conference 1968, 613–621.
+
+### Bibliographic correction on 2026-08-13
+
+The DBLP record's DOI link and unpaywall route both point to:
+
+`10.1145/800186.810626`
+
+The previously recorded `10.1145/800186.810625` was a repository error and has been corrected in the canonical audit.
+
+### Retrieval status
+
+The correct DOI route still cache-misses in the available web environment. Targeted title/DOI searches did not surface a readable ACM primary copy. Stop mirror searching unless a genuinely new archive route appears.
+
+A contemporaneous IEEE *Abstracts of Current Computer Literature* digest remains the strongest accessible evidence. It reports the unit-delay logical-completeness distinction between unbounded input dimension and a positive fixed-input regime.
+
+### Claim consequence
+
+Because CCOC fixes the source control dimension as `m` grows, the positive fixed-input historical regime is directly relevant. This secondary digest is sufficient for claim control but not for H1–H4 theorem extraction.
+
+## 3. Weiner & Hopcroft (1968) — strongest H1 source, physical holdings verified
+
+Target:
+
+> Peter Weiner and John E. Hopcroft, *Bounded Fan-in, Bounded Fan-out Uniform Decompositions of Synchronous Sequential Machines*, Digital Systems Laboratory Technical Report no. 61, Princeton University, April 1968.
+
+### Verified holdings
+
+- Princeton archival finding aid confirms the report;
+- CiNii Books identifies Digital Systems Laboratory Technical Report no. 61 and a University of Tokyo General Library holding: `U600:769`, record `0004766739`.
 
 ### Evidence status
 
-The original report text has **not** yet been inspected. Therefore C3 (external
-input encoding/distribution), C5 (clock/time overhead), C6 (same-hardware input
-restriction compatibility), module count, network diameter, and output decoding
-latency remain unresolved.
+The report body has not been read. Abstract-style evidence points to identical two-state modules with fan-in/fan-out bounded independently of source state count, making it the strongest H1 threat. H2–H4 remain UNKNOWN.
 
-### Next retrieval action
+### Next legitimate action
 
-Obtain the physical/digitized report through either:
+Obtain an actual scan through the University of Tokyo or Princeton library/digitization route. Do not infer compiler timing/input properties from the title/abstract.
 
-1. University of Tokyo General Library (`U600:769`, `0004766739`); or
-2. Princeton Lewis Science and Engineering Library / archival digitization route.
-
-The extraction template in `universal_compilation_source_audit.md` should then be
-filled literally from the report.
-
-## 2. Newborn & Arnold (1972)
+## 4. Newborn & Arnold (1972) — DOI fixed, automated route hazard recorded
 
 Target:
 
-> Monroe M. Newborn and Thomas F. Arnold, *Universal Modules for Bounded Signal
-> Fan-Out Synchronous Sequential Circuits*, IEEE Transactions on Computers,
-> C-21(1):63–79, January 1972.
+> Monroe M. Newborn and Thomas F. Arnold, *Universal Modules for Bounded Signal Fan-Out Synchronous Sequential Circuits*, IEEE Transactions on Computers 21(1):63–79.
 
-### Verified acquisition facts
+Correct DOI:
 
-- DBLP's actual electronic-edition link for this record resolves to the primary DOI
-  **`10.1109/T-C.1972.223432`** and also exposes IEEE Computer Society,
-  Unpaywall, and Internet Archive Scholar routes.
-- A previous version of this log incorrectly assigned DOI
-  `10.1109/T-C.1972.223521` to Newborn–Arnold. Expanding the adjacent DBLP records
-  shows that **`10.1109/T-C.1972.223521` belongs to Joonki Kim and Monroe M.
-  Newborn, *The Simplification of Sequential Machines with Input Restrictions*,
-  IEEE Transactions on Computers 21(12):1440–1443 (1972)**. The mapping is
-  corrected here rather than silently retained.
-- The available web client did not recover the Newborn–Arnold primary article from
-  the DOI, IEEE, Unpaywall, or Internet Archive Scholar routes in this pass. This is
-  a retrieval failure only; it is **not** evidence that no open or institutionally
-  accessible copy exists.
-- The exact title, authors, issue, and page range are independently indexed in
-  DBLP and library databases.
+`10.1109/T-C.1972.223432`
 
-### Evidence status
+`10.1109/T-C.1972.223521` belongs to Joonki Kim and Monroe M. Newborn, *The Simplification of Sequential Machines with Input Restrictions*.
 
-No C1–C6 clause is upgraded from the title or DOI metadata alone. In particular,
-“bounded signal fan-out” is **not** silently interpreted as a complete
-bounded-degree compiler contract, and “universal module” is **not** taken to imply
-fixed external input semantics or bounded simulation slowdown.
+A DBLP unpaywall route associated with Newborn–Arnold has been observed to resolve to `223521`. Therefore all automated full-text retrieval must validate title/authors before admission.
 
-### Next retrieval action
+No H1–H4 clause is promoted from the title alone. The primary article remains unrecovered.
 
-Acquire DOI `10.1109/T-C.1972.223432` through institutional IEEE access, document
-delivery, Internet Archive preservation, or a verified author/archive copy and
-extract:
-
-- universal-module state count;
-- input count and signal fan-out constants;
-- source-input presentation/encoding;
-- number of copies required versus source-machine size;
-- clocking/simulation delay;
-- output readout delay;
-- whether one realized network can be evaluated under restricted input languages
-  without recompilation.
-
-## 3. Huang, Kain & Kinney (1972) — focused C3 lead
+## 5. Huang, Cain & Kinney (1972) — H2 lower-bound interpretation fixed
 
 Target:
 
-> C. C. Huang, Richard Y. Kain, and Larry L. Kinney, *Output Sufficient Modules
-> for Uniform Decomposition of Synchronous Sequential Circuits*, 13th Annual
-> Symposium on Switching and Automata Theory (SWAT), 1972, pp. 192–199,
-> DOI `10.1109/SWAT.1972.17`.
+> C. C. Huang, Richard Y. Cain, Larry L. Kinney, *Output Sufficient Modules for Uniform Decomposition of Synchronous Sequential Circuits*, SWAT 1972, 192–199, DOI `10.1109/SWAT.1972.17`.
 
-### Verified acquisition facts
+Accessible summary material reports exponential growth in output-sufficient module input count as a function of the **source machine input count**.
 
-- DBLP indexes the paper and the DOI route.
-- The paper is directly adjacent to the Newborn–Arnold universal-module line.
-- A readable primary full text was not recovered in this pass.
+This does not imply growth with CCOC's `m`, because the source control dimension is fixed. It therefore cannot by itself rescue H2. The remaining H2 question is source-state-count dependence of input distribution for a fixed source alphabet.
 
-### Secondary directional lead — not theorem evidence
+Primary full text remains unrecovered.
 
-An abstract-style secondary record says that the paper studies how many inputs a
-universal/output-sufficient module must have and reports input-count growth with
-the number of inputs of the sequential machines to be realized.
-
-This is potentially decisive for **C3** because classical bounded-module
-realization may pay for universality through a growing module/input interface even
-when local state or fanout is bounded. But the secondary wording does not identify
-whether the counted inputs are external controls, intermodule signals, or both,
-and it does not rule out a separate fixed-alphabet bounded-overhead encoder.
-
-Therefore C3 remains `UNKNOWN`.
-
-### Next retrieval action
-
-Acquire DOI `10.1109/SWAT.1972.17` and extract literally:
-
-- formal definitions of universal and output-sufficient modules;
-- the exact input-count bound and scaling parameter;
-- whether counted inputs are source controls, intermodule signals, or both;
-- source-alphabet encoding/distribution;
-- timing overhead of any encoding;
-- the exact dependence on Newborn–Arnold (1972).
-
-Detailed decision logic is recorded in
-`universal_compiler_c3_c6_directional_leads_2026-08-12.md`.
-
-## 4. Williams (1975) — focused C6 lead
+## 6. Williams (1975) — resynthesis gate
 
 Target:
 
-> George H. Williams, *Uniform Decomposition of Incompletely Specified Sequential
-> Machines*, IEEE Transactions on Computers, C-24(8):840–843, August 1975.
+> George H. Williams, *Uniform Decomposition of Incompletely Specified Sequential Machines*, IEEE Transactions on Computers 24(8):840–843.
 
-### Verified acquisition facts
+Bibliographic identity is verified; readable primary text remains unrecovered.
 
-- The title, author, issue, and page range are present in IEEE Transactions on
-  Computers volume indexes and DBLP.
-- DBLP exposes DOI/IEEE/unpaywall routing, but a readable primary full text was not
-  recovered through the available web path in this pass.
+The live question is no longer a separate “C6” clause. It is whether each incomplete specification is **resynthesized** into new component count/wiring/control hardware, or whether one full-machine realization is held fixed and only admissibility is restricted.
 
-### Why this source is decisive
+Secondary wording suggesting minimal-cover optimization is an acquisition lead only.
 
-This paper is the most dangerous historical intersection because it explicitly
-combines **uniform decomposition** with **incomplete specification**. But no C6
-claim is upgraded until the original four-page paper is read.
+## 7. Arnold, Tan & Newborn (1970)
 
-A secondary abstract-style copy describes a reduction in the number of universal
-two-state component copies found by a minimal-cover search over partial mappings.
-That wording points directionally toward **specification-dependent synthesis or
-optimization**, rather than automatically establishing CCOC's C6 requirement of
-one already-compiled network whose admissible external language is merely
-restricted/opened. The wording remains a search lead only.
+IBM Research provides a primary abstract stating that an arbitrary synchronous flow table can be realized as an array of identical modules interconnected in a regular pattern.
 
-### Next retrieval action
+This blocks broad novelty language based on repeated identical modules realizing arbitrary synchronous behavior, but does not establish the joint H1–H4 contract.
 
-Acquire the IEEE full text and determine whether incomplete specification is used
-only to synthesize a smaller decomposition, or whether the same already-compiled
-hardware supports both restricted and less-restricted input semantics.
+## 8. Current novelty-control result
 
-Extract:
+The historical boundary is now narrower than at the start of the audit.
 
-- what is held fixed when the incomplete specification changes;
-- whether component count/wiring/control interface changes;
-- whether a less-restricted realization can be restricted without recompilation;
-- whether a restricted realization can be opened without structural change;
-- component state size and connectivity/fanout;
-- external input semantics, copy-count growth, clocking, and output delay.
+Established ancestry/risk:
 
-Detailed decision logic is recorded in
-`universal_compiler_c3_c6_directional_leads_2026-08-12.md`.
+- uniform realization by repeated identical modules is old;
+- fixed-input modular synthesis is old;
+- fixed modules with delay are old;
+- bounded fan-in/fan-out modular decomposition is a direct historical line;
+- incomplete-specification decomposition is old;
+- Ullman–Weiner primary text makes **isomorphic realization + network-size-independent input settling** a concrete H3/H4 threat.
 
-## 5. Arnold, Tan & Newborn (1970)
+Still unresolved jointly:
 
-Target:
+1. H1 state-count-independent bounded locality;
+2. H2 quantitatively cheap distribution of a fixed source control alphabet;
+3. H3 formal two-way response semantics at the designated output;
+4. H4 exact clock/round semantics comparable to the explicit relay.
 
-> Thomas F. Arnold, Chung-Jen Tan, and Monroe M. Newborn, *Iteratively Realized
-> Sequential Circuits*, IEEE Transactions on Computers 19(1):54–66, 1970.
+Therefore the safe claim remains:
 
-### Primary evidence obtained
+> CCOC's relay is an explicit constrained sharpness witness. Bounded-local/logarithmic-access **existence** should not carry a priority claim while the classical H1–H4 compiler comparison remains open.
 
-IBM Research provides an authoritative primary abstract stating that synthesis
-techniques realize an arbitrary synchronous flow table as an array of identical
-modules interconnected in a regular pattern.
+## 9. Stop rule
 
-This is sufficient to reject novelty language based solely on arbitrary
-synchronous behavior plus repeated identical modules.
+Do not continue generic web searching for the same historical papers. Resume only when one of the following occurs:
 
-It is **not** sufficient to establish constant module state size, bounded degree,
-fixed external-input encoding, one-source-clock-per-network-step simulation,
-output delay, or C6.
+- a primary scan/full OCR of Weiner–Hopcroft report no. 61 is obtained;
+- Ullman–Weiner construction pages become searchable/renderable;
+- the Hsieh ACM paper appears through a new verified archive route;
+- a verified Newborn–Arnold or Williams primary copy becomes available.
 
-The DOI route previously identified for the journal article is
-`10.1109/TC.1970.5008900`; the full construction still needs inspection.
+Until then, further mirror hunting has low expected information value. Work should return to manuscript/provenance preparation rather than theorem proliferation.
 
-## 6. Current novelty-control conclusion
+## 10. Reproducible pointers
 
-The acquisition pass now supports a resource-specific rather than keyword-level
-historical comparison:
+- live gate: issue #122
+- Ullman–Weiner construction blocker: issue #137
+- `universal_compilation_source_audit.md`
+- `fixed_input_unit_delay_historical_risk_2026-08-12.md`
+- `ullman_weiner_primary_ocr_2026-08-13.md`
+- Princeton/CiNii report holdings recorded in the canonical source audit
 
-1. **Known historical ancestry:** exact/contextual machine simplification,
-   incomplete-specification decomposition, and repeated identical-module
-   realization are old ideas.
-2. **Verified bounded-local risk:** Weiner–Hopcroft is a real, directly relevant
-   historical construction and must be read before claiming bounded-local
-   originality.
-3. **C3 focus:** Newborn–Arnold plus Huang–Kain–Kinney must be checked for where
-   source-input complexity is paid and whether a fixed external alphabet with
-   bounded overhead survives the universal-module construction.
-4. **C6 focus:** Williams must be checked for same-hardware input-language
-   restriction versus specification-dependent re-synthesis.
-5. **C5 remains open:** clocking, slowdown, output latency, and network depth still
-   require primary construction details.
-6. **Therefore:** CCOC may describe its relay as an explicit extremal realization,
-   but must not make a priority/firstness claim for bounded-local existence or
-   logarithmic access while C3/C5/C6 remain unresolved.
-
-This is an acquisition result, not evidence that the missing clauses fail.
-
-## 7. Reproducible source pointers
-
-- Princeton archival finding aid:
-  <https://findingaids.library.upenn.edu/records/PRIN_MUDD_ENG027>
-- CiNii Books record for Weiner–Hopcroft report no. 61:
-  <https://ci.nii.ac.jp/ncid/BA8670779X>
-- DBLP Newborn–Arnold record:
-  <https://dblp.org/rec/journals/tc/NewbornA72>
-- Newborn–Arnold DOI:
-  <https://doi.org/10.1109/T-C.1972.223432>
-- DBLP Kim–Newborn input-restriction record (for the corrected adjacent DOI
-  mapping):
-  <https://dblp.org/rec/journals/tc/KimN72>
-- Huang–Kain–Kinney DOI:
-  <https://doi.org/10.1109/SWAT.1972.17>
-- DBLP Williams record:
-  <https://dblp.org/rec/journals/tc/Williams75>
-- IBM Research primary abstract for Arnold–Tan–Newborn (1970):
-  <https://research.ibm.com/publications/iteratively-realized-sequential-circuits>
-- ScienceDirect, Jóźwiak–Ślusarczyk (2004):
-  <https://www.sciencedirect.com/science/article/abs/pii/S1383762103001929>
-
-Bibliographic/DOI/index routes are used to locate the original works. Secondary
-abstract-style pages are used only to sharpen extraction questions and are not
-substitutes for primary theorem text.
+This ledger is an acquisition record, not evidence that unrecovered compiler properties fail.
