@@ -13,15 +13,21 @@ Target:
 > Fan-Out Synchronous Sequential Circuits*, IEEE Transactions on Computers,
 > volume 21, number 1, January 1972, pp. 63–79.
 
-DBLP independently records the article in volume 21(1), pages 63–79. The canonical
-DOI already validated in the repository is:
+DBLP independently records the article in volume 21(1), pages 63–79. Direct
+inspection of DBLP's electronic-edition links for the January 1972 table of
+contents establishes the DOI as:
 
-`10.1109/T-C.1972.223432`
+`10.1109/T-C.1972.223433`
 
-Do not accept `10.1109/T-C.1972.223521` for this article. That DOI belongs to
-Kim & Newborn, *The Simplification of Sequential Machines with Input
-Restrictions*. An automated route has previously cross-wired the two adjacent
-records, so every recovered copy must be title/author-validated before admission.
+The previously recorded `10.1109/T-C.1972.223432` belongs to the immediately
+preceding article, Koontz & Fukunaga, *A Nonlinear Feature Extraction Algorithm
+Using Distance Transformation*, pp. 56–63. Thus the old CCOC correction to
+`223432` was itself one record early.
+
+Do not accept `10.1109/T-C.1972.223521` for this article either. That DOI belongs
+to Kim & Newborn, *The Simplification of Sequential Machines with Input
+Restrictions*. Two distinct adjacent/nearby-record hazards therefore exist, and
+every recovered copy must be title/author/page-validated before admission.
 
 ## 2. Japanese physical holding covers the target year
 
@@ -71,13 +77,14 @@ Use the following request fields so the library does not need to infer the targe
 - authors: Monroe M. Newborn; Thomas F. Arnold;
 - article: `Universal Modules for Bounded Signal Fan-Out Synchronous Sequential Circuits`;
 - pages: `63–79`;
-- DOI: `10.1109/T-C.1972.223432`;
+- DOI: `10.1109/T-C.1972.223433`;
 - CiNii holding record: `AA00667773`;
 - holding: 大阪府立中央図書館, 1969–1973.
 
-Request pp. 63–79, subject to the library's copyright determination. Do not ask the
-library to resolve the DOI from title alone because of the documented adjacent-
-record misrouting hazard.
+Request pp. 63–79, subject to the library's copyright determination. The title,
+authors, volume/issue, and page range are the primary disambiguators; do not rely
+on a DOI-only automated lookup because the repository has already encountered two
+nearby-record mapping errors.
 
 ## 5. Why this source is decisive for CCOC
 
