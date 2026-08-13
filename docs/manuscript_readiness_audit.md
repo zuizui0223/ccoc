@@ -1,179 +1,264 @@
 # Manuscript readiness audit: open-composition causal compression
 
+> **Current status: 2026-08-13.** CCOC/RACH is an active theorem archive with a
+> preserved July 2026 reproducibility checkpoint. Manuscript prose still belongs
+> in a separate `rach-open-composition-paper` workspace, but post-reopening theorem
+> strengthening is allowed here through branch/PR review.
+
 ## Decision
 
-RACH is now the **frozen theorem and certificate archive** for the finite deterministic result package. It is not the manuscript workspace and it is not the home for the next mathematics branch.
-
-A submission-oriented manuscript may use the theorem package below, but must restate all definitions, lemmas, and proofs independently in LaTeX. Passing Python certificates are reproducibility evidence for declared finite instances; they are not a substitute for a general proof.
-
-The intended main claim is:
+The theorem package is ready for a theorem-first manuscript **under a narrow claim
+boundary**. The main scientific statement is
 
 \[
-\text{exact compression in each fixed closed composition}
+\boxed{
+\text{exact compression in each fixed closed composition grammar}
 \not\Rightarrow
-\text{one small exact interface for the declared open composition grammar}.
+\text{one small exact interface for the declared open grammar}.
+}
 \]
 
-The relevant lower bound is conditional on operational addressability, not on system size alone.
+The strongest current quantitative realization goes beyond the historical v1
+product witness: arbitrary addressable codebooks are allowed, static closed-view
+capacity is separated from open-only future innovation, and one newly legal
+primitive action can attain the absolute finite-domain maximum `m` bits of new
+response memory on a degree-three, pairwise, constant-local-state relay.
 
-## Manuscript package
+Passing finite certificates support reproducibility. They do not replace the
+analytic proofs and do not infer a biological grammar from observations.
 
-| Manuscript role | RACH asset | What can be used | What must not be claimed |
+## Current manuscript package
+
+| Manuscript role | CCOC asset | What can be used | What must not be claimed |
 |---|---|---|---|
-| Formal setup | `CORE-1`, `grammar_aware_blankets.py` | Exact interface means preservation of output, legal actions, and successor summary on `system state × grammar state`. | This quotient is not claimed to be novel relative to fixed-grammar quotient or bisimulation theory. |
-| Main negative theorem | `CORE-2`, `extension_compression_noncommutation.py` | Under joint realization and uniform decoder-word premises, distinct product-indexed states require distinct open interface labels. | The certificate does not infer product structure, decoder words, reachability, or the ecological grammar from data. |
-| Sharpness construction | `CORE-3`, `extension_compression.py`, `relay_tree_compilation.py` | Binary family with closed memory 2 bits, open memory `m + 1` bits, pairwise messages, maximum degree 3, and a size-independent local node/message grammar. | Do not call the global port-labelled action alphabet constant-size. Do not generalize from the witness to arbitrary local networks. |
-| Positive boundary | `CORE-4`, `coherent_portable_macrolaw.py`, `conservative_macro_schema.py` | A finite update-consistent common summary gives a sufficient portability criterion for a declared finite chain. | The criterion is sufficient, not a necessary characterization or theorem about arbitrary infinite/stochastic composition. |
-| Replacement/ecological corollary | `EXT-1`--`EXT-4`, `non_nested_*` modules | Declared replacement, extinction, and rewiring relations can transport a law under stated relation and fiber-uniformity conditions. | Failure of a transport certificate is not a lower bound and not absence of every macro-law. |
-| Scope and interpretation | `docs/nonempirical_scope.md` | A focal patch plus dormant external modules can be a synthetic ecological reading. | No field validation, fitted parameters, or claim about any observed ecosystem. |
+| Formal substrate | `CORE-1`, grammar-aware interface modules | Exact interface preserves output, legal-action rows, and successor labels for one supplied finite grammar. | Do not claim fixed-grammar quotient/minimization as novel. |
+| Main negative theorem | strengthened `CORE-2`, `addressable_codebooks.py`, `extension_compression_noncommutation.py` | A jointly realizable, operationally future-separable codebook forces a large exact open quotient while supplied closed factorizations remain small. | Do not infer codebook structure/addressability from data; do not claim ordinary distinguishability as novel. |
+| Quantitative decomposition | union/refinement and `interface_inflation.py` assets | Separate closed-view capacity, join-realizability loss, and genuinely new open-only future innovation. | Common refinement and the algebraic identity are substrate, not novelty claims. |
+| Extremal witness | `single_action_innovation.py`, relay modules | One newly legal primitive action gives `iota_new=m`, saturating the finite-domain maximum; fixed global alphabet `{0,1,fire,tick}`, degree three, pairwise radius-one dynamics, constant local grammar. | Do not claim historical firstness for uniform modular realization; issue #122 remains the gate. |
+| Locality scope | `innovation_capacity_latency.py`, local causal-cone assets | Exact `2 log2(m)+2` access in the declared selector/return architecture and `Omega(log m)` order lower bound in the broader bounded-local causal-cone class. | Do not claim bounded degree alone implies latency or present the generic causal-cone principle as new. |
+| Positive boundary | `CORE-4`, conservative portability modules | A finite update-consistent conservative schema is a sufficient exact portability condition. | Do not present it as a necessary characterization of all abstractions. |
+| Local negative boundary | `CORE-5` | A newly legal future word that splits one proposed macro fiber refutes that merge. | One split does not rule out every alternative macro-law. |
+| Scope / ecology | `docs/nonempirical_scope.md` | Focal-window/exterior-module language can motivate the mathematics synthetically. | No empirical ecosystem validation, fitted parameters, or claim that a real community satisfies the model contract. |
 
-## The precise theorem spine for a paper
+Companion results such as adaptive finite-evidence nonidentifiability and the Fano
+approximate-addressability bound may be cited as robustness/limitations, but they
+should not enlarge the first-paper theorem spine unless the manuscript scope is
+explicitly changed.
 
-### Definition: exact grammar-aware interface
+## Precise theorem spine
 
-For a declared finite deterministic controlled system with a declared finite action grammar, an exact interface is a summary of the product state `(system state, grammar state)` that preserves:
+### A. Exact grammar-aware response interface
 
-1. current output;
-2. the enabled legal-action row; and
-3. the successor summary for every enabled action.
+For a supplied finite deterministic controlled system and finite grammar, two
+states may be merged only when current output, legal-action availability, and
+successor macro labels agree throughout the legal future response semantics. The
+resulting quotient is the coarsest exact interface for that fixed contract.
 
-This is the object to which all memory statements refer.
+This is mathematical substrate.
 
-### Theorem A: addressable-product lower bound
+### B. Cross-grammar addressability lower bound
 
-Let a declared product-indexed subset of system states be
+Let a finite comparison codebook
 
 \[
-S^* \cong I\times E_1\times\cdots\times E_q.
+C\subseteq A_0\times\cdots\times A_q
 \]
 
-No transition closure or reachability from an unspecified initial state is needed
-for this theorem. Assume that one legal future word uniformly decodes the inside
-coordinate and that, for each exterior factor, one legal future word uniformly
-decodes that factor over every setting of the remaining coordinates. Then every
-exact open interface is injective on `S*`, hence
+be jointly realizable. If declared open-grammar future words recover enough
+coordinates to separate every distinct codeword, then the exact open quotient on
+that comparison domain is discrete:
 
 \[
-K_{\mathrm{open}}
+\boxed{K_{\mathrm{open}}(D_C)=\log_2|C|.}
+\]
+
+If each fixed closed context factors on the same comparison domain through a
+small retained projection `pi_j`, then
+
+\[
+\boxed{
+K_{\mathrm{open}}(D_C)-\max_jK_{\mathrm{closed},j}(D_C)
 \ge
-\log_2 |I|+\sum_{j=1}^{q}\log_2|E_j|.
+\log_2|C|-\max_j\log_2|\pi_j(C)|.
+}
 \]
 
-The proof is an injection argument: any two distinct product states differ in
-some coordinate, and the declared decoder for that coordinate produces different
-legal future behaviour.
+The historical full product is only one special case. Parity and fixed-richness
+families show that nearly linear inflation can survive strong global composition
+constraints.
 
-### Corollary: extension--compression noncommutation
+### C. Closed-view capacity versus open-only future innovation
 
-For each closed context `j`, assume a supplied exact interface factors through
-`(I, E_j)`. This yields the **upper bound**
+When the open grammar is exactly the union of the closed grammars, the exact
+quotient is their common refinement. For the more general case where the actual
+open grammar adds new future words, the total gap can be organized as
 
 \[
-K_{\mathrm{closed},j}\le \log_2|I|+\log_2|E_j|.
+\boxed{
+\Delta_{\mathrm{total}}
+=
+\Delta_{\mathrm{capacity}}
+-
+\delta_{\mathrm{join}}
++
+\iota_{\mathrm{new}}.
+}
 \]
 
-Combining the open lower bound with the largest of these closed upper bounds gives
+The static common-refinement/join terms have classical ancestry. The useful
+interpretive separation is that `iota_new` records distinctions unavailable under
+the entire closed-union response grammar and created only by newly legal future
+experiments/actions.
+
+### D. One-action maximal-innovation witness
+
+On
 
 \[
-K_{\mathrm{open}}-
-\max_jK_{\mathrm{closed},j}
-\ge
-\sum_j\log_2|E_j|-
-\max_j\log_2|E_j|.
+D_m=\{0,1\}^{m+1},
 \]
 
-The word “upper bound” is essential. A factorization through `(I, E_j)` alone does
-**not** imply that the closed minimal interface has exactly `|I||E_j|` states; it
-can be smaller. Equality is established only for the explicit binary witness,
-where the closed grammar also has decoders for both retained coordinates.
+the strengthened relay keeps the closed union at
 
-### Theorem B: conservative portability criterion
+\[
+|P_U|=2
+\]
 
-A common finite summary schema remains exact across a declared finite nested
-composition chain when old macro meanings are preserved and each newly legal
-action has one availability status and one macro successor inside every proposed
-macro fiber. This is a sufficient constructive result, not a universal dichotomy.
+while adding only the primitive action `fire` makes the open quotient discrete:
 
-## Robustness assessment
+\[
+|P_O|=2^{m+1}.
+\]
 
-### What is robust now
+Therefore
 
-- The exact-interface semantics explicitly checks current output, legal-action rows, and successor labels; the regression suite includes output, legality, and successor counterexamples.
-- The operational addressability witness checks explicit decoder traces uniformly across all product-coordinate settings, not merely a cardinality table.
-- The relay construction verifies macro-time conjugacy to the coordinate witness while keeping node states, message alphabet, pairwise communication, and maximum degree bounded.
-- The conservative schema checks both a positive finite expansion witness and local failure modes: changed old-action meaning, nonuniform availability, and nonuniform successor labels.
-- The dedicated paper-core replay records theorem provenance, selected finite witnesses, and scope limits in a machine-readable artifact.
+\[
+\boxed{\iota_{\mathrm{new}}=m.}
+\]
 
-### What must be preserved before submission
+Since
 
-1. **Proof versus replay.** The analytic injection theorem must appear as a self-contained LaTeX proof. Certificates replay declared finite instances and do not discover an ecological grammar or decoder word.
-2. **Product subset wording.** The theorem uses a declared product-indexed subset. Do not add transition closure or reachability claims unless an application separately supplies them.
-3. **Closed-context wording.** Treat factorization through `(I, E_j)` as a closed upper bound. Claim equality only when the closed grammar itself decodes both retained coordinates.
-4. **Local versus global grammar.** The relay construction has a constant local node/message grammar and degree bound, while the family still has port-specific choices whose number grows with `m`.
-5. **Finite deterministic domain.** The results do not cover noise, stochastic transitions, continuous states, simultaneous reader firings, hidden-state learning, grammar discovery, or arbitrary infinite composition processes.
-6. **Novelty boundary.** Fixed-grammar exact quotients are adjacent to standard automata/bisimulation and state-abstraction ideas. The paper must claim novelty only for the extension-grammar lower bound, its operational-addressability proof route, and the matching bounded-locality witness.
+\[
+\iota_{\mathrm{new}}
+\le
+\log_2|D_m|-\log_2|P_U|=m,
+\]
 
-See [paper-core mathematical audit](paper_core_audit.md) for the complete
-proof-versus-replay record and GitHub Actions contract.
+the witness is absolutely memory-sharp on the declared finite comparison domain.
 
-### Robustness verdict
+The same family has a fixed four-symbol control alphabet, maximum degree three,
+pairwise radius-one selector/pulse dynamics, constant local state/message grammar,
+and logarithmic causal access.
 
-The central theorem family is mathematically viable for a theorem-first paper.
-There is no contradiction in the conditional injection argument, finite relay
-witness, or conservative-schema boundary. The principal risk is overstatement of
-assumptions or treating finite replay as a general proof; both are now explicit
-scope restrictions rather than hidden gaps.
+### E. Conservative portability boundary
 
-## Figures and reusable material
+If the same finite macro labels preserve old outputs/actions/successors and every
+newly legal action is uniform in availability and macro successor inside each
+fiber, one conservative finite macro schema remains exact as the grammar expands.
+This is the constructive sufficient counterpart to the negative theorem.
 
-1. **Closed versus open composition figure.** Draw one focal node with `m` dormant exterior modules. A closed context opens one port; the open grammar permits any future port. Caption the memory contrast `2` versus `m + 1` bits in the binary witness.
-2. **Proof figure.** Show two product states differing in coordinate `j`, followed by the corresponding decoder word and a distinct output trace. This visualizes the injection proof rather than a generic state-space explosion.
-3. **Relay sharpness figure.** Use a balanced binary relay tree with a one-token reader event. Label only local states/messages and maximum degree 3; do not imply a fixed global port alphabet.
-4. **Positive-boundary figure.** Show one macro fiber that remains valid when a new action is uniform, versus one that splits when availability or successor differs.
-5. **Optional ecological reading.** A focal patch, dormant sources, and one future connection event. Label this as a synthetic model contract, not a data example.
+## Novelty status
 
-## Repository partition and migration policy
+### GO: Tier A
 
-### This repository: `rach-causal-invariants`
+The manuscript may center the **same-system cross-grammar response-interface
+separation**: one deterministic plant/system is held fixed while the declared
+legal future grammar changes from closed contexts to an open grammar.
 
-Keep only:
+The paper must not claim that contextual minimization, incomplete-machine state
+reduction, ordinary state complexity, common refinement, or exact quotienting are
+new.
 
-- the frozen finite deterministic theorem package;
-- proof-oriented documentation, certificates, deterministic replays, and CI;
-- corrections that narrow claims, improve reproducibility, or repair regressions;
-- release tags and a permanent theorem-to-manuscript traceability record.
+### CONDITIONAL GO: constrained relay
 
-Do not add manuscript prose, bibliography churn, exploratory simulations, empirical data, fitted models, approximate/stochastic extensions, or a new theorem family here.
+The relay remains valuable as a particularly clean extremal witness. Its
+**historical realization firstness is unresolved** because classical uniform
+sequential-machine synthesis already includes fixed-input regimes, repeated
+identical modules, delay, bounded fan-out constructions, and incomplete
+specification.
 
-### New manuscript repository: `rach-open-composition-paper`
+The corrected comparison gate is H1--H4:
 
-Create this as the active submission workspace. It should contain:
+1. bounded local state/connectivity;
+2. fixed context-independent external input encoding/distribution;
+3. two-way response-trace faithfulness without spurious compiled distinctions;
+4. bounded source-step/network-round/output latency.
 
-- `manuscript/` for LaTeX, bibliography, journal style files, and cover letter;
-- `figures/` for publication figures generated only from declared synthetic models;
-- `literature/` for the novelty matrix and reading notes;
-- `supplement/` for theorem proofs, reproducibility note, and a pinned RACH commit hash;
-- `traceability/` mapping every manuscript theorem/figure to a RACH theorem ID and test/replay route.
+Primary OCR from Ullman--Weiner (1969) has materially strengthened the historical
+risk. Until the construction pages or equivalent primary text resolve the
+remaining clauses, use the relay as a **constrained sharpness witness**, not a
+firstness claim.
 
-The paper repository may quote a fixed RACH release but must not mutate RACH theory to make prose easier.
+## Robustness already established
 
-### New future-work repository: `rach-open-composition-next`
+- The codebook theorem removes the unnecessary full-product premise.
+- Fixed-richness codebooks retain almost-linear inflation.
+- The one-action family shows the dynamic open-only term can equal its absolute
+  finite-domain maximum.
+- The fixed primitive control alphabet removes the old growing-port caveat.
+- The local causal-cone theorem separates architecture-specific exact latency from
+  the broader `Omega(log m)` order lower bound.
+- The adaptive closure no-go shows finite intelligent experimentation alone does
+  not certify closure without a horizon/grammar contract.
+- The Fano companion shows fixed decoding error below one half does not collapse
+  the open-memory requirement to `O(1)` in the binary full-product family.
 
-Move all non-submission research here after the manuscript scope is frozen:
+## Hard blockers before submission
 
-- approximate, stochastic, continuous, simultaneous-action, or hidden-state domains;
-- grammar discovery and learning from observations;
-- candidate-mechanism uncertainty beyond the companion package;
-- empirical ecological contracts, data ingestion, and case studies;
-- additional transport variants, panel designs, robustness questions, or new witnesses.
+1. **Tier-A quantitative prior-art falsification.** Search specifically for a
+   same-system promise/input-restricted machine theorem in which expanding the
+   allowed future-word/input language produces the same small-closed/large-open
+   exact quotient gap. Broad contextual-minimization searches are no longer
+   enough.
+2. **Universal-compiler primary-source gate.** Continue issue #122 through the
+   H1--H4 contract and issue #137's construction-page acquisition route. Do not
+   repeat generic mirror searches.
+3. **Manuscript repository creation.** Create `zuizui0223/rach-open-composition-paper`
+   as tracked in issue #141, then pin the exact CCOC source/replay SHA at transfer
+   time.
+4. **Independent proof exposition.** Restate all analytic definitions and proofs
+   in LaTeX rather than referring to Python certificate output as proof.
+5. **Related Work claim control.** Convert the novelty audits into page-checked
+   comparisons and keep the abstract/introduction within the Tier-A/Tier-B
+   boundary.
 
-Every issue moved there must begin by naming whether it changes a theorem assumption, a conclusion, or only an application domain. It must not be backported into RACH without a new canonical-claim decision.
+## What is not a submission blocker
 
-## Immediate migration checklist
+The following are valid future research directions but should not delay the first
+paper:
 
-- [ ] Create a release tag for the frozen RACH theorem package after the audit PR is merged.
-- [ ] Create `rach-open-composition-paper` and transfer Issue #99 there as the manuscript project tracker.
-- [x] Open the literature novelty matrix in the paper workspace before drafting the Introduction.
-- [x] Convert Theorem A, its injection proof, and the relay sharpness construction into self-contained LaTeX.
-- [x] Keep `EXT-1`--`EXT-4` outside the manuscript theorem package.
-- [x] Close historical RACH issues #39 and #41 as superseded by the frozen registry; retain links to their recovered theorem IDs.
+- a necessity/converse theorem for a delimited cross-grammar class;
+- approximate/stochastic **portability** beyond the existing Fano lower-bound
+  robustness result;
+- a new joint tradeoff linking response memory to a nonclassical structural
+  resource;
+- an ecological composition theorem that derives addressability or a finite
+  blanket from explicit ecological network/dispersal constraints.
+
+Replacement/rewiring transport remains centered in `zuizui0223/mltr`.
+
+## Figure contract
+
+1. **Closed versus open grammar.** Same plant/system, small closed response
+   grammars, expanded open future grammar.
+2. **Operational lower-bound proof.** Two codewords differing in a future-readable
+   coordinate and the decoder word that separates them.
+3. **One-action relay.** Binary selector tree, `fire` as the only newly legal
+   primitive action, local pulse return, fixed four-symbol controls, degree three.
+4. **Positive boundary.** A macro fiber preserved by a uniform new action versus a
+   fiber forced to split by nonuniform future response.
+
+An ecological focal-patch illustration may be added only as a synthetic reading,
+not as data evidence.
+
+## Repository policy
+
+- `ccoc`: theorem archive, active theorem strengthening under branch/PR discipline,
+  historical replay, claim control, source audits.
+- `rach-open-composition-paper`: manuscript prose, bibliography, figures,
+  submission files, and pinned theorem provenance once manually created.
+- `zuizui0223/mltr`: non-nested replacement/rewiring transport program.
+
+The next CCOC work should be driven by the remaining gates above, not by theorem
+count. See [`research_priorities.md`](research_priorities.md) for the canonical
+agenda.

@@ -1,127 +1,172 @@
-# Current RACH architecture
+# Current RACH/CCOC architecture
 
 ## Purpose
 
-RACH contains valid results with different questions. They are no longer
-presented as one linear theorem chain. This document maps the current logical
-packages, public import surfaces, certificates, and workflows.
+RACH/CCOC contains valid results with different questions. They are not presented
+as one linear theorem chain. This document maps the current logical packages,
+public import surfaces, certificates, and research boundaries after the August
+2026 reopening and strengthening pass.
 
-Read [portability core v1](portability_core_v1.md) first, then
-[research priorities](research_priorities.md).
+Read [research priorities](research_priorities.md) for the active agenda and
+[theorem registry](theorem_registry.md) for provenance.
 
-## Public surfaces
-
-### 1. Portability core
+## 1. Portability core
 
 ```python
 import causal_model.portability_core as rach
 ```
 
-This is the research entrance for the structural question:
+This is the structural research entrance for the question
 
 \[
-\text{When does an exact finite macro-law survive declared composition changes?}
+\text{When does exact compression survive a declared expansion of composition/future grammar?}
 \]
 
-| Role | Modules |
+### Historical publication spine
+
+| Role | Canonical modules |
 |---|---|
-| finite-model prerequisite | `causal_closure_calculus.py` |
 | exact grammar-aware factorization | `dynamic_boundary_blankets.py`, `grammar_aware_blankets.py` |
-| central lower bound | `extension_compression_noncommutation.py` |
-| sharpness witness | `extension_compression.py`, `relay_tree_compilation.py` |
-| portability ladder | `compositional_boundedness.py`, `coherent_portable_macrolaw.py`, `conservative_macro_schema.py` |
+| extension--compression obstruction | `extension_compression_noncommutation.py` |
+| bounded-local sharpness | `extension_compression.py`, `relay_tree_compilation.py` |
+| conservative portability boundary | `compositional_boundedness.py`, `coherent_portable_macrolaw.py`, `conservative_macro_schema.py` |
 
-The dependency order is conceptual:
+The historical `CORE-1`--`CORE-5` IDs remain the v1 reproducibility anchors. They
+are not a ban on stronger mathematics.
 
-```text
-finite closure prerequisite
-        -> exact dynamic factorization
-        -> addressability obstruction / lower bound
-        -> boundedness -> coherent law -> conservative grammar extension
-```
+### Post-reopening strengthening layer
 
-The final three arrows are a theorem ladder, not three independent research
-programs. The relay tree is a witness that the lower bound survives constant
-local grammar, pairwise interactions, and degree three; it is not a separate
-headline theory.
+The first reopened targets are now **completed**, not future agenda items.
 
-The first post-reopening structural target is to replace the full-product premise
-of the addressability obstruction with an arbitrary jointly realizable
-**addressable codebook**. The v1 product theorem remains a historical special
-case and reproducibility target until that strengthening is reviewed and merged.
+| Strengthening | Main modules / docs | Current role |
+|---|---|---|
+| arbitrary addressable codebooks | `addressable_codebooks.py`, `docs/addressable_codebook_bound.md` | strict weakening of the full-product premise |
+| exact closed-union common refinement and join capacity | union/refinement implementation, `docs/union_grammar_refinement_capacity.md` | exact characterization in the delimited union-grammar subclass |
+| static/dynamic inflation decomposition | `interface_inflation.py`, `docs/interface_inflation_decomposition.md` | separates join-realizability loss from open-only future innovation |
+| one-new-action maximal innovation | `single_action_innovation.py`, `docs/single_action_innovation.md` | `iota_new=m` with one newly legal primitive action |
+| absolute capacity and exact relay latency | `innovation_capacity_latency.py`, `docs/innovation_capacity_latency.md` | proves zero memory slack on the finite domain and zero latency slack in the declared selector/return architecture |
+| general local causal-cone order bound | local causal-cone implementation, `docs/local_causal_cone_bound.md` | gives `Omega(log m)` access in the broader radius-one bounded-local class |
+| constrained code-rate families | constrained codebook modules, `docs/composition_code_rate.md` | shows near-linear inflation survives parity/fixed-richness constraints |
 
-### 2. Identifiability companion
+The current structural conclusion is therefore not merely the historical binary
+product witness. The open response interface can be forced by a positive-rate
+jointly realizable codebook; the closed-view contribution and genuinely new
+open-only future contribution can be separated; and one newly legal primitive
+action can realize the absolute finite-domain maximum open-only innovation on the
+existing degree-three relay.
+
+### Locality statement
+
+Two locality claims are intentionally separate.
+
+1. **Architecture-specific:** the balanced binary selector plus same-tree return
+   path attains `2 log2(m) + 2` actions for powers of two, matching its declared
+   prefix-free/one-edge-per-step lower bound.
+2. **General bounded-local class:** radius-one propagation plus bounded local state
+   and bounded degree imply only an order lower bound `T = Omega(log m)` for
+   `2^{Theta(m)}` exact response classes.
+
+Bounded degree alone is not a causal-speed theorem.
+
+### Novelty boundary
+
+The core must not be narrated as a new fixed-grammar quotient, common-refinement
+identity, generic state-complexity blow-up, or generic locality theorem. The live
+manuscript candidate is the **same-system cross-grammar response-interface
+separation**, together with the constrained extremal witness. Historical
+realization priority for the relay remains gated by issues #122 and #137.
+
+## 2. Identifiability companion
 
 ```python
 import causal_model.identifiability_companion as rach_id
 ```
 
-This package asks a distinct question:
+This package asks a different question:
 
 \[
-\text{What can finite evidence or retained mechanism families justify?}
+\text{What can finite evidence or a retained mechanism family justify?}
 \]
 
 | Role | Modules |
 |---|---|
-| delayed horizon and finite-adaptive evidence limits | `delayed_addressability.py`, `adaptive_closure_no_go.py` |
+| delayed exposure and finite-adaptive no-go | `delayed_addressability.py`, `adaptive_closure_no_go.py` |
 | candidate mechanism agreement | `candidate_safe_laws.py` |
-| joint exterior–mechanism conditions | `joint_open_candidate_laws.py` |
+| joint exterior--mechanism conditions | `joint_open_candidate_laws.py` |
 | retained-family support | `admissibility.py`, confidence-lifting modules, `symbolic_candidate_sets.py` |
 
-These results can conclude candidate-safe, set-valued, or `UNRESOLVED`. They do
-not become premises of the structural portability theorem merely because they
-also concern open systems.
+The adaptive closure no-go is already implemented: every finite-depth adaptive
+policy can be matched by a delayed closed/open pair that has the same finite
+transcript and diverges later. This result is epistemic and remains outside the
+first-paper structural theorem spine.
 
-### 3. Compatibility aggregate
+## 3. Approximate robustness companion
+
+`causal_model/approximate_addressability.py` is a post-reopening companion, not a
+new public core facade. It uses a Fano bound to show that approximate coordinate
+recovery with fixed error below one half still forces linear retained information
+in the binary full-product family:
+
+\[
+K_{\mathrm{open}}^{(\varepsilon)}
+\ge
+1+m\bigl(1-h_2(\varepsilon)\bigr).
+\]
+
+This answers a zero-error brittleness objection. It does **not** yet provide an
+approximate/stochastic portability theorem.
+
+## 4. Compatibility aggregate
 
 ```python
 import causal_model.current_theory as historical
 ```
 
 `current_theory.py` remains a broad backward-compatible aggregate for earlier
-imports and regressions. It is **not** the research entrance for new theorem
-work. New code should import one of the two facades above or an explicit
-lower-level module.
+imports and regressions. It is not the preferred research entrance for new work.
+Use the portability facade, identifiability facade, or an explicitly named
+companion module.
 
-### 4. Experimental-design legacy shelf
+## 5. Experimental-design legacy shelf
 
 Reset panels, witnessed evidence, panel robustness, common-mode failure, and
 observation-regime special cases remain executable in their original modules.
-They are not public theorem surfaces because they begin after a quotient, reset,
-coverage, or failure contract has been selected. See [legacy/README.md](legacy/README.md).
+They begin after a quotient/reset/coverage/failure contract has been selected and
+are therefore not part of the structural novelty spine. See
+[`legacy/README.md`](../legacy/README.md).
 
-## Certificate and workflow discipline
+## 6. Replacement / rewiring transport
 
-Every existing theorem module retains its own finite certificate objects and
-replay workflow. A workflow replays a declared finite domain; it does not prove
-claims about arbitrary ecosystems outside that domain.
+Non-nested replacement, extinction, recolonization, rewiring, and transport repair
+are centered in `zuizui0223/mltr`. They should return to CCOC only if they directly
+strengthen the open-composition theorem rather than forming a parallel transport
+program.
 
-The v1 freeze was lifted on 2026-08-11. A new structural theorem may now be added
-when it changes one canonical claim in the portability core or a deliberately
-selected identifiability direction. It must include:
+## 7. Certificate and workflow discipline
 
-1. exact finite domain and grammar;
-2. statement status: theorem, sufficient criterion, lower bound, witness, or
-   unresolved boundary;
-3. independently checkable certificate;
-4. fail-closed and counterexample tests; and
-5. deterministic replay artifact where the claim has a finite witness layer.
+Every theorem module retains finite certificate objects and replay routes. A
+workflow replays a declared finite domain; it does not prove the analytic theorem
+for all finite systems and does not validate an observed ecosystem.
 
-New development must occur on a branch and enter `main` through pull request.
-The July 2026 paper-core replay remains a preserved provenance baseline.
+New structural mathematics must:
 
-## Shared infrastructure
+1. name the exact canonical assumption or conclusion being changed;
+2. distinguish theorem, sufficient criterion, lower bound, witness, conjecture,
+   and computational evidence;
+3. include fail-closed tests/counterexamples where feasible;
+4. preserve the July 2026 historical paper-core replay; and
+5. enter `main` through a branch and pull request.
 
-`causal_model.__init__` stays broad for compatibility. Manifests, transcripts,
-signatures, checkpoints, and artifact registries preserve provenance only. They
-must remain stable but do not determine closure, portability, or universal
-mechanism laws.
+The active agenda is now dominated by novelty verification and manuscript
+transfer, not by another local special-case theorem. See
+[`research_priorities.md`](research_priorities.md).
 
 ## Navigation
 
-- [Portability core v1](portability_core_v1.md)
 - [Research priorities](research_priorities.md)
-- [Theorem map](theorem_spine.md)
-- [Asset map](repository_asset_map.md)
-- [Legacy shelf](legacy/README.md)
+- [Theorem registry](theorem_registry.md)
+- [Claim-status audit](claim_status_audit.md)
+- [Residual novelty decision](residual_novelty_decision_2026-08-12.md)
+- [Cross-grammar quantitative prior-art boundary](cross_grammar_quantitative_prior_art_2026-08-12.md)
+- [Universal compiler source audit](universal_compilation_source_audit.md)
+- [Legacy shelf](../legacy/README.md)
