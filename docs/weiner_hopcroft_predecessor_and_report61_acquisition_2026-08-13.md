@@ -31,6 +31,19 @@ resolve H1–H4 by itself. The report body has not been read in the current audi
 The next legitimate acquisition action is therefore a library/archive scan or a
 newly renderable digital copy, not another generic mirror search.
 
+### Actionable remote-copy route
+
+The University of Tokyo General Library's current external-user guidance states
+that remote photocopy requests from outside users must be placed **through a
+library** rather than directly by the individual requester. Its interlibrary
+service guidance gives a NACSIS-ILL route for academic libraries and also permits
+photocopy requests through public-library channels.
+
+For a complete-copy request, use the exact metadata above and request the full
+item, including the three leaves of plates, subject to copyright and library
+policy. This means report no. 61 is no longer merely `located`: it is an
+**actionable ILL/photocopy acquisition target**.
+
 ## 2. The 1967 predecessor is formally identified
 
 The immediate predecessor is:
@@ -122,13 +135,81 @@ When the seven-page report and plates are obtained, extract literally:
 These ten fields are sufficient to map the construction onto the corrected CCOC
 H1–H4 contract.
 
-## 6. Claim-control consequence
+## 6. Related 1968 Ullman–Weiner bridge source
+
+A second dangerous source in the same historical line is:
+
+> Jeffrey D. Ullman and Peter Weiner, *Universal Two State Machines:
+> Characterization Theorems and Decomposition Schemes*, SWAT 1968, pp. 413–426.
+
+DBLP verifies the bibliographic identity. A secondary indexed abstract says that
+its first part characterizes when a two-state machine is **universal**, including
+necessary-and-sufficient conditions and a testing algorithm, while its second part
+turns to economical realization of sequential machines using such modules.
+
+The primary paper body has not been recovered in the current environment, so no
+H1–H4 clause is promoted from that abstract. Nevertheless, the source is a high-
+priority bridge between the 1967/1968 Weiner–Hopcroft decomposition line and the
+1969 Ullman–Weiner fixed-module/delay synthesis theorem.
+
+## 7. Drilman–Weiner 1972 joins nondeterminism and fixed-module synthesis
+
+A further source materially increases the historical risk:
+
+> J. Drilman and Peter Weiner, *Modular Networks and Nondeterministic Sequential
+> Machines*, IEEE Transactions on Computers 21(10):1124–1129, October 1972.
+
+DBLP verifies the journal identity. A complete IEEE bibliography gives IEEE Xplore
+article number `1672054`. A secondary indexed abstract states that the paper
+considers synthesis of sequential machines by interconnections of copies of a
+**fixed module**, defines a family of modules `M_{r,p}`, and then introduces an
+`r`-bounded **nondeterministic sequential machine** class.
+
+This is important because it joins two lines that must not be treated as if they
+were historically separate:
+
+- incompletely specified / nondeterministic sequential behavior; and
+- uniform synthesis by copies of a fixed module.
+
+It predates Williams (1975), which had previously been treated as the most obvious
+intersection of incomplete specification and uniform two-state decomposition.
+
+### Evidence discipline
+
+The indexed abstract is not enough to determine whether Drilman–Weiner supplies a
+CCOC-like fixed-hardware restriction theorem, whether its nondeterminism is a
+specification device or an implementation device, or whether its module family
+satisfies H1–H4 with the needed uniform constants. The primary IEEE article must be
+read before promoting any compiler resource.
+
+### Primary extraction questions
+
+If the 1972 article becomes readable, extract:
+
+1. the formal definition of `r`-bounded NSM;
+2. what relation between an NSM and deterministic machines is being represented;
+3. whether one modular network represents all deterministic refinements or a new
+   network is synthesized for each machine;
+4. module state count, input/output arity, and fan-out assumptions;
+5. external input presentation;
+6. designated output semantics and simulation/realization equivalence;
+7. clock/delay semantics and latency;
+8. module-count/depth dependence on the size of the realized machine.
+
+A positive fixed-hardware answer would be much more dangerous to the residual CCOC
+realization claim than generic incomplete-machine minimization alone.
+
+## 8. Claim-control consequence
 
 The historical risk to the bounded-local relay has increased, not decreased.
-Report no. 61 has a concrete primary acquisition route, and the predecessor line
+Report no. 61 has a concrete primary acquisition route, the predecessor line
 suggests that direct source-input wiring may already be part of the classical
-model. Therefore CCOC must continue to describe the relay as an **explicit
-constrained extremal construction**, not as a historically first bounded-local
-compiler witness.
+model, the 1968 Ullman–Weiner source explicitly studies universal two-state
+modules, and the 1972 Drilman–Weiner source joins nondeterministic machines with
+fixed-module synthesis.
+
+Therefore CCOC must continue to describe the relay as an **explicit constrained
+extremal construction**, not as a historically first bounded-local compiler
+witness.
 
 No H1–H4 resource is upgraded in this memo from unread or secondary text.
