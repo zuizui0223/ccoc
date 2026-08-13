@@ -80,7 +80,7 @@ class GuildCapacityFamilyPortabilityCertificate:
                 return False
             if len(self.saturation_levels) != len(family[0]):
                 return False
-            if any(level < 1 for level in self.saturation_levels):
+            if any(not isinstance(level, int) or isinstance(level, bool) or level < 1 for level in self.saturation_levels):
                 return False
             if any(
                 capacity < level
@@ -99,10 +99,10 @@ class GuildCapacityFamilyPortabilityCertificate:
                 return False
 
             # The shared macro transition is capacity-free. Every stage realizes
-            # exactly this transition on capped labels.
+            # exactly this same transition on capped labels despite having a
+            # different underlying count-state domain.
             for stage in stages:
-                for state, label in zip(stage.count_states, stage.labels):
-                    state_index = stage.count_states.index(state)
+                for state_index, label in enumerate(stage.labels):
                     for action_index, action in enumerate(stage.actions):
                         successor_index = stage.system.transition(state_index, action)
                         successor_label = stage.labels[successor_index]
