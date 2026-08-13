@@ -37,7 +37,7 @@ such that the following statements hold simultaneously.
    L_O=A^{*}.
    \]
 
-   Both are represented by one-state partial DFAs independent of \(m\), and opening adds exactly one primitive transition, the loop labelled \(\mathsf{fire}\).
+   Both are represented by one-state partial DFAs independent of \(m\), and opening adds exactly one primitive transition, the loop labelled \(\mathsf{fire}\). The controlled network and its transition rule are otherwise unchanged; only the declared legal future grammar changes.
 
 2. The exact closed response quotient on \(D_m\) has
 
@@ -82,7 +82,7 @@ Thus a single fixed four-symbol grammar schema and a one-edge focal/exterior phy
 
 Use the midpoint-balanced binary relay topology with \(m\) terminal memory leaves. Add one focal node `ROOT` above the relay-body root. The selector state records one currently selected relay-body node. The permanent memory at leaf \(j\) is \(b_j\), and the focal output is \(y\).
 
-The closed grammar has one state with loops on `0`, `1`, and `tick`; `fire` is undefined. The open grammar adds the single missing `fire` loop. Hence both grammar descriptions are constant size and independent of \(m\).
+The closed grammar has one state with loops on `0`, `1`, and `tick`; `fire` is undefined. The open grammar adds the single missing `fire` loop. Hence both grammar descriptions are constant size and independent of \(m\). The underlying controlled transition function is the same in the closed and open comparisons; grammar enlargement changes legality, not the plant.
 
 The controlled dynamics are total on the common four-symbol alphabet. Address symbols move the selector down one local child edge when possible and stutter at a leaf. `fire` creates a pulse only at a selected memory leaf. Every global action advances the pulse layer by one radius-one synchronous round. At an internal relay, simultaneous child pulses are combined by a fixed Boolean-OR rule. None of these local rules uses \(m\), a global quiescence oracle, a depth counter, or an \(m\)-valued port identifier.
 
@@ -134,8 +134,7 @@ Define
 
 \[
 w_j
-=
-a_j\,\mathsf{fire}\,\mathsf{tick}^{d_j+1}.
+= a_j\,\mathsf{fire}\,\mathsf{tick}^{d_j+1}.
 \]
 
 This word is legal in \(L_O=A^*\). The prefix \(a_j\) moves the selector to leaf \(j\). Before `fire`, the pulse layer is still empty by the same invariant argument. `fire` writes the permanent bit \(b_j\) into the selected leaf pulse. The following \(d_j+1\) ticks move that pulse one parent edge per round from the leaf to `ROOT`. Therefore
@@ -200,7 +199,7 @@ The relay body is a binary tree. Adding `ROOT` above its body root preserves acy
 
 for every \(m\).
 
-A binary relay has degree at most three: one parent and at most two children. The selector augmentation and pulse update do not add graph edges. The relay, memory-leaf, pulse, selector, and focal alphabets are fixed finite alphabets independent of \(m\). Therefore maximum degree and local state/message sizes remain uniformly bounded.
+A binary relay has degree at most three: one parent and at most two children. The selector augmentation and pulse update do not add graph edges. The relay, memory-leaf, pulse, selector, and focal alphabets are fixed finite alphabets independent of \(m\). In the executable construction the selector-augmented relay alphabet has at most 6 states, the selector-augmented leaf alphabet at most 12 states, and the pulse/message alphabet 3 symbols. Therefore maximum degree and local state/message sizes remain uniformly bounded.
 
 ### Step 7 — exact canonical access length
 
@@ -246,7 +245,7 @@ All six theorem clauses now follow. \(\square\)
 
 ---
 
-## Corollary — narrow physical boundary is not an exact causal-compression bound
+## Corollary 1 — narrow physical boundary is not an exact causal-compression bound
 
 Within this explicit family, the focal/exterior graph cut stays equal to one and the interaction graph stays a tree, while the exterior response information forced by the open grammar grows as
 
@@ -259,6 +258,76 @@ for any exact comparison-domain exterior summary used together with the focal bi
 Therefore bounded physical cut width, bounded degree, acyclicity, and treewidth one do not by themselves upper-bound exact open-system response memory.
 
 This is a derived mathematical corollary of the relay, not a claim that a real ecological corridor or sparse interaction network realizes the witness.
+
+## Corollary 2 — no static-resource-only bound on exact interface inflation
+
+Consider the class of finite deterministic synchronous controlled networks satisfying all of the following uniform resource bounds:
+
+- primitive action alphabet size at most 4;
+- closed and open legal grammars represented by one-state partial DFAs;
+- closed/open grammar edit distance at most one transition;
+- maximum graph degree at most 3;
+- focal/exterior edge cut at most 1;
+- local node-state alphabet size at most 12 and local pulse/message alphabet size at most 3;
+- radius-one local updates.
+
+There is **no finite universal constant** depending only on those resource bounds that upper-bounds
+
+\[
+K_O-K_C
+\]
+
+throughout the class.
+
+### Proof
+
+Every \(N_m\) constructed above belongs to this class with the same resource constants, but
+
+\[
+K_O(N_m)-K_C(N_m)=m.
+\]
+
+If a finite resource-only upper bound \(C\) existed, choosing \(m>C\) would contradict the equality above. Hence no such bound exists. \(\square\)
+
+Equivalently, exact response-interface complexity is not uniformly controlled by physical cut width, bounded degree, local alphabet size, action alphabet size, and the number of edited grammar transitions alone. A one-transition change in legal future behavior can expose an arbitrarily large amount of dormant exact response information while every listed local/static resource stays fixed.
+
+This corollary is a no-go consequence of the explicit family, not a historical firstness claim.
+
+## Corollary 3 — logarithmic access is order-optimal under the broader bounded-local contract
+
+The general causal-cone theorem in `docs/local_causal_cone_bound.md` says that, for maximum degree \(\Delta\), uniform local-state bound \(q\), radius-one updates, and horizon \(T\), the number \(N_T\) of exact focal response classes available from all legal words of length at most \(T\) obeys
+
+\[
+\log_2N_T
+\le
+|B_T(o)|\log_2q.
+\]
+
+For fixed \(\Delta\ge3\) and fixed \(q\), the radius-\(T\) ball grows at most exponentially in \(T\). Therefore exposing
+
+\[
+N_T=2^{\Theta(m)}
+\]
+
+classes requires
+
+\[
+T=\Omega(\log m).
+\]
+
+The fixed-regular relay has \(\Delta\le3\), a uniform local-state bound, and reaches its full
+
+\[
+2^{m+1}
+\]
+
+open quotient by horizon
+
+\[
+2\lceil\log_2m\rceil+2.
+\]
+
+Hence its access latency is order-optimal in the broader bounded-degree, bounded-local-state, radius-one class. The exact coefficient and additive constant remain architecture-specific; only the \(\Theta(\log m)\) order is general. \(\square\)
 
 ---
 
