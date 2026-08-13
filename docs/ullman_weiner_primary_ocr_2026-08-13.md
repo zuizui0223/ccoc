@@ -1,6 +1,6 @@
 # Ullman–Weiner (1969) primary-text OCR extraction
 
-> **Status:** primary-text claim-control memo. The Bell System Technical Journal article itself is publicly available as a 14-page PDF, but the current PDF screenshot backend still returns a cache-miss. A separate scan of the complete May–June 1969 BSTJ issue hosted by WorldRadioHistory is indexed with OCR text, and the search index exposes verbatim passages from the article. This memo records only what those primary-text OCR passages directly support.
+> **Status:** primary-text claim-control memo. The Bell System Technical Journal article is resolved in the current web environment as a **14-page `application/pdf` object**, and the TCI BSTJ index exposes the exact Internet Archive item identifier `bstj48-5-1115`. The PDF text layer is not searchable enough to recover the construction, and page-screenshot calls still return cache misses. A separate scan of the complete May–June 1969 BSTJ issue hosted by WorldRadioHistory is indexed with OCR text, and the search index exposes verbatim passages from the article. This memo records only what those primary-text OCR passages directly support.
 
 ## Source
 
@@ -8,11 +8,11 @@ J. D. Ullman and Peter Weiner, *Uniform Synthesis of Sequential Circuits*, Bell 
 
 Primary routes confirmed in this audit:
 
-- VTDA/BSTJ article PDF: `bstj48-5-1115.pdf` (14 pages)
-- Internet Archive item identifier exposed by the TCI BSTJ index: `bstj48-5-1115`
+- VTDA/BSTJ article PDF: `bstj48-5-1115.pdf`; the current web opener resolves it as a 14-page PDF object
+- Internet Archive exact item identifier exposed by the TCI BSTJ index: `bstj48-5-1115`
 - WorldRadioHistory complete BSTJ May–June 1969 issue scan, whose indexed OCR exposes the article text
 
-The screenshot renderer still fails on the VTDA PDF, so figures and later construction pages have not been visually inspected here.
+The current PDF renderer can identify the object and page count, but screenshot requests for construction pages still fail with cache misses. `find` calls against the PDF also return no usable text for construction terms such as `fan-out`, `input terminal`, `isomorphic`, `clock`, and `output`. Therefore figures and later construction pages have **not** been visually or textually inspected in this audit.
 
 ## Directly recovered primary text
 
@@ -72,6 +72,16 @@ If later primary pages verify all four with comparable constants, bounded-local/
 
 ## Acquisition status
 
-The acquisition problem is no longer “no primary text available.” The article itself and a primary OCR route are identified, and the introduction/abstract have been recovered. The remaining blocker is **construction-page extraction** (module wiring, isomorphism definition, fan-out, external-input distribution, and clock semantics).
+The acquisition problem is no longer “no primary text available” and no longer even “the article PDF cannot be resolved.” The exact 14-page PDF object, exact article path, exact Internet Archive item identifier, and an OCR-indexed primary issue scan are all known.
 
-This should replace any wording that treats Ullman–Weiner (1969) as abstract-only evidence.
+The remaining blocker is specifically **construction-page rendering/text extraction**:
+
+- formal module definition/state structure;
+- fan-out and interconnection restrictions;
+- external source-input distribution/wiring;
+- formal realization/isomorphism and designated-output definition;
+- clock-control/source-step semantics;
+- exact relation of module delay to response-trace timing;
+- module count/depth where stated.
+
+Do not repeat generic mirror searches. Resume only with a renderable construction-page copy, later-page OCR, or a library/archival scan.
