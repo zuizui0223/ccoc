@@ -59,8 +59,7 @@ I(E;C)\le H(C)\le k,
 hence
 
 \[
-\boxed{
-k+cT\log_2s\ge m(1-h_2(\varepsilon)).}
+\boxed{k+cT\log_2s\ge m(1-h_2(\varepsilon)).}
 \]
 
 Thus
@@ -80,6 +79,45 @@ At zero error,
 \[
 \boxed{k+cT\log_2s\ge m.}
 \]
+
+## Average-error floor
+
+The theorem also gives a direct accuracy limit when the retention and boundary-time budgets are fixed. Define the mean coordinate error
+
+\[
+\bar\varepsilon=\frac1m\sum_{j=1}^m\varepsilon_j.
+\]
+
+Binary entropy is concave, so Jensen's inequality gives
+
+\[
+\frac1m\sum_j h_2(\varepsilon_j)
+\le h_2(\bar\varepsilon).
+\]
+
+Therefore a closed representation with at most \(2^k\) states must satisfy
+
+\[
+\boxed{k+cT\log_2s\ge m\bigl(1-h_2(\bar\varepsilon)\bigr).}
+\]
+
+Let
+
+\[
+B=\frac{k+cT\log_2s}{m}.
+\]
+
+When \(B<1\), monotonicity of \(h_2\) on \([0,1/2]\) implies the error floor
+
+\[
+\boxed{
+\bar\varepsilon
+\ge
+h_2^{-1}(1-B).
+}
+\]
+
+When \(B\ge1\), this information bound alone imposes no positive error floor. This inversion is a resource feasibility statement; no finite-block claim of sharpness is made for the approximate case.
 
 ## Sharpness for power-of-two boundary alphabets
 
@@ -101,19 +139,38 @@ The focal node is attached to the exterior relay body through one edge, so the f
 
 \[
 \boxed{
-T\ge\left\lceil\frac{m}{\log_2 3}\right\rceil.
+T_{\rm full}\ge\left\lceil\frac{m}{\log_2 3}\right\rceil.
 }
 \]
 
-This does not contradict the existing \(\Theta(\log m)\) addressed-query result. An addressed query asks for one selected coordinate and returns one bit. Full materialization requires enough boundary information to support all coordinate decoders simultaneously.
+This does not contradict the existing addressed-query result. An addressed query asks for one selected coordinate and returns one bit. Full materialization requires enough boundary information to support all coordinate decoders simultaneously.
 
-Consequently the relay exhibits two distinct time scales:
+The fixed-regular construction has exact worst canonical selected-query length
 
-- selected coordinate access: \(\Theta(\log m)\);
-- exact full-interface materialization across the focal cut: \(\Omega(m)\).
+\[
+T_{\rm query}=2\lceil\log_2m\rceil+2.
+\]
 
-The distinction is structural: random access can be fast even when installing the entire open causal interface behind a narrow boundary is information-throughput limited.
+Consequently
+
+\[
+\boxed{
+\frac{T_{\rm full}}{T_{\rm query}}
+\ge
+\frac{\lceil m/\log_2 3\rceil}
+{2\lceil\log_2m\rceil+2}
+=
+\Omega\!\left(\frac{m}{\log m}\right).
+}
+\]
+
+Thus the same bounded-degree, cut-one family exhibits a diverging separation between two operational tasks:
+
+- selected-coordinate random access: \(\Theta(\log m)\);
+- exact full-interface installation across the focal cut: \(\Omega(m)\).
+
+A narrow boundary can therefore support fast targeted interrogation while still making wholesale installation of the open causal interface asymptotically much slower.
 
 ## Claim discipline
 
-The entropy bound for a finite alphabet channel, Fano's inequality, and the chain rule are classical substrate. The CCOC contribution here is the coupled portability interpretation and its application to the same extremal family: information omitted by closed compression becomes a reopening debt, and a narrow boundary converts that debt into a time lower bound.
+The entropy bound for a finite alphabet channel, Fano's inequality, Jensen's inequality, and the chain rule are classical substrate. The CCOC-specific contribution here is the coupled portability interpretation and its application to the same extremal family: information omitted by closed compression becomes a reopening debt, a narrow boundary turns that debt into an installation-time lower bound, and targeted random access can remain asymptotically much faster than full interface materialization.
