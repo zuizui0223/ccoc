@@ -1,397 +1,253 @@
-# Research priorities: current conclusions and remaining goals
+# Research priorities: final 2026-08-13 decision
 
-> **Status date:** 2026-08-13. This file is the canonical active agenda after the
-> post-reopening CORE-2/CORE-3 strengthening pass. It replaces the earlier agenda
-> in which weakening the product assumption, building constrained codebooks, and
-> removing the growing primitive-port alphabet were still future work.
+> **Status date:** 2026-08-13. This is the canonical active agenda after the
+> post-reopening theorem strengthening, historical novelty audit, and primary-source
+> acquisition pass.
 
-## Governing rule
+## 1. Governing research decision
 
-RACH/CCOC is an active theorem-development repository. The July 2026 paper-core
-freeze remains a reproducibility checkpoint, not the current mathematical state.
-New work must occur on a branch and enter `main` through pull request.
+CCOC/RACH remains an active theorem repository, but the current bottleneck is **not
+another local theorem**. The finite deterministic theorem package is mature enough
+for a paper. The remaining scientific uncertainty is whether the explicit
+bounded-local extremal realization is historically distinctive once classical
+uniform sequential-machine compilation is read at the construction level.
 
-The first-paper conceptual spine is still deliberately small:
-
-\[
-\text{exact grammar-aware interface}
-\; + \;
-\text{cross-grammar extension--compression obstruction}
-\; + \;
-\text{sharp constrained realization}
-\; + \;
-\text{conservative portability boundary}.
-\]
-
-Post-reopening results strengthen that spine; they do not create a new list of
-headline theorems.
-
-RACH remains mathematical ecology on supplied finite formal models. It contains
-no empirical ecological validation, field inference, fitted biological
-parameters, or automatic discovery of the correct open-composition grammar.
-
-## 1. What is now established
-
-### 1.1 Exact finite interface substrate
-
-For a supplied finite deterministic controlled system and a declared legal future
-grammar, the exact interface is the coarsest response quotient preserving current
-output, legal-action rows, and successor labels.
-
-This is fixed-grammar minimization substrate, not the novelty claim.
-
-### 1.2 The product premise has already been weakened
-
-`CORE-2` now has an arbitrary finite **addressable codebook** strengthening. For a
-jointly realizable codebook
+The mathematical paper spine remains:
 
 \[
-C\subseteq A_0\times\cdots\times A_q,
-\]
-
-if declared legal future words uniformly recover the relevant coordinates, the
-open response quotient is discrete on that comparison domain:
-
-\[
-\boxed{K_{\mathrm{open}}(D_C)=\log_2|C|.}
-\]
-
-If closed context `j` factors on the same domain through its retained coordinate
-projection, then
-
-\[
-K_{\mathrm{closed},j}(D_C)\le \log_2|\pi_j(C)|,
-\]
-
-so
-
-\[
-\boxed{
-K_{\mathrm{open}}(D_C)-\max_j K_{\mathrm{closed},j}(D_C)
-\ge
-\log_2|C|-\max_j\log_2|\pi_j(C)|.
-}
-\]
-
-The historical full Cartesian product theorem is a special case. Constrained
-families therefore no longer sit outside the theorem.
-
-Implemented examples include parity and fixed-richness codebooks. At fixed
-richness `k`, the exact restricted-domain gap is
-
-\[
-\Delta_{m,k}=\log_2\binom{m}{k}-1,
-\]
-
-so for `k` proportional to `m` the gap remains linear up to the usual logarithmic
-correction. Full independence is therefore sufficient but not necessary for
-large cross-grammar inflation.
-
-### 1.3 The static and dynamic sources of inflation are separated
-
-For the delimited class where the open grammar is the union of closed grammars,
-the exact open quotient is the common refinement of the closed response
-quotients. With a shared base partition and fibered join capacity `C`, the
-realizability defect is
-
-\[
-\delta_{\mathrm{join}}
-=
-\log_2 C-\log_2|P_U|\ge0.
-\]
-
-When the actual open grammar contains genuinely new future words, define
-
-\[
-\iota_{\mathrm{new}}
-=
-\log_2|P_O|-\log_2|P_U|\ge0.
-\]
-
-The exact accounting is
-
-\[
-\boxed{
-\Delta_{\mathrm{total}}
-=
-\Delta_{\mathrm{capacity}}
--
-\delta_{\mathrm{join}}
+\text{response-interface formalism}
 +
-\iota_{\mathrm{new}}.
-}
+\text{cross-grammar lower bound}
++
+\text{extremal one-action family}
++
+\text{bounded-local realization}
++
+\text{positive portability criterion}.
 \]
 
-The first two terms have natural-join/common-refinement ancestry. The manuscript
-novelty budget therefore belongs, if anywhere, to the same-system **cross-grammar
-response comparison** and the dynamic `iota_new` realization, not to the algebraic
-identity itself.
+But **theorem role and novelty role are separate**.
 
-### 1.4 One newly legal primitive action can realize the absolute maximum innovation
+## 2. What is established
 
-The strengthened binary relay uses one fixed primitive action alphabet
+### 2.1 Formal interface machinery
+
+For a supplied finite deterministic controlled system and declared legal future
+grammar, the exact interface is the coarsest response quotient preserving current
+output, legal-action rows, and successors.
+
+For response maps `R_w`,
 
 \[
-\{0,1,\mathsf{fire},\mathsf{tick}\}.
+\sim_L=\bigcap_{w\in L}\ker R_w.
 \]
 
-Every fixed closed grammar already permits real address routing and `tick`; only
-`fire` is withheld. Thus the closed dynamics are not an identity construction.
-The closed union still has only the focal bit:
+Thus grammar enlargement refines the response quotient, and a pair-separating
+future family makes a finite codebook discrete. The arbitrary addressable-codebook
+strengthening, constrained codebooks, and closed-factorization comparison bounds
+are implemented and tested.
+
+**Status:** useful formalism/substrate, not a firstness claim.
+
+### 2.2 Static/dynamic inflation accounting
+
+For the closed-union grammar, common refinement and join-realizability accounting
+separate static closed-view capacity from genuinely open-only future innovation.
+For the full open grammar,
 
 \[
-|P_U|=2.
+\iota_{\rm new}=\log_2|P_O|-\log_2|P_U|.
 \]
 
-Opening legalizes only `fire`. Address words can then reveal every dormant leaf
-bit, so on
+Common refinement, product capacity, natural-join ancestry, and the generic fact
+that extra future tests split a quotient are not novelty claims.
+
+### 2.3 Extremal one-action family
+
+The strengthened family has
 
 \[
-D_m=\{0,1\}^{m+1}
+|P_j|=2\quad\forall j,
+\qquad
+|P_U|=2,
+\qquad
+|P_O|=2^{m+1},
+\qquad
+\iota_{\rm new}=m.
 \]
 
-the open quotient is discrete:
+`iota_new=m` saturates the finite-domain upper bound. Only `fire` is newly legal;
+`0/1` routing and `tick` already operate on the closed side.
 
-\[
-|P_O|=2^{m+1}.
-\]
+A centralized unlock construction with this qualitative effect is elementary and
+is **not** firstness-bearing by itself.
 
-Hence
+### 2.4 Bounded-local relay
 
-\[
-\boxed{\iota_{\mathrm{new}}=m.}
-\]
+The explicit relay simultaneously has:
 
-This saturates the finite-domain upper bound
+- primitive alphabet `{0,1,fire,tick}`;
+- bounded local state/message alphabets;
+- pairwise radius-one dynamics;
+- maximum degree three;
+- `O(log m)` causal access;
+- exact `2 log2(m)+2` query length in the declared selector-plus-return
+  architecture;
+- order-optimal logarithmic access in the broader bounded-local causal-cone class.
 
-\[
-\iota_{\mathrm{new}}
-\le
-\log_2|D_m|-\log_2|P_U|=m.
-\]
+**Status:** the only remaining conditional firstness candidate is this simultaneous
+extremal/local resource package.
 
-The construction simultaneously retains maximum degree three, pairwise
-radius-one dynamics, a constant local node/message grammar, and the fixed
-four-symbol global control alphabet.
+### 2.5 Positive and companion results
 
-### 1.5 The locality statement has been split into its correct two levels
+- conservative finite macro-schema portability is a sufficient constructive
+  boundary;
+- adaptive finite-evidence closure no-go is already complete as an identifiability
+  companion;
+- the Fano approximate-addressability theorem shows the exact gap is not purely a
+  zero-error artifact.
 
-For the explicit balanced selector-plus-return-path architecture,
+These do not need further special-case proliferation for the first paper.
 
-\[
-\boxed{
-L_{\mathrm{query}}^{\mathrm{worst}}
-=
-2\log_2 m+2
-}
-\]
+## 3. What is explicitly prior art / substrate
 
-for powers of two, with zero slack against the architecture-specific lower bound.
+Do not spend novelty budget on:
 
-For the broader bounded-local class, radius-one causal propagation and bounded
-local state imply a causal-cone capacity bound. With fixed maximum degree
-`Delta>=3` and fixed local-state bound `q`, realizing
+1. Myhill--Nerode/bisimulation-style fixed-grammar minimization;
+2. context/input/environment-dependent sequential-machine reduction;
+3. incomplete-machine reduction;
+4. promise/restricted-domain descriptional advantage or exponential gap by itself;
+5. broad state-reduction/realization noncommutation;
+6. pair-separating/codebook cardinality lower bounds;
+7. common-refinement/product-capacity/natural-join accounting;
+8. elementary one-new-action centralized blow-up;
+9. repeated fixed modules or uniform modular synthesis;
+10. fixed-input synthesis, bounded fanout, or delayed universal modules in
+    isolation;
+11. generic finite-speed/local causal-cone bounds.
 
-\[
-2^{\Theta(m)}
-\]
+Hartmanis--Stearns is direct ancestry for broad reduction/realization
+noncommutation. Kim--Newborn and the interacting-FSM literature establish
+contextual minimization. Larrauri--Bloem's tail-minimization “exponential
+improvement” is algorithmic/representation improvement, not an exponential
+restricted/open minimum-state ratio; their exponential solution-size theorem is
+for the distinct tail-synthesis problem.
 
-focal response classes requires
+## 4. Priority 1 — finish the H1–H4 primary compiler gate
 
-\[
-\boxed{T=\Omega(\log m).}
-\]
+Issue #122 is now the main research gate.
 
-The relay is therefore order-optimal in the broader local class. Bounded degree
-alone is not sufficient; the radius-one causal-propagation contract is essential.
+A classical full-language compiler is decisive only if it jointly supplies:
 
-### 1.6 The positive boundary is already present
+- **H1:** bounded local state/connectivity independent of source state count;
+- **H2:** fixed context-independent source controls/input distribution;
+- **H3:** two-way response-trace faithfulness with no spurious closed distinctions;
+- **H4:** bounded source-step/network/output latency.
 
-A finite conservative macro schema remains exact when old macro meanings are
-preserved and every newly legal action is uniform in availability and macro
-successor inside each macro fiber. A new future word that separates two states
-inside a proposed fiber is the corresponding local obstruction.
+If H1–H4 hold with comparable overhead, a bounded-local implementation of the
+centralized CCOC seed can be obtained classically and the relay's **existence**
+novelty is demoted. The relay remains a transparent extremal construction.
 
-This is a sufficient positive portability boundary, not a necessity theorem.
+### Primary acquisition routes are already fixed
 
-### 1.7 The finite-evidence no-go is already a companion result
+The broad web search is finished. The remaining work is reading primary
+construction text.
 
-The delayed-addressability line has already been strengthened to the adaptive
-statement: for every finite-depth adaptive policy, a delay-gated closed/open pair
-can agree on the entire finite transcript and diverge later. Thus finite
-transcript-only evidence cannot uniformly certify closure without an independent
-horizon/completion-grammar contract.
+- **Weiner--Hopcroft 1968 report no. 61:** University of Tokyo / Princeton
+  physical-copy route.
+- **Ullman--Weiner 1969:** primary abstract/introduction already read; issue #137
+  tracks construction pages. The article-level 14-page VTDA PDF resolves, but the
+  current page-render/download backend still fails on construction-page access.
+- **Newborn--Arnold 1972 C-21(1):63--79:** Osaka Prefectural Central Library direct
+  copy route; correct DOI `10.1109/T-C.1972.223433`.
+- **Drilman--Weiner 1972 C-21(10):1124--1129:** same Osaka holding; key
+  fixed-module/nondeterministic-machine intersection.
+- **Williams + Le Van--van Houtte 1975 C-24(8):** Tokyo University of Technology
+  physical reading/copy route.
+- **Sureshchander 1978, Almaini 1978, Chen--Hurst 1982:** same Tokyo holding as
+  follow-up/correction/comparison sources.
 
-This remains `ID-1`, outside the first-paper theorem spine.
+Do not infer H1–H4 from titles, secondary abstracts, or holding metadata.
 
-### 1.8 Exactness is not purely a zero-error artifact
+## 5. Priority 2 — move to the manuscript workspace
 
-A post-reopening companion applies Fano's inequality to an approximately decoded
-addressable codebook. For one exact inside bit and `m` binary exterior coordinates
-with fixed average decoding error `epsilon<1/2`,
+Issue #99 is the manuscript tracker. Issue #141 is the only repository-bootstrap
+blocker.
 
-\[
-\boxed{
-K_{\mathrm{open}}^{(\varepsilon)}
-\ge
-1+m\bigl(1-h_2(\varepsilon)\bigr).
-}
-\]
+The manuscript repository must be:
 
-This is a robustness result, not a new approximate-abstraction framework and not
-part of `CORE-1`--`CORE-5`.
+`zuizui0223/rach-open-composition-paper`
 
-## 2. Current scientific conclusion
+The current connector exposes no create-repository action and the execution
+environment has no `gh` CLI, so repository creation remains one manual action.
+Once it exists with `main` and a README, the connector can bootstrap the complete
+traceability/LaTeX structure.
 
-The strongest defensible conclusion is now narrower and cleaner than the original
-intuition:
+The manuscript must distinguish:
 
-> Exact compression in each fixed closed response/composition grammar does not in
-> general commute with opening the legal future grammar. A positive-rate family of
-> jointly realizable future distinctions can force the exact interface to retain a
-> correspondingly large amount of information, even when the same fixed system has
-> tiny closed quotients. One newly legal primitive action can attain the absolute
-> finite-domain maximum response innovation under a degree-three, pairwise,
-> constant-local-state realization.
+- **formalism used:** response quotient, codebook lower bound, closed/open
+  comparison;
+- **classical ancestry:** contextual minimization, noncommutation, modular
+  synthesis;
+- **conditional candidate:** simultaneous extremal one-action + bounded-local
+  realization;
+- **fallback:** relay as explanatory sharp construction if #122 subsumes its
+  existence.
 
-The conceptual novelty is **not** fixed-grammar minimization, ordinary
-Myhill--Nerode distinguishability, common refinement, generic exponential state
-blow-up, or generic locality.
+## 6. Priority 3 — genuinely new mathematics only after/beyond the gates
 
-## 3. Remaining goals before submission
+Do not create another defect, score, panel, or codebook special case. New theorem
+work is justified only if it materially changes one of the following.
 
-### Priority A — finish the Tier-A cross-grammar novelty gate
+### 6.1 Genuine necessity/converse
 
-The main unresolved falsification target is a theorem in old or modern
-promise/input-restricted/incompletely specified machine theory that already gives
-essentially the same **same-system nested-grammar** worst-case comparison:
+Find a delimited cross-grammar class with a nontrivial necessary-and-sufficient
+criterion for bounded/open response-interface growth that is not merely common
+refinement or fixed-grammar minimization.
 
-- one fixed deterministic controlled transition system;
-- small exact quotient in every restricted/closed legal future grammar;
-- a much larger exact quotient after opening the legal input/future-word language;
-- no representation conversion or resynthesis needed to obtain the gap.
+### 6.2 Coupled resource tradeoff
 
-Broad searches for contextual minimization, incomplete machines, don't-cares, or
-exponential state complexity are no longer enough. The target must match the
-cross-grammar contract closely enough to test Tier A directly.
+Prove a sharp simultaneous lower bound coupling response memory to control
+complexity, communication/local state, or causal access in a way not inherited
+from generic coding or locality lemmas.
 
-See `docs/cross_grammar_quantitative_prior_art_2026-08-12.md` and issue #99.
+### 6.3 Approximate/stochastic portability
 
-### Priority B — finish the historical universal-compiler source gate
-
-The relay remains a **constrained sharpness witness**, not a firstness-bearing
-realization claim, until the closest classical compiler constructions are checked
-against the corrected four-resource contract:
-
-- **H1:** bounded local state and bounded connectivity;
-- **H2:** one fixed context-independent external input encoding/distribution;
-- **H3:** two-way response-trace faithfulness, with no spurious compiled
-  distinctions on the embedded comparison domain;
-- **H4:** explicit bounded source-step/network-round/output latency.
-
-Ullman--Weiner (1969) now has primary-text OCR evidence for binary input, a fixed
-module with delay, isomorphic realization language, and network-size-independent
-input settling time. The remaining blocker is the construction text needed for
-fan-out/degree, input distribution, formal output/isomorphism semantics, and exact
-clock/latency accounting.
-
-Do not re-open generic mirror searches; follow issue #137's acquisition stop rule
-and issue #122's H1--H4 decision rule.
-
-### Priority C — move from theorem archive to manuscript workspace
-
-The theorem archive is mature enough for proof writing. The remaining publication
-work is not another local inequality.
-
-1. Create `zuizui0223/rach-open-composition-paper` (manual repository creation is
-   tracked in issue #141).
-2. Pin the exact CCOC source/replay provenance at transfer time.
-3. Restate the codebook lower bound, one-action maximal-innovation witness,
-   locality scope, and conservative portability criterion independently in LaTeX.
-4. Build the four planned figures from declared synthetic models.
-5. Convert the novelty audits into a page-checked Related Work section.
-6. Keep the abstract/introduction within the Tier-A/Tier-B claim boundary.
-
-Issue #99 remains the manuscript tracker.
-
-### Priority D — resolve stale theorem-development trackers
-
-Several older open issues describe goals that are now implemented and merged but
-retain only CI/literature or naming checkboxes. Before the manuscript transfer,
-reconcile those trackers against the current main branch so that completed
-mathematics is not mistaken for unfinished theorem work. Do not keep theorem
-issues open merely because the historical checklist predates the merged
-strengthening.
-
-## 4. Mathematical work worth doing after the submission gates
-
-Do **not** add another defect, panel, robustness score, or nearby special-case
-inequality. A new branch is justified only if it changes one of the following
-questions materially.
-
-### 4.1 A genuine converse / necessity theorem
-
-Find a delimited cross-grammar model class in which open-interface inflation has a
-nontrivial necessary-and-sufficient characterization not reducible to the
-already-known common-refinement identity or ordinary fixed-grammar minimization.
-
-The earlier zero-order codebook quantity
-
-\[
-\Delta_0(C)
-=
-\log_2|C|-\max_j\log_2|\pi_j(C)|
-\]
-
-is a useful sufficient lower-bound quantity, but it should not be promoted as a
-necessary invariant without such a converse.
-
-### 4.2 Approximate or stochastic **portability**, not only addressability
-
-The Fano theorem shows that the lower-bound obstruction is robust to decoding
-error. A genuinely stronger next result would characterize when one finite
+Go beyond approximate addressability. Characterize when one finite
 approximate/stochastic macro schema remains portable as the legal composition
-grammar expands, or prove an unavoidable memory/error tradeoff for that task.
+grammar expands, or derive a nontrivial memory/error tradeoff for portability.
 
-### 4.3 A joint structural resource tradeoff
+### 6.4 Ecological structural theorem
 
-A new theorem is worthwhile if it couples response-interface inflation to a
-resource not already inherited from classical coding/locality lemmas, for example
-a sharp simultaneous tradeoff among memory, legal-control complexity, and causal
-access under one explicit model class.
+Start from a mathematically specified ecological composition class—colonization,
+dispersal, interaction-network, or boundary-coupling constraints—and **derive**
+addressability lower bounds or finite-blanket upper bounds. Merely renaming latent
+bits as species or colonists is not enough.
 
-### 4.4 An ecological theorem rather than an ecological relabeling
+## 7. Explicit non-priorities
 
-The most valuable ecological extension would start from a mathematically specified
-composition class—e.g. constrained colonization, dispersal, interaction-network,
-or boundary-coupling rules—and **derive** an addressability lower bound or a finite
-blanket upper bound from those ecological constraints. Merely renaming external
-bits as species, mutualists, or colonists is not enough.
+Until #122/#137 or the manuscript blocker moves, do not prioritize:
 
-## 5. Explicit non-priorities
+- another codebook family;
+- another partition defect/accounting identity;
+- more reset/panel/robustness variants;
+- another toy adaptive no-go;
+- generic literature/mirror searching for already located primary sources;
+- replacement/rewiring transport inside CCOC;
+- empirical ecological inference in this theorem repository.
 
-Until the submission gates above move materially, do not prioritize:
+## 8. Promotion rule
 
-- another codebook special case;
-- another partition defect or bookkeeping identity;
-- more panel/reset/robustness variants;
-- re-proving adaptive finite-evidence impossibility under a different toy policy;
-- moving replacement/rewiring transport back from `zuizui0223/mltr`;
-- empirical ecological inference inside this theorem repository.
-
-## 6. Promotion rule
-
-Every proposed new active result must identify exactly which canonical question it
-changes:
+Any new active theorem must identify exactly which canonical question it changes:
 
 \[
-\text{exact interface},\qquad
-\text{cross-grammar addressability obstruction},\qquad
-\text{portable composition},\qquad
+\text{exact interface},\quad
+\text{response-interface obstruction},\quad
+\text{portable composition},\quad
+\text{resource tradeoff},\quad
 \text{or finite-evidence identifiability}.
 \]
 
-It must also state whether the change is a strict assumption weakening, stronger
-conclusion, converse/necessity result, sharper constrained construction, or a new
-model class. A nearby special case alone is not sufficient reason to expand the
-theorem registry.
+It must be a strict assumption weakening, stronger conclusion, genuine
+converse/necessity result, sharper coupled resource theorem, or new model class.
+A nearby special case is not sufficient reason to expand the theorem registry.
