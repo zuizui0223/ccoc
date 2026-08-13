@@ -98,14 +98,17 @@ class GuildCapacityFamilyPortabilityCertificate:
             if any(stage.blanket_memory_bits != self.macro_memory_bits for stage in stages):
                 return False
 
-            # The shared macro transition is capacity-free. Every stage realizes
-            # exactly this same transition on capped labels despite having a
-            # different underlying count-state domain.
+            # The shared macro transition is capacity-free. Cache each finite
+            # realization once, then compare all of its capped transitions with
+            # the single shared macro law.
             for stage in stages:
-                for state_index, label in enumerate(stage.labels):
-                    for action_index, action in enumerate(stage.actions):
-                        successor_index = stage.system.transition(state_index, action)
-                        successor_label = stage.labels[successor_index]
+                system = stage.system
+                labels = stage.labels
+                actions = stage.actions
+                for state_index, label in enumerate(labels):
+                    for action_index, action in enumerate(actions):
+                        successor_index = system.transition(state_index, action)
+                        successor_label = labels[successor_index]
                         if successor_label != self.macro_successor(label, action_index):
                             return False
             return True
