@@ -7,31 +7,46 @@
 
 ### NO-GO as a firstness-bearing conceptual slogan
 
-Do **not** claim novelty for:
+Do **not** claim novelty for either of the following broad statements:
 
 > compression under a restricted environment/input/observer contract can be
-> smaller than compression under a richer contract.
+> smaller than compression under a richer contract;
 
-Kim–Newborn input-restricted simplification, later exact input-don't-care
-computation in FSM networks, environment-dependent interacting-FSM minimization,
-and property-dependent equivalences already place that phenomenon in classical
-sequential-machine and verification theory.
+or
 
-See `tier_a_contextual_minimization_primary_audit_2026-08-13.md`.
+> state reduction/compression and realization/composition need not commute.
 
-### GO as a theorem problem and manuscript formalism
+The Kim--Newborn lineage, later interacting-FSM input-don't-care/minimization
+work, and classical incomplete-machine minimization already establish the first
+phenomenon. Hartmanis & Stearns (1962) explicitly show that state reduction can
+destroy realizations of a sequential machine by smaller machines and tie the
+failure to non-distributivity of the relevant partitions. That is not the CCOC
+open-grammar theorem, but it is direct ancestry for the noncommutation slogan.
+
+See `tier_a_contextual_minimization_primary_audit_2026-08-13.md` and
+`classical_noncommutation_and_quotient_substrate_2026-08-13.md`.
+
+### GO as a theorem problem and manuscript formalism, not as bare mathematical novelty
 
 Keep the exact cross-grammar response-interface theorem because it gives a clean,
-operational finite lower bound on one fixed deterministic controlled system.
-The theorem is useful and paper-worthy even though the broad contextual-reduction
-phenomenon is not itself new.
+operational language for the ecological/compositional question. However, the
+**bare codebook lower bound should now be treated as mathematical substrate**.
 
-The paper should describe the theorem as a **quantitative cross-grammar result**,
-not as the first discovery of noncommuting contextual compression.
+For response maps `R_w` on a finite comparison domain,
+
+\[
+\sim_L=\bigcap_{w\in L}\ker R_w.
+\]
+
+Thus enlarging `L` refines the exact quotient, and a pair-separating future-word
+family makes a codebook discrete. The coordinate-decoder theorem is a useful
+operational sufficient condition for that separation, but its cardinality step is
+Myhill--Nerode/separating-family style substrate rather than a firstness-bearing
+result.
 
 ### CONDITIONAL GO as the residual novelty candidate
 
-The strongest remaining novelty candidate is the simultaneous extremal package:
+The strongest remaining candidate is the **simultaneous extremal/local package**:
 
 \[
 |P_j|=2\quad\forall j,
@@ -44,7 +59,7 @@ The strongest remaining novelty candidate is the simultaneous extremal package:
 \]
 
 where `iota_new=m` is the absolute maximum on the finite comparison domain and is
-created by legalizing one primitive action type on the same plant.
+created by legalizing one primitive action type on the same controlled plant.
 
 The explicit relay additionally keeps:
 
@@ -59,70 +74,96 @@ The explicit relay additionally keeps:
 No reviewed source has yet been shown to match all of these conditions in one
 family. That remains a negative search result, not a priority proof.
 
+The universal-compiler H1--H4 gate is now decisive for the realization part. If a
+classical fixed-input compiler preserves the response quotient and restricted/open
+input semantics with comparable locality/control/latency overhead, a bounded-local
+witness can be compiled from the elementary centralized seed and the explicit
+relay becomes a clean extremal construction rather than a firstness-bearing
+existence theorem.
+
 ## Revised claim hierarchy
 
-### Tier A — quantitative cross-grammar theorem
+### Tier A — formal cross-grammar response framework
 
-> Under a declared jointly realizable addressable codebook, the exact response
-> quotient of the open grammar must retain the codebook information, while every
-> fixed closed context may factor through a much smaller projection.
+> Under a declared jointly realizable addressable codebook, a pair-separating open
+> future family forces a large exact response quotient, while fixed closed contexts
+> may factor through much smaller projections.
 
-This is the manuscript's formal theorem. Novelty language must attach only to the
-precise quantitative contract after related-work comparison.
+This remains the manuscript's formal theorem language. The quotient-refinement and
+pair-separation mathematics by themselves are not assigned novelty.
 
-### Tier B — extremal one-action innovation
+### Tier B — simultaneous extremal one-action package
 
-The current family has a one-bit closed union quotient and an open quotient
-discrete on `2^(m+1)` states after only `fire` becomes legal. The resulting
-`m`-bit innovation saturates the finite-domain upper bound.
+The current family has every fixed closed quotient and the closed-union quotient
+at two classes, while legalizing only `fire` makes the open quotient discrete on
+`2^(m+1)` states. The resulting `m`-bit open-only innovation saturates the finite-
+domain upper bound.
 
-This is now the cleanest residual novelty candidate.
+This is the strongest residual quantitative candidate, but the elementary
+centralized version is not novelty-bearing. The claim is only interesting together
+with the stronger realization constraints below.
 
-### Tier C — bounded-local sharpness witness
+### Tier C — bounded-local sharpness realization
 
-The degree-three relay proves the extremal response separation is realizable under
-strong locality/control restrictions. Historical realization priority remains
-conditional on the universal-compiler H1–H4 gate.
+The degree-three relay shows that the extremal package is realized with fixed
+controls, bounded local alphabets, pairwise radius-one dynamics, and logarithmic
+access. Historical priority remains conditional on the universal-compiler gate.
 
 ### Tier D — constructive positive boundary
 
-Conservative finite macro-schema portability remains the sufficient counterpart.
-It is not presented as a necessary characterization.
+Conservative finite macro-schema portability remains a useful sufficient
+counterpart. It is not presented as a necessary characterization.
 
 ## Manuscript wording
 
 ### Safe
 
-> Context-dependent minimization of sequential machines is classical. We study a
-> sharper quantitative problem on one fixed controlled system: the exact response
-> complexity induced by enlarging its legal future grammar. Under operational
-> addressability we obtain a codebook lower bound. A constrained family keeps all
-> fixed closed response interfaces and their union at one bit, while one newly
-> legal primitive action produces the maximum possible `m` bits of open-only
-> response innovation.
+> Context-dependent minimization of sequential machines and noncommutation between
+> state reduction and realization have classical antecedents. We use a response-
+> quotient formalism to pose a narrower quantitative problem: whether one fixed
+> controlled family can keep every closed response interface and their union tiny
+> while a minimal legal-grammar expansion activates the maximum possible response
+> distinction, under strong bounded-local implementation constraints. Our explicit
+> family achieves that benchmark; historical priority for the complete constrained
+> package remains subject to the classical compiler audit.
 
 ### Unsafe
 
 - “We discover that open systems destroy compression.”
 - “No prior theory studies minimization under restricted environments or inputs.”
-- “The failure of closed-context compression to transport is itself new.”
+- “Compression and composition noncommutation is new.”
+- “The codebook/pair-separation lower bound is a new minimization principle.”
 - “One newly legal action causing a large machine is new by itself.”
 - “The bounded-local relay is historically first.”
 
 ## Remaining submission gates
 
-1. **Quantitative falsification:** search specifically for a same-plant
-   input-restricted/promise transducer family with `O(1)` restricted minima and an
-   exponential relaxed-language minimum, especially after one tiny language/input
-   extension.
-2. **Universal compiler H1–H4:** finish primary construction-page extraction for
+1. **Quantitative falsification:** continue searching only for a same-plant
+   input-restricted/promise transducer family with `O(1)` restricted exact
+   quotients and an exponential relaxed-language quotient, especially after one
+   small language/alphabet extension. Do not confuse this with algorithm runtime,
+   subset-construction size, or synthesis solution size.
+2. **Universal compiler H1--H4:** finish primary construction-page extraction for
    the closest classical uniform modular synthesis results.
 3. **Manuscript transfer:** create and pin `rach-open-composition-paper`, restate
    proofs independently in LaTeX, and make the Related Work section source-checked.
 
+## Research decision if the compiler gate subsumes the relay
+
+If the H1--H4 audit shows that the bounded-local extremal witness follows from a
+classical universal compiler with comparable resource bounds, do not defend the
+old novelty language. The next mathematics should instead target one of:
+
+- a genuine necessity/converse theorem for a delimited cross-grammar class;
+- a sharp coupled memory/control/latency tradeoff not inherited from generic
+  coding/locality lemmas;
+- approximate or stochastic **portability**, rather than approximate
+  addressability alone; or
+- an ecological structural theorem deriving addressability or finite-blanket
+  conditions from an explicit colonization/dispersal/network grammar.
+
 ## Stop rule
 
 Do not add another local defect/score/special-case theorem while these gates are
-open. New mathematics should proceed only if it gives a genuine converse, a
-stronger model class, a new coupled resource tradeoff, or an ecological theorem
-that derives the addressability/blanket premise from ecological structure.
+open. New mathematics should proceed only if it materially changes one of the
+questions above.
