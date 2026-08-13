@@ -1,32 +1,77 @@
 # `rach-open-composition-paper` bootstrap manifest
 
-> **Purpose.** This is a transfer manifest, not manuscript prose. It defines the
-> minimal publication workspace to create once `zuizui0223/rach-open-composition-paper`
-> exists. It prevents theorem/code history, novelty-control notes, and manuscript
-> text from being mixed back into the CCOC theorem archive.
+> **Claim-control version: 2026-08-13.** This is a transfer contract, not manuscript
+> prose. It supersedes the earlier framing in which the bare cross-grammar
+> noncommutation/codebook bound could be read as the firstness-bearing novelty.
 
-## 1. Source snapshot represented by this manifest
+## 1. Current research decision
 
-This manifest was prepared from CCOC `main` after the August 2026 novelty-control
-cleanup, including:
+The finite theorem package remains mathematically useful and should be transferred
+to the manuscript, but **formal theorem role and novelty role are now separate**.
 
-- manuscript theorem traceability record;
-- paper-core replay pin;
-- residual novelty go/no-go decision;
-- fixed-input/unit-delay compiler prior-art audit;
-- corrected universal-compiler faithfulness contract;
-- H1–H4 compiler source audit;
-- Tier A same-system/nested-grammar quantitative prior-art boundary;
-- approximate-addressability companion theorem, explicitly outside the exact
-  first-paper CORE facade.
+### Formal substrate carried into the paper
 
-**Do not treat this file as the final submission pin.** At transfer time, resolve
-and record the then-current CCOC `main` SHA and the latest successful exact
-paper-core replay separately.
+- finite deterministic controlled system;
+- declared legal future-word grammar;
+- exact response quotient / grammar-aware interface;
+- grammar enlargement refines the response equivalence;
+- pair-separating/addressable codebooks give open-interface cardinality lower
+  bounds;
+- supplied closed factorizations give closed-interface upper bounds;
+- conservative finite macro schemas give a sufficient positive portability
+  condition.
 
-## 2. Target repository
+These objects make the ecological/compositional question precise. They are **not
+assigned historical firstness**.
 
-Repository:
+### Explicitly demoted as novelty
+
+Do not claim novelty for:
+
+1. fixed-grammar Myhill--Nerode/bisimulation-style quotient machinery;
+2. environment/input/context-dependent state minimization;
+3. generic large or exponential descriptional advantage under restricted domains;
+4. common refinement / natural-join / product-capacity accounting;
+5. the broad slogan that state reduction/compression and realization/composition
+   need not commute (Hartmanis--Stearns 1962 is direct ancestry);
+6. the bare pair-separating/codebook cardinality argument;
+7. a centralized construction in which one newly legal action exposes many
+   previously irrelevant distinctions;
+8. repeated fixed modules, fixed-input modular synthesis, bounded fan-in/fan-out,
+   or delayed universal modules as ideas in isolation;
+9. generic finite-speed/local causal-cone bounds.
+
+### Residual firstness candidate only
+
+The only remaining candidate is the **simultaneous extremal/local package** of the
+explicit relay family:
+
+\[
+|P_j|=2\quad\forall j,
+\qquad |P_U|=2,
+\qquad |P_O|=2^{m+1},
+\qquad \iota_{\rm new}=m,
+\]
+
+with `iota_new=m` saturating the finite-domain maximum, while the same family has:
+
+- only one newly legal primitive action (`fire`);
+- fixed global control alphabet `{0,1,fire,tick}`;
+- real routing already legal in the closed regime;
+- bounded local state/message alphabets;
+- pairwise radius-one dynamics;
+- maximum degree three;
+- `O(log m)` causal access and exact `2 log2(m)+2` length in the declared
+  selector-plus-return architecture.
+
+Even this is **conditional**. Issue #122 asks whether a classical universal
+sequential-machine compiler already supplies comparable H1--H4 resources. If it
+does, the relay remains a transparent extremal construction but loses a
+firstness-bearing existence claim.
+
+## 2. Target repository and manual blocker
+
+Target:
 
 `zuizui0223/rach-open-composition-paper`
 
@@ -34,16 +79,14 @@ Recommended initial state:
 
 - private while drafting;
 - default branch `main`;
-- initialized with README;
-- no copied `causal_model/` package;
-- theorem code remains authoritative in `ccoc`.
+- initialize with README;
+- do not copy `causal_model/` into the manuscript repository.
 
-Manual repository creation is tracked by issue #141 because the current connected
-GitHub tool surface cannot create repositories.
+Issue #141 remains a genuine manual blocker. The connected GitHub tool surface has
+no repository-creation action, and the current execution environment also lacks an
+authenticated `gh` CLI.
 
 ## 3. Initial directory contract
-
-Create only this publication-facing structure initially:
 
 ```text
 rach-open-composition-paper/
@@ -51,11 +94,11 @@ rach-open-composition-paper/
   manuscript/
     main.tex
     sections/
-      01_introduction.tex
-      02_formal_setup.tex
-      03_noncommutation_theorem.tex
-      04_codebook_strengthening.tex
-      05_sharpness_relay.tex
+      01_ecological_question.tex
+      02_response_interface_formalism.tex
+      03_cross_grammar_lower_bound.tex
+      04_extremal_one_action_family.tex
+      05_bounded_local_realization.tex
       06_positive_portability.tex
       07_ecological_interpretation.tex
       08_discussion.tex
@@ -76,243 +119,170 @@ rach-open-composition-paper/
     reviewer_candidates.md
 ```
 
-This is a file-location contract only. Manuscript prose should be drafted in the
-new repository after creation, not copied into this theorem archive.
+The section names intentionally avoid making “noncommutation” a novelty label.
 
-## 4. Main-paper theorem spine to transfer
+## 4. Manuscript theorem roles
 
-The first manuscript must remain narrow.
+### Definition / substrate
 
-### Formal substrate
+Define the exact grammar-aware response interface on a declared finite controlled
+system. State the response-kernel viewpoint if useful:
 
-- finite deterministic controlled system;
-- declared legal future-word grammar;
-- exact grammar-aware response quotient / exact interface.
+\[
+\sim_L=\bigcap_{w\in L}\ker R_w.
+\]
 
-This is **substrate**, not a novelty claim.
+Use this as formal machinery, not a novelty claim.
 
-### Main theorem — Tier A
+### Theorem 1 — operational cross-grammar lower bound
 
-Cross-grammar extension–compression noncommutation on one fixed deterministic
-plant:
+State the addressable codebook/product result and the closed/open comparison. The
+proof is a direct pair-separation/injection argument. It belongs in the paper
+because it makes the model contract auditable, **not because pair separation itself
+is claimed new**.
 
-- source state space / transition table / output map fixed;
-- closed and open legal-future grammars compared on that same plant;
-- operationally addressable codebook/product coordinates force a large exact open
-  response quotient;
-- fixed closed contexts admit small exact factorizations.
+### Quantitative family
 
-The novelty candidate is the **same-system nested-grammar response-interface lower
-bound under explicit operational decoder assumptions**.
+Present constrained codebooks only as robustness/context. The main quantitative
+construction should be the one-action family with one-bit fixed closed quotients,
+one-bit closed union, and maximal `m`-bit open-only innovation.
 
-Do not market contextual minimization, input restrictions, state blow-up, or
-observer-relative equivalence separately as new.
+### Local realization
 
-### Quantitative strengthening
-
-- arbitrary finite addressable codebooks, not only full Cartesian products;
-- parity / fixed-richness examples as robustness to compositional constraints;
-- one-new-action maximal finite-domain innovation as a clean sharpness statement.
-
-The algebraic common-refinement/product-capacity accounting is supporting
-substrate, not the headline.
-
-### Sharpness witness
-
-Use the degree-three/fixed-control relay to show the lower bound does not require a
-centralized lookup table or growing local interaction grammar.
-
-The relay is **supporting/constrained sharpness**, not a historical firstness claim
-while issue #122 remains open.
+Present the degree-three relay as the strongest remaining contribution candidate.
+Its historical status must be written conditional on #122.
 
 ### Positive boundary
 
-Use the conservative finite portability criterion as the constructive counterpart:
-when outputs, legal-action rows, and successors remain factorable through one
-finite coherent schema, an exact portable macro-law survives the declared
-composition/action growth.
+Present conservative macro-schema portability as a sufficient constructive
+counterpart. Do not imply necessity.
 
-Treat it as sufficient, not a complete converse.
+## 5. Current source-acquisition gate
 
-## 5. Material explicitly outside the first paper
+The compiler gate is no longer a broad web-search task. The relevant primary
+sources now have concrete acquisition routes:
 
-Do not migrate these into `manuscript/` except perhaps one sentence in limitations
-or future work:
+- **Weiner--Hopcroft 1968 report no. 61:** University of Tokyo / Princeton
+  physical-copy route;
+- **Newborn--Arnold 1972:** Osaka Prefectural Central Library direct Web-copy
+  route, C-21(1):63--79, correct DOI `10.1109/T-C.1972.223433`;
+- **Drilman--Weiner 1972:** same Osaka holding, C-21(10):1124--1129, fixed-module
+  synthesis plus nondeterministic-machine lead;
+- **Williams + Le Van--van Houtte 1975:** Tokyo University of Technology physical
+  C-24(8) route;
+- the same Tokyo holding covers the 1978 correction/resource papers and the 1982
+  comparative follow-up.
 
-- delayed/adaptive closure-identifiability no-go branch;
-- candidate-mechanism uncertainty and joint candidate/exterior laws;
-- budgeted/reset/robust experimental panel theory;
-- legacy closure-calculus utilities;
-- non-nested replacement/transport-defect program;
-- approximate-addressability Fano theorem.
+Primary bodies must be read before H1--H4 status is promoted. Until then the
+manuscript wording remains conditional.
 
-The approximate theorem may be mentioned later as evidence that the exact gap is
-not purely a zero-error artifact, but it is not part of CORE-1–CORE-5 and must not
-expand the first-paper theorem spine unless a manuscript decision explicitly
-changes.
+## 6. `traceability/CLAIM_BOUNDARY.md` required contents
 
-## 6. `traceability/CCOC_PIN.md` contents at transfer time
+Start with four bins.
 
-Record exactly:
+### Formalism used, no firstness claim
 
-- CCOC repository URL;
-- final source `main` SHA used by manuscript;
-- theorem registry version / IDs;
-- exact files used for each manuscript theorem;
-- whether any later CCOC commit changes theorem semantics or only documentation;
-- status of open historical-novelty issues (#122 and any source-acquisition
-  blockers).
+- response quotient / exact interface;
+- grammar monotonicity;
+- codebook lower bound;
+- closed/open inequality.
+
+### Classical ancestry explicitly acknowledged
+
+- contextual/input-restricted minimization;
+- incomplete-machine reduction;
+- state-reduction/realization noncommutation;
+- fixed/uniform modular synthesis;
+- common-refinement/state-complexity substrate.
+
+### Conditional contribution candidate
+
+> An explicit family simultaneously attains the maximum one-action open-response
+> innovation while retaining fixed controls, bounded local state/connectivity,
+> pairwise radius-one dynamics, and logarithmic access.
+
+### Fallback if #122 subsumes the relay
+
+> The relay is retained as a clean extremal realization and ecological explanatory
+> model; historical novelty is not claimed. Future mathematics moves to a genuine
+> converse/necessity result, coupled resource tradeoff, stochastic/approximate
+> portability, or ecological structural theorem.
+
+## 7. Related-work neighborhoods
+
+The manuscript must distinguish at least:
+
+1. Myhill--Nerode/transducer/bisimulation/state abstraction;
+2. Kim--Newborn and interacting-FSM input-don't-care/context minimization;
+3. promise/incomplete-domain descriptional complexity;
+4. Hartmanis--Stearns style reduction/realization noncommutation;
+5. uniform modular sequential-machine synthesis and bounded-fanout/fixed-module
+   lines;
+6. incomplete/nondeterministic modular decomposition, including Drilman--Weiner and
+   Williams;
+7. modern compositional/causal abstraction.
+
+The Larrauri--Bloem “exponential improvement” must not be misdescribed: in tail
+minimization it is an algorithmic/representation improvement over the classical
+route; their exponential minimum solution-size result belongs to the distinct tail
+synthesis problem.
+
+## 8. Proof and replay contract
+
+The manuscript must independently prove:
+
+1. exact response-equivalence definition;
+2. pair-separation injection for the codebook theorem;
+3. closed/open gap using closed **upper bounds**;
+4. maximal one-action innovation in the explicit family;
+5. relay locality/control/latency properties;
+6. conservative portability factorization.
+
+Python replay is provenance and finite-witness verification only. It is not the
+analytic proof and does not validate an observed ecosystem.
+
+At transfer time pin:
+
+- exact CCOC `main` SHA;
+- theorem-registry version;
+- exact successful paper-core replay SHA/run/artifact;
+- issue #122 status;
+- the precise allowed novelty wording at that date.
 
 Never write “latest” without a SHA.
 
-## 7. `traceability/REPLAY_PIN.md` contents
+## 9. Figure contract
 
-Carry forward the permanent logic from `docs/paper_core_replay_pin.md`:
+Use at most four primary figures:
 
-- exact theorem-code SHA corresponding to the successful paper-core replay;
-- workflow run ID and conclusion;
-- artifact/report identifiers if still available;
-- comparison showing whether later source-head changes touched theorem/test/script
-  files;
-- replacement run if theorem-code paths changed after the existing pin.
+1. same plant, restricted versus open legal future grammars;
+2. maximal one-action response innovation;
+3. degree-three bounded-local relay and access path;
+4. conservative portability versus a fiber split.
 
-The replay is a finite certificate/provenance surface, not the analytic proof.
+The ecology panel should be an interpretation of the formal contract, not empirical
+validation.
 
-## 8. `traceability/THEOREM_MAP.md`
+## 10. Migration sequence
 
-Map manuscript labels to CCOC provenance rather than copying Python into the paper
-repo.
+1. create `rach-open-composition-paper` manually;
+2. re-read CCOC `main` and pin its SHA;
+3. re-check #122 and all recovered primary compiler texts;
+4. populate traceability files before Introduction/Discussion;
+5. create a compile-minimal LaTeX skeleton;
+6. draft theorem statements and analytic proofs;
+7. write Related Work with page-level primary-source checks;
+8. only then write ecological framing, abstract, figures, cover letter, and reviewer
+   candidates.
 
-Recommended manuscript labels:
+## 11. Definition of done for bootstrap
 
-- **Definition 1:** grammar-aware exact response interface;
-- **Lemma 1:** grammar monotonicity / response refinement;
-- **Theorem 1:** addressable-completion/codebook lower bound;
-- **Corollary 1:** extension–compression noncommutation gap;
-- **Proposition 1:** constrained codebook families;
-- **Theorem 2:** explicit bounded-local sharpness realization;
-- **Theorem 3:** conservative finite portability criterion.
+The manuscript workspace is ready for substantive drafting when:
 
-`CORE-1`–`CORE-5` remain provenance IDs, not necessarily manuscript theorem
-numbers.
-
-## 9. `traceability/CLAIM_BOUNDARY.md`
-
-Start with three bins.
-
-### Allowed headline candidate
-
-> Compression under each fixed closed response grammar need not commute with
-> opening the admissible response grammar on the same deterministic system; under
-> explicit operational addressability assumptions the exact open interface can be
-> forced to retain substantially more response information.
-
-### Allowed supporting statement
-
-> The separation has an explicit fixed-control, degree-three local sharpness
-> realization and persists under constrained codebooks.
-
-Do not attach historical firstness to the relay while #122 is unresolved.
-
-### Disallowed novelty slogans
-
-Do not claim novelty for:
-
-- Myhill–Nerode-like quotient/minimization;
-- input-restricted/contextual state minimization;
-- common refinement/product-capacity algebra;
-- exponential state blow-up by itself;
-- one new action/word splitting a state class by itself;
-- repeated identical modules;
-- fixed-input modular synthesis;
-- delayed fixed-module realization;
-- bounded fan-in/fan-out realization as a broad idea;
-- generic causal-cone/locality bounds;
-- Fano/rate-distortion or approximate abstraction.
-
-## 10. Related-work transfer checklist
-
-The new repository's `supplement/related_work_audit.tex` should distinguish at
-least four neighborhoods.
-
-1. **Fixed-grammar/state-minimization substrate:** Myhill–Nerode, deterministic
-   transducers, bisimulation/state abstraction, predictive state ideas.
-2. **Context/input-restricted minimization:** Kim–Newborn lineage, interacting-FSM
-   don't-cares, Tail Minimization, conformance testing under input restrictions.
-3. **Descriptional/state-complexity blow-up:** partial/incompletely specified
-   automata and related succinctness/state-complexity results; these prevent
-   “exponential blow-up itself is new” wording.
-4. **Uniform/local sequential-machine realization:** Hsieh–Tan–Newborn,
-   Weiner–Hopcroft, Ullman–Weiner, Arnold–Tan–Newborn, Newborn–Arnold, Williams,
-   and later decomposition theory.
-
-Issue #122 controls the unresolved historical compiler comparison. The corrected
-compiler audit asks for H1–H4:
-
-- bounded local resources;
-- fixed context-independent controls;
-- two-way response-trace faithfulness;
-- bounded timing/output latency.
-
-Under the latter two semantic/control conditions, same-hardware sublanguage
-restriction is derived rather than an independent compiler clause.
-
-## 11. Figure contract
-
-Prepare four figures only unless the manuscript clearly needs fewer.
-
-1. **Closed versus open grammar:** same plant, different allowed future response
-   words, quotient refinement.
-2. **Addressable codebook / lower-bound mechanism:** distinct dormant coordinates
-   exposed by declared future probes.
-3. **Local sharpness witness:** binary selector + relay/pulse return, with degree
-   and fixed-control constraints visible.
-4. **Positive portability boundary:** finite macro schema that remains coherent as
-   composition/actions expand.
-
-Figures must explain the mathematics, not advertise repository architecture.
-
-## 12. Proof-writing contract
-
-The LaTeX supplement must prove the main analytic statements independently of
-Python replay.
-
-At minimum write out:
-
-- exact response-equivalence definition;
-- pair-separation injection proof for the codebook theorem;
-- derivation of the closed/open memory gap using closed **upper bounds**;
-- conditions for equality in the sharp witness;
-- explicit local relay realization and its locality/control bounds;
-- finite portability factorization proof.
-
-Do not cite passing unit tests as the proof.
-
-## 13. Migration sequence after repository creation
-
-1. Re-read CCOC `main` and record the exact transfer SHA.
-2. Re-check #122 and allowed novelty wording.
-3. Re-check the latest exact paper-core workflow run; refresh it only if theorem-
-   code paths changed.
-4. Create the target directory structure from section 3.
-5. Populate the four traceability files before writing Introduction/Discussion.
-6. Create a compile-minimal LaTeX skeleton.
-7. Draft theorem statements/proofs first.
-8. Draft Introduction and ecological interpretation only after theorem wording and
-   related-work boundary are stable.
-9. Add figures, abstract, cover letter, and reviewer candidates last.
-
-## 14. Definition of done for the bootstrap
-
-The manuscript repository is ready for substantive drafting when:
-
-- it exists and is writable through the connector;
-- the exact CCOC source SHA is pinned;
-- theorem/replay/claim-boundary traceability files exist;
-- the LaTeX skeleton compiles;
-- no theorem code has been copied into the manuscript repo;
-- issue #122 status is visible in the claim-boundary file;
-- theorem-first section order is established.
-
-Until then, `ccoc` remains the theorem/certificate archive and issue #99 remains the
-publication tracker.
+- the repository exists and is writable;
+- exact CCOC theorem/replay pins are recorded;
+- `CLAIM_BOUNDARY.md` reflects the conditional extremal/local novelty decision;
+- a minimal LaTeX skeleton compiles;
+- no theorem code has been copied into the paper repository;
+- #122 status is visible in traceability;
+- theorem-first section order is fixed.
