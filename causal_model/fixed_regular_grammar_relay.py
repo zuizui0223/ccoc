@@ -3,37 +3,37 @@
 This module removes two construction caveats from the post-reopening one-action
 relay without changing the historical theorem modules:
 
-* the closed/open future grammar is represented by one constant-size partial DFA
-  for every system size rather than an ``m``-dependent finite word list; and
+* the closed/open future grammar is one constant-size ``FinitePrefixGrammar`` for
+  every system size rather than an ``m``-dependent finite word list; and
 * the construction works for every positive number of memory leaves, not only
   powers of two.
 
-The common primitive alphabet is ``{0,1,fire,tick}``.  The closed grammar is the
-one-state partial DFA with loops on ``0``, ``1``, and ``tick``.  The open grammar
-adds exactly the ``fire`` loop.  Thus the languages are
+The common primitive alphabet is ``{0,1,fire,tick}``. The closed grammar is the
+one-state partial DFA with loops on ``0``, ``1``, and ``tick``. The open grammar
+adds exactly the ``fire`` loop. Thus the languages are
 
     L_closed = {0,1,tick}*
     L_open   = {0,1,fire,tick}*.
 
 To make those languages genuinely size-independent, all four system actions are
-totalized locally.  Address actions move a unique selector token down one child
-edge when possible and stutter at a leaf.  ``fire`` emits the permanent bit only
-when the selected node is a memory leaf.  Every action advances the pulse layer by
-one radius-one synchronous step.  Multiple incoming pulses are combined by the
+totalized locally. Address actions move a unique selector token down one child
+edge when possible and stutter at a leaf. ``fire`` emits the permanent bit only
+when the selected node is a memory leaf. Every action advances the pulse layer by
+one radius-one synchronous step. Multiple incoming pulses are combined by the
 fixed Boolean-OR rule; this makes the transition total on every declared
-microstate.  On the canonical one-leaf probe trajectories there is only one pulse
+microstate. On the canonical one-leaf probe trajectories there is only one pulse
 path, so the totalized semantics agrees exactly with the historical one-token
 relay semantics.
 
 Starting from quiescent comparison states with the selector at the relay-body
-root, no closed action can create a pulse.  Therefore every word in the infinite
+root, no closed action can create a pulse. Therefore every word in the infinite
 closed regular language leaves the focal trace dependent only on the initial focal
-bit.  In the open grammar, the actual root-to-leaf path followed by ``fire`` and
-enough ticks reads each memory bit.  Hence the closed quotient has two classes and
+bit. In the open grammar, the actual root-to-leaf path followed by ``fire`` and
+enough ticks reads each memory bit. Hence the closed quotient has two classes and
 the open quotient is discrete on ``2**(m+1)`` states for every ``m>=1``.
 
 The grammar/automata facts and the local totalization are strengthening claims
-about this explicit construction only.  Regular-language restriction, partial
+about this explicit construction only. Regular-language restriction, partial
 DFAs, local Boolean aggregation, and binary-tree addressing are classical
 substrate and are not novelty claims.
 """
@@ -68,6 +68,7 @@ from .relay_tree_compilation import (
     is_quiescent,
     validate_configuration,
 )
+from .shared_grammar import FinitePrefixGrammar
 
 CoordinateState = tuple[int, ...]
 RelayWord = tuple[str, ...]
@@ -103,53 +104,32 @@ def all_regular_coordinate_states(module_count: int) -> tuple[CoordinateState, .
     return tuple(product((0, 1), repeat=module_count + 1))
 
 
-@dataclass(frozen=True)
-class OneStatePartialRegularGrammar:
-    """A constant-size partial DFA with one accepting state and self-loops."""
-
-    legal_actions: tuple[str, ...]
-
-    @property
-    def partial_dfa_state_count(self) -> int:
-        return 1
-
-    @property
-    def complete_dfa_state_count_over_common_alphabet(self) -> int:
-        # If one insists on a complete DFA over the common four-symbol alphabet,
-        # the only extra state needed is a rejecting sink for any excluded symbol.
-        return 1 if set(self.legal_actions) == set(GLOBAL_ACTION_ALPHABET) else 2
-
-    def accepts(self, word: Iterable[str]) -> bool:
-        legal = set(self.legal_actions)
-        return all(action in legal for action in tuple(word))
-
-    def verify(self) -> bool:
-        return (
-            len(self.legal_actions) == len(set(self.legal_actions))
-            and set(self.legal_actions).issubset(set(GLOBAL_ACTION_ALPHABET))
-            and self.partial_dfa_state_count == 1
-            and self.complete_dfa_state_count_over_common_alphabet in (1, 2)
-        )
-
-
-def fixed_closed_regular_grammar() -> OneStatePartialRegularGrammar:
-    grammar = OneStatePartialRegularGrammar(CLOSED_REGULAR_ACTIONS)
-    if not grammar.verify():
-        raise AssertionError("closed regular grammar did not verify")
+def fixed_closed_regular_grammar() -> FinitePrefixGrammar:
+    """One-state prefix grammar for ``{0,1,tick}*`` over the common alphabet."""
+    grammar = FinitePrefixGrammar(
+        actions=GLOBAL_ACTION_ALPHABET,
+        transition_table=((0, 0, None, 0),),
+    )
+    if grammar.state_count != 1 or grammar.legal_actions(0) != CLOSED_REGULAR_ACTIONS:
+        raise AssertionError("closed fixed regular grammar did not verify")
     return grammar
 
 
-def fixed_open_regular_grammar() -> OneStatePartialRegularGrammar:
-    grammar = OneStatePartialRegularGrammar(OPEN_REGULAR_ACTIONS)
-    if not grammar.verify():
-        raise AssertionError("open regular grammar did not verify")
+def fixed_open_regular_grammar() -> FinitePrefixGrammar:
+    """One-state prefix grammar for the full four-symbol Kleene-star language."""
+    grammar = FinitePrefixGrammar(
+        actions=GLOBAL_ACTION_ALPHABET,
+        transition_table=((0, 0, 0, 0),),
+    )
+    if grammar.state_count != 1 or grammar.legal_actions(0) != OPEN_REGULAR_ACTIONS:
+        raise AssertionError("open fixed regular grammar did not verify")
     return grammar
 
 
 def balanced_tree_max_selector_depth(module_count: int) -> int:
     """Exact maximum body-root-to-leaf depth of ``RelayTreeTopology.balanced``.
 
-    For the midpoint-recursive balanced tree this is ``ceil(log2(m))``.  The
+    For the midpoint-recursive balanced tree this is ``ceil(log2(m))``. The
     integer expression ``(m-1).bit_length()`` avoids floating-point arithmetic and
     handles ``m=1`` with depth zero.
     """
@@ -222,8 +202,8 @@ def apply_fixed_regular_action(
 ) -> AddressedRelayConfiguration:
     """Apply one total radius-one action from the fixed four-symbol alphabet.
 
-    No global quiescence predicate is consulted.  Every action advances the pulse
-    layer by one synchronous local round.  A selected leaf emits its permanent bit
+    No global quiescence predicate is consulted. Every action advances the pulse
+    layer by one synchronous local round. A selected leaf emits its permanent bit
     exactly when the global action is ``fire``; firing at an internal selector
     position emits nothing.
     """
@@ -324,11 +304,11 @@ class FixedRegularGrammarRelayCertificate:
     checked_coordinate_states: int
 
     @cached_property
-    def closed_grammar(self) -> OneStatePartialRegularGrammar:
+    def closed_grammar(self) -> FinitePrefixGrammar:
         return fixed_closed_regular_grammar()
 
     @cached_property
-    def open_grammar(self) -> OneStatePartialRegularGrammar:
+    def open_grammar(self) -> FinitePrefixGrammar:
         return fixed_open_regular_grammar()
 
     @cached_property
@@ -433,15 +413,24 @@ class FixedRegularGrammarRelayCertificate:
             if len(self.states) != self.checked_coordinate_states:
                 return False
 
-            if not self.closed_grammar.verify() or not self.open_grammar.verify():
+            if self.closed_grammar.state_count != 1 or self.open_grammar.state_count != 1:
                 return False
-            if self.closed_grammar.partial_dfa_state_count != 1 or self.open_grammar.partial_dfa_state_count != 1:
+            if self.closed_grammar.actions != GLOBAL_ACTION_ALPHABET:
                 return False
-            if set(self.open_grammar.legal_actions) - set(self.closed_grammar.legal_actions) != {FIRE}:
+            if self.open_grammar.actions != GLOBAL_ACTION_ALPHABET:
                 return False
-            if self.closed_grammar.accepts((FIRE,)):
+            if self.closed_grammar.legal_actions(0) != CLOSED_REGULAR_ACTIONS:
                 return False
-            if not self.open_grammar.accepts((FIRE,)):
+            if self.open_grammar.legal_actions(0) != OPEN_REGULAR_ACTIONS:
+                return False
+            if set(self.open_grammar.legal_actions(0)) - set(self.closed_grammar.legal_actions(0)) != {FIRE}:
+                return False
+            try:
+                self.closed_grammar.normalize_legal_word((FIRE,))
+                return False
+            except ValueError:
+                pass
+            if self.open_grammar.normalize_legal_word((FIRE,)) != (FIRE,):
                 return False
 
             if self.maximum_degree > 3:
@@ -467,7 +456,6 @@ class FixedRegularGrammarRelayCertificate:
                     return False
                 if len(address) != selector_depth(self.topology, self.topology.leaf_for_port(port)):
                     return False
-            # Leaf addresses must be prefix-free because leaves are terminal.
             for left_index, left in enumerate(addresses):
                 for right_index, right in enumerate(addresses):
                     if left_index == right_index:
@@ -478,9 +466,6 @@ class FixedRegularGrammarRelayCertificate:
             if not self._closed_one_step_invariant():
                 return False
 
-            # The empty word separates y=0 from y=1; the one-step invariant shows
-            # no closed word can see any memory coordinate. Hence the closed
-            # quotient is exactly two classes.
             if self.closed_interface_state_count != 2 or self.closed_interface_bits != 1:
                 return False
 
@@ -529,7 +514,6 @@ __all__ = [
     "CLOSED_REGULAR_ACTIONS",
     "OPEN_REGULAR_ACTIONS",
     "NEW_REGULAR_ACTIONS",
-    "OneStatePartialRegularGrammar",
     "fixed_closed_regular_grammar",
     "fixed_open_regular_grammar",
     "balanced_tree_max_selector_depth",
