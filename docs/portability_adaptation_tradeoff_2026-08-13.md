@@ -1,6 +1,6 @@
 # Retention–update tradeoff for approximate open portability — 2026-08-13
 
-> **Status:** information-theoretic coupled-resource theorem for reopening/adaptation. The proof uses standard Fano and entropy chain-rule inequalities; those ingredients are not novelty claims. The CCOC-specific role is to split the information required by a later open grammar between what a closed representation retained in advance and what must be supplied after opening.
+> **Status:** information-theoretic coupled-resource theorem for reopening/adaptation. The strongest form is a mutual-information statement and therefore already allows stochastic updates. Fano and information chain rules are classical substrate.
 
 ## 1. Setting
 
@@ -10,211 +10,170 @@ Let
 E=(E_1,\ldots,E_m)
 \]
 
-be `m` independent uniform binary exterior coordinates.
+be `m` independent uniform binary exterior coordinates. Before opening, retain a random representation `C`. After opening, obtain an additional random update/observation `U`. No determinism or independence between `C`, `U`, and `E` is assumed.
 
-A representation is formed in two stages.
-
-1. **Closed retention:** before the expanded open grammar is available, retain a random representation `C` of the microstate.
-2. **Reopening update:** after opening, supply an additional random update `U`.
-
-No independence between `C`, `U`, and `E` is assumed. The update may depend on the exterior state and on the retained representation.
-
-Suppose that from `(C,U)` there is, for each coordinate `j`, a decoder
-
-\[
-\widehat E_j=g_j(C,U)
-\]
-
-with error probability
+Suppose each coordinate is decoded from `(C,U)` with
 
 \[
 \Pr[\widehat E_j\ne E_j]\le\varepsilon_j,
-\qquad
-0\le\varepsilon_j\le\tfrac12.
+\qquad 0\le\varepsilon_j\le\tfrac12.
 \]
 
-This is the information contract induced when the later open grammar makes the exterior coordinates approximately addressable.
-
-## 2. Theorem — retained information plus update information
-
-### Theorem
+## 2. Strong theorem — retained information plus acquired information
 
 Every such representation satisfies
 
 \[
 \boxed{
-I(E;C)+H(U\mid C)
+I(E;C)+I(E;U\mid C)
 \ge
 m-\sum_{j=1}^m h_2(\varepsilon_j).
 }
 \]
 
-If all coordinate errors are bounded by one common `eps<=1/2`, then
+Equivalently,
 
 \[
 \boxed{
-I(E;C)+H(U\mid C)
+I(E;C,U)
 \ge
-m\bigl(1-h_2(\varepsilon)\bigr).
+m-\sum_j h_2(\varepsilon_j).
 }
 \]
 
 ### Proof
 
-For each binary coordinate, Fano's inequality gives
+Coordinate-wise Fano gives
 
 \[
-H(E_j\mid C,U)
-\le
-h_2(\varepsilon_j).
+H(E_j\mid C,U)\le h_2(\varepsilon_j).
 \]
 
 Conditional entropy is subadditive, so
 
 \[
 H(E\mid C,U)
-\le
-\sum_{j=1}^m H(E_j\mid C,U)
-\le
-\sum_{j=1}^m h_2(\varepsilon_j).
+\le\sum_j h_2(\varepsilon_j).
 \]
 
-Because `E` is the uniform binary product,
-
-\[
-H(E)=m.
-\]
-
-Therefore
+Because `E` is a uniform binary product, `H(E)=m`. Therefore
 
 \[
 I(E;C,U)
 =H(E)-H(E\mid C,U)
-\ge
-m-\sum_j h_2(\varepsilon_j).
+\ge m-\sum_j h_2(\varepsilon_j).
 \]
 
-By the mutual-information chain rule,
+The mutual-information chain rule gives
 
 \[
-I(E;C,U)
-=I(E;C)+I(E;U\mid C).
+I(E;C,U)=I(E;C)+I(E;U\mid C),
 \]
 
-Finally,
+which proves the theorem. \(\square\)
+
+This is stronger than the previously emphasized entropy form because
 
 \[
-I(E;U\mid C)\le H(U\mid C),
+I(E;U\mid C)\le H(U\mid C).
 \]
 
-which proves the first inequality.
-
-For a common error ceiling, `h2` is monotone on `[0,1/2]`, so
-
-\[
-\sum_j h_2(\varepsilon_j)
-\le
-m h_2(\varepsilon).
-\]
-
-This proves the uniform-error form. `□`
-
-## 3. Update lower bound after a bounded closed representation
-
-Rearranging gives the direct adaptation cost
+Hence
 
 \[
 \boxed{
-H(U\mid C)
+I(E;C)+H(U\mid C)
 \ge
-m-\sum_j h_2(\varepsilon_j)-I(E;C).
+m-\sum_jh_2(\varepsilon_j)
 }
 \]
 
-Since entropy is nonnegative, the operational statement is
+remains as a direct corollary.
+
+For one common error ceiling `eps<=1/2`, both forms imply
 
 \[
-H(U\mid C)
-\ge
-\max\left\{0,
- m-\sum_j h_2(\varepsilon_j)-I(E;C)
-\right\}.
+I(E;C)+I(E;U\mid C)
+\ge m(1-h_2(\varepsilon)).
 \]
 
-If the closed representation has at most `2^k` states, then
+## 3. Stochastic information-flow budget
+
+The strong form immediately handles noisy or randomized adaptation. Suppose a declared post-opening mechanism guarantees only that the new observation can carry at most
 
 \[
-I(E;C)\le H(C)\le k,
+I(E;U\mid C)\le B
 \]
 
-and hence
+bits of exterior information beyond what was already retained. Then necessarily
 
 \[
 \boxed{
-H(U\mid C)
+I(E;C)+B
 \ge
-\max\left\{0,
- m-\sum_j h_2(\varepsilon_j)-k
-\right\}.
+m-\sum_jh_2(\varepsilon_j).
 }
 \]
 
-For a common error tolerance,
+If the closed representation has at most `2^k` states, then `I(E;C)<=H(C)<=k`, so
 
 \[
 \boxed{
-H(U\mid C)
+k+B\ge m(1-h_2(\varepsilon)).}
+\]
+
+No finite-alphabet, deterministic-update, or noiseless-channel assumption is needed for this formulation. `B` is simply an upper bound on **new exterior information acquired after opening**.
+
+## 4. Sequential stochastic updates
+
+Let reopening information arrive in stages
+
+\[
+U_1,U_2,\ldots,U_T.
+\]
+
+The chain rule gives
+
+\[
+I(E;U_1,\ldots,U_T\mid C)
+=
+\sum_{t=1}^{T}
+I(E;U_t\mid C,U_1,\ldots,U_{t-1}).
+\]
+
+Therefore if each stage has a declared information-flow budget
+
+\[
+I(E;U_t\mid C,U_{<t})\le B_t,
+\]
+
+then approximate full materialization requires
+
+\[
+\boxed{
+I(E;C)+\sum_{t=1}^{T}B_t
 \ge
-\max\{0,
- m(1-h_2(\varepsilon))-k
-\}.
+m-\sum_jh_2(\varepsilon_j).
 }
 \]
 
-If the update itself has at most `2^b` possible messages, then
+This is the stochastic information-flow version of the later finite-boundary theorem. A deterministic boundary with `c` locations, `s` symbols per location, and `T` synchronous rounds is recovered by using the crude capacity bound `sum B_t <= cT log2(s)`.
 
-\[
-H(U\mid C)\le H(U)\le b,
-\]
-
-so a simple state-capacity corollary is
-
-\[
-\boxed{
-k+b\ge m(1-h_2(\varepsilon)).}
-\]
-
-This is a portability allocation rule: one can pay in advance by retaining exterior information, or later by transmitting/admitting an update, but the combined information budget cannot fall below the addressability requirement.
-
-## 4. Exact case and sharp Pareto frontier
+## 5. Exact case and sharp retention/update frontier
 
 At zero error,
 
 \[
-h_2(0)=0,
+\boxed{I(E;C)+I(E;U\mid C)\ge m.}
 \]
 
-so
-
-\[
-\boxed{I(E;C)+H(U\mid C)\ge m.}
-\]
-
-This bound is sharp at **every** allocation point.
-
-Fix any integer
-
-\[
-0\le k\le m.
-\]
-
-Let the closed representation retain exactly the first `k` exterior bits,
+For deterministic `C` and `U`, the bound is sharp at every integer split. Fix `0<=k<=m`, retain
 
 \[
 C=(E_1,\ldots,E_k),
 \]
 
-and let the reopening update contain exactly the remaining bits,
+and use
 
 \[
 U=(E_{k+1},\ldots,E_m).
@@ -223,124 +182,81 @@ U=(E_{k+1},\ldots,E_m).
 Then
 
 \[
-I(E;C)=H(C)=k,
+I(E;C)=k,
+\qquad
+I(E;U\mid C)=H(U\mid C)=m-k,
 \]
 
-and, because the exterior product is independent and uniform,
-
-\[
-H(U\mid C)=m-k.
-\]
-
-Every exterior coordinate is recovered exactly from `(C,U)`, and
-
-\[
-I(E;C)+H(U\mid C)=m.
-\]
-
-Thus the exact frontier
+so equality holds. The exact frontier
 
 \[
 \boxed{(k,m-k),\qquad k=0,\ldots,m}
 \]
 
-is fully achievable. There is no hidden slack in the inequality for exact recovery.
+is therefore fully achievable.
 
-## 5. Approximate equality example
+## 6. Approximate equality example
 
-For two exterior bits, let `C` be constant. Let
-
-\[
-U=E_1.
-\]
-
-Decode `E_1` exactly and always guess zero for `E_2`. Then
+For two exterior bits, take `C` constant and `U=E_1`. Decode `E_1` exactly and always guess zero for `E_2`. Then
 
 \[
-\varepsilon_1=0,
-\qquad
-\varepsilon_2=\tfrac12.
+(\varepsilon_1,\varepsilon_2)=(0,1/2),
 \]
 
-The required-information lower bound is
-
-\[
-2-h_2(0)-h_2(1/2)=1.
-\]
-
-Meanwhile
+and the required-information bound is one bit. Meanwhile
 
 \[
 I(E;C)=0,
 \qquad
-H(U\mid C)=1.
+I(E;U\mid C)=1,
 \]
 
-Hence this approximate point also attains equality.
+so the strong information-flow inequality is attained exactly.
 
-## 6. CCOC relay corollary
+## 7. Fixed-regular relay corollary
 
-In the fixed-regular extremal relay, conditional on the focal/inside bit, the canonical closed response interface retains **no information** about the `m` exterior memory bits: the closed all-word invariant makes every exterior vector response-equivalent.
-
-Thus for the exterior coordinates
+For the exterior coordinates of the fixed-regular extremal relay, the canonical closed interface retains no exterior information:
 
 \[
 I(E;C)=0.
 \]
 
-If one insists on using that closed representation and only repairs it after opening through an update `U`, while requiring every newly addressable exterior bit to be decoded with error at most `eps`, then
+Thus any post-opening observation/update that makes every exterior bit approximately recoverable must supply
 
 \[
 \boxed{
-H(U\mid C)
+I(E;U\mid C)
 \ge
 m(1-h_2(\varepsilon)).
 }
 \]
 
-and at zero error
+bits of **new exterior information**. At zero error,
 
 \[
-\boxed{H(U\mid C)\ge m.}
+\boxed{I(E;U\mid C)\ge m.}
 \]
 
-So the relay's `m`-bit interface inflation can be read equivalently as an **adaptation debt**: exact closed compression removed all dormant exterior information, and once `fire` makes those coordinates addressable, any post-opening repair must restore `m` bits of information somewhere.
+The earlier entropy statement `H(U|C)>=m` follows immediately. The mutual-information form is conceptually cleaner: the adaptation debt is not message length per se, but how much exterior information the reopened system must newly acquire.
 
-This does not mean the relay literally transmits an `m`-bit update message during one physical action. `U` is an abstract adaptation resource describing information added to the retained representation. Local communication/latency constraints are separate and remain governed by the relay/causal-cone results.
+`docs/retention_boundary_time_tradeoff_2026-08-14.md` then converts this information debt into a boundary-time lower bound when a concrete finite synchronous boundary is imposed.
 
-## 7. Why this is different from the existing Fano companion
+## 8. Relation to the executable finite certificate
 
-`approximate_addressability.py` lower-bounds the information required in the **final** summary once approximate coordinate recovery is demanded.
-
-The present theorem decomposes that final information burden into two portability resources:
+`causal_model.portability_adaptation_tradeoff` treats deterministic `C` and `U` over the full uniform binary exterior product. In that finite subclass,
 
 \[
-\boxed{
-\text{information retained before opening}
-+
-\text{information added after opening}.
-}
+I(E;C)=H(C),
+\qquad
+I(E;U\mid C)=H(U\mid C),
 \]
 
-This answers a different question: how much can a deliberately over-informative closed representation buy down the cost of adapting to a later open grammar, and how much update is unavoidable if the closed compression discarded exterior distinctions?
+so the existing certificate already measures the strong theorem exactly even though its public property names use entropy language.
 
-The final Fano lower bound is an input to the argument, but the retention/update allocation and its sharp exact frontier are the portability statement.
+`exact_retention_update_frontier(m,k)` realizes every exact equality point.
 
-## 8. Finite executable certificate
+## 9. Claim discipline
 
-`causal_model.portability_adaptation_tradeoff` treats deterministic `C` and `U` over the full uniform binary exterior product. It computes exactly:
+Do not claim novelty for Fano, entropy subadditivity, mutual-information chain rules, channel-capacity reasoning, or the elementary exact bit split. The CCOC-specific content is the portability allocation: **information discarded under a closed future contract becomes an information-acquisition debt after the grammar opens.**
 
-- `H(C)=I(E;C)`;
-- `H(U|C)=H(C,U)-H(C)`;
-- empirical coordinate decoder errors;
-- empirical and contract Fano lower bounds;
-- minimum update entropy implied by the declared error contract;
-- the minimum update-state count implied by that entropy lower bound.
-
-`exact_retention_update_frontier(m,k)` realizes the exact equality point `(k,m-k)` for every `k`.
-
-## 9. Scope and novelty discipline
-
-Do not claim novelty for Fano's inequality, entropy subadditivity, mutual-information chain rules, or the elementary exact bit split. The CCOC value is the coupled portability interpretation and its explicit connection to cross-grammar compression: **information discarded under a closed future contract becomes either pre-retention cost or reopening adaptation cost once future addressability expands.**
-
-The theorem does not yet impose local communication topology, update latency, stochastic plant dynamics, or changing semantic domains. Those are separate possible strengthenings.
+The strong mutual-information form supplies the correct interface to stochastic/noisy adaptation models; separate model-specific work is still required to upper-bound the information flow `B` generated by any particular stochastic ecological or communication mechanism.
