@@ -2,6 +2,7 @@ from itertools import product
 
 import pytest
 
+import causal_model.portability_core as core
 from causal_model.constant_alphabet_relay import FIRE, GLOBAL_ACTION_ALPHABET, addressed_quiescent_configuration
 from causal_model.fixed_regular_grammar_relay import (
     CLOSED_REGULAR_ACTIONS,
@@ -133,6 +134,15 @@ def test_fixed_regular_grammar_certificate_includes_non_powers_of_two() -> None:
         assert certificate.maximum_degree <= 3
         assert certificate.maximum_leaf_depth == balanced_tree_max_selector_depth(module_count)
         assert certificate.worst_canonical_query_length == 2 * balanced_tree_max_selector_depth(module_count) + 2
+
+
+def test_fixed_regular_grammar_strengthening_is_public() -> None:
+    assert core.FixedRegularGrammarRelayCertificate is FixedRegularGrammarRelayCertificate
+    assert core.certify_fixed_regular_grammar_relay is certify_fixed_regular_grammar_relay
+    assert core.fixed_closed_regular_grammar is fixed_closed_regular_grammar
+    assert core.fixed_open_regular_grammar is fixed_open_regular_grammar
+    assert core.tree_address_for_port is tree_address_for_port
+    assert core.fixed_regular_probe_word is fixed_regular_probe_word
 
 
 def test_invalid_module_count_and_action_fail_closed() -> None:
