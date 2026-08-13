@@ -174,6 +174,20 @@ were historically separate:
 It predates Williams (1975), which had previously been treated as the most obvious
 intersection of incomplete specification and uniform two-state decomposition.
 
+### Primary preservation route
+
+The ISSN International Centre's Keepers record for `IEEE Transactions on
+Computers` confirms preservation of **all twelve C-21 issues from 1972**. The
+record names both Internet Archive (publisher run 1952–2003) and Portico as
+keepers, and links directly to the Internet Archive serial collection
+`pub_ieee-transactions-on-computers`.
+
+Therefore the October 1972 article is not an `unknown whether preserved` target.
+It is a **preserved primary-source acquisition target** whose issue/item identifier
+cannot currently be enumerated through the JavaScript-only archive interface in
+this execution environment. A direct issue item, library scan, or other renderable
+copy would be information-producing; repeating generic title searches is not.
+
 ### Evidence discipline
 
 The indexed abstract is not enough to determine whether Drilman–Weiner supplies a
@@ -206,7 +220,7 @@ Report no. 61 has a concrete primary acquisition route, the predecessor line
 suggests that direct source-input wiring may already be part of the classical
 model, the 1968 Ullman–Weiner source explicitly studies universal two-state
 modules, and the 1972 Drilman–Weiner source joins nondeterministic machines with
-fixed-module synthesis.
+fixed-module synthesis and has a verified preservation route.
 
 Therefore CCOC must continue to describe the relay as an **explicit constrained
 extremal construction**, not as a historically first bounded-local compiler
