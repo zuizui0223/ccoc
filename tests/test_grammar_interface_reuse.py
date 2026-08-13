@@ -1,3 +1,5 @@
+from itertools import product
+
 from causal_model.dynamic_boundary_blankets import FiniteControlledOutputSystem
 from causal_model.grammar_interface_reuse import certify_closed_interface_reuse, find_closed_interface_reuse_obstruction
 from causal_model.shared_grammar import FinitePrefixGrammar
@@ -46,3 +48,16 @@ def test_successor_obstruction_is_distinct():
     cert=certify_closed_interface_reuse(plant,closed,opened); obstruction=find_closed_interface_reuse_obstruction(plant,closed,opened)
     assert cert.verify() and not cert.reusable
     assert obstruction is not None and obstruction.verify() and obstruction.kind=="successor"
+
+
+def test_all_625_cellwise_monotone_changes_have_exact_reuse_decision():
+    actions=("a","b"); plant=_plant(actions)
+    cell_pairs=((None,None),(None,0),(None,1),(0,0),(1,1)); checked=0
+    for cells in product(cell_pairs,repeat=4):
+        c=tuple(pair[0] for pair in cells); o=tuple(pair[1] for pair in cells)
+        closed=FinitePrefixGrammar(actions,(c[:2],c[2:])); opened=FinitePrefixGrammar(actions,(o[:2],o[2:]))
+        cert=certify_closed_interface_reuse(plant,closed,opened)
+        obstruction=find_closed_interface_reuse_obstruction(plant,closed,opened)
+        assert cert.verify() and cert.reusable==(obstruction is None)
+        checked+=1
+    assert checked==625
