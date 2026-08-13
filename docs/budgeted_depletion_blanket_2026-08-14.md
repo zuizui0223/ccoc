@@ -1,0 +1,1 @@
+# Budgeted depletion blanket theorem
