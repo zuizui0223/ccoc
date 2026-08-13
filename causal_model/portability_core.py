@@ -8,7 +8,8 @@ portability claims:
 2. operational addressability / extension--compression lower bounds;
 3. exact union-grammar refinement and full open-interface inflation decomposition;
 4. bounded-locality relay sharpness, including single-action innovation,
-   absolute-memory sharpness, and causal-cone latency bounds; and
+   fixed regular-grammar arbitrary-size realization, absolute-memory sharpness,
+   and causal-cone latency bounds; and
 5. conservative macro schemas plus local fiber-split obstructions.
 
 Finite closure classification, non-nested replacement transport, candidate
@@ -109,6 +110,22 @@ from .single_action_innovation import (
     certify_single_action_innovation,
     closed_fire_free_words,
     open_addressed_probe_words,
+)
+from .fixed_regular_grammar_relay import (
+    CLOSED_REGULAR_ACTIONS,
+    NEW_REGULAR_ACTIONS,
+    OPEN_REGULAR_ACTIONS,
+    FixedRegularGrammarRelayCertificate,
+    all_regular_coordinate_states,
+    apply_fixed_regular_action,
+    balanced_tree_max_selector_depth,
+    certify_fixed_regular_grammar_relay,
+    fixed_closed_regular_grammar,
+    fixed_open_regular_grammar,
+    fixed_regular_output_trace,
+    fixed_regular_probe_word,
+    fixed_regular_word_trajectory,
+    tree_address_for_port,
 )
 from .innovation_capacity_latency import (
     InnovationCapacityCertificate,
@@ -229,6 +246,21 @@ __all__ = [
     "closed_fire_free_words",
     "open_addressed_probe_words",
     "certify_single_action_innovation",
+    # Fixed regular-grammar arbitrary-m strengthening.
+    "CLOSED_REGULAR_ACTIONS",
+    "OPEN_REGULAR_ACTIONS",
+    "NEW_REGULAR_ACTIONS",
+    "FixedRegularGrammarRelayCertificate",
+    "fixed_closed_regular_grammar",
+    "fixed_open_regular_grammar",
+    "balanced_tree_max_selector_depth",
+    "tree_address_for_port",
+    "fixed_regular_probe_word",
+    "apply_fixed_regular_action",
+    "fixed_regular_word_trajectory",
+    "fixed_regular_output_trace",
+    "all_regular_coordinate_states",
+    "certify_fixed_regular_grammar_relay",
     # Absolute innovation and locality latency closures.
     "InnovationCapacityCertificate",
     "PrefixFreeAddressLatencyCertificate",
