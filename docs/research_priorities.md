@@ -1,177 +1,121 @@
-# Research priorities — 2026-08-14 consolidated decision
+# Research priorities — 2026-08-14 post-ecology decision
 
-> **Status:** canonical agenda after the fixed-regular extremal theorem, exact converse/reuse pass, terminal-chain portability theorem, and retention/update/boundary-time resource results.
+> **Status:** canonical agenda after the converse/reuse, chain/resource, and ecological structural theorem passes.
 
-## 1. Governing decision
+## Governing decision
 
-CCOC/RACH now has a mature exact finite core. Another nearby partition-refinement theorem is not the main bottleneck.
+The exact finite core is mature. Another nearby quotient, cap, codebook, or information-inequality variant is not a priority.
 
-The first-paper spine is
+The first-paper spine remains response-interface formalism + cross-grammar obstruction + extremal one-action witness + bounded-local realization + positive/reuse boundary. The main first-paper uncertainty is historical: whether classical uniform sequential-machine compilation already supplies the complete bounded-local realization package.
 
-\[
-\text{response-interface formalism}
-+
-\text{cross-grammar obstruction}
-+
-\text{extremal one-action witness}
-+
-\text{bounded-local realization}
-+
-\text{positive/reuse boundary}.
-\]
+## Established mathematics
 
-The remaining first-paper uncertainty is historical: whether classical uniform sequential-machine compilation already supplies the complete bounded-local realization package. Theorem validity and historical novelty remain separate.
+### Exact converse/reuse
 
-## 2. Established mathematics
+- `action_grammar_closure.py`: one-state action-language expansion; stable closure equals the canonical open quotient; zero inflation iff newly legal actions descend.
+- `grammar_expansion_closure.py`: globally-new-symbol finite grammar expansion; old action columns are frozen; row descent is the exact zero-inflation criterion.
+- `grammar_interface_reuse.py`: arbitrary same-domain grammar change; canonical quotients may be equal, finer, coarser, or incomparable, while reuse of the closed labeling is iff open rows descend on closed fibers.
 
-### 2.1 Exact interface and converse hierarchy
+The #163 coarsening counterexample permanently rules out the slogan that every grammar mutation refines the canonical product quotient.
 
-For one finite controlled system and one finite prefix grammar, the exact response interface is the coarsest labeling preserving current output, enabled-action rows, and enabled successors.
+### Extremal family
 
-Three cross-grammar levels are separated.
-
-1. **One-state action-language expansion** — `action_grammar_closure.py`: stable open-action refinement of the canonical closed quotient equals the canonical open quotient; zero inflation is iff newly legal actions descend on the closed quotient.
-2. **Finite grammar-state, globally-new-symbol expansion** — `grammar_expansion_closure.py`: old action columns are frozen and only globally absent symbols may be introduced. Closed distinctions persist, stable open-row closure computes the canonical open quotient, and zero inflation is iff open rows descend.
-3. **Arbitrary same-domain grammar change** — `grammar_interface_reuse.py`: canonical closed/open quotients may be equal, finer, coarser, or incomparable. The exact general question is reuse: the canonical closed labeling remains an exact open interface iff open enabled rows and successors descend on each closed fiber.
-
-The explicit coarsening counterexample remains a regression guard. Do not restore an unconditional claim that changing the grammar automaton must refine the canonical product-state quotient.
-
-### 2.2 Fixed-regular extremal theorem
-
-For every integer `m>=1`, the same family has
+For every `m>=1`, the fixed four-symbol relay family has
 
 \[
 |P_C|=2,
+\qquad |P_O|=2^{m+1},
+\qquad K_O-K_C=m,
+\]
+
+with one newly legal primitive action, bounded local state/message alphabets, radius-one dynamics, degree at most three, tree topology, focal/exterior cut one, and exact selected-coordinate access `2 ceil(log2(m))+2`. The memory gap saturates finite-domain capacity.
+
+### Chain and resource portability
+
+`terminal_grammar_portability.py` gives
+
+\[
+K_{\rm uniform}=\log_2|P_{\rm terminal}|,
+\]
+
+and the terminal labels construct one `ConservativeMacroSchema` across a valid grammar chain.
+
+`portability_adaptation_tradeoff.py` now uses the strong stochastic form
+
+\[
+I(E;C)+I(E;U\mid C)
+\ge m-\sum_jh_2(\varepsilon_j).
+\]
+
+The deterministic entropy form is a corollary. A model-specific information-flow ceiling `B` gives `I(E;C)+B` greater than or equal to the same addressability requirement.
+
+`retention_boundary_time_tradeoff_2026-08-14.md` converts that debt into boundary time. In the fixed-regular relay, full exact interface installation is `Omega(m)` while one selected query is `Theta(log m)`, with ratio `Omega(m/log m)`.
+
+`staged_materialization_prefix_2026-08-14.md` gives every prefix resource constraint. In the exact binary/power-of-two subclass,
+
+\[
+k+\sum_{q\le t}L_q\ge m_t\quad\forall t
+\]
+
+is necessary and sufficient. Terminal memory can be path-independent while online installation is prefix-sensitive.
+
+### Ecological structural theorems
+
+`ecological_saturation_blanket.py` derives a system-size-independent exact blanket. For guild abundance `N_g`, threshold `L_g`, and non-negative colonization increments,
+
+\[
+Z_g=\min(L_g,N_g),
 \qquad
-|P_O|=2^{m+1},
-\qquad
-K_O-K_C=m,
+Z'_g=\min(L_g,Z_g+d_g),
 \]
 
-under one fixed four-symbol primitive alphabet and one-state closed/open grammar schemas. Opening adds only `fire`. The same family simultaneously has bounded local state/message alphabets, radius-one dynamics, maximum degree three, tree topology, focal/exterior cut one, and exact worst selected-coordinate access
+so the exact blanket has `prod_g(L_g+1)` states independent of abundance capacities `M_g`.
+
+Opening one depletion action breaks the forward-invariant saturation fiber: in one guild the closed quotient has `L+1` blocks while the open quotient has `M+1`.
+
+`ecological_capacity_portability.py` strengthens the positive result to changing semantic domains. Different abundance domains with different `M_g` realize the same capped macro-domain and the same capacity-free macro transition law whenever thresholds and monotone colonization rules are fixed.
+
+`budgeted_depletion_blanket.py` interpolates quantitatively. If at most `D` future depletion actions remain legal,
 
 \[
-2\lceil\log_2m\rceil+2.
+|P_{\rm initial}|=L+D+1,
 \]
 
-The interface innovation saturates the finite-domain maximum. Constant cut width, degree, local alphabets, and grammar-edit count therefore do not give a system-size-independent exact-memory bound.
-
-### 2.3 Terminal-stage exact portability for grammar chains
-
-`terminal_grammar_portability.py` closes the uniform exact-memory question for chains of valid globally-new-symbol expansions. The terminal canonical quotient is an exact interface at every earlier stage and is the smallest single labeling that works for the whole chain:
+so the required abundance cap is
 
 \[
-\boxed{K_{\rm uniform}=\log_2|P_{\rm terminal}|.}
+\boxed{\text{response threshold}+\text{maximum legal future downward reach}.}
 \]
 
-The same terminal labels construct one existing `ConservativeMacroSchema` across the chain. If two valid chains reach the same terminal grammar, their minimal uniform exact-memory budget is the same even if intermediate quotients differ.
+`D=0` recovers saturation; `D=M-L` recovers full abundance. Fixed `D` remains capacity-independent, while downward reach that scales with capacity destroys uniform portability.
 
-### 2.4 Retention–update adaptation tradeoff
+## Novelty discipline
 
-`portability_adaptation_tradeoff.py` separates information retained before opening from information supplied after opening. For `m` independent binary exterior coordinates,
+Do not spend novelty budget on fixed-grammar minimization, right congruences, common refinement, generic partition algorithms, Fano, finite-alphabet entropy, deadline scheduling, threshold aggregation, exchangeability, lumpability, or monotone systems by themselves.
 
-\[
-\boxed{
-I(E;C)+H(U\mid C)
-\ge
-m-\sum_j h_2(\varepsilon_j).
-}
-\]
+The live first-paper firstness candidate remains the **simultaneous constrained extremal realization**. Historical firstness remains conditional on the H1–H4 compiler audit. The chain/resource and ecological results are substantive CCOC extensions, but their classical ingredients are substrate unless separately audited.
 
-At zero error the bound is sharp for every split: retaining `k` exterior bits and supplying the remaining `m-k` bits attains equality. In the fixed-regular relay the canonical closed interface retains no exterior information, so exact full adaptation carries an `m`-bit information debt.
+## Priority 1 — H1–H4 compiler gate
 
-### 2.5 Boundary-time materialization tradeoff
-
-`docs/retention_boundary_time_tradeoff_2026-08-14.md` converts the adaptation debt into a time/resource bound. If the inward boundary has width `c`, alphabet size `s`, and `T` synchronous update rounds,
-
-\[
-\boxed{
-I(E;C)+cT\log_2s
-\ge
-m-\sum_j h_2(\varepsilon_j).
-}
-\]
-
-For a closed representation with at most `2^k` states and common error `eps`,
-
-\[
-\boxed{k+cT\log_2s\ge m(1-h_2(\varepsilon)).}
-\]
-
-The exact integer round bound is sharp for power-of-two boundary alphabets.
-
-For the fixed-regular relay, full exact installation across the cut-one three-symbol focal boundary needs
-
-\[
-T_{\rm full}=\Omega(m),
-\]
-
-while one selected coordinate has
-
-\[
-T_{\rm query}=\Theta(\log m).
-\]
-
-More precisely,
-
-\[
-\frac{T_{\rm full}}{T_{\rm query}}
-=\Omega\!\left(\frac{m}{\log m}\right).
-\]
-
-Thus random-access latency and full-interface installation latency are different resources.
-
-## 3. Novelty boundary
-
-Do not spend novelty budget on fixed-grammar minimization, Myhill–Nerode/right-congruence machinery, common refinement/natural-join bookkeeping, elementary centralized unlocks, generic partition refinement, regular-language restriction, generic causal-cone counting, Fano, finite-alphabet channel entropy, or deadline scheduling by themselves.
-
-The live first-paper candidate remains the **simultaneous constrained extremal realization**: maximal same-plant cross-grammar separation together with fixed grammar, one newly legal primitive action, bounded local resources, degree three, and logarithmic selected-query access. Historical firstness remains conditional on the compiler audit.
-
-The newer retention/update and boundary-time results are useful coupled-resource consequences. Their information-theoretic ingredients are classical; do not present them as independent historical firstness claims without a separate prior-art gate.
-
-## 4. Priority 1 — finish the H1–H4 primary compiler gate
-
-Issue #122 remains the main historical gate. A classical full-language compiler is decisive only if it jointly supplies:
+Issue #122 remains the main historical gate:
 
 - **H1:** bounded local state/connectivity independent of source state count;
 - **H2:** fixed context-independent source controls/input distribution;
 - **H3:** two-way response-trace faithfulness without spurious closed distinctions;
 - **H4:** bounded source-step/network/output latency.
 
-If all four hold with comparable overhead, bounded-local realization **existence** is demoted as a novelty claim. The explicit CCOC relay remains a transparent extremal equality witness.
+Do not restart generic source searching; primary acquisition routes are already fixed.
 
-Primary acquisition routes are already fixed. Do not restart generic source searching or infer H1–H4 from titles, abstracts, or holding metadata.
+## Priority 2 — manuscript transfer
 
-## 5. Priority 2 — manuscript transfer
+Transfer the established spine with exact SHA/replay provenance. Separate exact results, classical ancestry, the conditional realization novelty candidate, and fallback interpretation if H1–H4 subsumes realization existence.
 
-The manuscript must distinguish formalism, exact theorem statements, classical ancestry, the conditional simultaneous-realization novelty candidate, and the fallback interpretation if the H1–H4 gate subsumes realization existence. Record exact CCOC SHAs and replay provenance rather than citing “latest.”
+## Priority 3 — genuinely new model classes only
 
-## 6. Priority 3 — genuinely new mathematics beyond the completed exact core
+1. **Model-specific stochastic ecological flow.** The generic information inequality is complete. Derive a nontrivial information-flow ceiling `B` from an actual birth–death, dispersal, detection, or interaction mechanism; another generic channel corollary is not enough.
+2. **Ecological structure beyond thresholded abundance.** Move to spatial dispersal reachability, interaction-network symmetries, colonization barriers, or another mechanism. More capped-count variants are not enough.
+3. **Changing-domain or stochastic macro dynamics.** Further theorem work must materially change domains, embeddings, or stochastic macro laws; another exact same-domain partition reformulation is not justified.
 
-### 6.1 Staged installation deadlines — active next target
+## Explicit non-priorities
 
-Extend terminal-memory path independence with online resource deadlines. For nested stage requirements `S_t`, derive prefix bounds of the form
-
-\[
-k+\sum_{q\le t} c_qT_q\log_2s_q
-\ge
-|S_t|-\text{error penalty}.
-\]
-
-The exact binary/power-of-two subclass is promising because the prefix inequalities appear to be both necessary and sufficient. The scientific point is the contrast: terminal shared-memory capacity can depend only on the final grammar, while online installation feasibility depends on **when** distinctions become required.
-
-### 6.2 Approximate/stochastic portability
-
-Go beyond approximate addressability. Replace deterministic finite boundary-symbol capacity by a genuine noisy/stochastic information-flow contract, or characterize when one approximate/stochastic macro schema remains portable under grammar expansion. Generic contraction or small-gain abstraction alone is not a CCOC target.
-
-### 6.3 Ecological structural theorem
-
-Start from an explicit ecological composition class—colonization, dispersal, interaction-network, or boundary-coupling restrictions—and derive addressability lower bounds or finite-blanket upper bounds. Small cut width, low degree, acyclicity, and low treewidth alone are already insufficient by the relay.
-
-## 7. Explicit non-priorities
-
-Do not prioritize another codebook family, another partition defect/accounting identity, more panel/reset variants, another toy adaptive no-go, another same-domain quotient reformulation, generic contraction/small-gain abstraction, generic source searching, replacement/rewiring transport inside CCOC, or empirical ecological inference in this theorem repository.
-
-## 8. Promotion rule
-
-New active theorem work must materially change the model class or coupled resource statement: a strict assumption weakening, stronger conclusion, sharp staged-resource result, substantive approximate/stochastic theorem, or derived ecological theorem. A nearby special case is not enough.
+No new codebook families, partition-defect identities, panel/reset variants, same-domain quotient reformulations, capped-count special cases, generic Fano/channel lemmas, generic contraction/small-gain results, generic source searching, replacement/rewiring transport inside CCOC, or empirical inference in this theorem repository.
