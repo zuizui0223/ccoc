@@ -20,20 +20,24 @@ from causal_model.fixed_regular_grammar_relay import (
 from causal_model.relay_tree_compilation import RelayTreeTopology, is_quiescent
 
 
-def test_fixed_regular_grammars_have_constant_size_and_one_new_action() -> None:
+def test_fixed_regular_grammars_have_one_state_and_one_new_transition() -> None:
     closed = fixed_closed_regular_grammar()
     opened = fixed_open_regular_grammar()
 
-    assert closed.partial_dfa_state_count == 1
-    assert opened.partial_dfa_state_count == 1
-    assert closed.complete_dfa_state_count_over_common_alphabet == 2
-    assert opened.complete_dfa_state_count_over_common_alphabet == 1
-    assert set(opened.legal_actions) - set(closed.legal_actions) == {FIRE}
+    assert closed.state_count == 1
+    assert opened.state_count == 1
+    assert closed.actions == tuple(GLOBAL_ACTION_ALPHABET)
+    assert opened.actions == tuple(GLOBAL_ACTION_ALPHABET)
+    assert closed.legal_actions(0) == CLOSED_REGULAR_ACTIONS
+    assert opened.legal_actions(0) == tuple(GLOBAL_ACTION_ALPHABET)
+    assert closed.transition_table == ((0, 0, None, 0),)
+    assert opened.transition_table == ((0, 0, 0, 0),)
 
-    assert closed.accepts(())
-    assert closed.accepts(("0", "1", "tick", "0"))
-    assert not closed.accepts(("0", FIRE))
-    assert opened.accepts(tuple(GLOBAL_ACTION_ALPHABET) * 3)
+    assert closed.normalize_legal_word(()) == ()
+    assert closed.normalize_legal_word(("0", "1", "tick", "0")) == ("0", "1", "tick", "0")
+    with pytest.raises(ValueError):
+        closed.normalize_legal_word(("0", FIRE))
+    assert opened.normalize_legal_word(tuple(GLOBAL_ACTION_ALPHABET) * 3) == tuple(GLOBAL_ACTION_ALPHABET) * 3
 
 
 def test_balanced_arbitrary_m_addresses_are_prefix_free_and_hit_each_leaf() -> None:
@@ -121,6 +125,8 @@ def test_fixed_regular_grammar_certificate_includes_non_powers_of_two() -> None:
         certificate = certify_fixed_regular_grammar_relay(module_count)
         assert isinstance(certificate, FixedRegularGrammarRelayCertificate)
         assert certificate.verify()
+        assert certificate.closed_grammar.state_count == 1
+        assert certificate.open_grammar.state_count == 1
         assert certificate.closed_interface_state_count == 2
         assert certificate.open_interface_state_count == 2 ** (module_count + 1)
         assert certificate.open_only_innovation_bits == module_count
