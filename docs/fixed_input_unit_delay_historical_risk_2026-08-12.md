@@ -93,11 +93,13 @@ Weiner & Hopcroft's 1968 bounded-fan-in/bounded-fan-out report remains the stron
 
 ### Newborn & Arnold (1972)
 
-*Universal Modules for Bounded Signal Fan-Out Synchronous Sequential Circuits* remains a high-priority H1/H2 source. Correct DOI:
+*Universal Modules for Bounded Signal Fan-Out Synchronous Sequential Circuits* remains a high-priority H1/H2 source. Direct inspection of the DBLP January-1972 TOC electronic-edition links gives the DOI:
 
-`10.1109/T-C.1972.223432`
+`10.1109/T-C.1972.223433`
 
-Automated retrieval must validate title and authors because a DBLP unpaywall route has been observed to misdirect to Kim & Newborn's input-restriction paper, DOI `10.1109/T-C.1972.223521`.
+The previously recorded `...223432` is the immediately preceding Koontz–Fukunaga article (pp. 56–63), not Newborn–Arnold. The separate Kim–Newborn input-restriction paper is `...223521`.
+
+Automated retrieval must therefore validate title, authors, issue, and pages rather than trusting a DOI-only route. A direct Osaka Prefectural Central Library copy route is now recorded in `newborn_arnold_primary_acquisition_2026-08-13.md`.
 
 ## 5. Residual realization claim after the audit
 
@@ -127,6 +129,7 @@ If H1 is classical but H2 or H4 necessarily grows with source state count, then 
 - `universal_compilation_reduction_risk.md`
 - `universal_compilation_source_audit.md`
 - `ullman_weiner_primary_ocr_2026-08-13.md`
+- `newborn_arnold_primary_acquisition_2026-08-13.md`
 
 Primary article route for Ullman–Weiner:
 

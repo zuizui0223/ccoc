@@ -44,13 +44,18 @@ Primary C3/C5 target:
 
 > Monroe M. Newborn and Thomas F. Arnold, *Universal Modules for Bounded Signal
 > Fan-Out Synchronous Sequential Circuits*, pp. 63–79,
-> DOI `10.1109/T-C.1972.223432`.
+> DOI `10.1109/T-C.1972.223433`.
 
-**DOI correction.** A previous version of this acquisition record incorrectly used
-`10.1109/T-C.1972.223521`. DBLP's actual electronic-edition links show that
-`223432` is the Newborn–Arnold article, whereas `223521` belongs to Kim–Newborn,
-*The Simplification of Sequential Machines with Input Restrictions*, 21(12):
-1440–1443 (1972).
+**DOI correction, revised 2026-08-13.** Direct inspection of DBLP's January 1972
+TOC electronic-edition links shows that `10.1109/T-C.1972.223433` belongs to the
+Newborn–Arnold article. The previously recorded `...223432` belongs to the
+immediately preceding Koontz–Fukunaga article, pp. 56–63. The unrelated
+`...223521` belongs to Kim–Newborn, *The Simplification of Sequential Machines
+with Input Restrictions*, 21(12):1440–1443 (1972).
+
+Thus two distinct nearby-record hazards have existed in the acquisition history.
+Recovered material must be validated by title, authors, volume/issue, and page
+range rather than DOI alone.
 
 Extract C1/C2/C3/C5/C6 details, especially module input count, source-input
 presentation, clocking, output latency, and whether input-language restriction can
@@ -143,8 +148,8 @@ efficient order is now:
 
 1. **Internet Archive `C-24(8)` (Aug. 1975)** — resolve the strongest C6 and C5
    leads together;
-2. **Internet Archive `C-21(1)` (Jan. 1972)** — Newborn–Arnold C3/input/fanout and
-   timing contract;
+2. **Internet Archive or Osaka direct copy `C-21(1)` (Jan. 1972)** —
+   Newborn–Arnold C3/input/fanout and timing contract;
 3. **Weiner–Hopcroft report no. 61** — generic bounded-fan-in/out compiler
    semantics and overhead;
 4. **Internet Archive `C-27(2)` (Feb. 1978)** — read the correction/comment;
@@ -162,8 +167,10 @@ source retrievals.
 - Internet Archive preserved journal collection:
   `https://archive.org/details/pub_ieee-transactions-on-computers`
 - Newborn–Arnold DOI:
+  `https://doi.org/10.1109/T-C.1972.223433`
+- Koontz–Fukunaga DOI (the previously misassigned adjacent record):
   `https://doi.org/10.1109/T-C.1972.223432`
-- Kim–Newborn input-restriction DOI (to prevent future remapping confusion):
+- Kim–Newborn input-restriction DOI (separate later issue):
   `https://doi.org/10.1109/T-C.1972.223521`
 - Huang–Kain–Kinney DOI:
   `https://doi.org/10.1109/SWAT.1972.17`

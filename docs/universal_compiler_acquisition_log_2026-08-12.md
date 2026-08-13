@@ -90,21 +90,43 @@ The report body has not been read. Abstract-style evidence points to identical t
 
 Obtain an actual scan through the University of Tokyo or Princeton library/digitization route. Do not infer compiler timing/input properties from the title/abstract.
 
-## 4. Newborn & Arnold (1972) — DOI fixed, automated route hazard recorded
+## 4. Newborn & Arnold (1972) — DOI re-corrected; direct Osaka copy route verified
 
 Target:
 
 > Monroe M. Newborn and Thomas F. Arnold, *Universal Modules for Bounded Signal Fan-Out Synchronous Sequential Circuits*, IEEE Transactions on Computers 21(1):63–79.
 
-Correct DOI:
+Correct DOI after direct inspection of the DBLP January-1972 TOC electronic-edition links:
 
-`10.1109/T-C.1972.223432`
+`10.1109/T-C.1972.223433`
 
-`10.1109/T-C.1972.223521` belongs to Joonki Kim and Monroe M. Newborn, *The Simplification of Sequential Machines with Input Restrictions*.
+The previously recorded `10.1109/T-C.1972.223432` belongs to the immediately
+preceding Koontz & Fukunaga article, *A Nonlinear Feature Extraction Algorithm
+Using Distance Transformation*, pp. 56–63. The separate DOI
+`10.1109/T-C.1972.223521` belongs to Joonki Kim and Monroe M. Newborn,
+*The Simplification of Sequential Machines with Input Restrictions*.
 
-A DBLP unpaywall route associated with Newborn–Arnold has been observed to resolve to `223521`. Therefore all automated full-text retrieval must validate title/authors before admission.
+Thus the acquisition history contained two different nearby-record hazards. All
+future retrieval must validate title, authors, volume/issue, and pages rather than
+trusting a DOI-only route.
 
-No H1–H4 clause is promoted from the title alone. The primary article remains unrecovered.
+### Actionable primary-copy route
+
+CiNii Books record `AA00667773` lists Osaka Prefectural Central Library holding the
+relevant journal run for 1969–1973. The target January 1972 issue is therefore
+inside the recorded holding.
+
+Osaka Prefectural Library's current official Web-copy service is available to
+anyone, including a one-time/no-registration route, and non-visit copies are
+mailed. The exact request is C-21(1), January 1972, Newborn & Arnold, pp. 63–79,
+subject to the library's copyright/preservation determination.
+
+This source has therefore moved from `unrecovered primary article` to
+**actionable direct-copy target**. No H1–H4 clause is promoted until the body is
+read.
+
+Canonical extraction contract:
+`newborn_arnold_primary_acquisition_2026-08-13.md`.
 
 ## 5. Huang, Cain & Kinney (1972) — H2 lower-bound interpretation fixed
 
@@ -164,10 +186,11 @@ Therefore the safe claim remains:
 
 Do not continue generic web searching for the same historical papers. Resume only when one of the following occurs:
 
+- the Osaka Newborn–Arnold primary copy is obtained;
 - a primary scan/full OCR of Weiner–Hopcroft report no. 61 is obtained;
 - Ullman–Weiner construction pages become searchable/renderable;
 - the Hsieh ACM paper appears through a new verified archive route;
-- a verified Newborn–Arnold or Williams primary copy becomes available.
+- a verified Williams primary copy becomes available.
 
 Until then, further mirror hunting has low expected information value. Work should return to manuscript/provenance preparation rather than theorem proliferation.
 
@@ -178,6 +201,7 @@ Until then, further mirror hunting has low expected information value. Work shou
 - `universal_compilation_source_audit.md`
 - `fixed_input_unit_delay_historical_risk_2026-08-12.md`
 - `ullman_weiner_primary_ocr_2026-08-13.md`
+- `newborn_arnold_primary_acquisition_2026-08-13.md`
 - Princeton/CiNii report holdings recorded in the canonical source audit
 
 This ledger is an acquisition record, not evidence that unrecovered compiler properties fail.
