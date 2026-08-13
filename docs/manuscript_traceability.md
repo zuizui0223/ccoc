@@ -145,9 +145,20 @@ The paper may interpret the formal state coordinates as dormant exterior ecologi
 modules and the legal future grammar as possible colonization/connection/action
 histories. This is synthetic interpretation only.
 
+A useful derived ecological corollary is recorded in
+`docs/narrow_physical_boundary_not_causal_closure_2026-08-13.md`: in the explicit
+relay, the focal node is separated from all exterior memories by a single graph
+edge for every `m`, while the exact dynamic boundary summary required by the open
+grammar still needs at least `m` exterior bits. The manuscript may use this to
+explain that **small physical boundary width is not a causal-closure certificate**.
+This is a consequence of the existing relay plus blanket lower bound, not a new
+firstness-bearing theorem.
+
 The archive does not establish that any observed ecosystem realizes the declared
 codebook, grammar, decoder words, relay topology, or finite blanket. Empirical
-applications must justify those contracts independently.
+applications must justify those contracts independently. In particular, a narrow
+corridor, inlet, island connection, or present interaction cut cannot by itself be
+interpreted as evidence for a small causal boundary state.
 
 ## 9. Fallback research decision
 
