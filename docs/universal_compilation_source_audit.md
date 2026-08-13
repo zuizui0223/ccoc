@@ -30,7 +30,7 @@ Status vocabulary:
 | **Weiner & Hopcroft (1968)**, *Bounded Fan-in, Bounded Fan-out Uniform Decompositions of Synchronous Sequential Machines* | Princeton/CiNii archival records + abstract-style description; report body not recovered | PARTIAL | UNKNOWN | UNKNOWN | UNKNOWN | Strongest H1 lead. Available evidence points to identical two-state modules with source-state-count-independent fan-in/fan-out, but H2–H4 await report no. 61. |
 | **Ullman & Weiner (1969)**, *Uniform Synthesis of Sequential Circuits* | **primary BSTJ OCR: abstract + introduction**, exact 14-page article PDF route; construction pages not yet readable | UNKNOWN/PARTIAL | **PRIMARY PARTIAL** | **PRIMARY PARTIAL** | **PRIMARY PARTIAL** | Major compiler risk. Primary text explicitly covers binary input, a fixed module with delay, “isomorphic realization”, and input spacing independent of network size. Remaining gaps are fan-out, input distribution, formal realization/output definition, and exact clock semantics. |
 | **Arnold, Tan & Newborn (1970)**, *Iteratively Realized Sequential Circuits* | IBM Research primary abstract | UNKNOWN | UNKNOWN | PARTIAL | UNKNOWN | Primary abstract verifies realization of arbitrary synchronous flow tables as a regular array of identical modules, but not the H1–H4 constants. |
-| **Newborn & Arnold (1972)**, *Universal Modules for Bounded Signal Fan-Out Synchronous Sequential Circuits* | authoritative bibliographic/DOI records only | UNKNOWN | UNKNOWN | UNKNOWN | UNKNOWN | High-priority H1/H2 source. Correct DOI `10.1109/T-C.1972.223432`; title/author validation is mandatory because an automated unpaywall route has misdirected to Kim–Newborn `223521`. |
+| **Newborn & Arnold (1972)**, *Universal Modules for Bounded Signal Fan-Out Synchronous Sequential Circuits* | authoritative bibliographic/TOC records + verified Japanese holding/copy route; primary body not yet read | UNKNOWN | UNKNOWN | UNKNOWN | UNKNOWN | High-priority H1/H2 source. Correct DOI `10.1109/T-C.1972.223433`. The previously recorded `...223432` is the immediately preceding Koontz–Fukunaga article; `...223521` is Kim–Newborn. Title/author/page validation is mandatory. |
 | **Huang, Cain & Kinney (1972)**, *Output Sufficient Modules for Uniform Decomposition of Synchronous Sequential Circuits* | bibliographic record + accessible summary | NOT TARGETED/PARTIAL | PARTIAL | UNKNOWN | UNKNOWN | Module-input lower bound scales with **source input count**. Because CCOC fixes source input dimension as `m` grows, this does not create an `m`-dependent H2 obstruction. |
 | **Williams (1975)**, *Uniform Decomposition of Incompletely Specified Sequential Machines* | authoritative bibliography + secondary acquisition leads | UNKNOWN | UNKNOWN | UNKNOWN | UNKNOWN | Decisive question is per-specification resynthesis versus one full-machine hardware realization later restricted by admissible behavior. |
 | **Jóźwiak & Ślusarczyk (2004)**, *General decomposition of incompletely specified sequential machines with multi-state behavior realization* | primary publisher article/abstract material | PARTIAL | UNKNOWN | PARTIAL/UNKNOWN | PARTIAL | Establishes mature ancestry for incomplete specification + constrained network decomposition, not one verified H1–H4 full-language compiler. |
@@ -97,15 +97,24 @@ The IBM Research primary abstract says an arbitrary synchronous flow table can b
 
 It does not establish H1 constants, H2 input cost, H3 exact equivalence preservation, or H4 timing.
 
-### 3.5 Newborn–Arnold (1972)
+### 3.5 Newborn–Arnold (1972): DOI corrected again; copy route actionable
 
 Canonical source:
 
-> Monroe M. Newborn and Thomas F. Arnold, *Universal Modules for Bounded Signal Fan-Out Synchronous Sequential Circuits*, IEEE Transactions on Computers 21(1):63–79, DOI `10.1109/T-C.1972.223432`.
+> Monroe M. Newborn and Thomas F. Arnold, *Universal Modules for Bounded Signal Fan-Out Synchronous Sequential Circuits*, IEEE Transactions on Computers 21(1):63–79, DOI `10.1109/T-C.1972.223433`.
 
-`10.1109/T-C.1972.223521` belongs to Kim & Newborn, *The Simplification of Sequential Machines with Input Restrictions*. A DBLP unpaywall route associated with the Newborn–Arnold record has been observed to resolve to `223521`. Treat that as an acquisition metadata hazard and validate title/authors before accepting a retrieved PDF.
+Direct inspection of the DBLP January-1972 table of contents and its per-record electronic-edition links resolves the DOI unambiguously by article position:
 
-No H1–H4 property is promoted from the title alone.
+- Koontz & Fukunaga, pp. 56–63 → `10.1109/T-C.1972.223432`;
+- **Newborn & Arnold, pp. 63–79 → `10.1109/T-C.1972.223433`**.
+
+The earlier CCOC correction to `223432` was therefore itself one adjacent record early. Separately, `10.1109/T-C.1972.223521` belongs to Kim & Newborn, *The Simplification of Sequential Machines with Input Restrictions*.
+
+Two distinct metadata hazards are now documented. Treat title, authors, volume/issue, and page range as the primary admission keys; DOI-only automated retrieval is insufficient.
+
+CiNii record `AA00667773` lists Osaka Prefectural Central Library holding the relevant journal run for 1969–1973. Osaka's official remote/Web-copy service is available without a library visit, giving an actionable primary-copy route for pp. 63–79. See `newborn_arnold_primary_acquisition_2026-08-13.md`.
+
+No H1–H4 property is promoted until that primary body is read.
 
 ### 3.6 Huang–Cain–Kinney (1972): why source-input lower bounds do not rescue H2
 
@@ -155,10 +164,10 @@ Manuscript-safe wording:
 
 ## 6. Acquisition priority and stop rule
 
-1. **Weiner–Hopcroft 1968 report no. 61:** strongest H1 source; extract H2–H4.
-2. **Ullman–Weiner 1969 construction pages:** abstract/introduction are now primary-read; extract fan-out, input distribution, formal isomorphism/output definition, and clock semantics. Do not search generic mirrors; use a route exposing later OCR/pages.
-3. **Hsieh–Tan–Newborn 1968 ACM paper:** corrected DOI `10.1145/800186.810626`; recover original proof if a genuine full-text route appears.
-4. **Newborn–Arnold 1972:** bounded-signal-fanout theorem; title/author validate all retrieved copies.
+1. **Newborn–Arnold 1972:** direct Osaka primary-copy route now actionable; extract H1/H2 first, then H3/H4.
+2. **Weiner–Hopcroft 1968 report no. 61:** strongest generic H1 source; extract H2–H4 via the identified library/archive route.
+3. **Ullman–Weiner 1969 construction pages:** abstract/introduction are now primary-read; extract fan-out, input distribution, formal isomorphism/output definition, and clock semantics. Do not search generic mirrors; use a route exposing later OCR/pages.
+4. **Hsieh–Tan–Newborn 1968 ACM paper:** corrected DOI `10.1145/800186.810626`; recover original proof if a genuine full-text route appears.
 5. **Williams 1975:** settle resynthesis.
 
 Do not broaden this into another general modular-synthesis survey. The objective is only to decide the H1–H4 compiler reduction.
@@ -187,6 +196,7 @@ Treat them as strong contextual-decomposition ancestry, not as the same fixed-ha
 - this file — source evidence table
 - `fixed_input_unit_delay_historical_risk_2026-08-12.md` — focused fixed-input warning
 - `ullman_weiner_primary_ocr_2026-08-13.md` — primary OCR extraction
+- `newborn_arnold_primary_acquisition_2026-08-13.md` — actionable January-1972 copy route and extraction contract
 - issue #122 — live historical compiler gate
 - issue #137 — Ullman–Weiner construction-page blocker
 
