@@ -43,38 +43,56 @@ The first reopened targets are now **completed**, not future agenda items.
 | arbitrary addressable codebooks | `addressable_codebooks.py`, `docs/addressable_codebook_bound.md` | strict weakening of the full-product premise |
 | exact closed-union common refinement and join capacity | union/refinement implementation, `docs/union_grammar_refinement_capacity.md` | exact characterization in the delimited union-grammar subclass |
 | static/dynamic inflation decomposition | `interface_inflation.py`, `docs/interface_inflation_decomposition.md` | separates join-realizability loss from open-only future innovation |
-| one-new-action maximal innovation | `single_action_innovation.py`, `docs/single_action_innovation.md` | `iota_new=m` with one newly legal primitive action |
-| absolute capacity and exact relay latency | `innovation_capacity_latency.py`, `docs/innovation_capacity_latency.md` | proves zero memory slack on the finite domain and zero latency slack in the declared selector/return architecture |
-| general local causal-cone order bound | local causal-cone implementation, `docs/local_causal_cone_bound.md` | gives `Omega(log m)` access in the broader radius-one bounded-local class |
+| fixed-regular arbitrary-`m` extremal theorem | `fixed_regular_grammar_relay.py`, `extremal_open_composition.py`, `docs/fixed_regular_extremal_theorem_2026-08-13.md` | aggregates maximal one-action innovation, one fixed grammar schema, bounded locality, cut width one, and exact arbitrary-`m` access in one theorem surface |
+| absolute capacity and locality bounds | `innovation_capacity_latency.py`, `local_causal_cone.py` | retains the general capacity closure and broader `Omega(log m)` bounded-local causal-cone lower bound |
 | constrained code-rate families | constrained codebook modules, `docs/composition_code_rate.md` | shows near-linear inflation survives parity/fixed-richness constraints |
 
-The current structural conclusion is therefore not merely the historical binary
-product witness. The open response interface can be forced by a positive-rate
-jointly realizable codebook; the closed-view contribution and genuinely new
-open-only future contribution can be separated; and one newly legal primitive
-action can realize the absolute finite-domain maximum open-only innovation on the
-existing degree-three relay.
+The strongest explicit witness is now stated in one place. For every positive
+integer `m`, the same four-symbol primitive alphabet and the same one-state closed
+and open grammar schemas give
+
+\[
+|P_C|=2,
+\qquad
+|P_O|=2^{m+1},
+\qquad
+\iota_{\rm new}=m,
+\]
+
+with exactly one newly legal primitive action, zero finite-domain innovation
+slack, maximum degree three, bounded local alphabets, a tree interaction topology,
+focal/exterior edge cut one, and exact worst canonical access
+
+\[
+2\lceil\log_2m\rceil+2.
+\]
+
+`causal_model.extremal_open_composition` is an **aggregate certificate**, not a
+second witness family. Its purpose is to make the simultaneous theorem contract
+machine-checkable without multiplying theorem branches.
 
 ### Locality statement
 
-Two locality claims are intentionally separate.
+Two locality claims remain intentionally separate.
 
-1. **Architecture-specific:** the balanced binary selector plus same-tree return
-   path attains `2 log2(m) + 2` actions for powers of two, matching its declared
-   prefix-free/one-edge-per-step lower bound.
+1. **Explicit fixed-regular construction:** the midpoint-balanced arbitrary-`m`
+   selector plus same-tree return path has exact worst canonical access
+   `2 ceil(log2(m)) + 2`.
 2. **General bounded-local class:** radius-one propagation plus bounded local state
    and bounded degree imply only an order lower bound `T = Omega(log m)` for
    `2^{Theta(m)}` exact response classes.
 
-Bounded degree alone is not a causal-speed theorem.
+The first is an equality statement for the explicit architecture. The second is a
+broader order lower bound. Bounded degree alone is not a causal-speed theorem.
 
 ### Novelty boundary
 
 The core must not be narrated as a new fixed-grammar quotient, common-refinement
-identity, generic state-complexity blow-up, or generic locality theorem. The live
-manuscript candidate is the **same-system cross-grammar response-interface
-separation**, together with the constrained extremal witness. Historical
-realization priority for the relay remains gated by issues #122 and #137.
+identity, generic state-complexity blow-up, regular-language theorem, or generic
+locality theorem. The live manuscript candidate is the **same-system cross-grammar
+response-interface separation together with the simultaneous constrained
+extremal realization**. Historical realization priority for the relay remains
+gated by issues #122 and #137.
 
 ## 2. Identifiability companion
 
@@ -148,6 +166,14 @@ Every theorem module retains finite certificate objects and replay routes. A
 workflow replays a declared finite domain; it does not prove the analytic theorem
 for all finite systems and does not validate an observed ecosystem.
 
+The integrated fixed-regular theorem intentionally keeps those two layers
+separate:
+
+- `docs/fixed_regular_extremal_theorem_2026-08-13.md` is the quantified analytic
+  proof;
+- `FixedRegularExtremalTheoremCertificate` checks the simultaneous clauses at one
+  supplied finite `m`.
+
 New structural mathematics must:
 
 1. name the exact canonical assumption or conclusion being changed;
@@ -163,6 +189,7 @@ transfer, not by another local special-case theorem. See
 
 ## Navigation
 
+- [Integrated fixed-regular extremal theorem](fixed_regular_extremal_theorem_2026-08-13.md)
 - [Research priorities](research_priorities.md)
 - [Theorem registry](theorem_registry.md)
 - [Claim-status audit](claim_status_audit.md)
