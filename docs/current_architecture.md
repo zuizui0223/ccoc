@@ -2,198 +2,149 @@
 
 ## Purpose
 
-RACH/CCOC contains valid results with different questions. They are not presented
-as one linear theorem chain. This document maps the current logical packages,
-public import surfaces, certificates, and research boundaries after the August
-2026 reopening and strengthening pass.
+CCOC separates four questions that must not be conflated:
 
-Read [research priorities](research_priorities.md) for the active agenda and
-[theorem registry](theorem_registry.md) for provenance.
+1. what is the exact response interface for one declared future grammar;
+2. when does opening force that interface to refine;
+3. when can a chosen closed interface still be reused under a changed grammar;
+4. what local/static resources are sufficient to bound or realize the required interface.
+
+The July v1 theorem IDs remain reproducibility anchors. Post-reopening work strengthens and clarifies the paper spine without rewriting those historical IDs.
 
 ## 1. Portability core
+
+Preferred structural entrance:
 
 ```python
 import causal_model.portability_core as rach
 ```
 
-This is the structural research entrance for the question
-
-\[
-\text{When does exact compression survive a declared expansion of composition/future grammar?}
-\]
-
-### Historical publication spine
+Historical spine:
 
 | Role | Canonical modules |
 |---|---|
-| exact grammar-aware factorization | `dynamic_boundary_blankets.py`, `grammar_aware_blankets.py` |
-| extension--compression obstruction | `extension_compression_noncommutation.py` |
-| bounded-local sharpness | `extension_compression.py`, `relay_tree_compilation.py` |
-| conservative portability boundary | `compositional_boundedness.py`, `coherent_portable_macrolaw.py`, `conservative_macro_schema.py` |
+| exact grammar-aware interface | `dynamic_boundary_blankets.py`, `grammar_aware_blankets.py` |
+| cross-grammar lower-bound obstruction | `extension_compression_noncommutation.py`, `operational_addressability.py` |
+| bounded-local sharpness | relay/compilation modules |
+| conservative positive boundary | `coherent_portable_macrolaw.py`, `conservative_macro_schema.py` |
 
-The historical `CORE-1`--`CORE-5` IDs remain the v1 reproducibility anchors. They
-are not a ban on stronger mathematics.
+## 2. Exact converse and reuse layers
 
-### Post-reopening strengthening layer
+These are now intentionally separated by scope.
 
-The first reopened targets are now **completed**, not future agenda items.
+### 2.1 One-state action expansion
 
-| Strengthening | Main modules / docs | Current role |
-|---|---|---|
-| arbitrary addressable codebooks | `addressable_codebooks.py`, `docs/addressable_codebook_bound.md` | strict weakening of the full-product premise |
-| exact closed-union common refinement and join capacity | union/refinement implementation, `docs/union_grammar_refinement_capacity.md` | exact characterization in the delimited union-grammar subclass |
-| static/dynamic inflation decomposition | `interface_inflation.py`, `docs/interface_inflation_decomposition.md` | separates join-realizability loss from open-only future innovation |
-| fixed-regular arbitrary-`m` extremal theorem | `fixed_regular_grammar_relay.py`, `extremal_open_composition.py`, `docs/fixed_regular_extremal_theorem_2026-08-13.md` | aggregates maximal one-action innovation, one fixed grammar schema, bounded locality, cut width one, and exact arbitrary-`m` access in one theorem surface |
-| absolute capacity and locality bounds | `innovation_capacity_latency.py`, `local_causal_cone.py` | retains the general capacity closure and broader `Omega(log m)` bounded-local causal-cone lower bound |
-| constrained code-rate families | constrained codebook modules, `docs/composition_code_rate.md` | shows near-linear inflation survives parity/fixed-richness constraints |
+`causal_model/action_grammar_closure.py`
 
-The strongest explicit witness is now stated in one place. For every positive
-integer `m`, the same four-symbol primitive alphabet and the same one-state closed
-and open grammar schemas give
+For a fixed plant with
+
+\[
+A_C^*\subseteq A_O^*,
+\]
+
+stable refinement of the canonical closed quotient under open actions equals the canonical open quotient. Zero inflation is equivalent to every newly legal action descending to the closed quotient.
+
+### 2.2 Multi-state globally-new-symbol expansion
+
+`causal_model/grammar_expansion_closure.py`
+
+Old action symbols keep their **entire** grammar transition columns. Only an action illegal at every closed grammar state may be enabled after opening, possibly state-dependently. This preserves every closed distinguishing future, so
+
+\[
+P_O\preceq P_C.
+\]
+
+Stable open-row refinement of `P_C` then equals `P_O`. Zero inflation is exactly uniform open legality plus successor descent inside every closed fiber.
+
+The stronger symbol-level premise is necessary. Completing a partially available old action can erase an enabled-row distinction and make the open canonical quotient coarser.
+
+### 2.3 Arbitrary same-domain grammar change
+
+`causal_model/grammar_interface_reuse.py`
+
+When the grammar transition table may change more broadly, canonical quotient monotonicity is not assumed. The exact statement is instead:
+
+\[
+\boxed{
+P_C\text{ reusable as an exact open interface}
+\iff
+\text{open enabled/successor rows descend on }P_C.
+}
+\]
+
+The minimal canonical partitions may be equal, open-finer, open-coarser, or incomparable. Reuse of a chosen interface and movement of the minimal quotient are therefore distinct questions.
+
+## 3. Integrated extremal theorem
+
+Canonical analytic proof:
+
+`docs/fixed_regular_extremal_theorem_2026-08-13.md`
+
+Executable aggregate:
+
+`causal_model/extremal_open_composition.py`
+
+For every `m>=1`, the same fixed four-symbol system/grammar family has
 
 \[
 |P_C|=2,
 \qquad
 |P_O|=2^{m+1},
 \qquad
-\iota_{\rm new}=m,
+K_O-K_C=m,
 \]
 
-with exactly one newly legal primitive action, zero finite-domain innovation
-slack, maximum degree three, bounded local alphabets, a tree interaction topology,
-focal/exterior edge cut one, and exact worst canonical access
+with one newly legal action, one-state grammar schemas independent of `m`, bounded local state/message alphabets, pairwise radius-one dynamics, degree at most three, tree topology, focal/exterior cut one, and worst canonical access
 
 \[
 2\lceil\log_2m\rceil+2.
 \]
 
-`causal_model.extremal_open_composition` is an **aggregate certificate**, not a
-second witness family. Its purpose is to make the simultaneous theorem contract
-machine-checkable without multiplying theorem branches.
+It saturates finite-domain response-memory capacity. Together with the generic bounded-local causal-cone lower bound, its access is order-optimal in `m`.
 
-### Locality statement
+This construction lies inside both the one-state closure theorem and the corrected globally-new-symbol class.
 
-Two locality claims remain intentionally separate.
+## 4. What the current theory does **not** say
 
-1. **Explicit fixed-regular construction:** the midpoint-balanced arbitrary-`m`
-   selector plus same-tree return path has exact worst canonical access
-   `2 ceil(log2(m)) + 2`.
-2. **General bounded-local class:** radius-one propagation plus bounded local state
-   and bounded degree imply only an order lower bound `T = Omega(log m)` for
-   `2^{Theta(m)}` exact response classes.
+- arbitrary mutation of a grammar automaton does not necessarily refine its canonical grammar-aware quotient;
+- a smaller canonical open quotient does not mean a closed interface is unusable—it may remain an exact but nonminimal refinement;
+- bounded degree, sparse/tree topology, or cut width one does not imply a small dynamic causal blanket;
+- passing finite replay does not prove a quantified analytic theorem or validate an observed ecosystem.
 
-The first is an equality statement for the explicit architecture. The second is a
-broader order lower bound. Bounded degree alone is not a causal-speed theorem.
+## 5. Companion packages
 
-### Novelty boundary
-
-The core must not be narrated as a new fixed-grammar quotient, common-refinement
-identity, generic state-complexity blow-up, regular-language theorem, or generic
-locality theorem. The live manuscript candidate is the **same-system cross-grammar
-response-interface separation together with the simultaneous constrained
-extremal realization**. Historical realization priority for the relay remains
-gated by issues #122 and #137.
-
-## 2. Identifiability companion
+### Identifiability
 
 ```python
 import causal_model.identifiability_companion as rach_id
 ```
 
-This package asks a different question:
+Delayed exposure, adaptive finite-evidence no-go, candidate-family agreement, and related epistemic results remain separate from the first-paper structural spine.
 
-\[
-\text{What can finite evidence or a retained mechanism family justify?}
-\]
+### Approximate robustness
 
-| Role | Modules |
-|---|---|
-| delayed exposure and finite-adaptive no-go | `delayed_addressability.py`, `adaptive_closure_no_go.py` |
-| candidate mechanism agreement | `candidate_safe_laws.py` |
-| joint exterior--mechanism conditions | `joint_open_candidate_laws.py` |
-| retained-family support | `admissibility.py`, confidence-lifting modules, `symbolic_candidate_sets.py` |
+`approximate_addressability.py` gives the Fano lower bound companion. It is not yet an approximate/stochastic portability theorem.
 
-The adaptive closure no-go is already implemented: every finite-depth adaptive
-policy can be matched by a delayed closed/open pair that has the same finite
-transcript and diverges later. This result is epistemic and remains outside the
-first-paper structural theorem spine.
+### Compatibility aggregate
 
-## 3. Approximate robustness companion
+`current_theory.py` remains a backward-compatible import surface, not the research entrance for new work.
 
-`causal_model/approximate_addressability.py` is a post-reopening companion, not a
-new public core facade. It uses a Fano bound to show that approximate coordinate
-recovery with fixed error below one half still forces linear retained information
-in the binary full-product family:
+### Legacy / replacement
 
-\[
-K_{\mathrm{open}}^{(\varepsilon)}
-\ge
-1+m\bigl(1-h_2(\varepsilon)\bigr).
-\]
+Experimental-design branches remain executable but outside the structural novelty spine. Non-nested replacement/rewiring is centered in `zuizui0223/mltr`.
 
-This answers a zero-error brittleness objection. It does **not** yet provide an
-approximate/stochastic portability theorem.
+## 6. Workflow discipline
 
-## 4. Compatibility aggregate
+Analytic proof documents and finite certificates serve different roles. Every active result must state its exact semantic domain and grammar assumptions, include fail-closed counterexamples where appropriate, and preserve the July v1 replay.
 
-```python
-import causal_model.current_theory as historical
-```
-
-`current_theory.py` remains a broad backward-compatible aggregate for earlier
-imports and regressions. It is not the preferred research entrance for new work.
-Use the portability facade, identifiability facade, or an explicitly named
-companion module.
-
-## 5. Experimental-design legacy shelf
-
-Reset panels, witnessed evidence, panel robustness, common-mode failure, and
-observation-regime special cases remain executable in their original modules.
-They begin after a quotient/reset/coverage/failure contract has been selected and
-are therefore not part of the structural novelty spine. See
-[`legacy/README.md`](../legacy/README.md).
-
-## 6. Replacement / rewiring transport
-
-Non-nested replacement, extinction, recolonization, rewiring, and transport repair
-are centered in `zuizui0223/mltr`. They should return to CCOC only if they directly
-strengthen the open-composition theorem rather than forming a parallel transport
-program.
-
-## 7. Certificate and workflow discipline
-
-Every theorem module retains finite certificate objects and replay routes. A
-workflow replays a declared finite domain; it does not prove the analytic theorem
-for all finite systems and does not validate an observed ecosystem.
-
-The integrated fixed-regular theorem intentionally keeps those two layers
-separate:
-
-- `docs/fixed_regular_extremal_theorem_2026-08-13.md` is the quantified analytic
-  proof;
-- `FixedRegularExtremalTheoremCertificate` checks the simultaneous clauses at one
-  supplied finite `m`.
-
-New structural mathematics must:
-
-1. name the exact canonical assumption or conclusion being changed;
-2. distinguish theorem, sufficient criterion, lower bound, witness, conjecture,
-   and computational evidence;
-3. include fail-closed tests/counterexamples where feasible;
-4. preserve the July 2026 historical paper-core replay; and
-5. enter `main` through a branch and pull request.
-
-The active agenda is now dominated by novelty verification and manuscript
-transfer, not by another local special-case theorem. See
-[`research_priorities.md`](research_priorities.md).
+The #163 correction is the model: a green CI result does not rescue an over-broad theorem statement when a mathematical counterexample exists.
 
 ## Navigation
 
-- [Integrated fixed-regular extremal theorem](fixed_regular_extremal_theorem_2026-08-13.md)
+- [Fixed-regular extremal theorem](fixed_regular_extremal_theorem_2026-08-13.md)
+- [One-state closure converse](action_grammar_closure_converse_2026-08-13.md)
+- [Corrected multi-state closure converse](grammar_expansion_closure_converse_2026-08-13.md)
+- [General interface reuse theorem](grammar_interface_reuse_2026-08-13.md)
 - [Research priorities](research_priorities.md)
 - [Theorem registry](theorem_registry.md)
-- [Claim-status audit](claim_status_audit.md)
-- [Residual novelty decision](residual_novelty_decision_2026-08-12.md)
-- [Cross-grammar quantitative prior-art boundary](cross_grammar_quantitative_prior_art_2026-08-12.md)
-- [Universal compiler source audit](universal_compilation_source_audit.md)
 - [Legacy shelf](../legacy/README.md)
