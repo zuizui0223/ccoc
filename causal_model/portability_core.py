@@ -127,6 +127,10 @@ from .fixed_regular_grammar_relay import (
     fixed_regular_word_trajectory,
     tree_address_for_port,
 )
+from .extremal_open_composition import (
+    FixedRegularExtremalTheoremCertificate,
+    certify_fixed_regular_extremal_theorem,
+)
 from .innovation_capacity_latency import (
     InnovationCapacityCertificate,
     PrefixFreeAddressLatencyCertificate,
@@ -261,6 +265,9 @@ __all__ = [
     "fixed_regular_output_trace",
     "all_regular_coordinate_states",
     "certify_fixed_regular_grammar_relay",
+    # Aggregate simultaneous extremal theorem surface.
+    "FixedRegularExtremalTheoremCertificate",
+    "certify_fixed_regular_extremal_theorem",
     # Absolute innovation and locality latency closures.
     "InnovationCapacityCertificate",
     "PrefixFreeAddressLatencyCertificate",
