@@ -59,7 +59,7 @@ Interacting Finite State Machines*, works directly with equivalence relations on
 the state space of interacting FSMs.
 
 The primary report states that environment information can be used to obtain
- greater minimization. It then defines behavior equivalence by equality of the
+greater minimization. It then defines behavior equivalence by equality of the
 input/output behavior relation and states that the quotient under that relation is
 a minimum-state machine behavior-compatible with the original machine. The same
 report also emphasizes that useful equivalences depend on the environment and on
@@ -191,3 +191,28 @@ The next search should be narrowly quantitative:
 
 Until such a direct quantitative match is found, the combined extremal package
 remains a defensible **candidate**, with no firstness language.
+
+## 9. Promise-problem state complexity is a quantitative warning, not a direct match
+
+A targeted follow-up search also found established exponential descriptional gaps
+for finite automata on **promise problems**. For example, Geffert & Yakaryilmaz
+(2015), *Classical Automata on Promise Problems*, develops state-complexity
+separations under partial/promise domains, and related work uses communication
+complexity to obtain exponential gaps between automaton models on promise
+problems.
+
+Primary/authoritative records:
+
+- https://dmtcs.episciences.org/2138
+- https://arxiv.org/abs/1309.7739
+
+These results make an additional slogan unsafe: **an exponential descriptional
+advantage caused by restricting the relevant input domain is not new by itself**.
+
+They are nevertheless not a direct CCOC match in the reviewed statements. Their
+headline separations compare different automaton/computation models on a promise
+problem. The unresolved CCOC target keeps one deterministic controlled plant
+fixed and changes only the legal future-word grammar used to define its exact
+response quotient. The direct falsification target therefore remains a
+same-plant, nested-grammar worst-case theorem rather than a cross-model promise
+separation.
