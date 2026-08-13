@@ -1,150 +1,159 @@
-# Current RACH/CCOC architecture
+# Current RACH/CCOC architecture — 2026-08-14
 
 ## Purpose
 
-CCOC separates four questions that must not be conflated:
+CCOC now separates six questions:
 
 1. what is the exact response interface for one declared future grammar;
-2. when does opening force that interface to refine;
-3. when can a chosen closed interface still be reused under a changed grammar;
-4. what local/static resources are sufficient to bound or realize the required interface.
+2. when does opening force refinement;
+3. when can a chosen closed interface still be reused;
+4. what memory/update/boundary-time resources are required across openings;
+5. when can one exact macro-law survive changing semantic domains;
+6. which explicit ecological structures create or destroy such finite blankets.
 
-The July v1 theorem IDs remain reproducibility anchors. Post-reopening work strengthens and clarifies the paper spine without rewriting those historical IDs.
+The July v1 theorem IDs remain reproducibility anchors. Post-reopening results strengthen the research surface without rewriting those historical IDs.
 
-## 1. Portability core
+## 1. Structural portability core
 
-Preferred structural entrance:
+Preferred historical entrance:
 
 ```python
 import causal_model.portability_core as rach
 ```
 
-Historical spine:
-
-| Role | Canonical modules |
-|---|---|
-| exact grammar-aware interface | `dynamic_boundary_blankets.py`, `grammar_aware_blankets.py` |
-| cross-grammar lower-bound obstruction | `extension_compression_noncommutation.py`, `operational_addressability.py` |
-| bounded-local sharpness | relay/compilation modules |
-| conservative positive boundary | `coherent_portable_macrolaw.py`, `conservative_macro_schema.py` |
+The v1 spine remains exact grammar-aware interfaces, cross-grammar obstruction, bounded-local relay sharpness, and conservative positive portability.
 
 ## 2. Exact converse and reuse layers
 
-These are now intentionally separated by scope.
+`action_grammar_closure.py` handles one-state action-language expansion. `grammar_expansion_closure.py` handles finite grammar-state **globally-new-symbol** expansion, where old action columns are frozen and the open canonical quotient genuinely refines the closed quotient. `grammar_interface_reuse.py` handles arbitrary same-domain grammar change, where canonical quotients may instead be equal, finer, coarser, or incomparable.
 
-### 2.1 One-state action expansion
-
-`causal_model/action_grammar_closure.py`
-
-For a fixed plant with
+The correct broad statement is
 
 \[
-A_C^*\subseteq A_O^*,
-\]
-
-stable refinement of the canonical closed quotient under open actions equals the canonical open quotient. Zero inflation is equivalent to every newly legal action descending to the closed quotient.
-
-### 2.2 Multi-state globally-new-symbol expansion
-
-`causal_model/grammar_expansion_closure.py`
-
-Old action symbols keep their **entire** grammar transition columns. Only an action illegal at every closed grammar state may be enabled after opening, possibly state-dependently. This preserves every closed distinguishing future, so
-
-\[
-P_O\preceq P_C.
-\]
-
-Stable open-row refinement of `P_C` then equals `P_O`. Zero inflation is exactly uniform open legality plus successor descent inside every closed fiber.
-
-The stronger symbol-level premise is necessary. Completing a partially available old action can erase an enabled-row distinction and make the open canonical quotient coarser.
-
-### 2.3 Arbitrary same-domain grammar change
-
-`causal_model/grammar_interface_reuse.py`
-
-When the grammar transition table may change more broadly, canonical quotient monotonicity is not assumed. The exact statement is instead:
-
-\[
-\boxed{
 P_C\text{ reusable as an exact open interface}
 \iff
 \text{open enabled/successor rows descend on }P_C.
-}
 \]
 
-The minimal canonical partitions may be equal, open-finer, open-coarser, or incomparable. Reuse of a chosen interface and movement of the minimal quotient are therefore distinct questions.
+The #163 coarsening counterexample is a permanent scope guard.
 
-## 3. Integrated extremal theorem
+## 3. Integrated extremal family
 
-Canonical analytic proof:
-
-`docs/fixed_regular_extremal_theorem_2026-08-13.md`
-
-Executable aggregate:
-
-`causal_model/extremal_open_composition.py`
-
-For every `m>=1`, the same fixed four-symbol system/grammar family has
+`fixed_regular_grammar_relay.py` and `extremal_open_composition.py` realize, for every `m>=1`,
 
 \[
 |P_C|=2,
-\qquad
-|P_O|=2^{m+1},
-\qquad
-K_O-K_C=m,
+\qquad |P_O|=2^{m+1},
+\qquad K_O-K_C=m,
 \]
 
-with one newly legal action, one-state grammar schemas independent of `m`, bounded local state/message alphabets, pairwise radius-one dynamics, degree at most three, tree topology, focal/exterior cut one, and worst canonical access
+under one fixed four-symbol alphabet and one newly legal primitive action. Local state/message alphabets are bounded, dynamics are radius-one, maximum degree is three, topology is a tree, focal/exterior cut is one, and selected-coordinate access is
 
 \[
 2\lceil\log_2m\rceil+2.
 \]
 
-It saturates finite-domain response-memory capacity. Together with the generic bounded-local causal-cone lower bound, its access is order-optimal in `m`.
+## 4. Chain and resource portability
 
-This construction lies inside both the one-state closure theorem and the corrected globally-new-symbol class.
+### Terminal exact memory
 
-## 4. What the current theory does **not** say
+`terminal_grammar_portability.py` proves that for valid globally-new-symbol grammar chains,
 
-- arbitrary mutation of a grammar automaton does not necessarily refine its canonical grammar-aware quotient;
-- a smaller canonical open quotient does not mean a closed interface is unusable—it may remain an exact but nonminimal refinement;
-- bounded degree, sparse/tree topology, or cut width one does not imply a small dynamic causal blanket;
-- passing finite replay does not prove a quantified analytic theorem or validate an observed ecosystem.
+\[
+K_{\rm uniform}=\log_2|P_{\rm terminal}|.
+\]
 
-## 5. Companion packages
+The same terminal labels realize one `ConservativeMacroSchema` at every stage.
 
-### Identifiability
+### Retention and stochastic update information
 
-```python
-import causal_model.identifiability_companion as rach_id
-```
+`portability_adaptation_tradeoff.py` uses the strong form
 
-Delayed exposure, adaptive finite-evidence no-go, candidate-family agreement, and related epistemic results remain separate from the first-paper structural spine.
+\[
+I(E;C)+I(E;U\mid C)
+\ge
+m-\sum_jh_2(\varepsilon_j).
+\]
 
-### Approximate robustness
+This already allows randomized/noisy updates. A model-specific mechanism enters by proving an upper bound on `I(E;U|C)`.
 
-`approximate_addressability.py` gives the Fano lower bound companion. It is not yet an approximate/stochastic portability theorem.
+### Boundary time and staged deadlines
 
-### Compatibility aggregate
+`retention_boundary_time_tradeoff_2026-08-14.md` converts update information into a finite-boundary time lower bound. In the fixed-regular relay, one selected query is `Theta(log m)` while exact full-interface installation across the focal cut is `Omega(m)`.
 
-`current_theory.py` remains a backward-compatible import surface, not the research entrance for new work.
+`staged_materialization_prefix_2026-08-14.md` adds exposure deadlines. In the exact binary/power-of-two subclass the prefix inequalities are necessary and sufficient, so eventual shared memory and online installation schedule are distinct resources.
 
-### Legacy / replacement
+## 5. Ecological structural package
 
-Experimental-design branches remain executable but outside the structural novelty spine. Non-nested replacement/rewiring is centered in `zuizui0223/mltr`.
+These modules are explicit theorem surfaces rather than imports added to the already broad `portability_core` facade.
 
-## 6. Workflow discipline
+### Saturation blanket
 
-Analytic proof documents and finite certificates serve different roles. Every active result must state its exact semantic domain and grammar assumptions, include fail-closed counterexamples where appropriate, and preserve the July v1 replay.
+`ecological_saturation_blanket.py`
 
-The #163 correction is the model: a green CI result does not rescue an over-broad theorem statement when a mathematical counterexample exists.
+For guild abundance `N_g`, response threshold `L_g`, and non-negative colonization increments,
+
+\[
+Z_g=\min(L_g,N_g)
+\]
+
+forms an exact dynamic blanket with
+
+\[
+|Z|=\prod_g(L_g+1)
+\]
+
+states independent of abundance capacities. The key structural property is that saturated response fibers are forward-invariant under the legal colonization grammar.
+
+Opening one depletion action breaks fiber descent and can restore all hidden abundance states.
+
+### Changing-domain capacity portability
+
+`ecological_capacity_portability.py`
+
+Different abundance domains with different capacity vectors `M` factor to the same capped macro-domain and the same transition
+
+\[
+Z'_g=\min(L_g,Z_g+d_g).
+\]
+
+This is a changing-domain factor-map theorem, not a same-domain partition reuse theorem.
+
+### Bounded disturbance grammar
+
+`budgeted_depletion_blanket.py`
+
+With threshold `L` and at most `D` future depletion events, the exact initial interface has
+
+\[
+|P_{\rm initial}|=L+D+1.
+\]
+
+Thus the exact abundance cap equals the response threshold plus maximum legal future downward reach. `D=0` gives irreversible saturation; `D=M-L` gives the full abundance state.
+
+## 6. Companion and legacy packages
+
+`identifiability_companion` remains the epistemic package for delayed exposure, adaptive finite-evidence no-go, and candidate-mechanism uncertainty.
+
+`approximate_addressability.py` remains the finite Fano robustness substrate. The newer stochastic information-flow statement belongs to the portability resource layer above; a model-specific stochastic ecological mechanism is still future work.
+
+`current_theory.py` remains a compatibility aggregate, not the preferred research entrance. Experimental-design branches remain legacy. Non-nested replacement/rewiring remains centered in `zuizui0223/mltr`.
+
+## 7. Workflow discipline
+
+Analytic proofs and finite certificates remain separate evidence layers. A green workflow does not rescue an over-broad theorem statement; #163 remains the canonical example. New work must state its semantic domain, grammar, resource contract, and scope boundary explicitly and preserve the July replay.
 
 ## Navigation
 
-- [Fixed-regular extremal theorem](fixed_regular_extremal_theorem_2026-08-13.md)
-- [One-state closure converse](action_grammar_closure_converse_2026-08-13.md)
-- [Corrected multi-state closure converse](grammar_expansion_closure_converse_2026-08-13.md)
-- [General interface reuse theorem](grammar_interface_reuse_2026-08-13.md)
-- [Research priorities](research_priorities.md)
-- [Theorem registry](theorem_registry.md)
-- [Legacy shelf](../legacy/README.md)
+- `fixed_regular_extremal_theorem_2026-08-13.md`
+- `action_grammar_closure_converse_2026-08-13.md`
+- `grammar_expansion_closure_converse_2026-08-13.md`
+- `grammar_interface_reuse_2026-08-13.md`
+- `terminal_grammar_portability_2026-08-13.md`
+- `retention_boundary_time_tradeoff_2026-08-14.md`
+- `staged_materialization_prefix_2026-08-14.md`
+- `ecological_saturation_blanket_2026-08-14.md`
+- `ecological_capacity_portability_2026-08-14.md`
+- `budgeted_depletion_blanket_2026-08-14.md`
+- `research_priorities.md`
+- `theorem_registry.md`
