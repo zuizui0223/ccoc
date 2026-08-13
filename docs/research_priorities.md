@@ -67,36 +67,57 @@ that extra future tests split a quotient are not novelty claims.
 The strengthened family has
 
 \[
-|P_j|=2\quad\forall j,
-\qquad
-|P_U|=2,
+|P_C|=2,
 \qquad
 |P_O|=2^{m+1},
 \qquad
-\iota_{\rm new}=m.
+\iota_{\rm new}=m,
 \]
 
-`iota_new=m` saturates the finite-domain upper bound. Only `fire` is newly legal;
-`0/1` routing and `tick` already operate on the closed side.
+and `iota_new=m` saturates the finite-domain upper bound.
 
-A centralized unlock construction with this qualitative effect is elementary and
-is **not** firstness-bearing by itself.
+The strongest construction now uses the **same one-state finite prefix grammar for
+every system size**:
+
+\[
+L_C=\{0,1,\mathsf{tick}\}^{*},
+\qquad
+L_O=\{0,1,\mathsf{fire},\mathsf{tick}\}^{*}.
+\]
+
+Both grammars use the common four-symbol action alphabet and one grammar state;
+opening adds exactly the `fire` transition. The construction works for every
+integer `m>=1`, not only powers of two. The closed result is proved for the entire
+infinite regular language by a pulse-free invariant rather than finite word-list
+enumeration.
+
+A centralized unlock construction with this qualitative effect remains elementary
+and is **not** firstness-bearing by itself.
 
 ### 2.4 Bounded-local relay
 
 The explicit relay simultaneously has:
 
 - primitive alphabet `{0,1,fire,tick}`;
+- one-state closed and open grammar schemas independent of `m`;
+- no `m`-dependent legal future-word list in the theorem statement;
+- arbitrary positive `m`;
 - bounded local state/message alphabets;
 - pairwise radius-one dynamics;
 - maximum degree three;
-- `O(log m)` causal access;
-- exact `2 log2(m)+2` query length in the declared selector-plus-return
-  architecture;
+- tree interaction topology;
+- exact worst canonical query length
+  `2 ceil(log2(m)) + 2` in the balanced arbitrary-size selector-plus-return
+  construction;
 - order-optimal logarithmic access in the broader bounded-local causal-cone class.
 
+For old power-of-two canonical probes, the fixed-grammar totalization is checked
+against the historical addressed relay and preserves its trace/final
+microconfiguration. Historical CORE replay semantics are unchanged.
+
 **Status:** the only remaining conditional firstness candidate is this simultaneous
-extremal/local resource package.
+extremal/local resource package. The fixed-grammar strengthening removes hidden
+construction caveats; it does not create a new automata-theory novelty claim.
 
 ### 2.5 Positive and companion results
 
@@ -124,7 +145,8 @@ Do not spend novelty budget on:
 9. repeated fixed modules or uniform modular synthesis;
 10. fixed-input synthesis, bounded fanout, or delayed universal modules in
     isolation;
-11. generic finite-speed/local causal-cone bounds.
+11. regular-language/input restriction or one-state grammar descriptions;
+12. generic finite-speed/local causal-cone bounds.
 
 Hartmanis--Stearns is direct ancestry for broad reduction/realization
 noncommutation. Kim--Newborn and the interacting-FSM literature establish
@@ -135,7 +157,7 @@ for the distinct tail-synthesis problem.
 
 ## 4. Priority 1 — finish the H1–H4 primary compiler gate
 
-Issue #122 is now the main research gate.
+Issue #122 remains the main historical research gate.
 
 A classical full-language compiler is decisive only if it jointly supplies:
 
@@ -146,7 +168,8 @@ A classical full-language compiler is decisive only if it jointly supplies:
 
 If H1–H4 hold with comparable overhead, a bounded-local implementation of the
 centralized CCOC seed can be obtained classically and the relay's **existence**
-novelty is demoted. The relay remains a transparent extremal construction.
+novelty is demoted. The explicit fixed-grammar arbitrary-size relay remains a
+transparent extremal construction.
 
 ### Primary acquisition routes are already fixed
 
@@ -189,8 +212,8 @@ The manuscript must distinguish:
   comparison;
 - **classical ancestry:** contextual minimization, noncommutation, modular
   synthesis;
-- **conditional candidate:** simultaneous extremal one-action + bounded-local
-  realization;
+- **conditional candidate:** simultaneous extremal one-action + fixed-grammar
+  bounded-local realization;
 - **fallback:** relay as explanatory sharp construction if #122 subsumes its
   existence.
 
@@ -216,13 +239,17 @@ from generic coding or locality lemmas.
 Go beyond approximate addressability. Characterize when one finite
 approximate/stochastic macro schema remains portable as the legal composition
 grammar expands, or derive a nontrivial memory/error tradeoff for portability.
+Generic contraction/small-gain approximate abstraction alone is not a CCOC novelty
+target.
 
 ### 6.4 Ecological structural theorem
 
 Start from a mathematically specified ecological composition class—colonization,
 dispersal, interaction-network, or boundary-coupling constraints—and **derive**
 addressability lower bounds or finite-blanket upper bounds. Merely renaming latent
-bits as species or colonists is not enough.
+bits as species or colonists is not enough. In particular, small physical cut
+width, sparse topology, acyclicity, or low treewidth alone cannot imply a small
+exact dynamic blanket: the relay already separates those notions.
 
 ## 7. Explicit non-priorities
 
@@ -232,6 +259,7 @@ Until #122/#137 or the manuscript blocker moves, do not prioritize:
 - another partition defect/accounting identity;
 - more reset/panel/robustness variants;
 - another toy adaptive no-go;
+- generic contraction/small-gain abstraction as a standalone CCOC theorem;
 - generic literature/mirror searching for already located primary sources;
 - replacement/rewiring transport inside CCOC;
 - empirical ecological inference in this theorem repository.
