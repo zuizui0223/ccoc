@@ -67,6 +67,37 @@ More importantly, the library's **Web複写サービス** is available to anyone
 Thus this paper is no longer an `unrecovered web PDF` blocker. It is an
 **actionable primary-copy request**.
 
+### Current cost and payment contract
+
+The library's current Web-copy schedule (revised October 2025) gives postal-copy
+charges for ordinary library books/journals/newspapers of:
+
+- black-and-white: **30 yen per copied sheet**;
+- color: **100 yen per copied sheet**;
+- plus actual postage;
+- plus a **100-yen dispatch/handling charge for up to 50 sheets**, with another
+  100 yen for each additional block of 50 sheets;
+- plus communication cost only when a postal rather than email fee notice is
+  required.
+
+Payment is **prepaid**. After the copy desk has determined the actual number of
+copied sheets, it sends the sheet count and total charge by email. Payment can be
+made through a post office/financial institution and online banking is accepted;
+the copy work and postal dispatch start after payment is confirmed.
+
+The target paper spans 17 journal pages (`63–79`), but the exact bill must not be
+precomputed from 17 because physical copy-sheet count, binding/layout, and any
+library handling decision are only known after the library inspects the source.
+
+### Copyright scope
+
+The library's current copyright guidance states that, for a **back issue of a
+periodical after the relevant publication interval has elapsed, an individual
+article may be copied in full** for research use, one copy per requester, subject
+to the library's preservation/copyright checks. Therefore requesting pp. 63–79 as
+one complete 1972 article is consistent with the service's declared copy scope;
+the library still makes the final source-condition and copyright determination.
+
 ## 4. Exact request metadata
 
 Use the following request fields so the library does not need to infer the target:
