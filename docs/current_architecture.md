@@ -2,14 +2,15 @@
 
 ## Purpose
 
-CCOC now separates six questions:
+CCOC now separates seven questions:
 
 1. what is the exact response interface for one declared future grammar;
 2. when does opening force refinement;
 3. when can a chosen closed interface still be reused;
 4. what memory/update/boundary-time resources are required across openings;
 5. when can one exact macro-law survive changing semantic domains;
-6. which explicit ecological structures create or destroy such finite blankets.
+6. which ecological structures create or destroy finite blankets;
+7. when exact stochastic non-portability can still admit a finite-horizon approximate portable macro.
 
 The July v1 theorem IDs remain reproducibility anchors. Post-reopening results strengthen the research surface without rewriting those historical IDs.
 
@@ -21,7 +22,7 @@ Preferred historical entrance:
 import causal_model.portability_core as rach
 ```
 
-The v1 spine remains exact grammar-aware interfaces, cross-grammar obstruction, bounded-local relay sharpness, and conservative positive portability.
+The v1 spine remains exact grammar-aware interfaces, cross-grammar obstruction, bounded-local relay sharpness, and conservative positive portability. Newer converse, resource, and ecological modules are explicit theorem surfaces rather than automatically expanding this already broad facade.
 
 ## 2. Exact converse and reuse layers
 
@@ -67,7 +68,7 @@ The same terminal labels realize one `ConservativeMacroSchema` at every stage.
 
 ### Retention and stochastic update information
 
-`portability_adaptation_tradeoff.py` uses the strong form
+`portability_adaptation_tradeoff.py` gives
 
 \[
 I(E;C)+I(E;U\mid C)
@@ -75,73 +76,137 @@ I(E;C)+I(E;U\mid C)
 m-\sum_jh_2(\varepsilon_j).
 \]
 
-This already allows randomized/noisy updates. A model-specific mechanism enters by proving an upper bound on `I(E;U|C)`.
+Randomized/noisy updates are therefore already covered at the information-flow level. A mechanism-specific theorem enters by bounding or constructing `I(E;U|C)`.
 
 ### Boundary time and staged deadlines
 
-`retention_boundary_time_tradeoff_2026-08-14.md` converts update information into a finite-boundary time lower bound. In the fixed-regular relay, one selected query is `Theta(log m)` while exact full-interface installation across the focal cut is `Omega(m)`.
+`retention_boundary_time_tradeoff_2026-08-14.md` converts update information into finite-boundary time. In the fixed-regular relay, one selected query is `Theta(log m)` while exact full-interface installation across the focal cut is `Omega(m)`.
 
 `staged_materialization_prefix_2026-08-14.md` adds exposure deadlines. In the exact binary/power-of-two subclass the prefix inequalities are necessary and sufficient, so eventual shared memory and online installation schedule are distinct resources.
 
-## 5. Ecological structural package
-
-These modules are explicit theorem surfaces rather than imports added to the already broad `portability_core` facade.
+## 5. Deterministic ecological structural package
 
 ### Saturation blanket
 
-`ecological_saturation_blanket.py`
-
-For guild abundance `N_g`, response threshold `L_g`, and non-negative colonization increments,
+`ecological_saturation_blanket.py` derives
 
 \[
 Z_g=\min(L_g,N_g)
 \]
 
-forms an exact dynamic blanket with
+as an exact dynamic blanket under non-negative guild colonization. Its state count
 
 \[
-|Z|=\prod_g(L_g+1)
+\prod_g(L_g+1)
 \]
 
-states independent of abundance capacities. The key structural property is that saturated response fibers are forward-invariant under the legal colonization grammar.
-
-Opening one depletion action breaks fiber descent and can restore all hidden abundance states.
+is independent of abundance capacities because saturated response fibers are forward-invariant.
 
 ### Changing-domain capacity portability
 
-`ecological_capacity_portability.py`
-
-Different abundance domains with different capacity vectors `M` factor to the same capped macro-domain and the same transition
-
-\[
-Z'_g=\min(L_g,Z_g+d_g).
-\]
-
-This is a changing-domain factor-map theorem, not a same-domain partition reuse theorem.
+`ecological_capacity_portability.py` shows that distinct abundance domains with different capacity vectors factor to one common capped macro-domain and the same capacity-free transition law.
 
 ### Bounded disturbance grammar
 
-`budgeted_depletion_blanket.py`
-
-With threshold `L` and at most `D` future depletion events, the exact initial interface has
+`budgeted_depletion_blanket.py` shows that if at most `D` future depletion events remain legal, then
 
 \[
 |P_{\rm initial}|=L+D+1.
 \]
 
-Thus the exact abundance cap equals the response threshold plus maximum legal future downward reach. `D=0` gives irreversible saturation; `D=M-L` gives the full abundance state.
+The needed exact abundance cap is response threshold plus maximum legal future downward reach.
 
-## 6. Companion and legacy packages
+## 6. Stochastic ecological package
+
+### Exact controlled-Markov saturation portability
+
+`stochastic_ecological_portability.py`
+
+If non-negative colonization increments are generated from action-specific laws
+
+\[
+Q_a(D\mid Z)
+\]
+
+that depend only on capped guild state, then
+
+\[
+Z'=\min(L,Z+D)
+\]
+
+induces one exact stochastic macro kernel independent of hidden oversaturation and independent of capacity. The same stochastic macro law is portable across changing abundance domains.
+
+The same module gives the stochastic depletion boundary. Any depletion probability `p>0` breaks exact saturation lumping; `N=L` and `L+1` have one-step response rows at TV distance `p`, so any common one-step row incurs at least `p/2` worst-case TV error. Repeated attempts distinguish all abundances, restoring `M+1` exact open classes.
+
+### Continuous-time rare disturbance
+
+`continuous_time_depletion_reach.py`
+
+For a constant total depletion rate `mu`, exact complexity is `L+1` at `mu=0` and `M+1` for every `mu>0`. The threshold-pair event gap is
+
+\[
+\mu t e^{-\mu t},
+\]
+
+maximized at `t=1/mu` with value `1/e`.
+
+### Per-capita mortality
+
+`per_capita_mortality_reach.py`
+
+Under independent per-capita mortality, `N_t|N_0=n` is binomial with survival probability
+
+\[
+q=e^{-\mu t}.
+\]
+
+Every positive rate restores full exact abundance distinguishability. The threshold-pair gap
+
+\[
+Lq^L(1-q)
+\]
+
+is maximized at `q=L/(L+1)`, giving a rate-adapted informative horizon.
+
+### Positive finite-horizon approximate portability
+
+`finite_horizon_stochastic_saturation.py`
+
+Exact non-portability does not force finite-horizon approximate non-portability. Across arbitrarily large capacities, one `L+1`-state saturation macro has worst saturated path-TV error
+
+\[
+1-e^{-\mu T}
+\]
+
+for the constant-rate depletion clock and
+
+\[
+1-e^{-\mu LT}
+\]
+
+for per-capita mortality. Exact response state count may grow as `M+1` while approximate macro size/error remain capacity-independent.
+
+This is the first completed stochastic macro-dynamics package in CCOC. Additional one-guild mortality variants are not an active target.
+
+## 7. Companion and legacy packages
 
 `identifiability_companion` remains the epistemic package for delayed exposure, adaptive finite-evidence no-go, and candidate-mechanism uncertainty.
 
-`approximate_addressability.py` remains the finite Fano robustness substrate. The newer stochastic information-flow statement belongs to the portability resource layer above; a model-specific stochastic ecological mechanism is still future work.
+`approximate_addressability.py` remains the finite Fano substrate. Its role is now complemented by the constructed stochastic ecological macro above rather than standing as the only approximate result.
 
 `current_theory.py` remains a compatibility aggregate, not the preferred research entrance. Experimental-design branches remain legacy. Non-nested replacement/rewiring remains centered in `zuizui0223/mltr`.
 
-## 7. Workflow discipline
+## 8. Historical novelty gate
 
-Analytic proofs and finite certificates remain separate evidence layers. A green workflow does not rescue an over-broad theorem statement; #163 remains the canonical example. New work must state its semantic domain, grammar, resource contract, and scope boundary explicitly and preserve the July replay.
+Issue #122 remains the main first-paper historical gate. The concrete acquisition/extraction instructions are retained on `main` in
+
+`docs/primary_source_request_handoff_2026-08-13.md`.
+
+H1–H4 must be decided from primary construction pages, not titles or abstracts.
+
+## 9. Workflow discipline
+
+Analytic proofs and finite certificates remain separate evidence layers. A green workflow does not rescue an over-broad theorem statement; #163 remains the canonical example. New work must state semantic domain, grammar, resource/error contract, and scope boundary explicitly and preserve the July replay.
 
 ## Navigation
 
@@ -155,5 +220,10 @@ Analytic proofs and finite certificates remain separate evidence layers. A green
 - `ecological_saturation_blanket_2026-08-14.md`
 - `ecological_capacity_portability_2026-08-14.md`
 - `budgeted_depletion_blanket_2026-08-14.md`
+- `stochastic_ecological_portability_2026-08-14.md`
+- `continuous_time_depletion_reach_2026-08-14.md`
+- `per_capita_mortality_reach_2026-08-14.md`
+- `finite_horizon_stochastic_saturation_2026-08-14.md`
+- `primary_source_request_handoff_2026-08-13.md`
 - `research_priorities.md`
 - `theorem_registry.md`
