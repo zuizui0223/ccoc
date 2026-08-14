@@ -26,7 +26,13 @@ CiNii Journals records *Proceedings of the IEEE* under NCID `AA00783901` with ex
 - Saitama University Library: volumes including `53-58`;
 - National Astronomical Observatory of Japan, Mizusawa VLBI Observatory: `56-100`.
 
-**Fastest route:** check local/institutional access to the Tohoku University holdings first; if the issue is not immediately available, use the affiliated/public-library ILL route to request **Vol. 56, No. 7, pp. 1219–1220**. The exact article pages, not the secondary abstract, are the evidence target.
+Tohoku University's current Engineering Library portal also lists **IEEE Xplore Digital Library** and explicitly includes *Proceedings of the IEEE* among its IEEE resources. A library notice identifies the physical *Proceedings of the IEEE* holding with the Research Institute of Electrical Communication library. This does not guarantee that the 1968 article is electronically licensed, but it makes the fastest check:
+
+1. search the exact title in institutional IEEE Xplore access;
+2. if unavailable electronically, check/request the RIEC physical backfile for Vol. 56, No. 7;
+3. only then use domestic ILL.
+
+The exact article pages **1219–1220**, not the secondary abstract, are the evidence target.
 
 ### Acquisition use
 
@@ -104,7 +110,7 @@ The primary gate should now be attacked in two lanes.
 
 ### Lane A — fastest H1 settlement
 
-1. Weiner–Hopcroft 1968 Proceedings short version, pp. 1219–1220 — **Tohoku local holding check first, then domestic ILL**;
+1. Weiner–Hopcroft 1968 Proceedings short version, pp. 1219–1220 — **Tohoku institutional IEEE Xplore -> RIEC physical backfile -> domestic ILL**;
 2. Weiner–Hopcroft report no. 61, including all three plates;
 3. Newborn–Arnold 1972, pp. 63–79.
 
