@@ -12,6 +12,7 @@ This is the canonical scope audit. Its purpose is to prevent a valid finite cert
 | **Sharpness witness** | One family attains a bound; it does not classify all families. |
 | **No-go theorem** | Quantified impossibility in a stated model/evidence class. |
 | **`UNRESOLVED`** | The theory deliberately does not classify the case. |
+| **Open candidate** | Finite benchmark/question exists but has not been promoted to a public theorem. |
 
 ## A. Portability core v1
 
@@ -158,15 +159,86 @@ This is the canonical scope audit. Its purpose is to prevent a valid finite cert
 - **Use:** Optimize or protect a protocol only after quotient, reset, coverage, and failure contracts are fixed.
 - **Do not claim:** These modules establish closure or portability by themselves.
 
-## E. Explicit unresolved region
+## E. Post-reopening exact converse and resource results
 
-A family remains `UNRESOLVED` when neither a finite update-consistent factorization nor an independently decoded, jointly realizable addressability product has been supplied. In particular, unconstrained non-nested replacement/rewiring, stochasticity, approximate portability, and composition-dependent candidate families are not implied by current results.
+The July registry IDs remain frozen provenance anchors; the following August results are explicit theorem surfaces rather than retroactive registry rewrites.
+
+### E1. Grammar expansion versus arbitrary grammar mutation
+
+- **One-state action expansion:** exact stable-refinement converse (`action_grammar_closure.py`).
+- **Globally-new-symbol multi-state expansion:** exact refinement/converse with frozen old action columns (`grammar_expansion_closure.py`).
+- **Arbitrary same-domain grammar mutation:** quotient relation may be equal, finer, coarser, or incomparable; reuse of the closed labeling has its own exact row-descent criterion (`grammar_interface_reuse.py`).
+- **Permanent correction:** the broad PR #162 monotonicity claim is false.
+
+### E2. Fixed-regular extremal family
+
+- **Status:** Sharpness / extremal construction.
+- **Modules:** `fixed_regular_grammar_relay.py`, `extremal_open_composition.py`.
+- **Claim:** For every `m>=1`, one fixed four-symbol setup and one newly legal primitive action have `|P_C|=2`, `|P_O|=2^(m+1)`, exact innovation `m`, degree at most three, cut one, and bounded local alphabets.
+- **Do not claim:** All bounded-local networks exhibit this inflation.
+
+### E3. Chain/resource portability
+
+- **Status:** Exact/quantitative theorems under declared resource models.
+- **Modules/docs:** `terminal_grammar_portability.py`, `portability_adaptation_tradeoff.py`, retention-boundary-time and staged-prefix results.
+- **Claim:** terminal memory, retained/update information, full-interface installation time, selected-query latency, and stage deadlines are distinct resources with proved inequalities/iff criteria in the stated subclasses.
+- **Do not claim:** The information-theoretic/scheduling substrate itself is new or that a single-trajectory cut bound applies automatically to counterfactual query families.
+
+## F. Post-reopening ecological/stochastic/spatial results
+
+### F1. Deterministic saturation and capacity portability
+
+- **Status:** Exact finite/changing-domain theorems in the declared guild model.
+- **Modules:** `ecological_saturation_blanket.py`, `ecological_capacity_portability.py`, `budgeted_depletion_blanket.py`.
+- **Claim:** non-negative colonization makes `Z_g=min(L_g,N_g)` exact; changing capacity domains can share one macro law; a remaining one-unit downward-reach budget `D` raises the exact cap to `L+D`.
+- **Do not claim:** Thresholding alone is exact when legal future dynamics can return hidden oversaturation to the response-sensitive region beyond the declared budget.
+
+### F2. Stochastic exact and finite-horizon approximate saturation
+
+- **Status:** Exact controlled-Markov theorem plus model-specific approximate portability theorems.
+- **Modules:** `stochastic_ecological_portability.py`, `continuous_time_depletion_reach.py`, `per_capita_mortality_reach.py`, `finite_horizon_stochastic_saturation.py`.
+- **Claim:** `Q_a(D|Z)` gives exact stochastic saturation portability; positive downward probability/rate can restore all exact abundance classes; nevertheless a fixed `L+1`-state macro has capacity-independent finite-horizon TV bounds in the declared depletion/mortality models.
+- **Do not claim:** Stochasticity or approximation remains globally `UNRESOLVED`; those July gaps are now partly solved in these explicit model classes.
+
+### F3. Hidden cross-guild coupling
+
+- **Status:** Exact criterion + sharp one-step approximate bound in the declared Bernoulli recruitment model.
+- **Module:** `cross_guild_stochastic_coupling.py`.
+- **Claim:** capped two-guild state is exact iff saturated-tail downstream hazard diameter `delta=0`; best single common row has worst TV error `delta/2`.
+- **Do not claim:** The elementary Bernoulli/TV calculation classifies arbitrary interaction networks.
+
+### F4. Spatial reachability
+
+- **Status:** Exact finite theorem.
+- **Module:** `spatial_dispersal_reachability.py`.
+- **Claim:** monotone directed spread reduces to distance-to-target plus unreachable; with at most `H` future spreads, the initial quotient has `min(D,H)+2` classes.
+- **Do not claim:** Arbitrary dispersal, extinction, state-dependent edges, or feedback networks reduce to the same distance summary.
+
+### F5. Feedback-network candidate
+
+- **Status:** Open candidate with finite nonreducibility benchmark, **not a public theorem**.
+- **Sources:** `experiments/feedback_network_nonreducibility.py`, `docs/feedback_network_candidate_triage_2026-08-14.md`.
+- **Claim currently allowed:** a five-state benchmark defeats a static distance/occupancy summary only after `spread -> turnover -> spread`.
+- **Do not claim:** a scalable feedback-memory theorem has been proved.
+
+## G. Current unresolved regions after hypothesis recovery
+
+The old July statement that “stochasticity and approximate portability are unresolved” is superseded by Section F in specific declared model classes.
+
+The genuinely open scientific questions currently retained by `docs/hypothesis_recovery_ledger_2026-08-14.md` are:
+
+1. scalable feedback-aware closure/portability beyond the finite PR #198 benchmark;
+2. an empirical application with sufficient transition/recruitment/movement information to identify a declared CCOC mechanism rather than merely fit associations.
+
+Arbitrary models outside the proved deterministic/stochastic/ecological/spatial subclasses remain `UNRESOLVED` unless another certificate applies.
 
 ## Review rule
 
 Every new public theorem statement must name one status above and state:
 
-1. finite domain and legal grammar;
-2. additional premise;
+1. finite/declared semantic domain and legal grammar;
+2. additional premise/resource/error contract;
 3. valid conclusion; and
 4. a sentence beginning **“Do not claim:”**.
+
+Novelty is a separate later adjudication. A correct theorem status does not by itself establish historical novelty.
