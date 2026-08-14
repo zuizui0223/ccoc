@@ -12,9 +12,31 @@ A same-title journal short version is bibliographically indexed as:
 
 Secondary indexing reproduces an abstract-style description of a general decomposition into identical two-state modules with fan-in/fan-out bounds independent of the number of states in the source machine. That description is a **lead only** and is not admitted as H1 evidence until the two original IEEE pages are read.
 
+### Domestic acquisition route
+
+CiNii Journals records *Proceedings of the IEEE* under NCID `AA00783901` with extensive Japanese holdings. Several holdings explicitly cover volume 56 issue 7 or all of volume 56, so the two-page H1 source can be requested domestically rather than waiting for a publisher download. Examples visible in the current catalogue include:
+
+- Tohoku University Engineering Library: `51-89`;
+- Tohoku University Research Institute of Electrical Communication Library: `51-103`;
+- Tohoku University Institute of Multidisciplinary Research for Advanced Materials Library: `51-58` (therefore volume 56 is included);
+- Kobe University Library for Maritime Sciences: `56(7-12)`;
+- Saga University Library: `56(7-12)`;
+- Tokyo Gakugei University Library: `56-82`;
+- Institute of Industrial Science Library, the University of Tokyo: `51-85`;
+- Saitama University Library: volumes including `53-58`;
+- National Astronomical Observatory of Japan, Mizusawa VLBI Observatory: `56-100`.
+
+Tohoku University's current Engineering Library portal also lists **IEEE Xplore Digital Library** and explicitly includes *Proceedings of the IEEE* among its IEEE resources. A library notice identifies the physical *Proceedings of the IEEE* holding with the Research Institute of Electrical Communication library. This does not guarantee that the 1968 article is electronically licensed, but it makes the fastest check:
+
+1. search the exact title in institutional IEEE Xplore access;
+2. if unavailable electronically, check/request the RIEC physical backfile for Vol. 56, No. 7;
+3. only then use domestic ILL.
+
+The exact article pages **1219–1220**, not the secondary abstract, are the evidence target.
+
 ### Acquisition use
 
-Request this two-page item together with Technical Report no. 61 whenever possible. The short paper may settle H1 faster; report no. 61 remains the preferred construction source for H2–H4, input distribution, designated outputs, timing, module count, and diagrams.
+Acquire this two-page item before or in parallel with Technical Report no. 61. The short paper may settle H1 quickly; report no. 61 remains the preferred construction source for H2–H4, input distribution, designated outputs, timing, module count, and diagrams.
 
 ### Admission rule
 
@@ -33,6 +55,22 @@ Bibliographic target:
 - authoritative bibliographic DOI route: `10.1109/FOCS.1967.19`
 
 This predecessor is not a substitute for the 1968 bounded-fan-in/fan-out result. Its value is narrower: it may expose the authors' explicit meaning of module interconnection, external input terminals, realization/equivalence, and designated outputs.
+
+### Domestic conference-record route
+
+CiNii Books records the complete 1967 IEEE conference record (335 pages; NCID `BA16385655`) at multiple Japanese libraries. Current listed holdings include:
+
+- Osaka University Science and Engineering Library;
+- Kansai University Library;
+- Kyushu University Science and Technology Library;
+- Kyoto University Research Institute for Mathematical Sciences Library;
+- Institute of Industrial Science Library, the University of Tokyo;
+- University of Tokyo Graduate School of Information Science and Technology / CS library;
+- Hiroshima University East Library.
+
+A separate in-house reproduction record (NCID `BA87672533`) is listed at Ibaraki University Library, Hitachi Branch.
+
+For ILL, request the conference record pages **233–239** by exact title/authors. This domestic route is now preferred over waiting for the IEEE electronic edition when only H2/H3 construction semantics are needed.
 
 ### Extraction priority
 
@@ -72,13 +110,13 @@ The primary gate should now be attacked in two lanes.
 
 ### Lane A — fastest H1 settlement
 
-1. Weiner–Hopcroft 1968 Proceedings short version, pp. 1219–1220;
+1. Weiner–Hopcroft 1968 Proceedings short version, pp. 1219–1220 — **Tohoku institutional IEEE Xplore -> RIEC physical backfile -> domestic ILL**;
 2. Weiner–Hopcroft report no. 61, including all three plates;
 3. Newborn–Arnold 1972, pp. 63–79.
 
 ### Lane B — H2/H3/H4 semantics
 
-1. Weiner–Hopcroft 1967 predecessor, pp. 233–239;
+1. Weiner–Hopcroft 1967 predecessor, pp. 233–239 — **domestic conference-record ILL first**;
 2. Ullman–Weiner 1969 construction pages;
 3. Hsieh–Tan–Newborn 1968, pp. 613–621;
 4. Le Van–van Houtte 1975 timing paper;
