@@ -1,6 +1,6 @@
 # CCOC hypothesis recovery source-coverage manifest — 2026-08-14
 
-> **Purpose:** document the actual reverse-recovery work used to decide whether the hypothesis inventory is ready for a final consolidation pass. This is not a novelty audit and does not claim that a repository search can prove historical scientific completeness outside the repository.
+> **Purpose:** document the actual reverse-recovery work used to decide whether the hypothesis inventory is ready for novelty adjudication. This is not a novelty audit and does not claim that a repository search can prove historical scientific completeness outside the repository.
 
 ## 1. Recovery target
 
@@ -36,7 +36,7 @@ This established the July `CORE/EXT/ID/LEGACY` inventory and the August post-v1 
 
 ### B. GitHub issues — complete repository issue-set pass
 
-The connector was used to search the **closed issue set** and the current open issue set. Scientific/theorem issues are mapped in:
+The connector was used to search both the **closed issue set** and the current open issue set. Scientific/theorem issues are mapped in:
 
 `docs/hypothesis_issue_recovery_index_2026-08-14.md`.
 
@@ -88,10 +88,11 @@ Repository search was run across multiple recovery phrases, including:
 - `future work` / `future theorem` / `future direction`;
 - `next scientific step` / `Next extension`;
 - `not proved` / `unproved` / `not yet`;
-- `remains open` / `remains future` / `remains separate`;
+- `remains open` / `remains future` / `remains separate` / `remains unknown`;
 - `separate strengthening` / `separate theorem` / `separate problem`;
 - `conjecture`;
 - `false` / correction-oriented terms;
+- `TODO`;
 - PR searches for `next theorem` and `outside this PR`.
 
 Targeted documents read include, among others:
@@ -105,10 +106,10 @@ Targeted documents read include, among others:
 - innovation capacity/local causal cone;
 - binary joint relay compilation;
 - early replaceability, failure-mode, known-truth, observation-envelope, minimum-panel, misspecification, multi-competitor, and robust-panel docs;
-- symbolic candidate lifting, nested/outer envelope stability, rational inclusion, all-look monotone inclusion, polyhedral motif compiler, and compiler-admitted all-look path;
+- symbolic candidate lifting, nested/outer envelope stability, rational inclusion, all-look monotone inclusion, exact all-look polyhedral admission, polyhedral motif compiler, and compiler-admitted all-look path;
 - early closure calculus and roadmap/freeze documents.
 
-These reads produced `REC-01`–`REC-50`, including rows that were missing from PR #201 because later architecture documents had bundled them too coarsely.
+These reads produced `REC-01`–`REC-51`, including rows that were missing from PR #201 because later architecture documents had bundled them too coarsely.
 
 ### G. Scientific module inventory — role reconciliation pass
 
@@ -127,8 +128,9 @@ Verifier/serialization/audit modules that instantiate one recovered evidence pre
 - `docs/hypothesis_recovery_corrections_2026-08-14.md` — false or over-broad proof inferences (`REC-34`–`REC-39`).
 - `docs/hypothesis_recovery_deferred_and_branch_audit_2026-08-14.md` — deferred strengthening and branch-only checks (`REC-40`, `REC-41`, `REC-43`, `REC-50`).
 - `docs/hypothesis_recovery_early_roadmap_2026-08-14.md` — abandoned controlled-generative validation plan (`REC-42`).
-- `docs/hypothesis_recovery_evidence_layer_2026-08-14.md` — de-bundled symbolic/all-look evidence mathematics (`REC-44`–`REC-49`).
+- `docs/hypothesis_recovery_evidence_layer_2026-08-14.md` — de-bundled symbolic/all-look evidence mathematics (`REC-44`–`REC-49`, `REC-51`).
 - `docs/hypothesis_issue_recovery_index_2026-08-14.md` — issue-to-hypothesis provenance map.
+- `docs/hypothesis_recovery_canonical_index_2026-08-14.md` — makes the base ledger plus these recovery appendices one canonical record.
 
 The IDs intentionally preserve historical distinctions even when multiple rows now collapse to one current theorem family.
 
@@ -144,11 +146,12 @@ The recovery pass demonstrates why the first PR #201 ledger was not enough by it
 - general `Delta_0` necessity as unproved rather than silently solved;
 - abandoned contraction/small-gain and stochastic-closure directions;
 - early controlled-generative validation plan;
-- separate search-coverage, observation-error, inhibition, conjunction, and compatibility failure hypotheses;
+- separate search-coverage, observation-error, inhibition, conjunction, compatibility, and vacuity failure hypotheses;
 - one-way simulation versus two-way response-faithfulness correction;
 - local-grammar versus global-control-alphabet correction;
 - four-symbol sufficiency versus unproved four-symbol minimality;
-- early symbolic candidate-space / outer-envelope / exact-inclusion / all-look compiler progression.
+- early symbolic candidate-space / outer-envelope / exact-inclusion / all-look compiler progression;
+- the exact single-polyhedron solver+inclusion admission theorem that preceded the finite-union compiler path.
 
 ## 5. Active, deferred, and historical are not synonyms
 
@@ -161,15 +164,19 @@ Examples such as autonomous local delay-gate compilation, arbitrary multi-valued
 
 HIST-H1–H4 remain historical-literature gates, not CCOC mathematical gaps.
 
-## 6. Remaining step before novelty can resume
+## 6. Consolidation status before novelty can resume
 
-The recovery pass is not yet declared final merely because this manifest exists. One final consolidation step is required:
+The canonical consolidation is now explicit in:
 
-1. merge the batch-2 recovery records after CI;
-2. fold the accepted `REC-*` rows into one canonical hypothesis ledger/index (or explicitly make the batch files normative appendices);
-3. verify that the canonical ledger no longer says “only open” in a way that hides recovered **deferred/non-priority** questions;
-4. freeze the resulting recovery SHA;
-5. only then resume row-by-row novelty adjudication.
+`docs/hypothesis_recovery_canonical_index_2026-08-14.md`.
+
+That index declares the base PR #201 ledger plus all accepted `REC-*` appendices normative and separates active, deferred, abandoned, refuted/corrected, legacy/evidence, and historical categories.
+
+The remaining procedural gate is therefore:
+
+1. merge this recovery batch after the final CI head is green;
+2. record the resulting immutable recovery SHA;
+3. only then resume row-by-row novelty adjudication.
 
 ## 7. Completeness claim boundary
 
