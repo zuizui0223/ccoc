@@ -1,10 +1,23 @@
 # Research priorities — 2026-08-14 post-bridge/cleanup decision
 
-> **Status:** canonical agenda after the exact converse/reuse, chain/resource, deterministic ecological, stochastic ecological, hidden cross-guild, spatial reachability, mechanism-to-data bridge, and first infrastructure-cleanup passes.
+> **Status:** canonical agenda after the exact converse/reuse, chain/resource, deterministic ecological, stochastic ecological, hidden cross-guild, spatial reachability, mechanism-to-data bridge, first infrastructure-cleanup pass, and hypothesis-recovery pass.
+
+## Hard ordering rule — hypothesis recovery before novelty
+
+`docs/hypothesis_recovery_ledger_2026-08-14.md` is now the control document for scientific-question recovery.
+
+Before any novelty statement is finalized:
+
+1. every scientific/evidential hypothesis posed in the repository must be represented in the ledger or explicitly excluded as implementation-only;
+2. each recovered row must have a current status (`PROVED`, `REFUTED`, `CORRECTED`, `CONDITIONAL`, `OPEN`, `LEGACY`, or historical-gate status);
+3. false intermediate conjectures and scope corrections must remain visible rather than being overwritten by their replacements;
+4. only after the recovery ledger is accepted as complete may prior art be adjudicated row by row.
+
+Accordingly, the existing novelty/prior-art documents are **provisional inputs**, not final novelty decisions, until this recovery gate is closed. Do not resume broad novelty synthesis before then.
 
 ## Governing decision
 
-CCOC no longer has one active task. It has a stable first-paper core, established follow-up mathematics, an application/falsification bridge, a historical novelty gate, manuscript-transfer work, and compatibility/cleanup debt.
+CCOC no longer has one active task. It has a stable first-paper core, established follow-up mathematics, an application/falsification bridge, a historical comparison gate, manuscript-transfer work, compatibility/cleanup debt, and one open feedback-network candidate.
 
 The first-paper mathematical spine remains
 
@@ -100,7 +113,7 @@ Thus a long finite corridor and a true barrier can be equivalent under a short f
 
 ### 8. Mechanism-to-data bridge
 
-`docs/mechanism_to_data_bridge_2026-08-14.md` is now established claim/application control.
+`docs/mechanism_to_data_bridge_2026-08-14.md` is established claim/application control.
 
 It specifies observable and falsification contracts for:
 
@@ -117,11 +130,11 @@ It also distinguishes `SUPPORTED AT CURRENT RESOLUTION`, `APPROXIMATE`, `FALSIFI
 
 Actual data fitting, uncertainty estimation, model selection, and case-study claims remain outside the theorem core.
 
-## Novelty discipline
+## Novelty discipline — deferred until the hypothesis ledger is accepted
 
-Do not spend novelty budget on fixed-grammar minimization, right congruences, common refinement, generic partition algorithms, Fano, finite-alphabet entropy, deadline scheduling, threshold aggregation, lumpability, Poisson/binomial survival, Bernoulli TV calculations, shortest paths, or graph reachability by themselves.
+Do not currently finalize novelty language. The novelty audits already in `docs/` are retained as search/evidence notes only.
 
-The live first-paper firstness candidate remains the **simultaneous constrained extremal realization**. Historical firstness remains conditional on the H1--H4 compiler audit. The resource/ecological packages are substantive extensions but need separate prior-art gates before stronger historical novelty language.
+When recovery is accepted, novelty must be evaluated **per hypothesis/result row**, not by one top-level slogan. Classical ancestry of one ingredient is not enough to dismiss a conjunction, and proof of a theorem is not enough to establish historical novelty.
 
 ## Priority 1 — finish the H1--H4 historical compiler gate
 
@@ -143,23 +156,17 @@ The remaining manual repository-creation blocker is issue #141. Transfer must pi
 
 The generic theorem-to-data bridge is complete. The next application step should therefore be a **dedicated application package/repository with one declared biological mechanism family**, not more generic prose inside CCOC.
 
+Issue #199 currently records all three candidate application families as `UNIDENTIFIED` with the presently identified datasets because the needed transition/recruitment/movement layer is missing.
+
 Before creating such a package, choose an application that can actually observe or manipulate at least one of the theorem quantities (`L`, `D`, `mu`, `delta`, directed edges, `H`) and can distinguish `FALSIFIED` from `UNIDENTIFIED`.
 
 Do not add fitted data or empirical constants to the CCOC theorem registry.
 
 ## Priority 4 — only genuinely richer new ecology mathematics
 
-If new theory is pursued before/alongside an application, the target must add dynamics absent from the existing packages. A serious candidate is **bidirectional colonization/extinction coupled to nontrivial interaction-network feedback**, where the same interaction state changes both future reachability and downstream transition kernels.
+If new theory is pursued before/alongside an application, the target must add dynamics absent from the existing packages. The current candidate is **bidirectional colonization/extinction coupled to nontrivial interaction-network feedback**, where the same latent interaction state changes both future reachability and downstream transition kernels.
 
-A useful new theorem would have to show something not reducible to:
-
-- another abundance cap;
-- another one-way mortality/depletion clock;
-- another Bernoulli tail-diameter calculation;
-- another shortest-distance shell;
-- or a direct product of already-proved bounds.
-
-The target should expose a new closure/portability condition, a new failure mode, or a sharp tradeoff created specifically by feedback between movement, extinction, and interaction structure.
+PR #198 supplies only a five-state nonreducibility benchmark. It is **not yet a public theorem**. Promotion requires a scalable family theorem with a positive closure/portability condition and/or a matching lower-bound obstruction that cannot be reduced to existing distance, depletion, or one-step hazard results.
 
 ## Priority 5 — repository cleanup and compatibility migration
 
@@ -171,4 +178,4 @@ Do not bulk-delete specialized workflows: generic pytest excludes `legacy` tests
 
 ## Explicit non-priorities
 
-No new codebook families, partition-defect identities, panel/reset variants, same-domain quotient reformulations, capped-count special cases, additional one-guild mortality/depletion variants, elementary cross-guild Bernoulli variants, elementary shortest-path variants, generic Fano/channel lemmas, generic contraction/small-gain results, generic source searching, replacement/rewiring transport inside CCOC, empirical fitting inside the theorem core, or bulk deletion of historical replay workflows.
+No novelty finalization before hypothesis-recovery acceptance; no new codebook families, partition-defect identities, panel/reset variants, same-domain quotient reformulations, capped-count special cases, additional one-guild mortality/depletion variants, elementary cross-guild Bernoulli variants, elementary shortest-path variants, generic Fano/channel lemmas, generic contraction/small-gain results, generic source searching, replacement/rewiring transport inside CCOC, empirical fitting inside the theorem core, or bulk deletion of historical replay workflows.
