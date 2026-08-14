@@ -1,16 +1,15 @@
-# Research priorities — 2026-08-14 post-feedback theorem decision
+# Research priorities — 2026-08-14 post-feedback-forgetting decision
 
-> **Status:** canonical agenda after hypothesis recovery was pinned and the feedback program advanced from a five-state triage witness to scalable positive/negative theorem families.
+> **Status:** canonical agenda after hypothesis recovery was pinned and the feedback program advanced through scalable rank, bounded-type portability, evolving master types, and exact future-context forgetting.
 
 ## Ordering rules
 
-The repository-bounded hypothesis recovery is complete and pinned by
-`docs/hypothesis_recovery_pin_2026-08-14.md`. The canonical recovered record begins at
-`docs/hypothesis_recovery_canonical_index_2026-08-14.md`.
+The repository-bounded hypothesis recovery remains pinned by
+`docs/hypothesis_recovery_pin_2026-08-14.md`. Later theorem progress does not rewrite that historical recovery source SHA.
 
-Novelty work may now proceed **row by row**, but no global slogan such as “CCOC is new” or “CCOC is not new” is admissible before the publication-relevant rows and H1–H4 historical compiler gate are reconciled.
+Novelty may be adjudicated row by row, but no global novelty slogan is admissible before publication-relevant rows and the H1–H4 historical compiler gate are reconciled.
 
-The first-paper theorem spine is unchanged:
+The first-paper theorem spine remains unchanged:
 
 \[
 \text{exact response interface}
@@ -24,7 +23,7 @@ The first-paper theorem spine is unchanged:
 \text{positive/reuse boundary}.
 \]
 
-Post-v1 converse/resource/ecological/stochastic/spatial/feedback packages remain follow-up mathematics unless an explicit editorial decision changes the paper dependency graph.
+Feedback mathematics remains follow-up material unless an explicit editorial decision changes the paper dependency graph.
 
 ## Established mathematical packages
 
@@ -37,7 +36,7 @@ Post-v1 converse/resource/ecological/stochastic/spatial/feedback packages remain
 
 The #163 coarsening counterexample permanently blocks unconditional quotient-monotonicity claims for arbitrary grammar completion.
 
-### 2. Fixed-regular extremal open-composition family
+### 2. Fixed-regular extremal open composition
 
 For every `m>=1`, one fixed four-symbol grammar family has
 
@@ -57,11 +56,11 @@ with one newly legal primitive action, degree at most three, radius-one bounded-
 
 ### 3. Portability resource theorems
 
-The retention/update, finite-boundary time, and staged-prefix results separate retained information, post-opening update information, full-interface materialization time, selected-query latency, and exposure deadlines. Their information-theoretic ingredients are substrate rather than novelty claims.
+The retention/update, finite-boundary time, and staged-prefix results separate retained information, post-opening update information, full-interface materialization time, selected-query latency, and exposure deadlines.
 
 ### 4. Deterministic ecological structure
 
-`ecological_saturation_blanket.py`, `ecological_capacity_portability.py`, and `budgeted_depletion_blanket.py` establish exact compression from forward-invariant saturation fibers and bounded future downward reach. The required one-guild cap is response threshold plus maximum legal future downward reach.
+`ecological_saturation_blanket.py`, `ecological_capacity_portability.py`, and `budgeted_depletion_blanket.py` establish exact compression from forward-invariant saturation fibers and bounded future downward reach.
 
 ### 5. Stochastic ecological portability
 
@@ -69,130 +68,171 @@ The retention/update, finite-boundary time, and staged-prefix results separate r
 
 ### 6. Hidden cross-guild coupling
 
-`cross_guild_stochastic_coupling.py` shows that hidden saturated abundance remains relevant only through the downstream kernel it induces. The saturated-tail hazard diameter `delta` gives the exact one-step minimax common-macro error `delta/2`.
+`cross_guild_stochastic_coupling.py` shows that hidden saturated abundance remains relevant only through the downstream kernel it induces. The saturated-tail hazard diameter gives the sharp one-step minimax common-macro TV error `delta/2`.
 
 ### 7. Spatial reachability
 
-`spatial_dispersal_reachability.py` reduces arbitrary occupied-patch subsets to directed target distance. With at most `H` future spread actions, the initial exact quotient has `min(D,H)+2` states; unlimited futures restore dependence on full directed reachability depth.
+`spatial_dispersal_reachability.py` reduces arbitrary occupied-patch subsets to directed target distance. With at most `H` future spread actions, the initial exact quotient has `min(D,H)+2` states; unlimited futures restore dependence on full reachability depth.
 
-### 8. Feedback-network portability — now established in a delimited scalable class
+## Feedback-network program — now four established layers
 
-The former five-state-only gap is substantially closed by two theorem families.
+### 8. Addressable endogenous feedback rank — PR #204
 
-#### Negative scalable feedback rank — PR #204
+`feedback_gate_rank.py` proves that an explicit feedback cycle
 
-`feedback_gate_rank.py` derives addressability from an explicit endogenous-accessibility cycle rather than assuming readable hidden bits.
+\[
+\text{mode}
+\to
+\text{turnover-induced facilitator loss}
+\to
+\text{future spread accessibility}
+\]
 
-For `r` latent interaction modes, all `2^r` profiles have the same current output, facilitator/target counts, current effective accessibility graph, and static gate distance. Yet fixed-alphabet words
+can make `r` latent modes require exactly `r` bits even when all profiles share the same current graph, output, facilitator count, and target count.
+
+The fixed-alphabet query for one mode is
 
 \[
 \operatorname{addr}(i)
 \;\mathsf{spread}\;
 \mathsf{turnover}\;
-\mathsf{spread}
+\mathsf{spread}.
 \]
 
-decode each mode coordinate, so
+Deleting either causal arrow collapses the hidden-mode burden from `r` bits to zero.
+
+### 9. Bounded copy-anonymous type portability — PR #205
+
+`feedback_type_portability.py` proves that one interaction type has a canonical exact five-state quotient independent of physical replication `n`, despite reachable microstate count `2^(n+2)-2`.
+
+For fixed `q` types and arbitrary replication vector,
 
 \[
-\boxed{K_{\rm feedback}=r.}
+\boxed{|Q_{\rm macro}|=5^q}
 \]
 
-The first separating horizon is
+with one replication-independent transition table.
+
+### 10. Evolving master feedback types — PR #207
+
+`evolving_feedback_master_types.py` handles context-dependent response types
 
 \[
-\boxed{\lceil\log_2r\rceil+3.}
+\tau_c(m).
 \]
 
-Most importantly, deleting either causal arrow
+The exact stable object is the master signature
 
 \[
-\text{mode}\to\text{turnover-induced facilitator loss}
+\boxed{\tau^*(m)=(\tau_c(m))_{c\in C}.}
 \]
 
-or
+Under the declared contextual-feedback contract,
 
 \[
-\text{facilitator state}\to\text{future spread accessibility}
+(c,q,[m]_*)
 \]
 
-makes every latent profile future-response equivalent:
+is an exact dynamic interface. Duplicating micro-mode identities within one master signature across changing semantic domains does not change the macro law.
+
+The rotating family proves that bounded instantaneous type count is insufficient:
 
 \[
-\boxed{K_{\rm ablated}=0.}
+|T_c|=2\quad\forall c,
+\qquad
+R_*=2^r,
+\qquad
+K_{\rm initial}=r.
 \]
 
-Thus the rank is generated by the closed ecological feedback path, not merely by hidden-state cardinality.
-
-#### Positive bounded-type portability — PR #205
-
-`feedback_type_portability.py` gives the changing-domain counterpart. Within one copy-anonymous interaction type, arbitrary physical replication `n` has reachable microstate count
+The sharp full-profile exposure horizon is
 
 \[
-2^{n+2}-2,
+4r-1.
 \]
 
-but the canonical future-response quotient is exactly five states:
+### 11. Exact future-context forgetting — PR #208
 
-- empty-unreachable;
-- ready-resilient;
-- ready-fragile;
-- occupied-resilient;
-- occupied-no-recovery.
-
-The five-state transition table is independent of `n`. For a fixed number `q` of interaction types, arbitrary replication vectors therefore share one exact macro-law with
+`future_feedback_causal_forgetting.py` sharpens the master signature when ecological context evolution is autonomous:
 
 \[
-\boxed{|Q_{\rm macro}|=5^q,\qquad K=q\log_2 5.}
+c'=D(c,a).
 \]
 
-The physical state spaces may grow without bound while the macro domain and transition table remain unchanged.
+At current context `c`, retain only type distinctions in contexts still reachable from `c`:
 
-Together, the positive/negative pair identifies **future-response-distinct feedback type rank**, rather than raw gate count or raw network size, as the controlling structural quantity in these exact classes.
+\[
+\boxed{
+\tau_c^+(m)=
+(\tau_d(m))_{d\in\operatorname{Reach}^+(c)}.
+}
+\]
 
-### 9. Mechanism-to-data bridge
+Then
 
-`docs/mechanism_to_data_bridge_2026-08-14.md` remains the application-control layer. It distinguishes `SUPPORTED AT CURRENT RESOLUTION`, `APPROXIMATE`, `FALSIFIED`, and `UNIDENTIFIED`; absence of the necessary transition/recruitment/movement layer remains `UNIDENTIFIED`, not evidence for compression.
+\[
+(c,q,\tau_c^+(m))
+\]
 
-## Priority 1 — next feedback theorem only if it changes the structural boundary
+is an exact dynamic interface and future feedback rank is monotone non-increasing along every context edge.
 
-Do **not** add another feedback witness, another five-state variant, or another product of the two theorems above.
+An irreversible `r`-bit chain attains the sharp sequence
 
-The remaining serious feedback question is a broader class in which the response-equivalent feedback types themselves can **merge, split, or change membership over time** as ecological state changes.
+\[
+\boxed{r,r-1,\ldots,1,0}
+\]
 
-A worthwhile next theorem must identify a structural invariant controlling whether this dynamic feedback-type rank stays bounded. Candidate forms include:
+of canonical ready-slice feedback-memory bits. Leaving context `c` makes bit `b_c` exactly forgettable because no legal future can return to a context where it affects turnover or accessibility.
 
-- a finite evolving partition of physical gates whose blocks are preserved/coherently refined by every legal feedback action;
-- a bounded type-transition automaton whose induced accessibility/update maps close on a finite macrostate;
-- a lower-bound obstruction where legal dynamics generate unboundedly many future-response-distinct feedback types even though the instantaneous type count remains small.
+### Feedback principle now established
 
-A mere restatement of dynamic-interface factorization, permutation symmetry, ordinary lumpability, or generic semilattice aggregation is not enough.
+Within the proved deterministic classes, exact feedback memory is controlled by
+
+\[
+\boxed{
+\text{future-response-distinct interaction signatures that remain causally reachable}
+}
+\]
+
+rather than raw network size, raw hidden-mode count, or instantaneous type count.
+
+## Priority 1 — only the remaining genuinely harder feedback boundary
+
+Do not add another fixed-type, rotating-bit, or irreversible-chain witness.
+
+The remaining serious feedback case is where **context reachability itself depends on ecological macrostate and/or hidden interaction mode**. In that class the autonomous-context premise of PR #208 fails: two states with the same present context can have different future context cones because feedback changes which contexts become reachable.
+
+A worthwhile next theorem would need one of:
+
+- an exact state-dependent future-context closure operator with a finite fixed point;
+- a structural sufficient condition under which mode-dependent context reachability can still be summarized by a bounded interface;
+- or a lower-bound family showing that a small present context/type description generates unboundedly many future context cones.
+
+Do not merely restate generic partition refinement, ordinary lumpability, or the canonical all-word quotient.
 
 ## Priority 2 — real application / falsification
 
-Issue #199 remains the live empirical-identification problem. Choose a biological system that actually observes or manipulates transition, recruitment, disturbance, or directed movement well enough to instantiate at least one theorem quantity and distinguish `FALSIFIED` from `UNIDENTIFIED`.
-
-For the new feedback package specifically, a useful application must observe a cycle of the form
+Issue #199 remains the live empirical-identification problem. A useful feedback application must observe a causal cycle of the form
 
 \[
-\text{state/interaction}
+\text{interaction/state}
 \to
-\text{turnover or persistence change}
+\text{turnover/persistence change}
 \to
 \text{accessibility/movement change}
 \to
 \text{later response}.
 \]
 
-Static occurrence/suitability data alone cannot identify this mechanism.
+Static occurrence/suitability data alone remain `UNIDENTIFIED` for this mechanism.
 
 ## Priority 3 — H1–H4 historical compiler gate
 
-Issue #122/#185 remains the first-paper historical-realization gate. H1–H4 must be decided from primary construction pages, not abstracts, metadata, or failed retrieval. Do not restart broad modular-synthesis searching.
+Issue #122/#185 remains the first-paper historical-realization gate. H1–H4 must be decided from primary construction pages, not abstracts, metadata, or failed retrieval.
 
 ## Priority 4 — manuscript transfer
 
-Use `docs/manuscript_transfer_manifest_2026-08-14.md` and issue #192. The manuscript source pin must replay theorem registry, paper-core verification, and full pytest. Feedback theorems are follow-up material unless deliberately promoted later.
+Use `docs/manuscript_transfer_manifest_2026-08-14.md` and issue #192. Feedback theorems remain outside the first-paper dependency graph unless deliberately promoted later.
 
 ## Priority 5 — cleanup only when it removes real maintenance debt
 
@@ -200,4 +240,4 @@ Keep `tests.yml` as the generic non-legacy full-suite matrix. Specialized replay
 
 ## Explicit non-priorities
 
-No new codebook families, panel/reset variants, same-domain quotient reformulations, capped-count special cases, one-guild mortality variants, elementary Bernoulli coupling variants, elementary shortest-path variants, generic Fano/channel lemmas, generic contraction/small-gain theorems, generic symmetry/lumpability reformulations, additional feedback-gate witnesses, empirical fitting inside the theorem registry, or bulk deletion of historical replay workflows.
+No new codebook families, panel/reset variants, capped-count special cases, one-guild mortality variants, elementary Bernoulli coupling variants, elementary shortest-path variants, generic Fano/channel lemmas, generic contraction/small-gain theorems, generic symmetry/lumpability reformulations, additional fixed-feedback witnesses, empirical fitting inside the theorem registry, or bulk deletion of historical replay workflows.
