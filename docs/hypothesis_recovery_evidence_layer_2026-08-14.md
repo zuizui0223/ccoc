@@ -12,6 +12,7 @@
 | `REC-47` | Can a finite collection of exact inclusion checks certify inner⊆outer at every future sequential look? | **REFUTED AS AUTOMATIC; restricted all-look schema PROVED.** With fixed outer polyhedron, verified base inclusion, and inner updates that retain every base row while adding constraints, deterministic admission yields all-look `gamma=0`. | PR #18; `docs/online_monotone_polyhedral_inclusion.md` | Only admitted looks under the monotone rational-polyhedral update schema are covered. |
 | `REC-48` | Does exact SAT/UNSAT verification of caller-supplied `active` and `inactive` systems guarantee those systems really encode a motif and its complement? | **REFUTED; compiler solution PROVED for a finite tagged rational-polyhedral union.** Differently tagged overlapping cells require exact separation proofs; compiler-generated branch systems then enforce the active/inactive semantics. | PR #23; `docs/proof_carrying_polyhedral_motif_compiler.md` | Tags and declared union semantics are still supplied; nonlinear/integer/general Boolean complement compilation is outside scope. |
 | `REC-49` | Can the tagged finite-union motif compiler be integrated with the all-look inner/outer admission path while retaining exact solver/inclusion semantics and optional-stopping soundness? | **PROVED in the declared finite-union/rational setting.** Compiler-generated branch proofs plus fixed tagged union and monotone ambient inclusion yield all-look `beta=gamma=0`; with external all-look coverage, false decisive/stability risk is bounded by `alpha`. | PR #24; `docs/all_look_compiled_polyhedral_admission.md` | Does not establish statistical coverage, candidate-universe completeness, tag truth, or safety of bypassed manual-query looks. |
+| `REC-51` | Before the finite-union compiler existed, could exact rational solver proofs and exact inner⊆outer admission be bound to the **same single-polyhedron sequential snapshot**, so solver-semantic and inclusion errors simultaneously satisfy `beta=gamma=0` at every admitted look? | **PROVED.** A shared nonempty retained system is enforced across motif queries in each cell; exact SAT/UNSAT proofs and the monotone inclusion gate are jointly checked before constructing the paired snapshot. | PR #19; `docs/exact_all_look_polyhedral_extension_admission.md` | Applies only to rational non-strict conjunction systems, fixed outer envelope, base-row-preserving inner updates, and looks routed through the admission gate. Motif active/inactive semantic encoding remained a separate assumption, later addressed by `REC-48/49`. |
 
 ## What remains engineering/provenance rather than a separate scientific hypothesis
 
@@ -29,6 +30,7 @@ finite retained sets
 → nested / outer-envelope scope stability
 → exact inclusion certificates
 → all-look inclusion schema
+→ exact single-polyhedron solver+inclusion admission
 → semantics-safe motif query compiler
 → all-look compiler-admitted finite-union path
 ```
