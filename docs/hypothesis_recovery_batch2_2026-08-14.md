@@ -29,6 +29,12 @@ A row is included when the repository history contains a materially distinct sci
 | `REC-17` | Can a known-truth finite observation channel be exactly self-calibrated for false-invariant / false-exclusion probability under declared sensitivity/false-positive rates? | **PROVED / LEGACY EVIDENCE DESIGN.** | PR #6 and associated observation-envelope modules | Conditional self-calibration, not empirical validation or candidate-universe coverage. |
 | `REC-18` | Do local contraction / small-gain assumptions yield an approximate finite-radius causal blanket or bounded truncation error? | **DEFERRED / NOT PURSUED AS A CCOC THEOREM.** | unmerged PR #158 `next_math_candidate_triage_2026-08-13.md` | The mathematical direction was judged sensible but left outside the CCOC theorem program; later stochastic portability does not prove this generic contraction statement. |
 | `REC-19` | Can data or solver output be converted end-to-end into a retained completion/mechanism family and then into a candidate-safe open-law verdict under explicit coverage assumptions? | **PARTIALLY PREPARED, NOT IMPLEMENTED END-TO-END.** | `docs/promotion_calculus.md` “Evidence bridge” target; later `mechanism_to_data_bridge_2026-08-14.md` | The later bridge specifies observable/falsification contracts but intentionally does not infer grammar/completion families from empirical data. Operationally this now sits under `HYP-J01`. |
+| `REC-20` | Do biologically structured non-product composition constraints beyond fixed richness—e.g. forbidden guild combinations, trophic feasibility, occupancy matroids, or spatial compatibility—produce genuinely new sharp inflation families? | **DEFERRED / NOT PURSUED.** | `docs/composition_code_rate.md` open question | Current policy stops proliferation of new codebook families unless they change the theorem, not merely instantiate the same rate corollary. |
+| `REC-21` | Can the cheapest NULL-observation panel that makes a focal mechanism the last surviving driver be solved exactly rather than greedily? | **PROVED / LEGACY DESIGN.** Dynamic programming over cumulative eliminated-mechanism sets gives the exact minimum-cost panel under the monotone-OR contract. | `docs/minimum_discriminating_panels.md`; `observation_design.py` | Conditional design theorem after the candidate grammar and faithful NULL semantics are declared. |
+| `REC-22` | Does the minimum-cost / coverage-greedy structurally resolving panel remain optimal when misspecification and observation risk are considered? | **REFUTED AS A UNIVERSAL DESIGN RULE; finite robust alternatives IMPLEMENTED.** Exact finite scenario enumeration supports minimax and weighted-mean risk objectives, and budget can change the recommended panel. | `docs/robust_panel_design.md`; `robust_panel_design.py` | Robustness is only against the declared scenario family and weights; not unknown-unknown protection. |
+| `REC-23` | Can the two-driver misspecification benchmark be generalized to multiple competitors, latent routes, correlated environments, shared/imperfect witnesses, costs, and robust panel objectives? | **SUBSTANTIALLY RECOVERED ACROSS SUCCESSIVE LEGACY MODULES.** Multi-competitor/correlated-environment benchmarking was implemented, then shared/imperfect/cost-sensitive design was covered by robust-panel machinery. | `generative_misspecification_benchmarks.md`; `multi_competitor_panel_phase_benchmarks.md`; `robust_panel_design.md` | Methods/benchmark lineage, not the open-composition theorem. |
+| `REC-24` | Can an ecological rule observed in a plot/island/survey window be reported explicitly as grammar-certified versus merely observation-window-conditioned? | **FORMALIZED AS AN INTERPRETATION CONTRACT; EMPIRICAL INSTANTIATION UNRESOLVED.** | `docs/observation_window_completion.md` H5; later mechanism-to-data bridge | Conceptual ancestor of `HYP-J01/J02`; the theorem does not infer the correct completion grammar from data. |
+| `REC-25` | Can the finite closure certificate language be generalized to rational stochastic systems that distinguish convergence to a stationary distribution from deterministic recurrence and stochastic recurrent sign reversal? | **DEFERRED / NOT PURSUED.** | `docs/causal_closure_calculus.md` “Next mathematical extension” | Later stochastic ecology addresses a different portability question and does not solve this general stochastic closure-classification problem. |
 
 ## What these recoveries change
 
@@ -36,10 +42,10 @@ They change the **completeness of the hypothesis history**, not theorem truth an
 
 In particular:
 
-- `REC-01`, `REC-04`, `REC-05`, `REC-06`, `REC-08`, `REC-14`, `REC-15`, `REC-16`, and `REC-17` are decided results that were previously bundled too coarsely.
-- `REC-02`, `REC-09`, and `REC-10` preserve hypotheses that were false or never established in their original broad form.
-- `REC-07`, `REC-12`, and `REC-18` are deliberately **deferred/not-pursued**, not active scientific gaps.
-- `REC-11`, `REC-13`, and `REC-19` were partially or substantially absorbed by later theorem/application-control families rather than solved under their original broad wording.
+- `REC-01`, `REC-04`, `REC-05`, `REC-06`, `REC-08`, `REC-14`–`REC-17`, `REC-21`, and much of `REC-23` are decided results that were previously bundled too coarsely.
+- `REC-02`, `REC-09`, `REC-10`, and `REC-22` preserve hypotheses that were false or never established in their original broad form.
+- `REC-07`, `REC-12`, `REC-18`, `REC-20`, and `REC-25` are deliberately **deferred/not-pursued**, not active scientific gaps.
+- `REC-11`, `REC-13`, `REC-19`, `REC-23`, and `REC-24` were partially or substantially absorbed by later theorem/application-control families rather than solved under their original broad wording.
 
 ## Unmerged-PR recovery check
 
@@ -58,14 +64,14 @@ This batch does **not** add a new active theorem target. The active scientific o
 1. scalable feedback-memory / feedback-portability beyond the five-state benchmark;
 2. one real application with the transition/recruitment/movement layer needed to identify a CCOC structural mechanism.
 
-`REC-19` is the methodological form of the second item, not a third independent active program. Historical H1–H4 remain literature-comparison hypotheses, not mathematical gaps.
+`REC-19` and `REC-24` are methodological/interpretive forms of the second item, not independent active programs. Historical H1–H4 remain literature-comparison hypotheses, not mathematical gaps.
 
 ## Next recovery pass
 
 Continue reverse indexing through:
 
-1. scientific module/doc “future work”, “open question”, “not proved”, and “non-claim” clauses;
-2. early pre-open-composition roadmap material not represented by theorem-candidate issues;
-3. explicit false starts recorded only in PR comments or review corrections.
+1. explicit false starts recorded only in PR comments or review corrections;
+2. scientific module/doc “future work”, “open question”, “not proved”, and “non-claim” clauses not already covered here;
+3. early benchmark/design modules that were never given a theorem-candidate issue.
 
 Only after these sources map cleanly to the canonical ledger should novelty adjudication resume.
