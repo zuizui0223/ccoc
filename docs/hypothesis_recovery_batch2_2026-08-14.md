@@ -40,6 +40,9 @@ A row is included when the repository history contains a materially distinct sci
 | `REC-28` | Does an observed NULL still certify competitor absence when inhibitory/context-dependent suppression is possible? | **REFUTED.** Active competitor + active inhibitor can produce target PRESENT and witness NULL with focal mechanism OFF. | `docs/failure_mode_audits.md` inhibition audit | Monotone/sign-consistent witness semantics are substantive assumptions. |
 | `REC-29` | Can an OR-based last-driver conclusion be interpreted unchanged when the true target requires conjunction/sequence/threshold structure? | **REFUTED.** A conjunction model can make the declared observation impossible, yielding a true-model contradiction rather than focal necessity. | `docs/failure_mode_audits.md` conjunction audit | Model contradiction must not be converted into a necessity claim. |
 | `REC-30` | Does relaxing free switch compatibility only make the last-driver theorem overconfident? | **REFUTED.** Hidden compatibility prerequisites can instead make the theorem conservative, producing `missed_necessity`. | `docs/failure_mode_audits.md` compatibility audit | Richer state constraints can create necessity not visible to the free-assignment OR grammar. |
+| `REC-31` | Does partial exploration of a finite candidate-program universe preserve the exhaustive robust-admissibility classification? | **REFUTED AS AUTOMATIC; EXACT FINITE CALIBRATION IMPLEMENTED.** Sampled subsets can produce false invariant, false excluded, conservative unresolved, or unsupported outcomes relative to the exhaustive finite universe; all equal-size samples can be enumerated for small benchmark cells. | `docs/known_truth_benchmarks.md`, early benchmark modules | Search coverage is a separate error axis from observation-channel noise (`REC-17`). |
+| `REC-32` | Can the bounded-local relay be strengthened from a size-independent **local** grammar with a growing port-labelled global action family to one fixed small global primitive action alphabet? | **PROVED.** PR #109 gives fixed four-symbol binary addressing for powers of two; PR #160 gives the fixed-regular construction for every `m>=1`. | PR #100 scope warning; PR #109; PR #160 | The original relay did not have this property; do not backdate the strengthening to CORE-3 v1. |
+| `REC-33` | Does a factorization or exact quotient verified only on a declared comparison/codebook domain automatically upper-bound the full closed-system interface? | **REFUTED / SCOPE CORRECTED.** The comparison-domain theorem only controls that domain; a full-system gap requires a separate full closed-domain upper-bound contract. | PR #107; `docs/addressable_codebook_bound.md`; paper-core scope corrections | Distinct from the simpler correction that a factorization is merely an upper bound even on its own domain. |
 
 ## What these recoveries change
 
@@ -47,8 +50,8 @@ They change the **completeness of the hypothesis history**, not theorem truth an
 
 In particular:
 
-- `REC-01`, `REC-04`, `REC-05`, `REC-06`, `REC-08`, `REC-14`–`REC-17`, `REC-21`, and much of `REC-23` are decided results that were previously bundled too coarsely.
-- `REC-02`, `REC-09`, `REC-10`, `REC-22`, and `REC-26`–`REC-30` preserve hypotheses that were false or never established in their original broad form.
+- `REC-01`, `REC-04`, `REC-05`, `REC-06`, `REC-08`, `REC-14`–`REC-17`, `REC-21`, `REC-31`, `REC-32`, and much of `REC-23` are decided results that were previously bundled too coarsely.
+- `REC-02`, `REC-09`, `REC-10`, `REC-22`, `REC-26`–`REC-30`, and `REC-33` preserve hypotheses that were false or never established in their original broad form.
 - `REC-07`, `REC-12`, `REC-18`, `REC-20`, and `REC-25` are deliberately **deferred/not-pursued**, not active scientific gaps.
 - `REC-11`, `REC-13`, `REC-19`, `REC-23`, and `REC-24` were partially or substantially absorbed by later theorem/application-control families rather than solved under their original broad wording.
 
