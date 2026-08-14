@@ -16,6 +16,9 @@ Secondary indexing reproduces an abstract-style description of a general decompo
 
 CiNii Journals records *Proceedings of the IEEE* under NCID `AA00783901` with extensive Japanese holdings. Several holdings explicitly cover volume 56 issue 7 or all of volume 56, so the two-page H1 source can be requested domestically rather than waiting for a publisher download. Examples visible in the current catalogue include:
 
+- Tohoku University Engineering Library: `51-89`;
+- Tohoku University Research Institute of Electrical Communication Library: `51-103`;
+- Tohoku University Institute of Multidisciplinary Research for Advanced Materials Library: `51-58` (therefore volume 56 is included);
 - Kobe University Library for Maritime Sciences: `56(7-12)`;
 - Saga University Library: `56(7-12)`;
 - Tokyo Gakugei University Library: `56-82`;
@@ -23,7 +26,7 @@ CiNii Journals records *Proceedings of the IEEE* under NCID `AA00783901` with ex
 - Saitama University Library: volumes including `53-58`;
 - National Astronomical Observatory of Japan, Mizusawa VLBI Observatory: `56-100`.
 
-Use the user's affiliated/public library ILL route to request **Vol. 56, No. 7, pp. 1219–1220**. The exact article pages, not the secondary abstract, are the evidence target.
+**Fastest route:** check local/institutional access to the Tohoku University holdings first; if the issue is not immediately available, use the affiliated/public-library ILL route to request **Vol. 56, No. 7, pp. 1219–1220**. The exact article pages, not the secondary abstract, are the evidence target.
 
 ### Acquisition use
 
@@ -101,7 +104,7 @@ The primary gate should now be attacked in two lanes.
 
 ### Lane A — fastest H1 settlement
 
-1. Weiner–Hopcroft 1968 Proceedings short version, pp. 1219–1220 — **domestic ILL first**;
+1. Weiner–Hopcroft 1968 Proceedings short version, pp. 1219–1220 — **Tohoku local holding check first, then domestic ILL**;
 2. Weiner–Hopcroft report no. 61, including all three plates;
 3. Newborn–Arnold 1972, pp. 63–79.
 
