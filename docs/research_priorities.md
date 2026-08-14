@@ -1,24 +1,38 @@
-# Research priorities — 2026-08-14 post-ecology decision
+# Research priorities — 2026-08-14 post-stochastic decision
 
-> **Status:** canonical agenda after the converse/reuse, chain/resource, and ecological structural theorem passes.
+> **Status:** canonical agenda after the exact converse/reuse, chain/resource, deterministic ecological, and stochastic ecological portability passes.
 
 ## Governing decision
 
-The exact finite core is mature. Another nearby quotient, cap, codebook, or information-inequality variant is not a priority.
+The finite exact core and the first stochastic ecological extension are mature enough that another nearby quotient, cap, mortality variant, codebook, or generic information inequality is not a priority.
 
-The first-paper spine remains response-interface formalism + cross-grammar obstruction + extremal one-action witness + bounded-local realization + positive/reuse boundary. The main first-paper uncertainty is historical: whether classical uniform sequential-machine compilation already supplies the complete bounded-local realization package.
+The first-paper spine remains:
+
+\[
+\text{response-interface formalism}
++
+\text{cross-grammar obstruction}
++
+\text{extremal one-action witness}
++
+\text{bounded-local realization}
++
+\text{positive/reuse boundary}.
+\]
+
+The main first-paper uncertainty is still historical: whether classical uniform sequential-machine compilation already supplies the complete bounded-local realization package. Theorem validity and historical firstness are separate.
 
 ## Established mathematics
 
-### Exact converse/reuse
+### 1. Exact converse and reuse
 
 - `action_grammar_closure.py`: one-state action-language expansion; stable closure equals the canonical open quotient; zero inflation iff newly legal actions descend.
-- `grammar_expansion_closure.py`: globally-new-symbol finite grammar expansion; old action columns are frozen; row descent is the exact zero-inflation criterion.
-- `grammar_interface_reuse.py`: arbitrary same-domain grammar change; canonical quotients may be equal, finer, coarser, or incomparable, while reuse of the closed labeling is iff open rows descend on closed fibers.
+- `grammar_expansion_closure.py`: finite grammar-state globally-new-symbol expansion; old action columns are frozen; stable open-row closure computes the canonical open quotient.
+- `grammar_interface_reuse.py`: arbitrary same-domain grammar change; canonical quotients may be equal, finer, coarser, or incomparable; the closed labeling is reusable iff open enabled/successor rows descend on its fibers.
 
-The #163 coarsening counterexample permanently rules out the slogan that every grammar mutation refines the canonical product quotient.
+The #163 coarsening counterexample permanently rules out the slogan that every grammar mutation refines the canonical product-state quotient.
 
-### Extremal family
+### 2. Fixed-regular extremal family
 
 For every `m>=1`, the fixed four-symbol relay family has
 
@@ -28,9 +42,15 @@ For every `m>=1`, the fixed four-symbol relay family has
 \qquad K_O-K_C=m,
 \]
 
-with one newly legal primitive action, bounded local state/message alphabets, radius-one dynamics, degree at most three, tree topology, focal/exterior cut one, and exact selected-coordinate access `2 ceil(log2(m))+2`. The memory gap saturates finite-domain capacity.
+with one newly legal primitive action, bounded local state/message alphabets, radius-one dynamics, degree at most three, tree topology, focal/exterior cut one, and exact selected-coordinate access
 
-### Chain and resource portability
+\[
+2\lceil\log_2m\rceil+2.
+\]
+
+The memory gap saturates finite-domain capacity. Constant cut width, degree, local alphabets, and grammar-edit count therefore do not imply a system-size-independent exact interface bound.
+
+### 3. Chain and coupled-resource portability
 
 `terminal_grammar_portability.py` gives
 
@@ -38,62 +58,123 @@ with one newly legal primitive action, bounded local state/message alphabets, ra
 K_{\rm uniform}=\log_2|P_{\rm terminal}|,
 \]
 
-and the terminal labels construct one `ConservativeMacroSchema` across a valid grammar chain.
+and terminal labels construct one `ConservativeMacroSchema` across a valid globally-new-symbol chain.
 
-`portability_adaptation_tradeoff.py` now uses the strong stochastic form
+`portability_adaptation_tradeoff.py` gives the stochastic information-flow form
 
 \[
 I(E;C)+I(E;U\mid C)
-\ge m-\sum_jh_2(\varepsilon_j).
+\ge
+m-\sum_j h_2(\varepsilon_j).
 \]
 
-The deterministic entropy form is a corollary. A model-specific information-flow ceiling `B` gives `I(E;C)+B` greater than or equal to the same addressability requirement.
+`retention_boundary_time_tradeoff_2026-08-14.md` converts adaptation debt into boundary time. In the fixed-regular relay, exact full-interface installation is `Omega(m)` while one selected query is `Theta(log m)`.
 
-`retention_boundary_time_tradeoff_2026-08-14.md` converts that debt into boundary time. In the fixed-regular relay, full exact interface installation is `Omega(m)` while one selected query is `Theta(log m)`, with ratio `Omega(m/log m)`.
-
-`staged_materialization_prefix_2026-08-14.md` gives every prefix resource constraint. In the exact binary/power-of-two subclass,
+`staged_materialization_prefix_2026-08-14.md` gives prefix installation constraints. In the exact binary/power-of-two subclass,
 
 \[
 k+\sum_{q\le t}L_q\ge m_t\quad\forall t
 \]
 
-is necessary and sufficient. Terminal memory can be path-independent while online installation is prefix-sensitive.
+is necessary and sufficient. Terminal shared memory can be path-independent while online installation is deadline-sensitive.
 
-### Ecological structural theorems
+### 4. Deterministic ecological structural package
 
-`ecological_saturation_blanket.py` derives a system-size-independent exact blanket. For guild abundance `N_g`, threshold `L_g`, and non-negative colonization increments,
+`ecological_saturation_blanket.py` derives a system-size-independent exact blanket. For guild abundance `N_g`, saturation threshold `L_g`, and non-negative colonization increments,
 
 \[
 Z_g=\min(L_g,N_g),
 \qquad
-Z'_g=\min(L_g,Z_g+d_g),
+Z'_g=\min(L_g,Z_g+d_g).
 \]
 
-so the exact blanket has `prod_g(L_g+1)` states independent of abundance capacities `M_g`.
+The exact blanket has `prod_g(L_g+1)` states independent of capacity `M_g`. The structural reason is forward invariance of saturated response fibers.
 
-Opening one depletion action breaks the forward-invariant saturation fiber: in one guild the closed quotient has `L+1` blocks while the open quotient has `M+1`.
+`ecological_capacity_portability.py` strengthens this to changing semantic domains: distinct capacity vectors realize the same capped macro-domain and the same capacity-free macro transition law.
 
-`ecological_capacity_portability.py` strengthens the positive result to changing semantic domains. Different abundance domains with different `M_g` realize the same capped macro-domain and the same capacity-free macro transition law whenever thresholds and monotone colonization rules are fixed.
-
-`budgeted_depletion_blanket.py` interpolates quantitatively. If at most `D` future depletion actions remain legal,
+`budgeted_depletion_blanket.py` quantifies future downward reach. If at most `D` depletion events remain legal,
 
 \[
 |P_{\rm initial}|=L+D+1,
 \]
 
-so the required abundance cap is
+so
 
 \[
-\boxed{\text{response threshold}+\text{maximum legal future downward reach}.}
+\boxed{\text{needed abundance cap}=\text{response threshold}+\text{maximum legal future downward reach}.}
 \]
 
-`D=0` recovers saturation; `D=M-L` recovers full abundance. Fixed `D` remains capacity-independent, while downward reach that scales with capacity destroys uniform portability.
+`D=0` recovers saturation and `D=M-L` recovers full abundance.
+
+### 5. Stochastic ecological portability package
+
+`stochastic_ecological_portability.py` gives an exact controlled-Markov positive theorem. If non-negative colonization increments are drawn from laws
+
+\[
+Q_a(D\mid Z)
+\]
+
+that depend only on capped guild state `Z`, then
+
+\[
+Z' = \min(L,Z+D)
+\]
+
+induces one exact stochastic macro kernel independent of hidden oversaturation and independent of capacity `M`. The same kernel is portable across changing abundance domains.
+
+The same module gives the stochastic depletion boundary. A one-unit depletion action with any probability `p>0` makes `N=L` and `L+1` differ at one step by TV distance `p`; any common one-step transition row incurs at least `p/2` worst-case TV error. Repeated depletion attempts distinguish every saturated abundance, so exact open state count is `M+1`.
+
+`continuous_time_depletion_reach.py` gives the constant-rate continuous-time corollary. Exact complexity jumps from `L+1` at rate zero to `M+1` at every positive rate. For the threshold pair, a finite-time event gap is
+
+\[
+\mu t e^{-\mu t},
+\]
+
+maximized at `t=1/mu` with value `1/e`.
+
+`per_capita_mortality_reach.py` gives the independent per-capita mortality mechanism. With
+
+\[
+q=e^{-\mu t},
+\]
+
+the threshold-pair gap is
+
+\[
+Lq^L(1-q),
+\]
+
+maximized at
+
+\[
+q=L/(L+1),
+\qquad
+t^*=\mu^{-1}\log((L+1)/L).
+\]
+
+Every positive mortality rate again restores full exact abundance distinguishability.
+
+`finite_horizon_stochastic_saturation.py` supplies the positive approximate counterpart. Across arbitrarily large capacities, the `L+1`-state saturated macro has worst saturated path-TV error
+
+\[
+\boxed{1-e^{-\mu T}}
+\]
+
+for constant-rate depletion and
+
+\[
+\boxed{1-e^{-\mu LT}}
+\]
+
+for per-capita mortality. Thus exact state count can grow as `M+1` while finite-horizon approximate macro size and error remain capacity-independent.
+
+This closes the first intended stochastic ecological pass: exact causal relevance, finite-horizon detectability, and approximate portability are now explicitly separated.
 
 ## Novelty discipline
 
-Do not spend novelty budget on fixed-grammar minimization, right congruences, common refinement, generic partition algorithms, Fano, finite-alphabet entropy, deadline scheduling, threshold aggregation, exchangeability, lumpability, or monotone systems by themselves.
+Do not spend novelty budget on fixed-grammar minimization, right congruences, common refinement, generic partition algorithms, Fano, finite-alphabet entropy, deadline scheduling, threshold aggregation, lumpability, Poisson/binomial survival, or total variation by themselves.
 
-The live first-paper firstness candidate remains the **simultaneous constrained extremal realization**. Historical firstness remains conditional on the H1–H4 compiler audit. The chain/resource and ecological results are substantive CCOC extensions, but their classical ingredients are substrate unless separately audited.
+The live first-paper firstness candidate remains the **simultaneous constrained extremal realization**. Historical firstness remains conditional on the H1–H4 compiler audit. The chain/resource and ecological packages are substantive CCOC extensions, but their classical ingredients are substrate unless separately audited.
 
 ## Priority 1 — H1–H4 compiler gate
 
@@ -104,18 +185,20 @@ Issue #122 remains the main historical gate:
 - **H3:** two-way response-trace faithfulness without spurious closed distinctions;
 - **H4:** bounded source-step/network/output latency.
 
-Do not restart generic source searching; primary acquisition routes are already fixed.
+The concrete acquisition actions are now retained on `main` in `docs/primary_source_request_handoff_2026-08-13.md`. Do not restart generic source searching; read the primary construction pages when recovered.
 
 ## Priority 2 — manuscript transfer
 
-Transfer the established spine with exact SHA/replay provenance. Separate exact results, classical ancestry, the conditional realization novelty candidate, and fallback interpretation if H1–H4 subsumes realization existence.
+Transfer the established spine with exact SHA/replay provenance. Separate exact theorem statements, classical ancestry, the conditional realization novelty candidate, and the fallback interpretation if H1–H4 subsumes realization existence.
 
-## Priority 3 — genuinely new model classes only
+The stochastic/ecological results should be presented as extensions unless a separate prior-art audit justifies stronger novelty language.
 
-1. **Model-specific stochastic ecological flow.** The generic information inequality is complete. Derive a nontrivial information-flow ceiling `B` from an actual birth–death, dispersal, detection, or interaction mechanism; another generic channel corollary is not enough.
-2. **Ecological structure beyond thresholded abundance.** Move to spatial dispersal reachability, interaction-network symmetries, colonization barriers, or another mechanism. More capped-count variants are not enough.
-3. **Changing-domain or stochastic macro dynamics.** Further theorem work must materially change domains, embeddings, or stochastic macro laws; another exact same-domain partition reformulation is not justified.
+## Priority 3 — genuinely new mechanism classes only
+
+1. **Spatial dispersal/reachability ecology.** Derive a blanket or lower bound from explicit colonization barriers, reachability, or network constraints rather than another threshold-count variant.
+2. **Hidden cross-guild stochastic coupling.** The capped-state-driven kernel theorem is positive. A genuinely new result would quantify what happens when hidden oversaturation in one guild modulates another guild's colonization or extinction rates; merely restating lumpability is not enough.
+3. **Mechanism-to-data bridge.** If an application is pursued, identify which rates, thresholds, or exchangeability assumptions could be estimated or falsified from ecological data. Empirical inference itself remains outside this theorem repository unless a dedicated application package is created.
 
 ## Explicit non-priorities
 
-No new codebook families, partition-defect identities, panel/reset variants, same-domain quotient reformulations, capped-count special cases, generic Fano/channel lemmas, generic contraction/small-gain results, generic source searching, replacement/rewiring transport inside CCOC, or empirical inference in this theorem repository.
+No new codebook families, partition-defect identities, panel/reset variants, same-domain quotient reformulations, capped-count special cases, additional one-guild mortality/depletion variants, generic Fano/channel lemmas, generic contraction/small-gain results, generic source searching, replacement/rewiring transport inside CCOC, or empirical fitting inside the theorem core.
