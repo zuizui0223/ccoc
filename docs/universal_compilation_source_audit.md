@@ -27,7 +27,7 @@ Status vocabulary:
 | Source | Material actually inspected | H1 locality | H2 controls | H3 trace faithfulness | H4 timing | Current verdict |
 |---|---|---:|---:|---:|---:|---|
 | **Hsieh, Tan & Newborn (1968)**, *Uniform modular realization of sequential machines* | DBLP DOI/bibliographic record + contemporaneous IEEE literature digest; ACM body not recovered | PARTIAL | PARTIAL | UNKNOWN | PARTIAL | Major fixed-input/unit-delay risk. Correct DOI is `10.1145/800186.810626`. Fixed input is directly relevant because CCOC's primitive control dimension is fixed as `m` grows. |
-| **Weiner & Hopcroft (1968)**, *Bounded Fan-in, Bounded Fan-out Uniform Decompositions of Synchronous Sequential Machines* | Princeton/CiNii archival records + abstract-style description; report body not recovered | PARTIAL | UNKNOWN | UNKNOWN | UNKNOWN | Strongest H1 lead. Available evidence points to identical two-state modules with source-state-count-independent fan-in/fan-out, but H2–H4 await report no. 61. |
+| **Weiner & Hopcroft (1968)**, *Bounded Fan-in, Bounded Fan-out Uniform Decompositions of Synchronous Sequential Machines* | Princeton/CiNii archival records + abstract-style description; report body and two-page Proceedings body not recovered | PARTIAL | UNKNOWN | UNKNOWN | UNKNOWN | Strongest H1 lead. A same-title two-page Proceedings version is now the fastest primary H1 target; report no. 61 remains the preferred full construction source for H2–H4. |
 | **Ullman & Weiner (1969)**, *Uniform Synthesis of Sequential Circuits* | **primary BSTJ OCR: abstract + introduction**, exact 14-page article PDF route; construction pages not yet readable | UNKNOWN/PARTIAL | **PRIMARY PARTIAL** | **PRIMARY PARTIAL** | **PRIMARY PARTIAL** | Major compiler risk. Primary text explicitly covers binary input, a fixed module with delay, “isomorphic realization”, and input spacing independent of network size. Remaining gaps are fan-out, input distribution, formal realization/output definition, and exact clock semantics. |
 | **Arnold, Tan & Newborn (1970)**, *Iteratively Realized Sequential Circuits* | IBM Research primary abstract | UNKNOWN | UNKNOWN | PARTIAL | UNKNOWN | Primary abstract verifies realization of arbitrary synchronous flow tables as a regular array of identical modules, but not the H1–H4 constants. |
 | **Newborn & Arnold (1972)**, *Universal Modules for Bounded Signal Fan-Out Synchronous Sequential Circuits* | authoritative bibliographic/TOC records + verified Japanese holding/copy route; primary body not yet read | UNKNOWN | UNKNOWN | UNKNOWN | UNKNOWN | High-priority H1/H2 source. Correct DOI `10.1109/T-C.1972.223433`. The previously recorded `...223432` is the immediately preceding Koontz–Fukunaga article; `...223521` is Kim–Newborn. Title/author/page validation is mandatory. |
@@ -62,13 +62,25 @@ Primary extraction targets:
 5. external input presentation/distribution;
 6. formal output equivalence/isomorphism.
 
-### 3.2 Weiner–Hopcroft (1968)
+### 3.2 Weiner–Hopcroft (1967–1968): split the fastest H1 check from the full construction check
 
-Princeton archival records identify Digital Systems Laboratory Technical Report no. 61. CiNii also records a University of Tokyo General Library holding, call `U600:769`, record `0004766739`.
+The 1968 result has two acquisition targets with different roles.
 
-Abstract-style evidence describes a general decomposition into identical two-state modules with fan-in and fan-out bounded independently of original machine state count. Because the report itself has not been read, do not upgrade H2–H4.
+**Fast H1 target:** a same-title two-page short version is bibliographically indexed as
 
-The report must settle source-input distribution, declared output, two-way response fidelity, source-clock/network timing, output latency, module count, and graph depth/diameter.
+> Peter Weiner and J. E. Hopcroft, *Bounded fan-in, bounded fan-out uniform decompositions of synchronous sequential machines*, *Proceedings of the IEEE* 56(7), 1968, 1219–1220.
+
+Secondary indexing describes identical two-state modules with fan-in/fan-out bounds independent of the original machine state count. This remains **PARTIAL acquisition evidence only** until the original two pages are read. Do not guess a DOI. Current acquisition control is to check institutional access/Tohoku holdings first, then domestic ILL; see `compiler_short_source_addendum_2026-08-14.md` and issue #185.
+
+**Full construction target:** Princeton archival records identify Digital Systems Laboratory Technical Report no. 61, April 1968, with extent 7 pages plus 3 leaves of plates. CiNii also records a University of Tokyo General Library holding, call `U600:769`, record `0004766739`. The report remains the preferred source for source-input distribution, declared output, two-way response fidelity, source-clock/network timing, output latency, module count, graph depth/diameter, and the exact H1 constants/diagrams. The identified Princeton archive route is request-based rather than a presently readable web copy.
+
+A useful **H2/H3 predecessor** is
+
+> Peter Weiner and John E. Hopcroft, *Modular Decomposition of Synchronous Sequential Machines*, 1967 IEEE Symposium on Switching and Automata Theory, 233–239, DOI `10.1109/FOCS.1967.19`.
+
+Its value is construction terminology: literal interconnection, external source inputs, realization/equivalence, and designated outputs. Domestic holdings of the complete conference record make an ILL request practical. Do not transfer the 1967 resource bounds into the 1968 bounded-fan-in/out result unless the primary texts explicitly justify that transfer.
+
+No H1–H4 status is upgraded by any of these acquisition routes. Primary pages remain required.
 
 ### 3.3 Ullman–Weiner (1969): primary text recovered
 
@@ -164,13 +176,19 @@ Manuscript-safe wording:
 
 ## 6. Acquisition priority and stop rule
 
-1. **Newborn–Arnold 1972:** direct Osaka primary-copy route now actionable; extract H1/H2 first, then H3/H4.
-2. **Weiner–Hopcroft 1968 report no. 61:** strongest generic H1 source; extract H2–H4 via the identified library/archive route.
-3. **Ullman–Weiner 1969 construction pages:** abstract/introduction are now primary-read; extract fan-out, input distribution, formal isomorphism/output definition, and clock semantics. Do not search generic mirrors; use a route exposing later OCR/pages.
-4. **Hsieh–Tan–Newborn 1968 ACM paper:** corrected DOI `10.1145/800186.810626`; recover original proof if a genuine full-text route appears.
-5. **Williams 1975:** settle resynthesis.
+Attack the remaining gate clause-by-clause rather than waiting on one long source.
 
-Do not broaden this into another general modular-synthesis survey. The objective is only to decide the H1–H4 compiler reduction.
+1. **Weiner–Hopcroft 1968 Proceedings short version, pp. 1219–1220:** fastest H1 settlement. Check institutional/Tohoku access and the Research Institute of Electrical Communication holdings first; use domestic ILL if needed. Promote nothing until the two primary pages are read.
+2. **Weiner–Hopcroft 1968 report no. 61, complete 7 pp. + 3 plates:** preferred full construction source for H1 constants and H2–H4. Use the identified Princeton request route or University of Tokyo library-mediated ILL. Do not treat web non-availability as a clause failure.
+3. **Weiner–Hopcroft 1967 predecessor, pp. 233–239:** fastest domestic H2/H3 terminology route through the identified conference-record holdings. Use only for interconnection/input/realization semantics unless later primary text explicitly connects its quantitative resources to 1968.
+4. **Newborn–Arnold 1972, pp. 63–79:** direct Osaka primary-copy route; parallel H1/H2 construction source.
+5. **Ullman–Weiner 1969 construction pages:** abstract/introduction are already primary-read; extract fan-out, input distribution, formal isomorphism/output definition, and clock semantics when a renderable construction copy is obtained.
+6. **Hsieh–Tan–Newborn 1968 ACM paper:** corrected DOI `10.1145/800186.810626`; fixed-input/unit-delay H2/H4 source.
+7. **Drilman–Weiner 1972 and Williams/Le Van–van Houtte 1975:** settle fixed-network versus resynthesis and timing if the earlier full-language sources do not decide the contract.
+
+Canonical operational details live in `primary_compiler_request_packet_2026-08-14.md`, `compiler_short_source_addendum_2026-08-14.md`, and issue #185.
+
+Do not broaden this into another general modular-synthesis survey. The objective is only to decide the joint H1–H4 compiler reduction.
 
 ## 7. Decision rule
 
@@ -196,8 +214,11 @@ Treat them as strong contextual-decomposition ancestry, not as the same fixed-ha
 - this file — source evidence table
 - `fixed_input_unit_delay_historical_risk_2026-08-12.md` — focused fixed-input warning
 - `ullman_weiner_primary_ocr_2026-08-13.md` — primary OCR extraction
-- `newborn_arnold_primary_acquisition_2026-08-13.md` — actionable January-1972 copy route and extraction contract
+- `primary_compiler_request_packet_2026-08-14.md` — executable long-source requests and H1–H4 extraction form
+- `compiler_short_source_addendum_2026-08-14.md` — two-page/predecessor acquisition routes and domestic holdings
+- `newborn_arnold_primary_acquisition_2026-08-13.md` — January-1972 copy route and extraction contract
 - issue #122 — live historical compiler gate
 - issue #137 — Ullman–Weiner construction-page blocker
+- issue #185 — acquisition execution checklist
 
 Secondary digests and abstract-style summaries are retained only as acquisition/claim-control leads; they do not substitute for primary theorem text.
