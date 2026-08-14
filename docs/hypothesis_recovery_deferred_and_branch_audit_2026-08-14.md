@@ -8,6 +8,7 @@
 |---|---|---|---|---|
 | `REC-40` | Can the delayed-addressability witness compile not only the reader/probe path but also the **delay gate itself** into an autonomous bounded-local clock/mechanism with fixed local resources? | **DEFERRED / NOT PROVED.** The existing theorem represents the delay by an explicit prefix-grammar automaton and explicitly names autonomous local-clock compilation as a separate strengthening. | `docs/delayed_addressability.md` | Later local relay and stochastic ecological results do not supply this exact deterministic local delay-gate compiler. |
 | `REC-41` | May robust-admissibility logic report an invariant/excluded motif from a required analysis cell with no accepted candidate because universal quantification is vacuously true? | **REFUTED BY THE INFERENCE CONTRACT.** Empty required accepted sets are `UNSUPPORTED`; optional cells alone cannot carry the cross-cell universal claim. | `docs/robust_admissibility.md`, early admissibility code | A non-vacuity/coverage premise, separate from observation-channel error and sampled-vs-exhaustive search calibration. |
+| `REC-43` | Can the degree-three relay compiler support **simultaneous readers / multiple in-flight tokens** while retaining a finite local message grammar and exact macro semantics? | **DEFERRED / NOT PROVED.** The binary joint theorem is explicitly sequential and quiescent between macro actions; concurrent-token semantics remain outside the theorem. | `docs/binary_joint_relay_compilation.md`; PR #58 | Distinct from the multi-valued-register question in `REC-07`: even binary values would require a new concurrency/collision protocol. |
 
 ## Branch-only science audit
 
@@ -46,4 +47,4 @@ A branch created only to bypass a write gate, duplicate a tested head, hold an e
 
 ## Current branch-only conclusion
 
-After the suspicious-branch check and the previously completed closed-unmerged-PR audit, no additional branch-only active scientific hypothesis has been found beyond the recovered rows. `REC-40` comes from a substantive published doc scope note, not from a dangling branch.
+After the suspicious-branch check and the previously completed closed-unmerged-PR audit, no additional branch-only active scientific hypothesis has been found beyond the recovered rows. `REC-40`, `REC-41`, and `REC-43` come from substantive published scope/inference notes, not from dangling branch names.
