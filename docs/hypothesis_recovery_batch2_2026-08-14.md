@@ -27,6 +27,8 @@ A row is included when the repository history contains a materially distinct sci
 | `REC-15` | Can observer-independent and observer-coupled finite dynamics be compared by exact closure-class transitions without claiming observation creates reality? | **PROVED / LEGACY.** | PR #33; `observation_regime_closure.py` | Regime-comparison theorem; distinct from candidate-family consensus. |
 | `REC-16` | Can a finite declared mechanism library exhibit observation/intervention **synergy** such that a jointly discriminating panel succeeds while greedy singleton ranking fails? | **PROVED AS A FINITE LEGACY WITNESS.** | PR #1 / early replaceability theorem core | Early methods-layer hypothesis, later demoted from the open-composition paper. |
 | `REC-17` | Can a known-truth finite observation channel be exactly self-calibrated for false-invariant / false-exclusion probability under declared sensitivity/false-positive rates? | **PROVED / LEGACY EVIDENCE DESIGN.** | PR #6 and associated observation-envelope modules | Conditional self-calibration, not empirical validation or candidate-universe coverage. |
+| `REC-18` | Do local contraction / small-gain assumptions yield an approximate finite-radius causal blanket or bounded truncation error? | **DEFERRED / NOT PURSUED AS A CCOC THEOREM.** | unmerged PR #158 `next_math_candidate_triage_2026-08-13.md` | The mathematical direction was judged sensible but left outside the CCOC theorem program; later stochastic portability does not prove this generic contraction statement. |
+| `REC-19` | Can data or solver output be converted end-to-end into a retained completion/mechanism family and then into a candidate-safe open-law verdict under explicit coverage assumptions? | **PARTIALLY PREPARED, NOT IMPLEMENTED END-TO-END.** | `docs/promotion_calculus.md` “Evidence bridge” target; later `mechanism_to_data_bridge_2026-08-14.md` | The later bridge specifies observable/falsification contracts but intentionally does not infer grammar/completion families from empirical data. Operationally this now sits under `HYP-J01`. |
 
 ## What these recoveries change
 
@@ -36,8 +38,18 @@ In particular:
 
 - `REC-01`, `REC-04`, `REC-05`, `REC-06`, `REC-08`, `REC-14`, `REC-15`, `REC-16`, and `REC-17` are decided results that were previously bundled too coarsely.
 - `REC-02`, `REC-09`, and `REC-10` preserve hypotheses that were false or never established in their original broad form.
-- `REC-07` and `REC-12` are deliberately **deferred/not-pursued**, not active scientific gaps.
-- `REC-11` and `REC-13` were partially or substantially absorbed by later theorem families rather than solved under their original broad wording.
+- `REC-07`, `REC-12`, and `REC-18` are deliberately **deferred/not-pursued**, not active scientific gaps.
+- `REC-11`, `REC-13`, and `REC-19` were partially or substantially absorbed by later theorem/application-control families rather than solved under their original broad wording.
+
+## Unmerged-PR recovery check
+
+The repository has only three closed unmerged PRs in the current history search:
+
+- PR #31 — scientific e-process hypotheses recovered already as `HYP-A09`;
+- PR #158 — primary-source handoff was rescued to main, while its discarded next-math triage yielded `REC-18` plus four candidate classes that were later actually pursued (converse, resource tradeoff, stochastic portability, ecological structural theorem);
+- PR #165 — identical theorem head superseded by merged PR #166; no lost hypothesis.
+
+Thus there is no additional unmerged scientific branch currently hidden from the recovery record.
 
 ## Active-open status after this batch
 
@@ -46,15 +58,14 @@ This batch does **not** add a new active theorem target. The active scientific o
 1. scalable feedback-memory / feedback-portability beyond the five-state benchmark;
 2. one real application with the transition/recruitment/movement layer needed to identify a CCOC structural mechanism.
 
-Historical H1–H4 remain literature-comparison hypotheses, not mathematical gaps.
+`REC-19` is the methodological form of the second item, not a third independent active program. Historical H1–H4 remain literature-comparison hypotheses, not mathematical gaps.
 
 ## Next recovery pass
 
 Continue reverse indexing through:
 
-1. all theorem-candidate issues and their closed comments;
-2. `legacy/README.md`, `docs/promotion_calculus.md`, and old roadmap/freeze documents;
-3. scientific module/doc “future work”, “open question”, “not proved”, and “non-claim” clauses;
-4. unmerged branches/PRs that contained scientific hypotheses but never reached `main`.
+1. scientific module/doc “future work”, “open question”, “not proved”, and “non-claim” clauses;
+2. early pre-open-composition roadmap material not represented by theorem-candidate issues;
+3. explicit false starts recorded only in PR comments or review corrections.
 
 Only after these sources map cleanly to the canonical ledger should novelty adjudication resume.
