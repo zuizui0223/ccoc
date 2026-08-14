@@ -1,12 +1,12 @@
-# Research priorities — 2026-08-14 post-spatial decision
+# Research priorities — 2026-08-14 post-bridge/cleanup decision
 
-> **Status:** canonical agenda after the exact converse/reuse, chain/resource, deterministic ecological, stochastic ecological, hidden cross-guild, and spatial reachability theorem passes.
+> **Status:** canonical agenda after the exact converse/reuse, chain/resource, deterministic ecological, stochastic ecological, hidden cross-guild, spatial reachability, mechanism-to-data bridge, and first infrastructure-cleanup passes.
 
 ## Governing decision
 
-The active theorem package is now broad enough that another nearby quotient, cap, mortality/depletion variant, generic information inequality, or elementary reachability variant is not a priority.
+CCOC no longer has one active task. It has a stable first-paper core, established follow-up mathematics, an application/falsification bridge, a historical novelty gate, manuscript-transfer work, and compatibility/cleanup debt.
 
-The first-paper spine remains
+The first-paper mathematical spine remains
 
 \[
 \text{response-interface formalism}
@@ -20,9 +20,11 @@ The first-paper spine remains
 \text{positive/reuse boundary}.
 \]
 
-The main first-paper uncertainty is historical: whether classical uniform sequential-machine compilation already supplies the complete bounded-local realization package. Theorem validity and historical firstness remain separate.
+Another nearby quotient, cap, mortality/depletion special case, generic information inequality, or elementary reachability variant is not a priority. New mathematics must add a genuinely richer mechanism or a qualitatively new portability constraint.
 
-## Established mathematics
+Historical firstness and theorem validity remain separate. H1--H4 controls the historical wording of the bounded-local realization, not the existence of the mathematical theorem package.
+
+## Established mathematical packages
 
 ### 1. Exact converse and reuse
 
@@ -30,7 +32,7 @@ The main first-paper uncertainty is historical: whether classical uniform sequen
 - `grammar_expansion_closure.py`: globally-new-symbol finite grammar expansion; old action columns are frozen and stable open-row closure computes the canonical open quotient.
 - `grammar_interface_reuse.py`: arbitrary same-domain grammar change; canonical quotients may be equal, finer, coarser, or incomparable; reuse of the closed labeling is iff open rows descend on closed fibers.
 
-The #163 coarsening counterexample permanently rules out an unconditional claim that grammar mutation refines the canonical quotient.
+The #163 coarsening counterexample permanently blocks an unconditional claim that grammar mutation always refines the canonical quotient.
 
 ### 2. Fixed-regular extremal family
 
@@ -52,155 +54,121 @@ The memory gap saturates finite-domain capacity. Constant cut width, degree, loc
 
 ### 3. Chain and coupled-resource portability
 
-`terminal_grammar_portability.py` gives
-
-\[
-K_{\rm uniform}=\log_2|P_{\rm terminal}|,
-\]
-
-and terminal labels construct one `ConservativeMacroSchema` across a valid globally-new-symbol chain.
-
-`portability_adaptation_tradeoff.py` gives
+`terminal_grammar_portability.py` gives terminal-stage control of a common exact interface. `portability_adaptation_tradeoff.py` gives
 
 \[
 I(E;C)+I(E;U\mid C)
 \ge
-m-\sum_jh_2(\varepsilon_j).
+m-\sum_j h_2(\varepsilon_j).
 \]
 
-`retention_boundary_time_tradeoff_2026-08-14.md` turns adaptation debt into boundary time; in the fixed-regular relay, exact full-interface installation is `Omega(m)` while one selected query is `Theta(log m)`.
+The boundary-time and staged-prefix results separate retained information, reopening update information, full-interface installation time, selected-query latency, and exposure deadlines.
 
-`staged_materialization_prefix_2026-08-14.md` gives exact prefix deadlines in the binary/power-of-two subclass:
+### 4. Deterministic ecological structure
+
+`ecological_saturation_blanket.py`, `ecological_capacity_portability.py`, and `budgeted_depletion_blanket.py` show that finite blankets arise from forward-invariant response fibers and bounded future downward reach. In particular,
 
 \[
-k+\sum_{q\le t}L_q\ge m_t\quad\forall t
+Z_g=\min(L_g,N_g)
 \]
 
-is necessary and sufficient. Terminal shared memory can be path-independent while online installation is deadline-sensitive.
+is exact under the declared monotone contract, and a remaining downward-reach budget `D` raises the necessary exact cap to `L+D`.
 
-### 4. Deterministic ecological structural package
+### 5. Stochastic ecological portability
 
-`ecological_saturation_blanket.py` gives the exact capped-guild blanket
-
-\[
-Z_g=\min(L_g,N_g),
-\qquad
-Z'_g=\min(L_g,Z_g+d_g)
-\]
-
-under non-negative colonization. The state count `prod_g(L_g+1)` is independent of abundance capacities because saturated response fibers are forward-invariant.
-
-`ecological_capacity_portability.py` extends this to changing semantic domains: different capacity vectors factor to the same capped macro-domain and capacity-free macro transition law.
-
-`budgeted_depletion_blanket.py` quantifies future downward reach. If at most `D` future depletion events remain legal,
-
-\[
-|P_{\rm initial}|=L+D+1,
-\]
-
-so the needed exact abundance cap is response threshold plus maximum legal future downward reach.
-
-### 5. Stochastic ecological portability package
-
-`stochastic_ecological_portability.py` gives an exact controlled-Markov positive theorem. If non-negative colonization increments are generated from `Q_a(D|Z)`, then the capped process induces one stochastic macro kernel independent of hidden oversaturation and abundance capacity.
-
-A positive-probability depletion action breaks exact saturation lumping; `N=L` and `L+1` have one-step response rows at TV distance `p`, and repeated attempts restore all `M+1` exact abundance classes.
-
-`continuous_time_depletion_reach.py` and `per_capita_mortality_reach.py` show that every positive downward rate restores full exact abundance distinguishability while finite-horizon detectability is governed by a rate-adapted time scale.
-
-`finite_horizon_stochastic_saturation.py` supplies the positive approximate counterpart. Across unbounded capacities, the `L+1`-state saturated macro has worst saturated path-TV error
-
-\[
-1-e^{-\mu T}
-\]
-
-for a constant total depletion clock and
-
-\[
-1-e^{-\mu LT}
-\]
-
-for per-capita mortality. Exact state count may grow as `M+1` while finite-horizon approximate macro size/error remain capacity-independent.
+`stochastic_ecological_portability.py`, `continuous_time_depletion_reach.py`, `per_capita_mortality_reach.py`, and `finite_horizon_stochastic_saturation.py` separate exact stochastic causal relevance from finite-horizon approximate portability. Positive downward rate can restore full exact abundance distinguishability while a capacity-independent finite-horizon macro remains accurate.
 
 ### 6. Hidden cross-guild coupling
 
-`cross_guild_stochastic_coupling.py` makes the stochastic lumpability boundary mechanistic rather than assumed.
-
-Guild A is response-capped at `L_A`, while hidden A abundance modulates recruitment probability `p(A)` of guild B. Define the hidden saturated-tail hazard diameter
+`cross_guild_stochastic_coupling.py` quantifies failure of a capped guild abstraction through the saturated-tail downstream hazard diameter
 
 \[
-\delta
-=
-\max_{A\ge L_A}p(A)-\min_{A\ge L_A}p(A).
+\delta=\sup_{A\ge L_A}p(A)-\inf_{A\ge L_A}p(A).
 \]
 
-Then capped `(Z_A,Z_B)` is an exact stochastic macro iff
+Exact capped portability holds iff `delta=0`; the sharp one-step minimax common-macro TV error is `delta/2`.
+
+### 7. Spatial dispersal/reachability
+
+`spatial_dispersal_reachability.py` reduces arbitrary occupied-patch subsets to directed reachability depth relative to the focal target. Unlimited exact response classes are `D+2`; with at most `H` legal spread steps the initial quotient has
 
 \[
-\boxed{\delta=0.}
+|P_H|=\min(D,H)+2.
 \]
 
-If `delta>0`, the sharp one-step minimax TV error for any single saturated-A macro hazard is
+Thus a long finite corridor and a true barrier can be equivalent under a short future grammar but differ once the legal future horizon expands.
 
-\[
-\boxed{\delta/2},
-\]
+### 8. Mechanism-to-data bridge
 
-attained by the midpoint hazard. Repeated controlled recruitment has path-TV bound
+`docs/mechanism_to_data_bridge_2026-08-14.md` is now established claim/application control.
 
-\[
-\boxed{1-(1-\delta/2)^H\le H\delta/2.}
-\]
+It specifies observable and falsification contracts for:
 
-Across changing capacity domains, the same fixed `(L_A+1)(L_B+1)`-state approximate macro works with the global saturated-tail hazard diameter. Thus hidden abundance matters precisely through the response-relevant downstream kernel it induces, not through abundance range by itself.
+- saturation threshold `L`;
+- downward-reach budget `D`;
+- mortality/depletion rate `mu`;
+- hidden cross-guild hazard diameter `delta`;
+- directed dispersal edges;
+- future horizon `H`;
+- within-guild exchangeability;
+- information-flow quantities where semantic variables are observable.
 
-### 7. Spatial dispersal and reachability
+It also distinguishes `SUPPORTED AT CURRENT RESOLUTION`, `APPROXIMATE`, `FALSIFIED`, and `UNIDENTIFIED`. `UNIDENTIFIED` is explicitly not evidence for exact compression.
 
-`spatial_dispersal_reachability.py` treats an arbitrary occupied-patch subset on a directed graph. One `spread` action adds all outgoing neighbors, and the focal response records whether a target patch is occupied.
-
-Although the occupancy microstate space has `2^|V|` states, unlimited future response equivalence is exactly minimum directed distance to the focal target plus one unreachable class. If `D` is maximum finite directed distance,
-
-\[
-\boxed{|P_\infty|=D+2.}
-\]
-
-If the declared future grammar allows at most `H` spread steps, the grammar-adaptive capped distance is exact and the initial canonical quotient has
-
-\[
-\boxed{|P_H|=\min(D,H)+2.}
-\]
-
-Hence fixed `H` gives a graph-size-independent bound `H+2` across changing spatial domains, while unlimited exact memory can grow with reachability depth. True directed barriers remain future-silent; a long but finite corridor is only invisible when it lies beyond the legal future horizon.
+Actual data fitting, uncertainty estimation, model selection, and case-study claims remain outside the theorem core.
 
 ## Novelty discipline
 
 Do not spend novelty budget on fixed-grammar minimization, right congruences, common refinement, generic partition algorithms, Fano, finite-alphabet entropy, deadline scheduling, threshold aggregation, lumpability, Poisson/binomial survival, Bernoulli TV calculations, shortest paths, or graph reachability by themselves.
 
-The live first-paper firstness candidate remains the **simultaneous constrained extremal realization**. Historical firstness remains conditional on the H1–H4 compiler audit. The ecological/resource packages are substantive CCOC extensions but should not receive stronger firstness language without dedicated prior-art gates.
+The live first-paper firstness candidate remains the **simultaneous constrained extremal realization**. Historical firstness remains conditional on the H1--H4 compiler audit. The resource/ecological packages are substantive extensions but need separate prior-art gates before stronger historical novelty language.
 
-## Priority 1 — H1–H4 compiler gate
+## Priority 1 — finish the H1--H4 historical compiler gate
 
-Issue #122 remains the main historical gate:
+Issue #122 remains the historical comparison gate, with execution in #185 and Ullman--Weiner construction pages in #137.
 
-- **H1:** bounded local state/connectivity independent of source state count;
-- **H2:** fixed context-independent source controls/input distribution;
-- **H3:** two-way response-trace faithfulness without spurious closed distinctions;
-- **H4:** bounded source-step/network/output latency.
+The current fastest H1 route is the original Weiner--Hopcroft 1968 two-page `Proceedings of the IEEE` item, with Tohoku local access first. Report no. 61 remains the main full H1--H4 construction source. The 1967 predecessor is a targeted H2/H3 semantics source.
 
-The concrete acquisition actions are retained in `docs/primary_source_request_handoff_2026-08-13.md`. Do not restart generic source searching; read the primary construction pages when recovered.
+Do not restart broad modular-synthesis searching and do not change H1--H4 from abstracts, metadata, or failed retrieval.
 
 ## Priority 2 — manuscript transfer
 
-Transfer the established spine with exact SHA/replay provenance. Separate exact theorem statements, classical ancestry, the conditional realization novelty candidate, and the fallback interpretation if H1–H4 subsumes realization existence.
+Use `docs/manuscript_transfer_manifest_2026-08-14.md` and issue #192.
 
-The resource/stochastic/ecological results should be presented as extensions unless separate prior-art audits justify stronger novelty language.
+The first-paper proof dependency graph is CORE-1 through CORE-5 plus the fixed-regular extremal strengthening. Converse/resource/ecological/stochastic/spatial packages are follow-up or appendix material unless an explicit editorial decision changes scope.
 
-## Priority 3 — bridge theory to testable mechanisms, not more theorem variants
+The remaining manual repository-creation blocker is issue #141. Transfer must pin one immutable CCOC SHA and replay theorem registry, paper-core verification, and full pytest on that pin.
 
-1. **Mechanism-to-data bridge.** Identify which thresholds, mortality/depletion rates, cross-guild hazard diameters, directed dispersal edges, or future horizons could be estimated or falsified in an application. Empirical fitting itself should live outside the theorem core unless a dedicated application package is created.
-2. **Only materially richer network mechanisms.** Further ecology theory is justified only if it adds genuinely new dynamics—e.g. bidirectional colonization/extinction with nontrivial interaction-network feedback—not another one-guild cap, mortality variant, or elementary distance shell.
-3. **Historical and manuscript work take precedence.** New mathematics should not displace the H1–H4 gate or manuscript transfer merely because another nearby finite model can be solved.
+## Priority 3 — choose the application path
+
+The generic theorem-to-data bridge is complete. The next application step should therefore be a **dedicated application package/repository with one declared biological mechanism family**, not more generic prose inside CCOC.
+
+Before creating such a package, choose an application that can actually observe or manipulate at least one of the theorem quantities (`L`, `D`, `mu`, `delta`, directed edges, `H`) and can distinguish `FALSIFIED` from `UNIDENTIFIED`.
+
+Do not add fitted data or empirical constants to the CCOC theorem registry.
+
+## Priority 4 — only genuinely richer new ecology mathematics
+
+If new theory is pursued before/alongside an application, the target must add dynamics absent from the existing packages. A serious candidate is **bidirectional colonization/extinction coupled to nontrivial interaction-network feedback**, where the same interaction state changes both future reachability and downstream transition kernels.
+
+A useful new theorem would have to show something not reducible to:
+
+- another abundance cap;
+- another one-way mortality/depletion clock;
+- another Bernoulli tail-diameter calculation;
+- another shortest-distance shell;
+- or a direct product of already-proved bounds.
+
+The target should expose a new closure/portability condition, a new failure mode, or a sharp tradeoff created specifically by feedback between movement, extinction, and interaction structure.
+
+## Priority 5 — repository cleanup and compatibility migration
+
+PR #194 removed the duplicate generic `ci.yml` and established `tests.yml` as the single generic non-legacy full-suite matrix. `docs/core_surface_cleanup_manifest_2026-08-14.md` records KEEP / REMOVE NOW / DEFER decisions.
+
+Do not bulk-delete specialized workflows: generic pytest excludes `legacy` tests, and inspected theorem workflows also generate dedicated replay artifacts. Workflow deletion must be file-specific.
+
+`causal_model/__init__.py` and `current_theory.py` remain compatibility surfaces because in-repository historical consumers still use them. The next high-value cleanup is consumer migration, not facade deletion. Physical relocation into a legacy namespace waits for an immutable manuscript source pin and preserved replay mapping.
 
 ## Explicit non-priorities
 
-No new codebook families, partition-defect identities, panel/reset variants, same-domain quotient reformulations, capped-count special cases, additional one-guild mortality/depletion variants, elementary cross-guild Bernoulli variants, elementary shortest-path variants, generic Fano/channel lemmas, generic contraction/small-gain results, generic source searching, replacement/rewiring transport inside CCOC, or empirical fitting inside the theorem core.
+No new codebook families, partition-defect identities, panel/reset variants, same-domain quotient reformulations, capped-count special cases, additional one-guild mortality/depletion variants, elementary cross-guild Bernoulli variants, elementary shortest-path variants, generic Fano/channel lemmas, generic contraction/small-gain results, generic source searching, replacement/rewiring transport inside CCOC, empirical fitting inside the theorem core, or bulk deletion of historical replay workflows.
