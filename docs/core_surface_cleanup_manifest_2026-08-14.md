@@ -46,7 +46,8 @@ Keep:
 - paper-core replay script;
 - current architecture/research priorities;
 - H1--H4 source audit/request packet/issues;
-- manuscript transfer manifest.
+- manuscript transfer manifest;
+- `mechanism_to_data_bridge_2026-08-14.md` as the application/falsification contract for established ecological parameters.
 
 These are part of scientific claim control, not disposable project notes.
 
@@ -70,21 +71,39 @@ Retain for reproducibility until the manuscript pin is frozen. Their scientific 
 
 ### `.github/workflows/ci.yml`
 
-Remove. It duplicates the generic Python 3.10/3.11/3.12 full pytest matrix already supplied by `.github/workflows/tests.yml` while adding no distinct theorem/provenance gate. `tests.yml` additionally compiles the package before pytest.
+Removed by PR #194. It duplicated the generic Python 3.10/3.11/3.12 full pytest matrix already supplied by `.github/workflows/tests.yml` while adding no distinct theorem/provenance gate. `tests.yml` additionally compiles the package before pytest.
 
-This is infrastructure duplication, not scientific evidence.
+This was infrastructure duplication, not scientific evidence.
 
-## DEFER PENDING REPLAY AUDIT
+## SPECIALIZED WORKFLOW AUDIT
 
-### Specialized theorem workflows
+Do **not** infer that theorem-named workflows are duplicates of `tests.yml`.
 
-The repository still contains many theorem-named GitHub Actions workflows. Do not bulk-delete them merely because full pytest also executes their tests. Some workflows may encode dedicated script invocation, report generation, or frozen historical certificate semantics.
+The generic pytest configuration uses
 
-Next cleanup pass should classify each specialized workflow as:
+```text
+-m 'not legacy'
+```
 
-- distinct replay/provenance gate → KEEP;
-- exact subset of generic pytest with no artifact/claim role → REMOVE;
-- historical gate still referenced by release/manuscript documentation → DEFER.
+so archived/legacy theorem tests are intentionally excluded from the generic full suite.
+
+First audit findings:
+
+- `.github/workflows/adaptive-closure-no-go.yml` — **KEEP**. Runs a focused theorem regression, writes a deterministic JSON replay report, and uploads it as an artifact.
+- `.github/workflows/common-mode-canonical-panels.yml` — **KEEP/DEFER**. Replays several theorem layers separately and writes/uploads a deterministic certificate report.
+- `.github/workflows/approximate-addressability.yml` — **KEEP**. It explicitly executes `-m legacy` tests that the generic suite excludes, so it is not redundant even though it does not upload a report.
+
+Therefore bulk workflow pruning is not justified. Future workflow deletion requires a file-specific showing that the workflow supplies neither:
+
+1. a legacy test gate excluded from generic pytest;
+2. a deterministic verifier/report artifact;
+3. a frozen manuscript/release replay contract.
+
+## DEFER
+
+### Remaining specialized theorem workflows
+
+Audit one by one only when cleanup value justifies it. Default disposition is **DEFER**, not delete.
 
 ### Physical move to `causal_model.legacy`
 
@@ -108,4 +127,4 @@ Defer until:
 
 ## Next cleanup action
 
-After this PR is green, audit specialized workflows one-by-one and remove only those with no distinct replay/provenance role. Do not combine that infrastructure pruning with theorem edits.
+Do not spend more time pruning specialized workflows unless a concrete redundancy is found. The higher-value remaining cleanup is to migrate old package-root import consumers before any future major-version API reduction, and to perform the physical legacy move only after the manuscript source pin is immutable.
