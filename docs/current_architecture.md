@@ -1,25 +1,17 @@
-# Current RACH/CCOC architecture — 2026-08-14 post-feedback-forgetting
+# Current RACH/CCOC architecture — 2026-08-15
 
 ## Purpose
 
-CCOC now has a stable first-paper portability core plus explicit follow-up packages for converse/reuse, resources, deterministic/stochastic ecology, cross-guild coupling, spatial reachability, and endogenous interaction-network feedback.
+CCOC has one stable first-paper portability core and several explicit follow-up packages. Later theorem work does not silently expand the first-paper dependency graph.
 
-The July v1 theorem IDs remain reproducibility anchors. Later theorem modules do not silently rewrite the historical paper core.
+## 1. First-paper structural core
 
-## 1. Structural portability core
-
-Preferred historical entrance:
-
-```python
-import causal_model.portability_core as rach
-```
-
-The first-paper spine remains:
+The manuscript spine remains:
 
 \[
 \text{exact grammar-aware interface}
 +
-\text{cross-grammar obstruction}
+\text{extension/compression obstruction}
 +
 \text{bounded-local extremal witness}
 +
@@ -28,255 +20,116 @@ The first-paper spine remains:
 \text{future-word fiber-split boundary}.
 \]
 
-## 2. Exact converse and reuse
+Key modules remain `grammar_aware_blankets.py`, `extension_compression_noncommutation.py`, `relay_tree_compilation.py`, `coherent_portable_macrolaw.py`, and `conservative_macro_schema.py`, with the fixed-regular extremal strengthening in `fixed_regular_grammar_relay.py` / `extremal_open_composition.py`.
 
-`action_grammar_closure.py` gives the exact one-state action-language expansion converse. `grammar_expansion_closure.py` gives the corrected globally-new-symbol multi-state theorem. `grammar_interface_reuse.py` handles arbitrary same-domain grammar change, where canonical quotients may be equal, finer, coarser, or incomparable.
-
-The broad reuse criterion is
-
-\[
-P_C\text{ reusable exactly}
-\iff
-\text{open enabled/successor rows descend on }P_C.
-\]
-
-`terminal_grammar_portability.py` gives the minimum one-labeling exact across a valid globally-new-symbol chain.
-
-## 3. Fixed-regular extremal family
-
-For every `m>=1`, `fixed_regular_grammar_relay.py` / `extremal_open_composition.py` realize
+For every `m>=1`, the extremal family has
 
 \[
 |P_C|=2,
-\qquad
-|P_O|=2^{m+1},
-\qquad
-K_O-K_C=m,
+\qquad |P_O|=2^{m+1},
+\qquad K_O-K_C=m,
 \]
 
-under one fixed four-symbol alphabet and one newly legal primitive action, with bounded local alphabets, radius-one dynamics, degree at most three, tree topology, focal/exterior cut one, and selected-coordinate access
+under one fixed four-symbol alphabet, one newly legal primitive action, degree at most three, cut one, and selected-coordinate access `2 ceil(log2 m)+2`.
+
+## 2. Exact converse and reuse
+
+- `action_grammar_closure.py`: exact one-state expansion converse;
+- `grammar_expansion_closure.py`: corrected globally-new-symbol multi-state expansion;
+- `grammar_interface_reuse.py`: arbitrary same-domain reuse iff open rows descend on closed fibers;
+- `terminal_grammar_portability.py`: terminal quotient is the minimum labeling exact across a valid expansion chain.
+
+The #163 coarsening counterexample permanently blocks arbitrary grammar-completion monotonicity.
+
+## 3. Resource layer
+
+`portability_adaptation_tradeoff.py` plus finite-boundary and staged-prefix results separate retained information, reopening update information, installation time, selected-query latency, and exposure deadlines.
+
+## 4. Ecological structural layers
+
+### Deterministic abundance
+
+Saturation and depletion results show that exact finite blankets arise from forward-invariant response fibers and bounded future downward reach.
+
+### Stochastic abundance
+
+Stochastic saturation, continuous/per-capita depletion, and finite-horizon approximation separate exact stochastic relevance from approximate portable macros.
+
+### Cross-guild coupling
+
+Hidden saturated abundance remains relevant when it changes a downstream kernel; the saturated-tail hazard diameter controls exactness and sharp one-step minimax error.
+
+### Spatial reachability
+
+On a fixed directed graph, finite future horizon gives an exact distance-based macro with `min(D,H)+2` initial classes.
+
+## 5. Deterministic feedback portability — one consolidated theorem family
+
+Use `docs/feedback_portability_theorem_family_2026-08-15.md` as the entrance.
+
+The family now has one general relative closure theorem and several interpretable special cases / sharpness constructions.
+
+### General relative closure — PR #210
+
+For finite context `C`, macrostate `Q`, persistent hidden mode `M`, and arbitrary hidden-mode dependence of successor context and macrostate, keep `(c,q)` explicit and refine hidden modes only when a legal future continuation forces a split.
+
+The monotone continuation refinement reaches a fixed point `P*` after at most
 
 \[
-2\lceil\log_2m\rceil+2.
+|C||Q|(|M|-1)
 \]
 
-## 4. Resource portability
-
-`portability_adaptation_tradeoff.py` gives
-
-\[
-I(E;C)+I(E;U\mid C)
-\ge
-m-\sum_jh_2(\varepsilon_j).
-\]
-
-The finite-boundary and staged-prefix results separate retained information, reopening update information, full-interface installation time, selected-query latency, and exposure deadlines.
-
-## 5. Deterministic ecological structure
-
-`ecological_saturation_blanket.py`, `ecological_capacity_portability.py`, and `budgeted_depletion_blanket.py` identify exact finite blankets from forward-invariant response fibers and bounded future downward reach.
-
-The one-guild rule is:
-
-\[
-\text{needed exact cap}
-=
-\text{response threshold}
-+
-\text{maximum legal future downward reach}.
-\]
-
-## 6. Stochastic ecological portability
-
-`stochastic_ecological_portability.py` gives exact capped Markov portability under non-negative increment kernels that factor through the cap. Positive depletion can restore full exact abundance distinguishability.
-
-`continuous_time_depletion_reach.py`, `per_capita_mortality_reach.py`, and `finite_horizon_stochastic_saturation.py` separate exact non-portability from capacity-independent finite-horizon approximate macros.
-
-## 7. Hidden cross-guild coupling
-
-`cross_guild_stochastic_coupling.py` shows that hidden saturated abundance remains relevant only through the downstream kernel it induces. The saturated-tail hazard diameter `delta` is zero exactly when the capped two-guild macro is exact; otherwise the sharp one-step minimax common-macro TV error is `delta/2`.
-
-## 8. Spatial reachability
-
-`spatial_dispersal_reachability.py` treats spread on a fixed directed graph. Unlimited exact response equivalence is target distance plus one unreachable class. With at most `H` future spreads,
-
-\[
-|P_H|=\min(D,H)+2.
-\]
-
-Thus a fixed future horizon gives a graph-size-independent exact macro even when raw occupancy state space grows exponentially.
-
-## 9. Endogenous-accessibility feedback package
-
-The feedback program now has four exact deterministic layers.
-
-### 9.1 Addressable feedback rank — PR #204
-
-`feedback_gate_rank.py` constructs `r` hidden interaction modes that are invisible to current output, current graph, facilitator count, target count, and static gate distance. Each mode is exposed only through
-
-\[
-\operatorname{addr}(i)
-\;\mathsf{spread}\;
-\mathsf{turnover}\;
-\mathsf{spread}.
-\]
-
-Hence
-
-\[
-\boxed{K_{\rm feedback}=r.}
-\]
-
-Removing either the mode→turnover effect or the facilitator→future-accessibility effect collapses the burden to zero bits. The exact memory comes from the complete ecological feedback cycle.
-
-### 9.2 Fixed copy-anonymous interaction types — PR #205
-
-`feedback_type_portability.py` proves that one physical interaction type has a canonical exact five-state quotient independent of replication count `n`, although its reachable microstate count is `2^(n+2)-2`.
-
-For fixed `q` types and arbitrary replication vector,
-
-\[
-\boxed{|Q|=5^q}
-\]
-
-with one shared transition table across changing physical domains.
-
-### 9.3 Evolving context-dependent types — PR #207
-
-`evolving_feedback_master_types.py` lets hidden mode `m` have a different response type
-
-\[
-\tau_c(m)
-\]
-
-in each ecological context `c`.
-
-The stable object is the **master feedback signature**
-
-\[
-\boxed{
-\tau^*(m)=(\tau_c(m))_{c\in C}.
-}
-\]
-
-Under the declared contextual-feedback contract,
-
-\[
-(c,q,[m]_*)
-\]
-
-is an exact dynamic interface. Duplicating hidden micro-mode identities inside one master signature changes fiber size but not the macro law.
-
-The rotating family shows why instantaneous type count is insufficient:
-
-\[
-|T_c|=2\quad\forall c,
-\qquad
-R_*=2^r,
-\qquad
-K_{\rm initial}=r.
-\]
-
-All `r` bits first become simultaneously recoverable at horizon
-
-\[
-\boxed{4r-1.}
-\]
-
-### 9.4 Future-context causal forgetting — PR #208
-
-`future_feedback_causal_forgetting.py` handles the case where context evolution is autonomous:
-
-\[
-c'=D(c,a).
-\]
-
-At current context `c`, retain only interaction distinctions in contexts still reachable from `c`:
-
-\[
-\boxed{
-\tau_c^+(m)
-=
-(\tau_d(m))_{d\in\operatorname{Reach}^+(c)}.
-}
-\]
+strict split rounds.
 
 Then
 
 \[
-(c,q,\tau_c^+(m))
+\boxed{Z^*(c,q,m)=(c,q,[m]_{P^*_{c,q}})}
 \]
 
-is exact, and future feedback rank cannot increase along a legal context edge.
+is exact and is the unique coarsest/minimum hidden-mode repair among exact interfaces that retain `c,q` explicitly.
 
-An irreversible `r`-bit context chain has canonical ready-slice memory
+A proposed current type `tau_c(m)` is already exact iff equal current types have equal successor context, equal successor macrostate, and equal successor type under every action.
 
-\[
-\boxed{r,r-1,\ldots,1,0}
-\]
+### Closed-form / sharp subclasses
 
-bits. Once context `c` becomes permanently unreachable, bit `b_c` has no future causal path to turnover/accessibility/response and can be forgotten exactly.
+- PR #204: an endogenous accessibility cycle generates exactly `r` feedback bits; cutting either causal arrow collapses the burden to zero.
+- PR #205: copy-anonymous fixed interaction types give a replication-independent five-state quotient per type and `5^q` states for fixed `q` types.
+- PR #207: mode-independent context motion with context-dependent types closes through the master signature; two instantaneous types per context can still generate `2^r` master classes.
+- PR #208: autonomous irreversible context loss permits exact causal forgetting with sharp memory `r,r-1,...,0`.
+- PR #210 routed-context family: hidden mode rewrites successor context itself; at most two instantaneous types and only `3r+1` contexts still require `2^r` initial continuation classes, with sharp exposure/stabilization depth `2r-1`.
 
-### 9.5 Feedback principle after the four theorems
+### Deterministic feedback stop condition
 
-Within these deterministic classes, the controlling object is
+For finite deterministic persistent hidden mode with explicit ecological `(c,q)`, the existence/minimum-hidden-repair question is closed by PR #210. Do not create more graph/type/context variants inside the same model class.
 
-\[
-\boxed{
-\text{future-response-distinct interaction signatures still causally reachable}
-}
-\]
+A new feedback theorem must change a premise materially: hidden-mode evolution, stochasticity, partial observation, continuous/unbounded state with a nontrivial bound, or a genuinely new approximation/resource question.
 
-rather than raw network size, raw hidden-mode count, physical copy count, or instantaneous interaction-type count.
+## 6. Mechanism-to-data bridge
 
-## 10. Remaining feedback boundary
+`docs/mechanism_to_data_bridge_2026-08-14.md` remains the application-control layer. `UNIDENTIFIED` is not evidence for exact compression. A feedback application specifically needs longitudinal or experimental information resolving interaction → turnover/persistence → accessibility/movement → later response.
 
-The next genuinely harder class is where context reachability itself depends on ecological macrostate or hidden mode. Then the autonomous-context premise of PR #208 fails: feedback changes not only transition rows **within** a context but also which future contexts exist.
+## 7. Historical, manuscript, and novelty gates
 
-A future theorem must therefore derive a finite state-dependent future-context closure or a matching obstruction. Merely applying the generic all-word quotient, ordinary lumpability, or static reachability is not enough.
+- H1–H4 in issue #122/#185 remain historical literature gates for bounded-local realization wording; primary construction pages are required.
+- The hypothesis-recovery snapshot remains pinned separately.
+- Manuscript transfer remains controlled by `docs/manuscript_transfer_manifest_2026-08-14.md` and issue #192.
+- Novelty may now be adjudicated row by row from the recovered/fixed theorem scopes, but no global novelty slogan is allowed before publication-relevant comparisons are complete.
 
-## 11. Mechanism-to-data bridge
+## 8. Workflow discipline
 
-`docs/mechanism_to_data_bridge_2026-08-14.md` remains the application-control layer. A feedback application needs longitudinal/experimental information resolving a cycle of
-
-\[
-\text{interaction/state}
-\to
-\text{turnover/persistence}
-\to
-\text{accessibility/movement}
-\to
-\text{later response}.
-\]
-
-Static occurrence/suitability data alone do not identify this mechanism.
-
-## 12. Historical and manuscript gates
-
-Issue #122/#185 remains the H1–H4 historical compiler gate controlling first-paper realization wording. Primary construction pages are required.
-
-The hypothesis-recovery source snapshot remains pinned separately. Later theorem progress updates current status but does not rewrite that source pin.
-
-Feedback modules remain outside the first-paper proof dependency graph unless explicitly promoted later.
-
-## 13. Workflow discipline
-
-Analytic proof and finite replay remain separate. A green workflow cannot rescue an over-broad theorem statement. New work must state semantic domain, legal grammar, exact/approximate contract, and explicit non-claims.
+Analytic proof and finite replay remain separate. Green CI cannot rescue an over-broad theorem statement. Specialized workflows remain only where they supply distinct replay/artifact value.
 
 ## Navigation
 
 - `fixed_regular_extremal_theorem_2026-08-13.md`
 - `grammar_interface_reuse_2026-08-13.md`
 - `terminal_grammar_portability_2026-08-13.md`
-- `retention_boundary_time_tradeoff_2026-08-14.md`
 - `ecological_saturation_blanket_2026-08-14.md`
 - `stochastic_ecological_portability_2026-08-14.md`
-- `cross_guild_stochastic_coupling_2026-08-14.md`
 - `spatial_dispersal_reachability_2026-08-14.md`
-- `feedback_gate_rank_theorem_2026-08-14.md`
-- `feedback_type_portability_2026-08-14.md`
-- `evolving_feedback_master_types_2026-08-14.md`
-- `future_feedback_causal_forgetting_2026-08-14.md`
+- `feedback_portability_theorem_family_2026-08-15.md`
+- `state_dependent_feedback_closure_2026-08-15.md`
 - `mechanism_to_data_bridge_2026-08-14.md`
 - `hypothesis_recovery_canonical_index_2026-08-14.md`
 - `research_priorities.md`
