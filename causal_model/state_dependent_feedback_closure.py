@@ -538,7 +538,7 @@ class ModeRoutedContextRankCertificate:
             and self.stabilization_round == 2 * self.rank - 1
             and self.last_bit_first_separating_horizon == 2 * self.rank - 1
             and self.last_bit_pair_agrees_before_horizon
-            and not self.current_type_exact
+            and self.current_type_exact == (self.rank == 1)
         )
 
 
