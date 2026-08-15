@@ -1,7 +1,7 @@
 """Exact closure for feedback that rewrites future context reachability.
 
 This module addresses the deterministic feedback boundary left open after the
-future-context forgetting theorem.  Hidden interaction mode may now change the
+future-context forgetting theorem. Hidden interaction mode may now change the
 *context successor itself*, so two states with the same present ecological
 context can have different future context cones.
 
@@ -22,7 +22,7 @@ Main results implemented here:
   yet its initial continuation rank is ``2**r`` and the last profile bit is first
   exposable at horizon ``2r-1``.
 
-The finite certificates replay these claims.  The proofs are structural finite
+The finite certificates replay these claims. The proofs are structural finite
 arguments, not empirical ecology claims and not novelty claims.
 """
 
@@ -66,7 +66,7 @@ class ModeDependentContextFeedbackSystem:
     ``context_transitions[context][macrostate][mode][action_index]``; and
     ``macro_transitions[context][macrostate][mode][action_index]``.
 
-    Current output is mode-independent by design.  Hidden mode can affect both
+    Current output is mode-independent by design. Hidden mode can affect both
     ecological macro dynamics and the successor context, so it can rewrite which
     future ecological worlds remain reachable.
     """
@@ -212,12 +212,7 @@ class CurrentTypeObstruction:
 def find_current_type_obstruction(
     system: ModeDependentContextFeedbackSystem,
 ) -> CurrentTypeObstruction | None:
-    """Return the first obstruction to exactness of ``(c,q,tau_c(m))``.
-
-    Because current output depends only on ``(c,q)``, the current-type summary is
-    exact iff equal current types have the same successor context, successor
-    macrostate, and successor current type after every action.
-    """
+    """Return the first obstruction to exactness of ``(c,q,tau_c(m))``."""
 
     for context in range(system.context_count):
         for macrostate in range(system.macrostate_count):
@@ -271,13 +266,7 @@ def continuation_refinement_step(
     system: ModeDependentContextFeedbackSystem,
     labels: ContinuationLabels,
 ) -> ContinuationLabels:
-    """One relative refinement step for persistent hidden modes.
-
-    Context and ecological macrostate are retained explicitly.  Hidden modes in
-    one ``(c,q)`` fiber remain merged only when every action reaches the same
-    explicit successor ``(c',q')`` and the successor hidden modes remain merged
-    by the previous continuation partition there.
-    """
+    """One monotone relative refinement step for persistent hidden modes."""
 
     if len(labels) != system.context_count:
         raise ValueError("continuation labels have the wrong context count")
@@ -304,15 +293,18 @@ def continuation_refinement_step(
                             labels[next_context][next_macrostate][mode],
                         )
                     )
-                signatures.append(tuple(successor_signature))
+                signatures.append(
+                    (
+                        labels[context][macrostate][mode],
+                        tuple(successor_signature),
+                    )
+                )
             context_rows.append(_canonical_labels(signatures))
         refined.append(tuple(context_rows))
     return tuple(refined)
 
 
 def continuation_stabilization_bound(system: ModeDependentContextFeedbackSystem) -> int:
-    """Maximum number of strict synchronous refinement rounds needed."""
-
     return system.context_count * system.macrostate_count * (system.mode_count - 1)
 
 
@@ -435,15 +427,6 @@ def _branch_context(bit_index: int, bit: int) -> int:
 
 
 def build_mode_routed_context_family(rank: int) -> ModeDependentContextFeedbackSystem:
-    """Two-action family where hidden profile chooses future context routes.
-
-    At root context ``j``, ``route`` moves to branch context ``(j,b_j)`` and the
-    branch output equals ``b_j``.  ``advance`` from that branch reaches the next
-    root.  The full context space is only ``3r+1`` and each context has at most
-    two declared feedback types, yet all ``2**r`` profiles are distinguishable
-    from the first root.
-    """
-
     _validate_positive_integer(rank, "rank")
     actions = ("route", "advance")
     context_count = 3 * rank + 1
