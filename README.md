@@ -1,277 +1,115 @@
-# RACH: causal compression under open composition
+# CCOC — causal compression under open composition
 
-RACH is a theorem-first **mathematical ecology** source archive and active theory
-repository for one finite question:
+CCOC is a theorem-first mathematical-ecology repository for one finite question:
 
-> When does exact compression in each fixed closed composition fail to extend to one small exact interface for a declared open composition grammar?
+> When can exact compression valid under fixed closed future grammars fail to provide one comparably small exact interface after the legal future grammar is opened?
 
-The current formal scope is finite and deterministic. It contains no field
-datasets, fitted ecological parameters, or claim that a passing certificate
-validates an observed ecosystem.
+The current formal scope is finite and mostly deterministic. Passing certificates establish properties of declared finite models; they do not validate an observed ecosystem.
 
-> **Development status — active again as of 2026-08-11.** The July 2026 freeze
-> remains a reproducibility checkpoint for the first open-composition manuscript,
-> but the repository is no longer theorem-frozen. New mathematics may strengthen
-> or replace canonical claims when developed on a branch, reviewed by PR, and
-> accompanied by explicit assumptions, proofs/certificates, counterexamples, and
-> deterministic replay where applicable. See the [freeze/reopening record](FREEZE.md).
+## Core result
 
-## Paper core
+The first-paper spine is deliberately narrow:
 
-The first manuscript package uses one theorem family.
+1. exact grammar-aware response interfaces;
+2. cross-grammar extension/compression obstruction;
+3. bounded-local extremal realization;
+4. conservative positive portability boundary;
+5. local future-word/fiber-split obstruction.
 
-1. **Exact grammar-aware interface.** A finite summary is exact only if output,
-   legal-action rows, and successors factor through it.
-2. **Extension--compression noncommutation.** Jointly realizable exterior
-   coordinates with uniform legal decoder words force an additive lower bound on
-   open-interface memory.
-3. **Bounded-locality sharpness.** A binary relay family attains the gap with
-   pairwise messages, maximum degree three, and a constant-size local
-   node/message grammar.
-4. **Constructive boundary.** A finite conservative macro schema remains exact
-   when newly legal actions are uniform inside every macro fiber; a fiber split
-   refutes the proposed merge locally.
-
-The central claim is conditional on a declared finite system and grammar:
+The strongest explicit family has, for every `m>=1`,
 
 \[
-\text{closed-context exact compression}
-\not\Rightarrow
-\text{one small exact interface for the open union grammar}.
-\]
-
-Post-reopening work now separates the sources of that inflation. `CORE-2` has an
-arbitrary addressable-codebook lower bound and, for exact closed-grammar unions,
-a common-refinement characterization with a fibered join capacity. The full open
-grammar may then add genuinely new future words that refine the closed union
-further. The resulting exact decomposition is
-
-\[
-\Delta_{\rm total}
-=
-\Delta_{\rm capacity}
--
-\delta_{\rm join}
-+
-\iota_{\rm new}.
-\]
-
-The static first two terms have natural-join ancestry. The dynamic last term has a
-sharpness family on the degree-three binary relay: every fixed closed composition
-already permits its `0/1` address routing and `tick`, but excludes only the single
-primitive action `fire`. Every fixed closed quotient, their union, and the static
-join capacity remain one bit. Legalizing that one action makes all dormant leaf
-reads available and forces
-
-\[
-\boxed{\iota_{\rm new}=m}
-\]
-
-additional bits while the full action alphabet remains size four.
-
-This `m`-bit innovation is absolutely sharp on the declared finite macro domain
-`D_m={0,1}^{m+1}`: no open quotient can add more than
-
-\[
-\log_2|D_m|-\log_2|P_U|=m
-\]
-
-bits relative to the two-state closed-union quotient, and the open relay quotient
-is discrete.
-
-### Two distinct locality bounds
-
-The relay now has two latency statements with deliberately different scopes.
-
-**Architecture-specific exact bound.** If one retains the explicit binary
-selector plus same-tree return-path contract, prefix-free addressing and
-one-edge-per-step pulse return give
-
-\[
-L_{\rm query}^{\rm worst}
-\ge
-2\lceil\log_2m\rceil+2.
-\]
-
-For the balanced power-of-two family every canonical probe has exactly
-`2 log2(m) + 2` actions, so this narrower bound is attained with equality.
-
-**General bounded-local causal-cone bound.** Suppose instead only that a finite
-synchronous network has maximum degree `Delta`, bounded local state alphabets,
-radius-one local updates, and a focal output depending on the focal local state.
-A globally broadcast control word may be known everywhere, but it cannot
-instantaneously transmit hidden initial-state information. After `T` local rounds,
-the focal response can depend only on the initial configuration in the radius-`T`
-ball. Thus
-
-\[
-N_T
-\le
-\prod_{v\in B_T(o)}|Q_v|,
+|P_C|=2,
 \qquad
-K_T
-\le
-\sum_{v\in B_T(o)}\log_2|Q_v|.
+|P_O|=2^{m+1},
+\qquad
+K_O-K_C=m,
 \]
 
-For fixed maximum degree `Delta>=3` and fixed local-state bound `q`, the graph ball
-has exponential size in `T`, so distinguishing
+while using one fixed four-symbol primitive alphabet, one newly legal primitive action, pairwise radius-one dynamics, maximum degree three, cut one, and logarithmic selected-coordinate access.
 
-\[
-N_T=2^{\Theta(m)}
-\]
+The safe headline is therefore a **same-system cross-grammar quantitative separation**, not the invention of finite-state minimization.
 
-exact focal response classes requires
+## Novelty boundary
 
-\[
-\boxed{T=\Omega(\log m).}
-\]
+Do **not** claim novelty for fixed-grammar quotient/minimization, input/context-restricted state reduction, partition refinement, common refinement, ordinary distinguishability, generic causal-cone locality, or generic information inequalities.
 
-This broader order lower bound does **not** assume binary addressing, a selector
-token, prefix-free codes, or a specific return route. The existing relay's
-`2 log2(m)+2` probes are therefore order-optimal in the broader bounded-local
-class, while exact zero-slack optimality remains only a claim for the narrower
-selector-plus-return-path architecture. Bounded degree alone is not enough; the
-radius-one causal-propagation contract is essential.
+The remaining first-paper candidate is the simultaneous quantitative package: very small closed interfaces and closed union, one tiny grammar opening, maximal new exact response memory, and the same bounded-local realization.
 
-The historical `CORE-5` newly-legal-word fiber split is the local witness for a
-positive `iota_new` term. Constrained parity and fixed-richness families separately
-quantify the join-realizability term.
+Historical firstness of the bounded-local realization remains conditional on the H1–H4 primary-source compiler audit.
 
-## Novelty status
+## Current code surface
 
-The current theorem package should **not** be described as the first demonstration
-that context/input restrictions change finite-state compression. A historical FSM
-audit found direct ancestry in Kim--Newborn input-restricted minimization,
-sequential don't-care optimization, permissible-behavior synthesis, interacting
-FSM minimization, environment modeling, modular sequential-circuit realization,
-and modern input-restriction/state-identification testing.
-
-The quantitative audit has now identified especially close historical crossings:
-Weiner--Hopcroft (1968) gives bounded-fan-in/out realization of arbitrary
-synchronous machines using identical two-state modules, while Williams (1975)
-explicitly studies uniform decomposition of **incompletely specified** sequential
-machines. Jóźwiak--Ślusarczyk (2004) develops a general decomposition theory for
-incompletely specified sequential machines as constrained networks of
-collaborating partial machines. These make the broad combination
-“restricted/incomplete behavior + small uniform local modules” prior art territory.
-
-The strongest unresolved novelty candidate is therefore only the **simultaneous
-quantitative extremal package**: `m` fixed one-bit closed interfaces and a one-bit
-closed union / join capacity, real routing already legal in the closed contexts,
-one newly legal primitive action producing the absolute maximum `m` bits of new
-exact future-response memory, and the same construction retaining a fixed small
-global alphabet, bounded degree, pairwise constant-local dynamics, and logarithmic
-causal-access latency.
-
-No reviewed source has yet been shown to match **all** of those columns in one
-family, but this is a negative search result rather than a priority proof. See the
-[quantitative prior-art matrix](docs/quantitative_prior_art_matrix.md).
-
-## Start here
-
-- [Freeze/reopening record](FREEZE.md) — historical freeze point and current
-  development policy.
-- [Historical FSM novelty gate](docs/novelty_gate_fsm_history.md) — revised
-  priority assessment against input-restricted and interacting-FSM minimization,
-  permissible behaviors, environment modeling, modular realization, and
-  state-identification testing.
-- [Historical FSM novelty addendum](docs/novelty_gate_fsm_addendum.md) — the
-  centralized one-action maximal-innovation baseline and further novelty
-  reductions.
-- [Newborn locality/memory watchlist](docs/newborn_locality_memory_watchlist.md) —
-  historical modular sequential-circuit and maximal-memory sources that must be
-  checked before any locality/memory priority claim.
-- [Quantitative prior-art matrix](docs/quantitative_prior_art_matrix.md) — compares
-  restricted semantics, exact minimization, state-gap evidence, newly enabled
-  symbols, interacting context, uniform modules, bounded fan-in/out, and latency
-  across the closest historical lines.
-- [Addressable-codebook bound](docs/addressable_codebook_bound.md) — post-reopening
-  strict weakening of the full-product premise, with comparison-domain scope.
-- [Union-grammar refinement capacity](docs/union_grammar_refinement_capacity.md) —
-  exact common-refinement characterization, fibered capacity, and join-realizability
-  defect for the union-grammar subclass.
-- [Database-join ancestry](docs/database_join_ancestry.md) — classical lossless
-  natural-join ancestry and the corresponding novelty boundary.
-- [Interface inflation decomposition](docs/interface_inflation_decomposition.md) —
-  separates closed-view capacity, join-realizability loss, and open-only future
-  innovation, absorbing the fiber-split obstruction into one exact accounting.
-- [Single-action innovation](docs/single_action_innovation.md) — one newly legal
-  primitive action creates `m` bits of pure open-only innovation on the existing
-  bounded-degree constant-alphabet relay.
-- [Innovation capacity and latency](docs/innovation_capacity_latency.md) — proves
-  the `m`-bit family is absolutely memory-sharp and exactly latency-sharp under
-  its declared selector/pulse architecture.
-- [Local causal-cone bound](docs/local_causal_cone_bound.md) — removes selector
-  assumptions from the latency **order** lower bound under an explicit radius-one
-  bounded-local-state network contract.
-- [Composition code rate](docs/composition_code_rate.md) — constrained families,
-  fixed-richness asymptotics, and bounded-degree relay inheritance.
-- [Constant-alphabet relay](docs/constant_alphabet_relay.md) — binary-address
-  strengthening of the bounded-locality sharpness construction.
-- [Paper-core mathematical audit](docs/paper_core_audit.md) — formal proof versus
-  finite replay, corrected assumptions, and the GitHub Actions contract.
-- [Publication-core scope](docs/manuscript_readiness_audit.md) — theorem-to-paper
-  map, robustness limits, and explicit non-claims.
-- [Portability core v1](docs/portability_core_v1.md) — formal source statement of
-  the first manuscript theorem family.
-- [Research priorities](docs/research_priorities.md) — active theorem-strengthening
-  agenda after reopening.
-- [Theorem registry](docs/theorem_registry.md) — complete provenance record for
-  active and archived finite results.
-- [Non-empirical scope](docs/nonempirical_scope.md) — what RACH does and does not
-  establish about ecology.
-- [Legacy shelf](legacy/README.md) — retained non-publication theorem branches,
-  compatibility status, and later promotion rules.
-
-## Active public import
+Preferred structural entrance:
 
 ```python
 import causal_model.portability_core as rach
 ```
 
-`causal_model.current_theory` and `causal_model.identifiability_companion` remain
-compatibility surfaces. New theorem work should use the canonical portability
-modules or an explicitly designated successor module rather than silently
-broadening compatibility aggregates.
+Canonical first-paper modules are listed in `docs/current_architecture.md`.
 
-## Reproducibility boundary
+Distinct follow-up modules remain explicit rather than being re-exported through one giant theory facade.
 
-The first-paper verifier set remains restricted to the finite theorem assets
-behind `CORE-1` through `CORE-5`. In particular, it covers the exact-interface
-criterion, addressable-product injection, relay compilation, conservative schema,
-and local fiber-split obstruction.
+### Deterministic feedback
 
-Run the paper-core finite replay locally with:
+The former five-module feedback theorem family has been reduced to two representative executable examples:
+
+- `causal_model/feedback_gate_rank.py` — feedback-cycle memory with causal-arrow ablation;
+- `causal_model/feedback_type_portability.py` — replication-independent five-state positive example.
+
+The general continuation-refinement / unique-coarsest-repair result is classical minimization substrate. PR #207/#208/#210 implementations and detailed proof notes are retained in Git history rather than the current tree.
+
+See:
+
+- `docs/feedback_portability_theorem_family_2026-08-15.md`
+- `docs/feedback_novelty_audit_2026-08-16.md`
+
+Full pre-cleanup feedback surface:
+
+`4c7887c73ba8fa86a5e3883ebb6dce265b80fe7a`
+
+## Repository cleanup status
+
+CCOC is currently in a **surface-reduction phase**. Files are classified as:
+
+- **CURRENT** — publication core or a distinct active extension;
+- **COMPATIBILITY** — still used by current repository consumers;
+- **HISTORICAL** — conclusion/provenance retained, implementation may live only in Git history;
+- **REMOVE** — duplicated or superseded current-tree surface.
+
+The deprecated `causal_model.current_theory` aggregate has been removed because no active repository code imported it. The broad package-root facade remains temporarily while old examples/scripts are audited.
+
+Cleanup record:
+
+- `docs/core_surface_cleanup_manifest_2026-08-14.md`
+- `docs/package_boundary_plan.md`
+- `docs/research_priorities.md`
+
+## Reproducibility
+
+The historical paper-core replay remains:
 
 ```bash
+python scripts/verify_theorem_registry.py --check --write-report
 python scripts/verify_paper_core.py --write-report
+pytest -q
 ```
 
-It writes `artifacts/paper_core_reproducibility_report.json`. The matching
-**Paper-core reproducibility** GitHub Actions workflow runs this replay together
-with the explicit paper-core test suite and theorem-registry provenance check.
+`tests.yml` is the generic Python 3.10/3.11/3.12 test gate. Specialized workflows should remain only when they provide a distinct legacy, artifact, or frozen replay contract.
 
-A passing check confirms that declared finite certificate paths and selected
-witnesses remain reproducible. It does not validate an ecological dataset,
-infer reachability or a grammar from observations, or establish that an observed
-ecosystem satisfies the declared model contract.
+## Start here
 
-Post-reopening strengthening tests are part of the ordinary test suite but are
-not silently added to the historical v1 paper-core replay until a new versioned
-core is deliberately promoted.
+- `docs/current_architecture.md` — current code/theorem map
+- `docs/residual_novelty_decision_2026-08-12.md` — controlling novelty decision
+- `docs/manuscript_readiness_audit.md` — first-paper claim boundary
+- `docs/manuscript_transfer_manifest_2026-08-14.md` — eventual transfer contract
+- `docs/core_surface_cleanup_manifest_2026-08-14.md` — executed cleanup decisions
+- `docs/theorem_registry.md` — theorem provenance
+- `docs/nonempirical_scope.md` — ecological non-claims
+- `FREEZE.md` — historical freeze and reopening policy
 
-## Development policy
+## Development rule during cleanup
 
-The July 2026 frozen paper core is retained as a stable provenance baseline, not
-as a ban on further mathematics. New theorem development must:
+Do not add a new theorem family while repository reduction is active unless it changes a material model premise and survives prior-art classification.
 
-- occur on a branch and enter `main` through a reviewed pull request;
-- state exactly which canonical assumption or conclusion it changes;
-- distinguish theorem, lower bound, sufficient condition, witness, conjecture,
-  and computational evidence;
-- preserve the historical replay of the v1 paper core; and
-- avoid broad ecological claims not supported by an explicit model contract.
-
-Replacement transport and rewiring remain developed in `zuizui0223/mltr` unless
-a result directly strengthens the open-composition theorem itself.
+The current task is to make the surviving scientific result easier to see, not to increase theorem count.
