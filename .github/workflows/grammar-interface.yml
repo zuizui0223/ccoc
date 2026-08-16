@@ -8,7 +8,6 @@ on:
       - 'causal_model/dynamic_boundary_blankets.py'
       - 'scripts/verify_grammar_aware_blankets.py'
       - 'tests/test_grammar_aware_blankets.py'
-      - 'tests/test_current_theory.py'
       - 'docs/grammar_aware_dynamic_blankets.md'
       - '.github/workflows/grammar-interface.yml'
   push:
@@ -19,7 +18,6 @@ on:
       - 'causal_model/dynamic_boundary_blankets.py'
       - 'scripts/verify_grammar_aware_blankets.py'
       - 'tests/test_grammar_aware_blankets.py'
-      - 'tests/test_current_theory.py'
       - 'docs/grammar_aware_dynamic_blankets.md'
       - '.github/workflows/grammar-interface.yml'
 
