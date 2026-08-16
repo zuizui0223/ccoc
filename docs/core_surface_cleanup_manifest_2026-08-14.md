@@ -69,21 +69,28 @@ The complete pre-cleanup code and proof notes remain recoverable at:
 
 `4c7887c73ba8fa86a5e3883ebb6dce265b80fe7a`.
 
-## 4. COMPATIBILITY — keep only while referenced
+## 4. COMPATIBILITY CLEANUP — started
 
-### Package root
+### `current_theory.py` — retired
 
-`causal_model/__init__.py` exposes a large pre-CCOC qualitative/panel API. It is not a research entrance.
+The deprecated `causal_model/current_theory.py` aggregate had no active in-repository import consumer. Its references were limited to its own compatibility test and historical documentation.
 
-Do not add exports. Next cleanup pass should search every in-repository root import and shrink the facade to the minimum set still used.
+Removed:
 
-### `current_theory.py`
+- `causal_model/current_theory.py`
+- `tests/test_current_theory.py`
 
-Historical aggregate. Keep only while an explicit repository consumer or frozen replay requires it.
+The aggregate remains recoverable from the pre-cleanup Git pin.
 
-### Candidate/panel/benchmark family
+### Package root — still active compatibility surface
 
-Observation design, candidate uncertainty, panel selection, confidence lifting, and benchmark modules predate the narrow open-composition theorem spine. They must be audited as a family rather than retained automatically because they have tests.
+`causal_model/__init__.py` exposes a large pre-CCOC qualitative/panel API. Current examples/scripts still import names from the package root, so it is not yet removable.
+
+Do not add exports. Next pass should audit the root-import consumer families and either migrate or retire them, then shrink the facade.
+
+### Candidate/panel/benchmark family — next target
+
+Observation design, candidate uncertainty, panel selection, confidence lifting, and benchmark modules predate the narrow open-composition theorem spine. Audit them as a family rather than retaining them automatically because they have tests.
 
 ## 5. WORKFLOWS
 
