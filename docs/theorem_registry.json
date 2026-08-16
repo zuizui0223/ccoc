@@ -1,5 +1,5 @@
 {
-  "registry_version": 3,
+  "registry_version": 2,
   "historical_archive": "docs/historical_theorem_archive.json",
   "claim_firewall": "docs/ccoc_mltr_claim_firewall_2026-08-16.md",
   "repository_scope": {
