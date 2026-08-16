@@ -1,44 +1,23 @@
-# Legacy shelf: retained non-publication theorem branches
+# Legacy registry compatibility note
 
-These finite results are retained as executable historical material, but they are
-**not part of the active open-composition manuscript**. They remain available for
-replay, comparison, and later promotion; this shelf is a freeze, not a statement
-that any result is false.
+The current research surface is defined by `docs/current_architecture.md`. Historical and companion theorem groups are tracked by `legacy/manifest.md` and the machine-readable `docs/theorem_registry.json`.
 
-The current manuscript is restricted to:
+This file remains only because the current theorem registry still cites a documentation path under `docs/` for the `LEGACY-1` experimental-design entry.
 
-1. exact grammar-aware interfaces;
-2. extension--compression noncommutation under operational addressability;
-3. the bounded-degree relay sharpness realization; and
-4. conservative macro schemas with their local fiber-split boundary.
+## Current status
 
-See the root [legacy manifest](../../legacy/manifest.md) for the complete
-compatibility-preserving migration map.
+- `CORE-1` through `CORE-5` form the publication core.
+- `CORE-0`, `EXT-1`–`EXT-4`, `ID-1`–`ID-3`, and `LEGACY-1` are historical/companion registry entries, not equal current research priorities.
+- `causal_model.current_theory` and `causal_model.identifiability_companion` have been retired from the current tree because they had no active code consumers.
+- several stale theorem-specific legacy workflows have also been removed.
+- complete pre-cleanup recovery is available at Git pin `4c7887c73ba8fa86a5e3883ebb6dce265b80fe7a`.
 
-| Archived branch | Registry group | Why retained | Current development status |
-|---|---|---|---|
-| Finite closure classification | `CORE-0` | prerequisite for some declared finite maps | frozen in RACH |
-| Non-nested replacement and rewiring | `EXT-1`--`EXT-4` | coherent transport, derived target projection, target-only action results, and carried-fiber obstruction | **migrated to [`zuizui0223/EXT`](https://github.com/zuizui0223/EXT)** as the active standalone theorem program; RACH retains provenance replays only |
-| Delayed exposure and finite-evidence limits | `ID-1` | clear boundary on what monitoring can establish | frozen companion branch |
-| Candidate and joint exterior-mechanism laws | `ID-2`, `ID-3` | records uncertainty-aware companion mathematics | frozen companion branch |
-| Budgeted delayed joint quotients | `LEGACY-1` | exact partial-identification ladder for reset-panel contracts | frozen design branch |
-| Witnessed boundary evidence | `LEGACY-1` | lower-bound bookkeeping without coverage | frozen design branch |
-| Robust and common-mode canonical panels | `LEGACY-1` | cell-loss and failure-architecture results | frozen design branch |
-| Historical examples and benchmarks | no active registry ID | preserves development and reproducibility context | frozen |
+## Why legacy source still exists
 
-## Rules
+The current registry verifier requires every registered `modules`, `tests`, and `documents` path to exist. Therefore the underlying ID/EXT/LEGACY source bundles cannot be physically retired cleanly until the registry is split into a **current executable registry** and an **immutable historical archive record**.
 
-1. Do not add features, headline claims, workflows, or examples to this shelf
-   during manuscript preparation.
-2. Do not re-export legacy material from `causal_model.portability_core`.
-3. `causal_model.identifiability_companion` and `causal_model.current_theory`
-   remain compatibility surfaces only; neither is an active research entrance.
-4. The active successor for `EXT-1`--`EXT-4` is `zuizui0223/EXT`. New
-   replacement, extinction, recolonization, and rewiring mathematics belongs
-   there, not in RACH.
-5. Keep deterministic legacy replays available, but do not let their maintenance
-   expand the paper's claim.
+That registry-aware migration is a later cleanup pass. It should not be confused with scientific promotion of these branches.
 
-Historical source paths remain temporarily stable. A physical move under
-`causal_model.legacy` is scheduled only after the manuscript source release is
-tagged, so pre-submission provenance and old imports are not changed at once.
+## Rule
+
+Do not add new theorem variants, facades, workflows, or examples to the legacy groups. Maintenance is allowed only when needed to preserve the current registry contract until that contract is simplified.
