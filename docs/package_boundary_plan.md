@@ -1,94 +1,83 @@
-# RACH/CCOC package boundary — publication core, explicit extensions, compatibility shelf
+# CCOC package boundary — current tree versus history
 
-## Governing decision
+## Governing rule
 
-CCOC now contains a mature first-paper core plus several established extension packages. The repository should therefore distinguish **publication dependency**, **active extension surfaces**, and **compatibility/legacy code** instead of treating everything outside CORE-1--CORE-5 as one undifferentiated archive.
+The repository has three code layers:
 
-The first-paper question remains:
+1. **publication core** — dependencies of the narrow open-composition paper;
+2. **distinct active extensions** — results that change the mathematical/ecological premise materially;
+3. **compatibility shelf** — old APIs still used by repository consumers.
 
-> When can exact finite compression that is valid under a declared closed future fail to provide one comparably small exact interface after the legal future grammar is opened?
+Everything else belongs in Git history rather than remaining an active source surface by default.
 
-The first-paper proof dependency graph stays narrow. Later converse/resource/ecological/stochastic/spatial theorems are real results, but they should not enlarge that graph automatically.
+## 1. Publication core
 
-## 1. First-paper publication core
-
-Preferred historical entrance:
+Preferred entrance:
 
 ```python
 import causal_model.portability_core as rach
 ```
 
-The July registry anchors remain `CORE-1`--`CORE-5`. The first-paper proof spine is:
+Historical registry anchors remain CORE-1 through CORE-5. The fixed-regular extremal strengthening remains active through:
 
-1. exact grammar-aware response interface;
-2. extension--compression/addressability obstruction;
-3. bounded-local relay sharpness;
-4. conservative macro-schema portability;
-5. local future-word/new-action fiber split.
+- `causal_model/fixed_regular_grammar_relay.py`
+- `causal_model/extremal_open_composition.py`
 
-The strengthened extremal handoff additionally uses:
+Do not expand this package to expose every follow-up theorem.
 
-```text
-causal_model/fixed_regular_grammar_relay.py
-causal_model/extremal_open_composition.py
-docs/fixed_regular_extremal_theorem_2026-08-13.md
-```
+## 2. Active extensions
 
-These strengthen the relay role without replacing the historical registry IDs.
+A module qualifies as an active extension only when it contributes a distinct structural result, not merely another exact quotient/refinement of a finite deterministic system.
 
-## 2. Established extension surfaces
+Active families currently include exact converse/reuse, selected resource tradeoffs, and delimited ecological/stochastic/spatial results.
 
-The following are **not legacy merely because they are outside the first-paper core**. They are explicit theorem families for follow-up work:
+Deterministic feedback has been reduced to two executable examples:
 
-- exact converse/reuse: `action_grammar_closure.py`, `grammar_expansion_closure.py`, `grammar_interface_reuse.py`;
-- chain/resource portability: `terminal_grammar_portability.py`, `portability_adaptation_tradeoff.py` and the boundary-time/staged-prefix proofs;
-- deterministic ecology: `ecological_saturation_blanket.py`, `ecological_capacity_portability.py`, `budgeted_depletion_blanket.py`;
-- stochastic ecology: `stochastic_ecological_portability.py`, `continuous_time_depletion_reach.py`, `per_capita_mortality_reach.py`, `finite_horizon_stochastic_saturation.py`;
-- interaction/spatial ecology: `cross_guild_stochastic_coupling.py`, `spatial_dispersal_reachability.py`.
+- `feedback_gate_rank.py`
+- `feedback_type_portability.py`
 
-These modules should be imported explicitly. They should not be bulk-added to `portability_core` just to make them easier to discover.
+The former PR #207/#208/#210 implementations are historical and recoverable at pre-cleanup pin `4c7887c73ba8fa86a5e3883ebb6dce265b80fe7a`.
 
-## 3. Compatibility surfaces
+## 3. Compatibility shelf
 
-`causal_model.current_theory` remains a deprecated pre-v1 aggregate. It exists only so old certificates/notebooks continue to import. It is not a research entrance.
+`causal_model/__init__.py` and `causal_model/current_theory.py` are compatibility facades, not active research surfaces.
 
-The package root `causal_model/__init__.py` also still exposes the older qualitative/ecological-program and robustness API. Repository examples and verification scripts continue to import those names directly from `causal_model`, so removing that facade now would be an import-breaking cleanup rather than deletion of dead code.
+Rules:
 
-Policy:
+- no new exports;
+- migrate in-repository consumers toward explicit modules;
+- after consumers are migrated, remove unused exports/files even if historical notebooks once used them;
+- retain the Git pin, not duplicate active code, as the long-term historical recovery mechanism.
 
-- preserve these imports until a tagged manuscript/source release or an explicit major-version migration;
-- do not add new theorem work to either broad facade;
-- new CCOC theorem code imports explicit modules or `portability_core` where appropriate.
+Candidate-uncertainty, observation-panel, benchmark, and experimental-design code is the next compatibility family to audit.
 
-## 4. Legacy shelf
+## 4. Documentation boundary
 
-Historical candidate-uncertainty, observation-panel, benchmark, and experimental-design branches remain compatibility/reproducibility material. Their source paths may be moved only after the manuscript source pin is immutable and replayable.
+Each active theorem family should have at most:
 
-Physical deletion or relocation is deferred because old examples/scripts still depend on those paths. A green full test suite is necessary but not sufficient evidence that external historical imports are safe to break.
+- one canonical mathematical/scientific entrance document;
+- one claim-control/prior-art document when necessary.
 
-## 5. Workflow boundary
+Do not keep a separate long proof note for every merged PR after the family has been consolidated. Historical details remain in Git history.
 
-The repository should have one generic full-suite Python matrix workflow. `tests.yml` is the canonical generic gate because it installs the package, compiles `causal_model`, and runs full pytest on Python 3.10/3.11/3.12.
+## 5. Test boundary
 
-The former `ci.yml` duplicated the same three-version full pytest matrix without adding a distinct scientific gate and is therefore removable.
+Keep tests for active sources and for explicit compatibility contracts.
 
-Specialized historical workflows may remain only when they provide a named replay/certificate gate not already represented by generic full pytest or theorem-registry integrity. Their removal should be evaluated separately, not by filename age alone.
+Delete a dedicated test file when its only source was retired and no frozen replay contract still calls it.
 
-## 6. Source-of-truth rules
+A historical theorem does not need a permanent standalone current-tree regression if its conclusion is no longer represented by active code.
 
-- `extension_compression_noncommutation.py` is the canonical source for the addressable-product/noncommutation obstruction.
-- `operational_addressability.py` supplies finite operational witnesses; it does not infer a grammar or ecological mechanism from data.
-- `fixed_regular_grammar_relay.py` + `extremal_open_composition.py` are the current strongest explicit relay realization surface.
-- `conservative_macro_schema.py` supplies the manuscript positive boundary.
-- `grammar_interface_reuse.py` is the broad same-domain reuse theorem; do not replace it with an unconditional refinement slogan.
-- ecological/stochastic/spatial modules remain explicit follow-up theorem surfaces rather than manuscript-core dependencies.
+## 6. Workflow boundary
 
-## 7. Cleanup rule
+Keep one generic full-suite matrix (`tests.yml`) and distinct provenance/replay workflows only where they add a real gate or artifact.
 
-Classify repository material into three buckets before deleting anything:
+Theorem-named workflow count should decrease as theorem-specific active surfaces are retired.
 
-1. **KEEP** — publication core, established extension theorem, required replay/provenance, or compatibility surface still referenced in-repo;
-2. **REMOVE NOW** — exact duplicate infrastructure with no distinct scientific/replay role;
-3. **DEFER** — old APIs/workflows/examples whose removal would break compatibility or whose replay role has not yet been replaced by an immutable manuscript pin.
+## 7. Source-of-truth rule
 
-The current cleanup manifest is `docs/core_surface_cleanup_manifest_2026-08-14.md`.
+Current architecture is documented in `docs/current_architecture.md`.
+
+Executed deletion decisions are recorded in `docs/core_surface_cleanup_manifest_2026-08-14.md`.
+
+Historical results that are removed from the current tree remain recoverable from immutable commits/merged PRs; deletion from `main` is not deletion from scientific provenance.
