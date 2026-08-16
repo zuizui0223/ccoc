@@ -1,9 +1,17 @@
 {
-  "registry_version": 2,
+  "registry_version": 3,
   "historical_archive": "docs/historical_theorem_archive.json",
+  "claim_firewall": "docs/ccoc_mltr_claim_firewall_2026-08-16.md",
   "repository_scope": {
     "discipline": "mathematical ecology",
     "object": "current executable finite theorem certificates for causal compression under open composition",
+    "headline_question": "Compare independently minimized exact interfaces under fixed closed grammars with the minimum exact interface under a jointly open grammar.",
+    "excluded_headline_outputs": [
+      "unique coarsest repair of one fixed inherited source partition",
+      "transport defect relative to an inherited source law",
+      "route coherence across replacement histories",
+      "minimum history completion"
+    ],
     "allowed": [
       "synthetic finite state spaces",
       "declared grammars and controlled transition systems",
@@ -16,7 +24,7 @@
       "parameter fitting or statistical estimation from observations",
       "claims that a passing certificate validates an observed ecosystem"
     ],
-    "interpretation_boundary": "Ecological mechanisms may motivate a declared state space or grammar in a separate application layer. This registry verifies only the current executable finite mathematical object."
+    "interpretation_boundary": "Ecological mechanisms may motivate a declared state space or grammar in a separate application layer. This registry verifies only the current executable finite mathematical object. Source-relative minimal repair and history-aware transport belong to MLTR rather than the CCOC headline."
   },
   "required_ids": [
     "CORE-1",
@@ -29,7 +37,7 @@
     {
       "id": "CORE-1",
       "title": "Exact grammar-aware dynamic interface",
-      "tier": "publication core",
+      "tier": "headline foundation",
       "status": "exact finite theorem",
       "domain": "A finite deterministic controlled system together with a fixed finite legal-action grammar.",
       "assumptions": "The system, outputs, actions, and grammar are explicitly declared and finite.",
@@ -45,23 +53,23 @@
     {
       "id": "CORE-2",
       "title": "Addressable-completion lower bound and extension--compression noncommutation",
-      "tier": "publication core",
+      "tier": "headline theorem",
       "status": "lower-bound obstruction",
       "domain": "A declared jointly realizable comparison family with explicit legal decoder words.",
       "assumptions": "Relevant inside/exterior distinctions are jointly realizable and future-separable under the supplied open grammar; fixed contexts admit the stated closed factorization.",
-      "conclusion": "Exact open interface memory is bounded below by the operationally addressable comparison size, yielding a closed-to-open extension--compression gap.",
+      "conclusion": "Exact open interface memory is bounded below by the operationally addressable comparison size, yielding a closed-to-open extension--compression gap even though each closed grammar may have its own small optimum.",
       "modules": ["causal_model/extension_compression_noncommutation.py", "causal_model/operational_addressability.py"],
       "tests": ["tests/test_extension_compression.py", "tests/test_operational_addressability.py"],
-      "documents": ["docs/portability_core_v1.md", "docs/claim_status_audit.md", "docs/theorem_spine.md"],
+      "documents": ["docs/portability_core_v1.md", "docs/claim_status_audit.md", "docs/theorem_spine.md", "docs/ccoc_mltr_claim_firewall_2026-08-16.md"],
       "certificates": ["AddressableProductLowerBoundCertificate", "ClosedContextFactorizationCertificate", "OperationalAddressableProductCertificate"],
       "verification": ["python -m pytest tests/test_extension_compression.py tests/test_operational_addressability.py -q"],
-      "non_claim": "Exterior memory adds in every composition without joint realization and operational separation.",
-      "ecological_role": "Formalizes when independently future-separable outside processes force a larger exact summary; it does not estimate those processes from field data."
+      "non_claim": "Exterior memory adds in every composition without joint realization and operational separation; the result is not a source-relative repair theorem for a fixed inherited partition.",
+      "ecological_role": "Formalizes when independently future-separable outside processes force a larger minimum exact summary; it does not estimate those processes from field data."
     },
     {
       "id": "CORE-3",
       "title": "Bounded-local extremal sharpness realization",
-      "tier": "publication core",
+      "tier": "headline sharpness support",
       "status": "sharpness witness",
       "domain": "The declared binary/fixed-regular relay family and its bounded-degree compilation.",
       "assumptions": "The relay topology, local grammar, pairwise protocol, and closed/open grammar contract are the supplied finite construction.",
@@ -77,7 +85,7 @@
     {
       "id": "CORE-4",
       "title": "Conservative exact portability boundary",
-      "tier": "publication core",
+      "tier": "supporting boundary",
       "status": "sufficient criterion",
       "domain": "Finite controlled systems with declared macro labels under composition or legal-action expansion.",
       "assumptions": "Old macro meanings are preserved; equal macro labels have coherent successors; newly available actions have uniform availability and one macro successor inside each macro fiber.",
@@ -87,13 +95,13 @@
       "documents": ["docs/portability_core_v1.md", "docs/claim_status_audit.md", "docs/theorem_spine.md"],
       "certificates": ["CoherentPortableMacroLawCertificate", "ConservativeSchemaChainCertificate"],
       "verification": ["python -m pytest tests/test_coherent_portable_macrolaw.py tests/test_conservative_macro_schema.py -q"],
-      "non_claim": "These sufficient conditions are necessary for every portable macro-law.",
-      "ecological_role": "Formal constructive boundary for carrying one declared exact summary across composition/action expansion."
+      "non_claim": "These sufficient conditions are necessary for every portable macro-law or constitute a unique minimal repair theorem.",
+      "ecological_role": "Formal positive boundary supporting the CCOC lower-bound story; source-relative repair belongs to MLTR."
     },
     {
       "id": "CORE-5",
       "title": "Future-word and new-action fiber-split obstructions",
-      "tier": "publication core",
+      "tier": "supporting boundary",
       "status": "local obstruction",
       "domain": "A finite proposed macro fiber and a declared later legal word or newly legal action.",
       "assumptions": "The supplied word or action is legal in the relevant later grammar and yields distinct output traces or successor labels from two states in one proposed fiber.",
@@ -103,8 +111,8 @@
       "documents": ["docs/portability_core_v1.md", "docs/claim_status_audit.md"],
       "certificates": ["FutureWordObstructionCertificate", "NewActionMergeObstructionCertificate"],
       "verification": ["python -m pytest tests/test_coherent_portable_macrolaw.py tests/test_conservative_macro_schema.py -q"],
-      "non_claim": "One split rules out every alternative macro-law or proves a global memory lower bound.",
-      "ecological_role": "A formal warning that a newly permitted intervention can invalidate one coarse ecological state description."
+      "non_claim": "One split rules out every alternative macro-law, proves a global memory lower bound, or constructs the unique coarsest repair of an inherited source partition.",
+      "ecological_role": "A formal local warning supporting the CCOC obstruction picture; minimal inherited-law repair belongs to MLTR."
     }
   ]
 }
