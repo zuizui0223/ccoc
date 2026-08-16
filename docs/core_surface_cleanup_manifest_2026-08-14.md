@@ -92,13 +92,23 @@ Do not add exports. Next pass should audit the root-import consumer families and
 
 Observation design, candidate uncertainty, panel selection, confidence lifting, and benchmark modules predate the narrow open-composition theorem spine. Audit them as a family rather than retaining them automatically because they have tests.
 
-## 5. WORKFLOWS
+## 5. WORKFLOW CLEANUP — executed where stale behavior was exposed
 
 `tests.yml` is the generic Python 3.10/3.11/3.12 gate. `theorem-registry.yml` is a distinct provenance gate.
 
-A specialized workflow survives only if it provides at least one of:
+`tests/conftest.py` marks every non-paper-core test as `legacy`, while `pyproject.toml` globally runs `pytest -m 'not legacy'`. Several old theorem-specific workflows nevertheless invoked a single legacy test file without overriding that marker. After `current_theory.py` was removed, those workflows were triggered by the deleted compatibility-test path and failed with pytest exit code 5 because zero tests were collected.
 
-1. a legacy gate excluded from generic pytest;
+Those workflows were stale rather than evidence of a broken current core, so the following were removed instead of restoring the retired facade:
+
+- `.github/workflows/delayed-addressability.yml`
+- `.github/workflows/candidate-safe-laws.yml`
+- `.github/workflows/joint-open-candidate-laws.yml`
+- `.github/workflows/delayed-joint-nonidentifiability.yml`
+- `.github/workflows/binary-joint-relay.yml`
+
+A specialized workflow now survives only if it provides at least one of:
+
+1. a correctly configured legacy gate that explicitly runs legacy tests;
 2. a deterministic artifact/replay not produced elsewhere;
 3. a frozen release/manuscript contract.
 
