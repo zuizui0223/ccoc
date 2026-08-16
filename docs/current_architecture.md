@@ -1,28 +1,30 @@
-# Current RACH/CCOC architecture — 2026-08-15
+# Current CCOC architecture — 2026-08-16
 
 ## Purpose
 
-CCOC has one stable first-paper portability core and several explicit follow-up packages. Later theorem work does not silently expand the first-paper dependency graph.
+This file describes the **current tree**, not the full historical theorem archive. Git history preserves retired theorem experiments and proof notes.
 
-## 1. First-paper structural core
+## 1. Publication core
 
-The manuscript spine remains:
+The narrow first-paper structural core remains:
 
-\[
-\text{exact grammar-aware interface}
-+
-\text{extension/compression obstruction}
-+
-\text{bounded-local extremal witness}
-+
-\text{conservative portability}
-+
-\text{future-word fiber-split boundary}.
-\]
+1. exact grammar-aware response interfaces;
+2. cross-grammar extension/compression obstruction;
+3. bounded-local extremal witness;
+4. conservative portability boundary;
+5. local future-word/fiber-split obstruction.
 
-Key modules remain `grammar_aware_blankets.py`, `extension_compression_noncommutation.py`, `relay_tree_compilation.py`, `coherent_portable_macrolaw.py`, and `conservative_macro_schema.py`, with the fixed-regular extremal strengthening in `fixed_regular_grammar_relay.py` / `extremal_open_composition.py`.
+Canonical modules:
 
-For every `m>=1`, the extremal family has
+- `causal_model/grammar_aware_blankets.py`
+- `causal_model/extension_compression_noncommutation.py`
+- `causal_model/relay_tree_compilation.py`
+- `causal_model/coherent_portable_macrolaw.py`
+- `causal_model/conservative_macro_schema.py`
+- `causal_model/fixed_regular_grammar_relay.py`
+- `causal_model/extremal_open_composition.py`
+
+The strongest explicit family has
 
 \[
 |P_C|=2,
@@ -30,106 +32,81 @@ For every `m>=1`, the extremal family has
 \qquad K_O-K_C=m,
 \]
 
-under one fixed four-symbol alphabet, one newly legal primitive action, degree at most three, cut one, and selected-coordinate access `2 ceil(log2 m)+2`.
+with one fixed four-symbol primitive alphabet, one newly legal primitive action, degree at most three, cut one, and logarithmic selected-coordinate access.
 
-## 2. Exact converse and reuse
+## 2. Active follow-up theorem surfaces
 
-- `action_grammar_closure.py`: exact one-state expansion converse;
-- `grammar_expansion_closure.py`: corrected globally-new-symbol multi-state expansion;
-- `grammar_interface_reuse.py`: arbitrary same-domain reuse iff open rows descend on closed fibers;
-- `terminal_grammar_portability.py`: terminal quotient is the minimum labeling exact across a valid expansion chain.
+### Exact converse/reuse
 
-The #163 coarsening counterexample permanently blocks arbitrary grammar-completion monotonicity.
+- `action_grammar_closure.py`
+- `grammar_expansion_closure.py`
+- `grammar_interface_reuse.py`
+- `terminal_grammar_portability.py`
 
-## 3. Resource layer
+### Resource layer
 
-`portability_adaptation_tradeoff.py` plus finite-boundary and staged-prefix results separate retained information, reopening update information, installation time, selected-query latency, and exposure deadlines.
+- `portability_adaptation_tradeoff.py`
+- retained boundary-time / staged-exposure results
 
-## 4. Ecological structural layers
+### Ecological structural layer
 
-### Deterministic abundance
+Keep explicit deterministic, stochastic, cross-guild, and spatial modules only where they state a distinct structural result rather than a relabeling of fixed-grammar minimization.
 
-Saturation and depletion results show that exact finite blankets arise from forward-invariant response fibers and bounded future downward reach.
+## 3. Deterministic feedback — reduced active surface
 
-### Stochastic abundance
+Entrance:
 
-Stochastic saturation, continuous/per-capita depletion, and finite-horizon approximation separate exact stochastic relevance from approximate portable macros.
+`docs/feedback_portability_theorem_family_2026-08-15.md`
 
-### Cross-guild coupling
+Claim-control audit:
 
-Hidden saturated abundance remains relevant when it changes a downstream kernel; the saturated-tail hazard diameter controls exactness and sharp one-step minimax error.
+`docs/feedback_novelty_audit_2026-08-16.md`
 
-### Spatial reachability
+Only two feedback implementations remain active:
 
-On a fixed directed graph, finite future horizon gives an exact distance-based macro with `min(D,H)+2` initial classes.
+- `causal_model/feedback_gate_rank.py` — mechanism-specific feedback-cycle rank plus causal-arrow ablation;
+- `causal_model/feedback_type_portability.py` — replication-independent five-state positive example.
 
-## 5. Deterministic feedback portability — one consolidated theorem family
+The former PR #207/#208/#210 implementations were retired from the current tree because they are increasingly general fixed-grammar refinement variants of the same classical substrate. Their scientific conclusions are summarized in the consolidated feedback document and their full code/proofs remain at pre-cleanup audit pin
 
-Use `docs/feedback_portability_theorem_family_2026-08-15.md` as the entrance.
+`4c7887c73ba8fa86a5e3883ebb6dce265b80fe7a`.
 
-The family now has one general relative closure theorem and several interpretable special cases / sharpness constructions.
+No deterministic persistent-mode feedback variant is an active development target.
 
-### General relative closure — PR #210
+## 4. Compatibility shelf
 
-For finite context `C`, macrostate `Q`, persistent hidden mode `M`, and arbitrary hidden-mode dependence of successor context and macrostate, keep `(c,q)` explicit and refine hidden modes only when a legal future continuation forces a split.
+The broad package-root facade in `causal_model/__init__.py` remains temporarily because current repository examples/scripts still import older qualitative/panel names from the package root. No new theorem export should be added there.
 
-The monotone continuation refinement reaches a fixed point `P*` after at most
+The deprecated `causal_model/current_theory.py` aggregate has been retired from the current tree because no active repository code imported it; only its dedicated compatibility test and historical documentation referenced it. Its final implementation remains recoverable from the pre-cleanup Git pin.
 
-\[
-|C||Q|(|M|-1)
-\]
+Historical candidate-uncertainty, panel-design, benchmark, and observation-design branches are the next compatibility/reproducibility family to audit.
 
-strict split rounds.
+## 5. Claim/provenance controls
 
-Then
+Keep as durable controls:
 
-\[
-\boxed{Z^*(c,q,m)=(c,q,[m]_{P^*_{c,q}})}
-\]
+- theorem registry and verification scripts;
+- paper-core replay;
+- H1–H4 primary-source audit records;
+- hypothesis-recovery pin/ledger;
+- manuscript-transfer manifest;
+- mechanism-to-data falsification contract.
 
-is exact and is the unique coarsest/minimum hidden-mode repair among exact interfaces that retain `c,q` explicitly.
+Historical ledgers may mention source paths retired from the current tree. Such paths refer to the recorded historical commit, not to active modules.
 
-A proposed current type `tau_c(m)` is already exact iff equal current types have equal successor context, equal successor macrostate, and equal successor type under every action.
+## 6. Cleanup rule
 
-### Closed-form / sharp subclasses
+For every remaining file, classify it as one of:
 
-- PR #204: an endogenous accessibility cycle generates exactly `r` feedback bits; cutting either causal arrow collapses the burden to zero.
-- PR #205: copy-anonymous fixed interaction types give a replication-independent five-state quotient per type and `5^q` states for fixed `q` types.
-- PR #207: mode-independent context motion with context-dependent types closes through the master signature; two instantaneous types per context can still generate `2^r` master classes.
-- PR #208: autonomous irreversible context loss permits exact causal forgetting with sharp memory `r,r-1,...,0`.
-- PR #210 routed-context family: hidden mode rewrites successor context itself; at most two instantaneous types and only `3r+1` contexts still require `2^r` initial continuation classes, with sharp exposure/stabilization depth `2r-1`.
+- **CURRENT** — needed by the publication core or a distinct active extension;
+- **COMPATIBILITY** — still imported/replayed but not a research surface;
+- **HISTORICAL** — scientific conclusion retained in records/Git history; source need not stay in the current tree;
+- **REMOVE** — duplicated implementation, duplicated explanation, superseded experiment, or infrastructure without a distinct replay role.
 
-### Deterministic feedback stop condition
+A valid theorem is not automatically a reason to keep a dedicated module, test, document, and workflow indefinitely.
 
-For finite deterministic persistent hidden mode with explicit ecological `(c,q)`, the existence/minimum-hidden-repair question is closed by PR #210. Do not create more graph/type/context variants inside the same model class.
+## 7. Current cleanup direction
 
-A new feedback theorem must change a premise materially: hidden-mode evolution, stochasticity, partial observation, continuous/unbounded state with a nontrivial bound, or a genuinely new approximation/resource question.
+The immediate goal is repository reduction, not theorem expansion and not manuscript growth inside CCOC.
 
-## 6. Mechanism-to-data bridge
-
-`docs/mechanism_to_data_bridge_2026-08-14.md` remains the application-control layer. `UNIDENTIFIED` is not evidence for exact compression. A feedback application specifically needs longitudinal or experimental information resolving interaction → turnover/persistence → accessibility/movement → later response.
-
-## 7. Historical, manuscript, and novelty gates
-
-- H1–H4 in issue #122/#185 remain historical literature gates for bounded-local realization wording; primary construction pages are required.
-- The hypothesis-recovery snapshot remains pinned separately.
-- Manuscript transfer remains controlled by `docs/manuscript_transfer_manifest_2026-08-14.md` and issue #192.
-- Novelty may now be adjudicated row by row from the recovered/fixed theorem scopes, but no global novelty slogan is allowed before publication-relevant comparisons are complete.
-
-## 8. Workflow discipline
-
-Analytic proof and finite replay remain separate. Green CI cannot rescue an over-broad theorem statement. Specialized workflows remain only where they supply distinct replay/artifact value.
-
-## Navigation
-
-- `fixed_regular_extremal_theorem_2026-08-13.md`
-- `grammar_interface_reuse_2026-08-13.md`
-- `terminal_grammar_portability_2026-08-13.md`
-- `ecological_saturation_blanket_2026-08-14.md`
-- `stochastic_ecological_portability_2026-08-14.md`
-- `spatial_dispersal_reachability_2026-08-14.md`
-- `feedback_portability_theorem_family_2026-08-15.md`
-- `state_dependent_feedback_closure_2026-08-15.md`
-- `mechanism_to_data_bridge_2026-08-14.md`
-- `hypothesis_recovery_canonical_index_2026-08-14.md`
-- `research_priorities.md`
+After the feedback and `current_theory` cleanup, the next high-value pass is the old package-root / candidate-panel / benchmark surface: identify in-repository import consumers, retain one compatibility route where required, and retire duplicated implementations only after the surviving regression path is explicit.

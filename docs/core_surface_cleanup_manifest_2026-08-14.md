@@ -1,12 +1,10 @@
-# CCOC core-surface cleanup manifest — 2026-08-14
+# CCOC current-tree cleanup manifest
 
-> **Purpose:** separate scientific conclusions that must survive from implementation/infrastructure that can be removed now, and from compatibility material whose physical deletion must wait.
+> **Updated 2026-08-16.** Preserve scientific conclusions and reproducibility while removing duplicate active surfaces. Git history is the archive; the current tree does not need every historical implementation.
 
-## KEEP — scientific/theorem sources
+## 1. KEEP — publication core
 
-### First-paper core
-
-Keep the historical CORE/replay source set:
+Retain the first-paper source set and fixed-regular strengthening:
 
 - `causal_model/dynamic_boundary_blankets.py`
 - `causal_model/shared_grammar.py`
@@ -17,114 +15,106 @@ Keep the historical CORE/replay source set:
 - `causal_model/relay_tree_compilation.py`
 - `causal_model/coherent_portable_macrolaw.py`
 - `causal_model/conservative_macro_schema.py`
-
-Keep the current extremal strengthening:
-
 - `causal_model/fixed_regular_grammar_relay.py`
 - `causal_model/extremal_open_composition.py`
-- `docs/fixed_regular_extremal_theorem_2026-08-13.md`
 
-### Established follow-up theorem surfaces
+Preserve theorem-registry and paper-core replay gates, claim/source audits, and exact source pins.
 
-Keep explicitly, but do not pull them into the first-paper dependency graph:
+## 2. KEEP — distinct follow-up surfaces
 
-- `action_grammar_closure.py`
-- `grammar_expansion_closure.py`
-- `grammar_interface_reuse.py`
-- `terminal_grammar_portability.py`
-- `portability_adaptation_tradeoff.py`
-- deterministic ecological saturation/capacity/depletion modules
-- stochastic ecological portability/mortality/finite-horizon modules
-- `cross_guild_stochastic_coupling.py`
-- `spatial_dispersal_reachability.py`
+A follow-up module stays only when it contributes a structurally distinct result rather than another spelling of fixed-grammar minimization. Current examples include exact converse/reuse, selected resource tradeoffs, delimited stochastic/cross-guild/spatial results, and the two representative feedback examples below.
 
-### Claim/provenance control
+## 3. FEEDBACK CLEANUP — executed
 
-Keep:
+### Active code retained
 
-- theorem registry and verification scripts;
-- paper-core replay script;
-- current architecture/research priorities;
-- H1--H4 source audit/request packet/issues;
-- manuscript transfer manifest;
-- `mechanism_to_data_bridge_2026-08-14.md` as the application/falsification contract for established ecological parameters.
+- `causal_model/feedback_gate_rank.py` — mechanism-specific negative witness with causal-arrow ablation;
+- `causal_model/feedback_type_portability.py` — replication-independent five-state positive example.
 
-These are part of scientific claim control, not disposable project notes.
+### Retired implementations/tests
 
-## KEEP FOR COMPATIBILITY — do not use for new research
+- `causal_model/evolving_feedback_master_types.py`
+- `causal_model/future_feedback_causal_forgetting.py`
+- `causal_model/state_dependent_feedback_closure.py`
+- their three dedicated tests.
 
-### `causal_model/current_theory.py`
+### Retired exploratory surface
 
-Already deprecated and clearly marked as a historical aggregate. Keep until an immutable manuscript source release because historical replay/notebooks may still import it.
+- `experiments/feedback_network_nonreducibility.py`
+- `tests/test_feedback_network_triage.py`
+- `docs/feedback_network_candidate_triage_2026-08-14.md`
 
-### `causal_model/__init__.py`
+### Retired duplicate proof notes
 
-The package-root facade is scientifically stale relative to the CCOC theorem hierarchy, but repository examples/scripts still import its older qualitative-program/robustness names directly. Removing or radically shrinking it now would be an API break, not dead-code deletion.
+Five per-PR feedback proof documents were replaced by:
 
-Rule: no new theorem exports should be added here. Migrate consumers first; remove only in a deliberate major-version cleanup.
+- `docs/feedback_portability_theorem_family_2026-08-15.md`
+- `docs/feedback_novelty_audit_2026-08-16.md`
 
-### Historical examples/benchmarks/panel code
+Full pre-cleanup recovery pin:
 
-Retain for reproducibility until the manuscript pin is frozen. Their scientific role is legacy/companion, but some remain executable import consumers.
+`4c7887c73ba8fa86a5e3883ebb6dce265b80fe7a`.
 
-## REMOVE NOW
+## 4. COMPATIBILITY CLEANUP — executed / continuing
 
-### `.github/workflows/ci.yml`
+### Retired aggregate facades
 
-Removed by PR #194. It duplicated the generic Python 3.10/3.11/3.12 full pytest matrix already supplied by `.github/workflows/tests.yml` while adding no distinct theorem/provenance gate. `tests.yml` additionally compiles the package before pytest.
+No active repository code consumed these aggregates, so they were removed rather than kept indefinitely for hypothetical external imports:
 
-This was infrastructure duplication, not scientific evidence.
+- `causal_model/current_theory.py`
+- `tests/test_current_theory.py`
+- `causal_model/identifiability_companion.py`
 
-## SPECIALIZED WORKFLOW AUDIT
+Underlying ID-1–3 modules remain temporarily because the current theorem-registry verifier requires every registered source/test/document path to exist.
 
-Do **not** infer that theorem-named workflows are duplicates of `tests.yml`.
+### Package root still active
 
-The generic pytest configuration uses
+`causal_model/__init__.py` still serves old examples/scripts that import qualitative/panel APIs from the package root. Do not add exports. The next large pass audits those consumer families, then shrinks the facade.
 
-```text
--m 'not legacy'
-```
+## 5. WORKFLOW CLEANUP — executed where stale behavior was exposed
 
-so archived/legacy theorem tests are intentionally excluded from the generic full suite.
+`tests/conftest.py` marks non-paper-core tests as `legacy`, and `pyproject.toml` excludes them from default pytest. Several old theorem workflows nevertheless invoked one legacy test file without `-m legacy`; after deletion of `test_current_theory.py`, they failed with exit code 5 because zero tests were collected.
 
-First audit findings:
+Removed stale workflows:
 
-- `.github/workflows/adaptive-closure-no-go.yml` — **KEEP**. Runs a focused theorem regression, writes a deterministic JSON replay report, and uploads it as an artifact.
-- `.github/workflows/common-mode-canonical-panels.yml` — **KEEP/DEFER**. Replays several theorem layers separately and writes/uploads a deterministic certificate report.
-- `.github/workflows/approximate-addressability.yml` — **KEEP**. It explicitly executes `-m legacy` tests that the generic suite excludes, so it is not redundant even though it does not upload a report.
+- `.github/workflows/delayed-addressability.yml`
+- `.github/workflows/candidate-safe-laws.yml`
+- `.github/workflows/joint-open-candidate-laws.yml`
+- `.github/workflows/delayed-joint-nonidentifiability.yml`
+- `.github/workflows/binary-joint-relay.yml`
 
-Therefore bulk workflow pruning is not justified. Future workflow deletion requires a file-specific showing that the workflow supplies neither:
+Obsolete `test_current_theory.py` path triggers were also removed from the surviving dynamic-blanket and grammar-interface replay workflows.
 
-1. a legacy test gate excluded from generic pytest;
-2. a deterministic verifier/report artifact;
-3. a frozen manuscript/release replay contract.
+A specialized workflow now survives only if it correctly supplies a distinct legacy replay, deterministic artifact, or frozen release/manuscript contract.
 
-## DEFER
+## 6. DOCUMENTATION DEDUPLICATION — executed
 
-### Remaining specialized theorem workflows
+Current navigation is now centered on `README.md`, `docs/current_architecture.md`, the cleanup manifest, and theorem/legacy registries.
 
-Audit one by one only when cleanup value justifies it. Default disposition is **DEFER**, not delete.
+Removed duplicate or superseded navigation documents:
 
-### Physical move to `causal_model.legacy`
+- `legacy/README.md` — duplicated the legacy manifest and obsolete deferred-move policy;
+- `docs/repository_asset_map.md` — duplicated architecture/package-boundary state and still advertised retired facades.
 
-Defer until:
+`docs/legacy/README.md` remains only as the documentation path required by the current `LEGACY-1` registry entry and has been reduced to a compatibility note.
 
-1. first-paper manuscript source SHA is immutable;
-2. theorem registry + paper-core + full tests replay green on that SHA;
-3. compatibility imports are either migrated or deliberately version-broken;
-4. legacy path mapping is preserved in a release manifest.
+## 7. Cleanup safety rules
 
-## Scientific conclusions that cleanup must never erase
+Before deleting a source bundle:
 
-1. closed exact compression does not imply a comparably small exact interface after grammar opening;
-2. the fixed-regular one-action family has `|P_C|=2`, `|P_O|=2^(m+1)`, and exact innovation `m` under bounded local resources;
-3. broad same-domain grammar mutation need not monotonically refine the canonical quotient; reuse has its own iff criterion;
-4. chain/resource portability has terminal-memory, adaptation-information, boundary-time, and staged-deadline distinctions;
-5. ecological finite blankets arise from explicit future-invariance/reachability structure, not small physical boundaries alone;
-6. stochastic exact complexity and finite-horizon approximate portability can diverge sharply;
-7. hidden cross-guild kernel variation and directed reachability provide mechanistic portability boundaries;
-8. historical firstness of the bounded-local realization remains conditional on the H1--H4 primary-source compiler audit.
+1. search active imports and direct path references;
+2. preserve any still-useful scientific conclusion in a canonical current record;
+3. record an immutable recovery pin;
+4. remove dedicated tests/docs/workflows with no independent current role;
+5. run current-core/provenance validation.
 
-## Next cleanup action
+## 8. Next pass
 
-Do not spend more time pruning specialized workflows unless a concrete redundancy is found. The higher-value remaining cleanup is to migrate old package-root import consumers before any future major-version API reduction, and to perform the physical legacy move only after the manuscript source pin is immutable.
+Audit the package-root / candidate-panel / benchmark surface.
+
+Goal:
+
+- reduce `causal_model/__init__.py`;
+- identify duplicate candidate/panel implementations and examples;
+- keep compatibility only for live current-tree consumers;
+- prepare a separate registry-aware migration for `CORE-0`, `EXT-*`, `ID-*`, and `LEGACY-1` rather than mixing registry redesign into this PR.

@@ -1,14 +1,10 @@
-# Research priorities — 2026-08-15 post-feedback consolidation
+# Research priorities — 2026-08-16 cleanup phase
 
-> **Status:** canonical agenda after hypothesis recovery was pinned and the deterministic feedback program was closed through PR #210.
+> **Current objective:** reduce CCOC to a clear publication core, a small set of genuinely distinct follow-up results, and an explicit compatibility shelf. Do not create new theorem families while this cleanup is active.
 
-## Ordering rule
+## Non-negotiable scientific core
 
-The repository-bounded hypothesis recovery remains pinned by `docs/hypothesis_recovery_pin_2026-08-14.md`. Later theorem progress updates status but does not rewrite that historical source pin.
-
-Novelty may be adjudicated row by row, but no global novelty slogan is admissible before publication-relevant rows and the H1–H4 historical compiler gate are reconciled.
-
-The first-paper theorem spine is unchanged:
+Preserve the first-paper claim spine:
 
 \[
 \text{exact response interface}
@@ -22,71 +18,77 @@ The first-paper theorem spine is unchanged:
 \text{positive/reuse boundary}.
 \]
 
-Feedback mathematics remains follow-up material.
-
-## Established packages
-
-1. **Exact converse/reuse:** one-state expansion, corrected globally-new-symbol expansion, arbitrary same-domain reuse iff open rows descend, and terminal-chain portability.
-2. **Fixed-regular extremal open composition:** for every `m>=1`, `|P_C|=2`, `|P_O|=2^(m+1)`, one newly legal primitive action, four-symbol alphabet, degree `<=3`, cut one, selected access `2 ceil(log2 m)+2`.
-3. **Resource portability:** retention/update information, finite-boundary installation time, and staged exposure deadlines.
-4. **Deterministic ecology:** saturation blankets, changing-capacity portability, and threshold-plus-downward-reach exact caps.
-5. **Stochastic ecology:** exact capped Markov portability versus depletion-driven exact non-portability and finite-horizon approximation.
-6. **Cross-guild coupling:** downstream hazard diameter controls exactness and sharp one-step minimax error.
-7. **Spatial reachability:** finite-horizon exact distance macros on fixed directed graphs.
-8. **Mechanism-to-data bridge:** observable/falsification contracts; missing transition/recruitment/movement information is `UNIDENTIFIED`, not evidence for compression.
-
-## Deterministic feedback theorem family — STOPPED / CONSOLIDATED
-
-Use `docs/feedback_portability_theorem_family_2026-08-15.md` as the entrance.
-
-The five merged modules form one theorem family rather than five independent headline theories:
-
-- PR #204: a closed feedback cycle creates `r` exact hidden-response bits; cutting either causal arrow collapses the burden to zero;
-- PR #205: fixed copy-anonymous interaction types give replication-independent exact portability (`5^q` states for fixed `q` types);
-- PR #207: context-dependent types close through master signatures; two instantaneous types per context can still hide `2^r` master types;
-- PR #208: autonomous irreversible context loss permits exact causal forgetting, with sharp memory `r,r-1,...,0`;
-- PR #210: when hidden mode rewrites successor context itself, monotone continuation refinement gives the unique minimum hidden-mode repair relative to explicit `(context, macrostate)` coordinates. A routed family has at most two instantaneous types and only `3r+1` contexts but needs `2^r` initial continuation classes and exposure depth `2r-1`.
-
-Within finite deterministic systems with persistent hidden mode and explicit ecological `(c,q)`, the minimum additional hidden-mode memory is therefore solved by PR #210. Do **not** add another deterministic persistent-mode variant.
-
-A new feedback theorem is justified only if a premise changes materially: hidden mode evolution, stochastic feedback, partial observation, continuous/unbounded state with a nontrivial finite bound, or a genuinely new approximation/resource result.
-
-## Priority 1 — real application / falsification
-
-Issue #199 remains the live empirical-identification task. The next useful application must contain the transition/recruitment/disturbance/movement layer needed to instantiate and potentially falsify a CCOC mechanism. Static occurrence/suitability associations are insufficient.
-
-For feedback specifically, data must resolve a causal cycle such as
+The key quantitative family remains
 
 \[
-\text{interaction state}
-\to
-\text{turnover/persistence}
-\to
-\text{accessibility/movement}
-\to
-\text{later response}.
+|P_C|=2,
+\qquad |P_O|=2^{m+1},
+\qquad K_O-K_C=m.
 \]
 
-Do not create an application package merely because an association dataset is convenient.
+Fixed-grammar quotient/minimization, partition refinement, common refinement, generic distinguishability, Fano/capacity inequalities, and generic locality remain substrate rather than novelty claims.
 
-## Priority 2 — H1–H4 historical compiler gate
+## Priority 1 — repository reduction
 
-Issue #122/#185 remains the first-paper historical-realization gate. H1–H4 must be decided from primary construction pages, not abstracts, metadata, or failed retrieval. This gate controls historical wording of the bounded-local realization, not theorem validity.
+Classify every remaining surface as `CURRENT`, `COMPATIBILITY`, `HISTORICAL`, or `REMOVE`.
 
-## Priority 3 — manuscript transfer
+The feedback pass establishes the model:
 
-Use `docs/manuscript_transfer_manifest_2026-08-14.md` and issue #192. The first-paper dependency graph remains CORE-1 through CORE-5 plus the fixed-regular extremal strengthening. Feedback results stay outside unless explicitly promoted later.
+- keep one strong negative/mechanistic executable example;
+- keep one strong positive/closed-form executable example;
+- preserve weaker/generalized conclusions in one consolidated record and Git history;
+- delete redundant theorem modules, tests, detailed proof notes, and superseded exploratory experiments from the current tree.
 
-## Priority 4 — row-by-row novelty adjudication
+Next target after feedback is the old package-root / candidate-panel / benchmark surface. Determine which names are still imported in-repository, then shrink the compatibility facade around the surviving consumers rather than keeping every historical implementation active.
 
-Hypothesis recovery is complete. Novelty work may now resume **per fixed theorem row/package**, starting from publication-relevant results. Generic ingredients (quotients, partition refinement, Fano, locality, lumpability, reachability, etc.) are substrate unless the exact combined claim survives direct comparison.
+## Priority 2 — claim-control consistency
 
-Do not synthesize one top-level novelty slogan before row-level comparison is complete.
+Every active theorem family must state whether each headline claim is:
 
-## Priority 5 — cleanup only when it removes real maintenance debt
+- classical substrate;
+- supporting witness/example;
+- residual novelty candidate; or
+- historically unresolved.
 
-Keep `tests.yml` as the generic non-legacy full suite. Specialized replay workflows may remain when they generate theorem-specific artifacts. Compatibility facades stay until in-repository consumers are migrated and the manuscript source pin is immutable.
+Do not allow mathematically correct substrate to regain headline status through new ecological naming.
 
-## Explicit non-priorities
+`docs/residual_novelty_decision_2026-08-12.md` remains the controlling gate for finite deterministic fixed-grammar minimization claims.
 
-No new codebook families, panel/reset variants, capped-count special cases, one-guild mortality variants, elementary Bernoulli coupling variants, elementary shortest-path variants, generic Fano/channel lemmas, generic contraction/small-gain theorems, generic symmetry/lumpability reformulations, additional deterministic persistent-mode feedback variants, empirical fitting inside the theorem registry, or bulk deletion of historical replay workflows.
+## Priority 3 — retain external blockers without letting them drive code growth
+
+H1–H4 primary-source acquisition remains important for bounded-local historical wording. Tier-A quantitative prior-art falsification also remains open.
+
+These are literature/claim-control tasks. Waiting on them is not a reason to add theorem code.
+
+## Priority 4 — manuscript later, from the cleaned surface
+
+The manuscript transfer plan remains valid, but manuscript creation is not the current task. First reduce CCOC so the eventual source pin has a small, defensible dependency graph.
+
+When cleanup reaches a stable point, the manuscript should transfer only CORE-1 through CORE-5 plus the fixed-regular extremal strengthening and the minimum required provenance.
+
+## Deterministic feedback status
+
+Feedback is **STOPPED / CONSOLIDATED**.
+
+Active code:
+
+- `causal_model/feedback_gate_rank.py`
+- `causal_model/feedback_type_portability.py`
+
+Consolidated scientific record:
+
+- `docs/feedback_portability_theorem_family_2026-08-15.md`
+
+Novelty audit:
+
+- `docs/feedback_novelty_audit_2026-08-16.md`
+
+The former PR #207/#208/#210 implementations are historical, not current-tree research surfaces. Full pre-cleanup recovery point:
+
+`4c7887c73ba8fa86a5e3883ebb6dce265b80fe7a`.
+
+## Explicit non-priorities during cleanup
+
+No new codebook families, feedback variants, panel/reset variants, capped-count special cases, one-guild mortality variants, Bernoulli-coupling variants, shortest-path variants, Fano/channel lemmas, generic contraction/small-gain theorems, symmetry/lumpability reformulations, or other new fixed-grammar minimization families.
+
+Do not add new documentation merely to describe the cleanup. Update the canonical architecture/manifest files instead.

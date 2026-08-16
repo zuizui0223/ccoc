@@ -1,197 +1,130 @@
-# Deterministic feedback portability theorem family — 2026-08-15
+# Deterministic feedback portability — consolidated record
 
-> **Status:** consolidation of merged PRs #204, #205, #207, #208, and #210. This document reduces theorem sprawl: the five modules are not five unrelated headline theories. They are one deterministic feedback-portability family with a general relative closure theorem, closed-form positive subclasses, and sharp obstruction families. No novelty conclusion is made here.
+> **Current status (2026-08-16):** feedback mathematics is **STOPPED / CONSOLIDATED**. The general continuation-refinement result from PR #210 is classical fixed-grammar minimization / coarsest-stable-refinement substrate. The current tree keeps only two representative executable examples. The removed implementations and detailed proof notes remain permanently recoverable from audit pin `4c7887c73ba8fa86a5e3883ebb6dce265b80fe7a` and their merged PRs.
 
-## 1. One question
+## 1. Scientific question retained
 
-The common problem is:
+When hidden ecological interaction state changes later turnover, accessibility, or the future context path, which hidden distinctions must an exact macro-interface retain?
 
-> when hidden ecological interaction state changes later turnover, accessibility, or even the future context path, which hidden distinctions must an exact macro-interface retain?
+The answer is governed by future response distinctions, not raw hidden-state count, present abundance, or instantaneous type count.
 
-Raw hidden-state count, raw network size, current abundance, and instantaneous interaction-type count are not the right answer.
+## 2. Formal substrate — not a novelty claim
 
-Within the finite deterministic persistent-mode class, the controlling object is the **minimum hidden-mode partition that is closed under every legal future continuation while the chosen ecological context and macrostate coordinates remain explicit**.
+For finite deterministic persistent hidden mode with explicit ecological coordinates `(c,q)`, start from one hidden-mode block in each `(c,q)` fiber and refine until every legal action has a uniform successor explicit state and successor block.
 
-## 2. General theorem — continuation-stable hidden repair
+The fixed point is exact and is the coarsest stable refinement relative to the retained `(c,q)` coordinates. Finite termination follows from block-count growth.
 
-PR #210 supplies the general structural result in this deterministic class.
+This is standard partition-refinement/minimization structure. Do not headline:
 
-For explicit ecological context `c`, ecological macrostate `q`, persistent hidden mode `m`, and action `a`, allow the full successor
+- the existence of the fixed point;
+- its unique-coarsest property;
+- the one-step quotient-stability criterion; or
+- the elementary finite split bound.
 
-\[
-(c,q,m)\xrightarrow{a}
-(D(c,q,m,a),F(c,q,m,a),m).
-\]
+Prior-art adjudication is in `docs/feedback_novelty_audit_2026-08-16.md`.
 
-Start with one hidden-mode block in each `(c,q)` fiber and repeatedly split a block whenever two modes send some legal action to different explicit successor `(c',q')` values or to different hidden blocks at that successor.
+## 3. Active executable feedback surface
 
-The monotone refinement reaches a finite fixed point `P*` with bound
+### A. Mechanism-specific negative witness — PR #204
 
-\[
-N_{\rm refine}\le |C||Q|(|M|-1).
-\]
+Active module:
 
-Then
+`causal_model/feedback_gate_rank.py`
 
-\[
-\boxed{Z^*(c,q,m)=(c,q,[m]_{P^*_{c,q}})}
-\]
-
-is exact.
-
-More strongly, among every exact interface that deliberately retains `c` and `q` explicitly,
+An explicit cycle
 
 \[
-(c,q,\rho_{c,q}(m)),
+\text{hidden interaction mode}
+\to
+\text{turnover-induced facilitator loss}
+\to
+\text{future accessibility}
 \]
 
-its hidden partition must refine `P*`. Thus `P*` is the unique coarsest/minimum hidden-mode repair relative to those ecological coordinates.
+makes `r` latent mode bits exactly response-distinguishable while current graph/output/count summaries are identical.
 
-This is the family-level headline. The earlier feedback theorems identify interpretable cases where `P*` has a closed form or a sharp lower bound.
-
-## 3. Closed-form positive subclasses
-
-### A. Current type already closed
-
-PR #210 also gives the one-step iff criterion for a proposed current type `tau_c(m)`.
-
-`(c,q,tau_c(m))` is exact iff equal current types have, under every action:
-
-1. equal successor context;
-2. equal successor macrostate; and
-3. equal successor current type.
-
-So a current ecological type is portable exactly when it evolves as a deterministic macro type under the declared feedback dynamics.
-
-### B. Fixed copy-anonymous interaction types
-
-PR #205 is a concrete closed-form subclass. Physical copies within one interaction type are not individually addressable. Arbitrary replication `n` has a canonical exact five-state quotient independent of `n`, and fixed `q` types give
+The useful causal result is the ablation:
 
 \[
-|Q_{\rm macro}|=5^q.
+K=r \quad\text{with both arrows},
+\qquad
+K=0 \quad\text{if either arrow is removed}.
 \]
 
-This is not a separate theory; it is a structured case where continuation closure collapses all copy identity.
+The distinguishability/injection proof itself is substrate; the retained value is the explicit ecological mechanism that creates addressability.
 
-### C. Mode-independent context motion — master types
+### B. Closed-form positive example — PR #205
 
-PR #207 assumes hidden mode changes transition response by context but not the context successor itself. The stable hidden object has the closed form
+Active module:
+
+`causal_model/feedback_type_portability.py`
+
+If physical copies are copy-anonymous and share one interaction type, arbitrary replication has a five-state exact response quotient independent of copy count. For fixed `q` independently controlled types the product has `5^q` states.
+
+The five-state collapse is the useful ecological example. The product construction is ordinary product/common-refinement structure.
+
+## 4. Historical conclusions retained without active modules
+
+The following valid conclusions are preserved here and in Git history, but no longer justify separate source/test/doc families in the current tree.
+
+### PR #207 — master response profiles
+
+When context motion is mode-independent but response type depends on context, the stable hidden summary can be represented by the context profile
 
 \[
 \tau^*(m)=(\tau_c(m))_{c\in C}.
 \]
 
-The master feedback signature is therefore an explicit representation of the general continuation partition for that subclass.
+A rotating construction can have only two instantaneous types per context while producing `2^r` full future-response classes. Treat this as a witness, not a new minimization principle.
 
-### D. Autonomous irreversible context motion — exact forgetting
+### PR #208 — exact causal forgetting
 
-PR #208 strengthens context motion to
-
-\[
-c'=D(c,a).
-\]
-
-The full master signature can then be restricted to still-reachable contexts:
-
-\[
-\tau_c^+(m)
-=(\tau_d(m))_{d\in \operatorname{Reach}^+(c)}.
-\]
-
-Future rank cannot increase along a context edge. An irreversible chain attains exact hidden memory
+Under autonomous irreversible context motion, hidden distinctions needed only in permanently unreachable future contexts can be forgotten exactly. A chain can realize hidden-memory sequence
 
 \[
 r,r-1,\ldots,1,0.
 \]
 
-This is the exact causal-forgetting special case of continuation closure: a hidden distinction disappears when no legal future continuation can make it relevant again.
+Retain the ecological interpretation: a hidden distinction ceases to matter when no legal future can route it back to the declared observable.
 
-## 4. Negative / sharpness side
+### PR #210 — mode-routed future contexts
 
-### A. Feedback cycle creates memory — PR #204
-
-An explicit mode → turnover-induced facilitator loss → future accessibility cycle converts `r` hidden modes into `r` exact response bits even though the current graph/output/count summaries are identical.
-
-Deleting either causal arrow collapses the burden to zero. Thus hidden cardinality alone is not the source of the lower bound.
-
-### B. Small instantaneous type count is insufficient — PR #207
-
-A rotating family has only two current types in every context but `2^r` master types. The full profile first becomes recoverable at horizon `4r-1`.
-
-### C. Hidden mode rewrites the future context path — PR #210
-
-A two-action family with one ecological macrostate and only `3r+1` contexts has at most two current feedback types at every context, but the initial continuation partition has
+If hidden mode changes the successor context itself, a routed family with one ecological macrostate, two actions, `3r+1` contexts, and at most two instantaneous feedback types per context can still require
 
 \[
 |P^*|=2^r,
-\qquad K=r.
+\qquad K=r,
 \]
 
-The last hidden routing bit first becomes exposable at horizon
+at the initial context. The last bit is first exposed at depth `2r-1`.
 
-\[
-2r-1,
-\]
+The routed family remains a useful sharp example. The general refinement theorem used to compute `P*` is classical substrate.
 
-and the continuation refinement stabilizes at the same depth.
+## 5. Why the old implementation family was retired
 
-This closes the mode-dependent context-reachability boundary left open by PR #208.
+PRs #207, #208, and #210 formed a sequence of progressively more general deterministic refinements of the same future-response equivalence problem. After the 2026-08-16 novelty audit, keeping all three implementations, three tests, and separate proof notes imposed maintenance cost without preserving additional headline science.
 
-## 5. What is actually established
+Their current-tree retirement does **not** erase the results:
 
-For finite deterministic systems with:
-
-- finite `C,Q,M,A`;
-- persistent hidden interaction mode;
-- current output represented through explicit ecological coordinates `c,q`;
-- arbitrary hidden-mode dependence of ecological macro and context successors;
-
-there is no remaining existence question about the **minimum extra hidden-mode memory conditional on retaining `c,q`**. PR #210 gives it as a finite continuation fixed point.
-
-The simpler theorems answer when that fixed point collapses to an interpretable low-dimensional object and when it must be large.
-
-The resulting principle is
-
-\[
-\boxed{
-\text{exact hidden feedback memory}
-=
-\text{future-continuation distinctions not already represented by the chosen ecological coordinates}.
-}
-\]
+- merged PRs and commit history preserve the complete code/proofs;
+- audit pin `4c7887c73ba8fa86a5e3883ebb6dce265b80fe7a` reproduces the pre-cleanup family;
+- this document preserves the scientific statements that remain worth citing.
 
 ## 6. Stop rule
 
-Do not create another deterministic persistent-mode feedback theorem merely by changing the graph, adding another gate, changing the number of types, or choosing another finite context progression.
+Do not add another deterministic persistent-mode feedback theorem by changing only graph layout, gate count, type count, or finite context progression.
 
-A new feedback theorem is justified only if it changes a model premise that PR #210 does not cover, for example:
+A new feedback branch is justified only by a material premise change such as:
 
-- hidden interaction mode itself changes/evolves;
-- stochastic feedback kernels;
-- partial observation / uncertain context state;
-- continuous or unbounded state with a nontrivial finite structural bound;
-- a quantitative approximation/resource theorem not reducible to existing exact closure or generic information inequalities.
+- evolving hidden mode;
+- stochastic feedback;
+- partial observation;
+- continuous/unbounded state with a nontrivial structural bound; or
+- a quantitative approximation/resource result not reducible to exact minimization or generic information inequalities.
 
-Until such a genuinely new premise is selected, deterministic feedback mathematics is **STOPPED / CONSOLIDATED**.
+## 7. Current navigation
 
-## 7. Publication placement
-
-These feedback results remain follow-up mathematics, not part of the first open-composition paper proof dependency graph.
-
-If later published as one unit, use one theorem-family narrative:
-
-1. continuation-stable hidden repair — general structural theorem;
-2. bounded-type/master/future-signature closed forms — positive subclasses;
-3. cycle/rotating/routed families — sharp obstructions;
-4. exact forgetting — causal interpretation of disappearing future distinctions.
-
-Do not present every module as an independent headline theorem.
-
-## 8. Source map
-
-- `causal_model/feedback_gate_rank.py` — PR #204
-- `causal_model/feedback_type_portability.py` — PR #205
-- `causal_model/evolving_feedback_master_types.py` — PR #207
-- `causal_model/future_feedback_causal_forgetting.py` — PR #208
-- `causal_model/state_dependent_feedback_closure.py` — PR #210
-- `docs/state_dependent_feedback_closure_2026-08-15.md` — general proof and routed-context equality family
+- scientific/novelty audit: `docs/feedback_novelty_audit_2026-08-16.md`
+- active negative witness: `causal_model/feedback_gate_rank.py`
+- active positive example: `causal_model/feedback_type_portability.py`
+- historical full feedback family: Git commit `4c7887c73ba8fa86a5e3883ebb6dce265b80fe7a`

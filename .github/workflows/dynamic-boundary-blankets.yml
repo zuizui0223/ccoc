@@ -7,7 +7,6 @@ on:
       - 'causal_model/addressable_completion_bounds.py'
       - 'scripts/verify_dynamic_boundary_blankets.py'
       - 'tests/test_dynamic_boundary_blankets.py'
-      - 'tests/test_current_theory.py'
       - 'docs/dynamic_boundary_blankets.md'
       - '.github/workflows/dynamic-boundary-blankets.yml'
   push:
@@ -17,7 +16,6 @@ on:
       - 'causal_model/addressable_completion_bounds.py'
       - 'scripts/verify_dynamic_boundary_blankets.py'
       - 'tests/test_dynamic_boundary_blankets.py'
-      - 'tests/test_current_theory.py'
       - 'docs/dynamic_boundary_blankets.md'
       - '.github/workflows/dynamic-boundary-blankets.yml'
 
