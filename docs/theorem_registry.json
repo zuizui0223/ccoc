@@ -1,17 +1,9 @@
 {
   "registry_version": 2,
   "historical_archive": "docs/historical_theorem_archive.json",
-  "claim_firewall": "docs/ccoc_mltr_claim_firewall_2026-08-16.md",
   "repository_scope": {
     "discipline": "mathematical ecology",
     "object": "current executable finite theorem certificates for causal compression under open composition",
-    "headline_question": "Compare independently minimized exact interfaces under fixed closed grammars with the minimum exact interface under a jointly open grammar.",
-    "excluded_headline_outputs": [
-      "unique coarsest repair of one fixed inherited source partition",
-      "transport defect relative to an inherited source law",
-      "route coherence across replacement histories",
-      "minimum history completion"
-    ],
     "allowed": [
       "synthetic finite state spaces",
       "declared grammars and controlled transition systems",
