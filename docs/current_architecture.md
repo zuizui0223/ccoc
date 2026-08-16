@@ -75,11 +75,11 @@ No deterministic persistent-mode feedback variant is an active development targe
 
 ## 4. Compatibility shelf
 
-`causal_model/current_theory.py` and the broad package-root facade in `causal_model/__init__.py` are compatibility surfaces, not research entrances.
+The broad package-root facade in `causal_model/__init__.py` remains temporarily because current repository examples/scripts still import older qualitative/panel names from the package root. No new theorem export should be added there.
 
-They remain only while in-repository consumers still depend on them. No new theorem export should be added there.
+The deprecated `causal_model/current_theory.py` aggregate has been retired from the current tree because no active repository code imported it; only its dedicated compatibility test and historical documentation referenced it. Its final implementation remains recoverable from the pre-cleanup Git pin.
 
-Historical candidate-uncertainty, panel-design, benchmark, and observation-design branches are likewise compatibility/reproducibility material until separately audited.
+Historical candidate-uncertainty, panel-design, benchmark, and observation-design branches are the next compatibility/reproducibility family to audit.
 
 ## 5. Claim/provenance controls
 
@@ -109,4 +109,4 @@ A valid theorem is not automatically a reason to keep a dedicated module, test, 
 
 The immediate goal is repository reduction, not theorem expansion and not manuscript growth inside CCOC.
 
-After the feedback cleanup, the next high-value pass is the old package-root / candidate-panel / benchmark surface: identify in-repository import consumers, retain one compatibility route where required, and retire duplicated implementations only after the surviving regression path is explicit.
+After the feedback and `current_theory` cleanup, the next high-value pass is the old package-root / candidate-panel / benchmark surface: identify in-repository import consumers, retain one compatibility route where required, and retire duplicated implementations only after the surviving regression path is explicit.
