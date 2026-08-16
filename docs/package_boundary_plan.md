@@ -40,14 +40,16 @@ The former PR #207/#208/#210 implementations are historical and recoverable at p
 
 ## 3. Compatibility shelf
 
-`causal_model/__init__.py` and `causal_model/current_theory.py` are compatibility facades, not active research surfaces.
+The package root `causal_model/__init__.py` remains a compatibility facade only because current examples/scripts still import older qualitative/panel names from it.
 
 Rules:
 
 - no new exports;
-- migrate in-repository consumers toward explicit modules;
-- after consumers are migrated, remove unused exports/files even if historical notebooks once used them;
-- retain the Git pin, not duplicate active code, as the long-term historical recovery mechanism.
+- migrate or retire in-repository root-import consumers;
+- shrink `__init__.py` after each consumer family is removed;
+- use immutable Git history for long-term historical recovery rather than preserving unused aggregate APIs forever.
+
+The deprecated `causal_model/current_theory.py` aggregate was removed because no active repository code imported it. Its dedicated compatibility test was removed with it.
 
 Candidate-uncertainty, observation-panel, benchmark, and experimental-design code is the next compatibility family to audit.
 
