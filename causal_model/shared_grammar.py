@@ -1,13 +1,8 @@
-"""Shared finite prefix-grammar primitives.
+"""Shared finite prefix-grammar primitives for the current paper core.
 
 These classes describe a declared finite action contract and a finite controlled
-output system constrained by that contract.  They carry no claim about delayed
-exposure, identifiability, or portability by themselves, so both public RACH
-packages may depend on them without creating a core-to-companion dependency.
-
-The implementation mirrors the established finite grammar semantics.  Historical
-imports from :mod:`delayed_addressability` remain supported during the package
-boundary transition.
+output system constrained by that contract. They carry no claim about delayed
+exposure, identifiability, or portability by themselves.
 """
 
 from __future__ import annotations
@@ -47,11 +42,7 @@ def _partition_from_labels(labels: tuple[int, ...]) -> Partition:
 
 @dataclass(frozen=True)
 class FinitePrefixGrammar:
-    """A deterministic finite prefix-closed action grammar.
-
-    Every grammar state is accepting. A ``None`` transition marks an action as
-    illegal at that grammar state, so all prefixes of legal words are legal.
-    """
+    """A deterministic finite prefix-closed action grammar."""
 
     actions: tuple[Action, ...]
     transition_table: tuple[tuple[int | None, ...], ...]
@@ -144,7 +135,6 @@ class FinitePrefixGrammar:
         horizon: int,
         start_state: GrammarState | None = None,
     ) -> tuple[tuple[Action, ...], ...]:
-        """Enumerate legal words of length at most ``horizon`` from one state."""
         _validate_nonnegative_integer(horizon, "horizon")
         initial = self.initial_state if start_state is None else start_state
         self.validate_state(initial)
@@ -164,12 +154,7 @@ class FinitePrefixGrammar:
 
 @dataclass(frozen=True)
 class GrammarAwareControlledSystem:
-    """Finite deterministic output system constrained by a prefix grammar.
-
-    The all-word quotient is computed on ``(system_state, grammar_state)``.  The
-    grammar state is part of the declared intervention contract rather than an
-    automatically inferred biological variable.
-    """
+    """Finite deterministic output system constrained by a prefix grammar."""
 
     system: FiniteControlledOutputSystem
     grammar: FinitePrefixGrammar
@@ -197,7 +182,6 @@ class GrammarAwareControlledSystem:
         return system_state * self.grammar.state_count + grammar_state
 
     def horizon_labels(self, horizon: int) -> tuple[int, ...]:
-        """Labels for agreement on all legal words through ``horizon``."""
         _validate_nonnegative_integer(horizon, "horizon")
         pairs = self.product_states
         labels = _canonical_labels(self.system.output(system_state) for system_state, _ in pairs)
@@ -241,6 +225,64 @@ class GrammarAwareControlledSystem:
         raise AssertionError("grammar-aware partition refinement did not stabilize by the product-state bound")
 
 
+@dataclass(frozen=True)
+class GrammarHorizonStabilizationCertificate:
+    """Exact finite stabilization certificate for a grammar-aware product quotient."""
+
+    constrained_system: GrammarAwareControlledSystem
+    stabilization_horizon: int
+    product_block_counts: tuple[int, ...]
+    canonical_product_block_count: int
+
+    @property
+    def product_state_bound(self) -> int:
+        return self.constrained_system.product_state_count - 1
+
+    def verify(self) -> bool:
+        try:
+            _validate_nonnegative_integer(self.stabilization_horizon, "stabilization_horizon")
+            if self.stabilization_horizon > self.product_state_bound:
+                return False
+            expected_counts = tuple(
+                len(self.constrained_system.product_partition(horizon))
+                for horizon in range(self.stabilization_horizon + 2)
+            )
+            if self.product_block_counts != expected_counts:
+                return False
+            if self.product_block_counts[-1] != self.product_block_counts[-2]:
+                return False
+            if any(
+                self.constrained_system.product_partition(horizon)
+                == self.constrained_system.product_partition(horizon + 1)
+                for horizon in range(self.stabilization_horizon)
+            ):
+                return False
+            if self.canonical_product_block_count != self.product_block_counts[-2]:
+                return False
+            return self.constrained_system.horizon_labels(
+                self.stabilization_horizon
+            ) == self.constrained_system.horizon_labels(self.stabilization_horizon + 1)
+        except (AssertionError, ValueError):
+            return False
+
+
+def certify_grammar_horizon_stabilization(
+    constrained_system: GrammarAwareControlledSystem,
+) -> GrammarHorizonStabilizationCertificate:
+    horizon = constrained_system.first_product_stabilizing_horizon()
+    certificate = GrammarHorizonStabilizationCertificate(
+        constrained_system=constrained_system,
+        stabilization_horizon=horizon,
+        product_block_counts=tuple(
+            len(constrained_system.product_partition(step)) for step in range(horizon + 2)
+        ),
+        canonical_product_block_count=len(constrained_system.product_partition(horizon)),
+    )
+    if not certificate.verify():
+        raise AssertionError("grammar-horizon stabilization certificate did not verify")
+    return certificate
+
+
 __all__ = [
     "Action",
     "GrammarState",
@@ -248,4 +290,6 @@ __all__ = [
     "Partition",
     "FinitePrefixGrammar",
     "GrammarAwareControlledSystem",
+    "GrammarHorizonStabilizationCertificate",
+    "certify_grammar_horizon_stabilization",
 ]

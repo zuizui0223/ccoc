@@ -1,0 +1,143 @@
+{
+  "archive_version": 1,
+  "pre_registry_cleanup_pin": "796f0c3f3e05b1ff86d4454aff93269041321d69",
+  "purpose": "Preserve provenance and recovery routes for theorem branches removed from the current executable registry. Paths are historical and are not required to exist in the current tree.",
+  "entries": [
+    {
+      "id": "CORE-0",
+      "title": "Finite closure classification",
+      "former_status": "exact finite theorem",
+      "summary": "Classifies a supplied finite total deterministic update map as globally closing, recurrent, or multistable. Historical prerequisite, not part of the open-composition paper core.",
+      "former_modules": ["causal_model/causal_closure_calculus.py"],
+      "former_tests": ["tests/test_causal_closure_calculus.py"],
+      "former_documents": ["docs/portability_core_v1.md", "docs/claim_status_audit.md"]
+    },
+    {
+      "id": "EXT-1",
+      "title": "Non-nested edge preservation with supplied projections",
+      "former_status": "sufficient criterion",
+      "summary": "A declared connected replacement graph can share one exact macro-law when edge relations preserve labels, outputs, legal actions, and successors.",
+      "former_modules": ["causal_model/non_nested_portability.py"],
+      "former_tests": ["tests/test_non_nested_portability.py"],
+      "former_documents": ["docs/non_nested_replacement_portability.md", "docs/claim_status_audit.md"],
+      "successor_repository": "zuizui0223/EXT"
+    },
+    {
+      "id": "EXT-2",
+      "title": "Transported target exact factorization",
+      "former_status": "sufficient finite-domain theorem",
+      "summary": "Under target-fiber consistency, output preservation, legal-row agreement, and successor closure, source labels induce an exact target projection.",
+      "former_modules": ["causal_model/non_nested_portability.py"],
+      "former_tests": ["tests/test_non_nested_portability.py"],
+      "former_documents": ["docs/non_nested_replacement_portability.md", "docs/claim_status_audit.md", "docs/theorem_spine.md"],
+      "successor_repository": "zuizui0223/EXT"
+    },
+    {
+      "id": "EXT-3",
+      "title": "Conservative non-nested transport with target-only actions",
+      "former_status": "sufficient finite-domain theorem",
+      "summary": "A transported target projection extends to a conservative macro schema when target-only actions are uniformly available and macro-deterministic within target fibers.",
+      "former_modules": ["causal_model/non_nested_conservative_transport.py", "causal_model/conservative_macro_schema.py"],
+      "former_tests": ["tests/test_non_nested_conservative_transport.py", "tests/test_conservative_macro_schema.py"],
+      "former_documents": ["docs/non_nested_replacement_portability.md", "docs/claim_status_audit.md", "docs/theorem_spine.md"],
+      "successor_repository": "zuizui0223/EXT"
+    },
+    {
+      "id": "EXT-4",
+      "title": "Non-nested newly-legal-word split",
+      "former_status": "local obstruction",
+      "summary": "A newly legal target word that separates two carried states refutes that proposed carried merge.",
+      "former_modules": ["causal_model/non_nested_portability.py"],
+      "former_tests": ["tests/test_non_nested_portability.py"],
+      "former_documents": ["docs/non_nested_replacement_portability.md", "docs/claim_status_audit.md"],
+      "successor_repository": "zuizui0223/EXT"
+    },
+    {
+      "id": "ID-1",
+      "title": "Delayed exposure and adaptive finite-evidence no-go",
+      "former_status": "no-go theorem",
+      "summary": "Finite transcript-only evidence cannot uniformly certify closure over a family admitting legal separating exposure beyond the experiment horizon without an independent horizon/grammar contract.",
+      "former_modules": [
+        "causal_model/delayed_addressability.py",
+        "causal_model/adaptive_closure_no_go.py",
+        "causal_model/delayed_joint_nonidentifiability.py"
+      ],
+      "former_tests": [
+        "tests/test_delayed_addressability.py",
+        "tests/test_adaptive_closure_no_go.py",
+        "tests/test_delayed_joint_nonidentifiability.py"
+      ],
+      "former_documents": [
+        "docs/delayed_addressability.md",
+        "docs/adaptive_closure_no_go.md",
+        "docs/delayed_joint_nonidentifiability.md",
+        "docs/claim_status_audit.md",
+        "docs/theorem_spine.md"
+      ]
+    },
+    {
+      "id": "ID-2",
+      "title": "Candidate-universal macro-law criterion",
+      "former_status": "exact finite theorem",
+      "summary": "A deterministic candidate-universal macro law exists exactly when all retained candidate-induced action maps agree on the declared macro space.",
+      "former_modules": ["causal_model/candidate_safe_laws.py"],
+      "former_tests": ["tests/test_candidate_safe_laws.py"],
+      "former_documents": ["docs/claim_status_audit.md", "docs/theorem_spine.md"]
+    },
+    {
+      "id": "ID-3",
+      "title": "Joint exterior--mechanism lower bound",
+      "former_status": "lower-bound obstruction",
+      "summary": "A supplied jointly realizable exterior-by-mechanism product with explicit distinguishing words forces the corresponding exact interface-memory lower bound. Later binary-local and compositional wrappers were derivative companions of this branch.",
+      "former_modules": [
+        "causal_model/joint_open_candidate_laws.py",
+        "causal_model/binary_joint_relay_compilation.py",
+        "causal_model/delayed_joint_nonidentifiability.py",
+        "causal_model/compositional_boundedness.py"
+      ],
+      "former_tests": [
+        "tests/test_joint_open_candidate_laws.py",
+        "tests/test_binary_joint_relay_compilation.py",
+        "tests/test_delayed_joint_nonidentifiability.py",
+        "tests/test_compositional_boundedness.py"
+      ],
+      "former_documents": [
+        "docs/delayed_joint_nonidentifiability.md",
+        "docs/compositional_boundedness.md",
+        "docs/claim_status_audit.md",
+        "docs/theorem_spine.md"
+      ]
+    },
+    {
+      "id": "LEGACY-1",
+      "title": "Frozen conditional experimental-design results",
+      "former_status": "frozen conditional design theorems",
+      "summary": "Conditional reset-panel, evidence-coverage, robustness, failure-domain, and observation-regime results after a structural quotient and operational contract have already been fixed.",
+      "former_modules": [
+        "causal_model/delayed_joint_budgeted_quotients.py",
+        "causal_model/delayed_joint_reset_panels.py",
+        "causal_model/witnessed_boundary_evidence.py",
+        "causal_model/robust_canonical_panels.py",
+        "causal_model/common_mode_canonical_panels.py",
+        "causal_model/observation_regime_closure.py"
+      ],
+      "former_tests": [
+        "tests/test_delayed_joint_budgeted_quotients.py",
+        "tests/test_delayed_joint_reset_panels.py",
+        "tests/test_witnessed_boundary_evidence.py",
+        "tests/test_robust_canonical_panels.py",
+        "tests/test_common_mode_canonical_panels.py",
+        "tests/test_observation_regime_closure.py"
+      ],
+      "former_documents": [
+        "docs/delayed_joint_budgeted_quotients.md",
+        "docs/delayed_joint_reset_panels.md",
+        "docs/witnessed_boundary_evidence.md",
+        "docs/robust_canonical_panels.md",
+        "docs/common_mode_canonical_panels.md",
+        "docs/legacy/README.md",
+        "docs/claim_status_audit.md"
+      ]
+    }
+  ]
+}

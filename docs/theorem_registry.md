@@ -1,63 +1,44 @@
-# CCOC theorem registry: publication core and historical archive
+# CCOC current executable theorem registry
 
-The canonical machine-readable record is [`theorem_registry.json`](theorem_registry.json). CI currently verifies that every registered entry points to an existing finite source, test, and documentation route.
+Machine-readable current registry: [`theorem_registry.json`](theorem_registry.json).  
+Historical theorem archive: [`historical_theorem_archive.md`](historical_theorem_archive.md) / [`historical_theorem_archive.json`](historical_theorem_archive.json).
 
 CCOC is a **mathematical ecology** repository, not an empirical data repository. Read [the non-empirical scope policy](nonempirical_scope.md) before connecting a finite theorem to an ecological application.
 
-## Reading rule
+A current registry entry means its source, tests, documentation, and replay route must exist **now**. Historical validity/provenance is tracked separately and does not force old source bundles to remain in the current tree.
 
-The registry is provenance, not a list of current-paper claims. The open-composition manuscript uses only the publication core below. Historical/companion entries are tracked in the [legacy manifest](../legacy/manifest.md).
-
-A passing regression validates the supplied finite certificate only. It does not validate an observed ecosystem or infer the correct boundary grammar from data.
-
-## Publication core
+## Current publication core
 
 | ID | Manuscript role | Status | Primary source |
 |---|---|---|---|
 | `CORE-1` | exact grammar-aware dynamic interface | exact finite theorem | `causal_model/grammar_aware_blankets.py` |
-| `CORE-2` | addressability and extension--compression lower bound | lower-bound obstruction | `causal_model/extension_compression_noncommutation.py` |
-| `CORE-3` | binary relay sharpness realization | sharpness witness | `causal_model/relay_tree_compilation.py` |
-| `CORE-4` | conservative macro-schema portability boundary | sufficient criterion | `causal_model/conservative_macro_schema.py` |
+| `CORE-2` | cross-grammar addressability / extension--compression lower bound | lower-bound obstruction | `causal_model/extension_compression_noncommutation.py` |
+| `CORE-3` | bounded-local extremal realization | sharpness witness | `causal_model/relay_tree_compilation.py` + fixed-regular strengthening |
+| `CORE-4` | conservative exact portability boundary | sufficient criterion | `causal_model/coherent_portable_macrolaw.py`, `causal_model/conservative_macro_schema.py` |
 | `CORE-5` | future-word / new-action fiber split | local obstruction | `causal_model/conservative_macro_schema.py` |
 
-### `CORE-1` — exact grammar-aware dynamic interface
+### `CORE-1`
 
 For a supplied finite controlled system and action grammar, an exact interface preserves output, legal-action rows, and successor labels. Fixed-grammar minimization itself is classical substrate.
 
-### `CORE-2` — addressability and extension--compression obstruction
+### `CORE-2`
 
-When exterior coordinates are jointly realizable and uniformly decodable under the declared open grammar, every exact open interface must retain their product information. Closed-context factorizations supply the comparison upper bounds.
+Under declared joint realization and operational future separation, the open grammar may force a much finer exact response interface than every supplied closed grammar. This is the live structural/quantitative manuscript candidate.
 
-### `CORE-3` — relay-tree sharpness witness
+### `CORE-3`
 
-A binary relay family attains the equality case with a constant-size local node/message grammar, pairwise messages, and maximum degree three. Historical firstness of the realization package remains separately audited.
+The explicit relay realizes the separation with bounded-local structure; the strengthened family uses one newly legal primitive action and fixed control grammar. Historical realization firstness remains separately controlled.
 
-### `CORE-4` — conservative macro schema
+### `CORE-4`
 
-A finite macro schema remains exact under declared legal-action growth when old meanings are preserved and newly available actions descend uniformly on each macro fiber. This is sufficient, not necessary.
+A proposed finite macro law remains exact across the declared expansion when old meanings are coherent and newly available actions descend uniformly on each macro fiber. This is sufficient, not necessary.
 
-### `CORE-5` — fiber-split obstruction
+### `CORE-5`
 
-A later legal word or newly legal action refutes one proposed merge if it separates two states inside that fiber. It does not rule out every alternative macro-law.
+A future word or newly legal action that separates two states in one proposed macro fiber refutes that merge. It does not rule out every alternative macro-law.
 
-## Historical / companion registry entries
+## Historical results
 
-| ID | Archived branch | Current role |
-|---|---|---|
-| `CORE-0` | finite closure classification | historical prerequisite |
-| `EXT-1` | non-nested edge preservation | successor program lives outside CCOC |
-| `EXT-2` | transported target exact factorization | successor program lives outside CCOC |
-| `EXT-3` | conservative non-nested target-action transport | successor program lives outside CCOC |
-| `EXT-4` | non-nested newly-legal-word split | successor program lives outside CCOC |
-| `ID-1` | delayed exposure / finite-evidence no-go | companion / legacy |
-| `ID-2` | candidate-universal macro law | companion / legacy |
-| `ID-3` | joint exterior–mechanism bound | companion / legacy |
-| `LEGACY-1` | conditional experimental-design shelf | historical design layer |
+`CORE-0`, `EXT-1`–`EXT-4`, `ID-1`–`ID-3`, and `LEGACY-1` no longer belong to the executable registry. Their theorem statements, former source paths, and immutable recovery pin are in the historical archive.
 
-These IDs remain in the **current registry only because the present registry schema requires registered source/test/document paths to exist**. A later registry-aware cleanup may move historical entries to a separate immutable archive record and then retire their current-tree source bundles.
-
-## Registry IDs required by the current provenance check
-
-`CORE-0`, `CORE-1`, `CORE-2`, `CORE-3`, `CORE-4`, `CORE-5`, `EXT-1`, `EXT-2`, `EXT-3`, `EXT-4`, `ID-1`, `ID-2`, `ID-3`, `LEGACY-1`.
-
-This list is a current verifier contract, not a research-priority list.
+Moving an ID out of this file changes **repository maintenance status**, not theorem truth.
