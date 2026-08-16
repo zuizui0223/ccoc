@@ -10,11 +10,16 @@ The current formal scope is finite and mostly deterministic. Passing certificate
 
 The first-paper spine is deliberately narrow:
 
-1. exact grammar-aware response interfaces;
-2. cross-grammar extension/compression obstruction;
-3. bounded-local extremal realization;
-4. conservative positive portability boundary;
-5. local future-word/fiber-split obstruction.
+1. `CORE-1` — exact grammar-aware response interface as foundational substrate;
+2. `CORE-2` — **cross-grammar extension/compression lower bound**, the headline theorem candidate;
+3. `CORE-3` — bounded-local extremal realization showing sharpness under simple local structure.
+
+Two additional executable results remain as supporting boundaries only:
+
+- `CORE-4` — a conservative sufficient condition under which one declared macro-law survives expansion;
+- `CORE-5` — a future-word/new-action split that refutes one proposed merge.
+
+They are not independent CCOC novelty claims and must not be expanded into a source-relative repair theory.
 
 The strongest explicit family has, for every `m>=1`,
 
@@ -29,6 +34,30 @@ K_O-K_C=m,
 while using one fixed four-symbol primitive alphabet, one newly legal primitive action, pairwise radius-one dynamics, maximum degree three, cut one, and logarithmic selected-coordinate access.
 
 The safe headline is therefore a **same-system cross-grammar quantitative separation**, not the invention of finite-state minimization.
+
+## CCOC–MLTR claim firewall
+
+CCOC and [MLTR](https://github.com/zuizui0223/mltr) share exact-interface and refinement substrate but answer different quantified questions.
+
+CCOC optimizes separately under each closed grammar and compares those minima with the minimum exact interface under a jointly open grammar:
+
+\[
+K_i^*=\min_{q\text{ exact under }\Gamma_i}\log_2|q|,
+\qquad
+K_O^*=\min_{q\text{ exact under }\Gamma_O}\log_2|q|.
+\]
+
+Its target separation is
+
+\[
+\max_i K_i^*=O(1),\qquad K_O^*=\Omega(m).
+\]
+
+No inherited source partition is fixed, and the closed optima may be different.
+
+MLTR fixes an already accepted source macro-law, transports its labels through a declared structural change, and asks whether that inherited law remains exact and, if not, what unique coarsest exact refinement preserves its inherited semantics. **Minimal repair, transport defect, route coherence, and history completion belong to MLTR, not CCOC.**
+
+See `docs/ccoc_mltr_claim_firewall_2026-08-16.md`.
 
 ## Novelty boundary
 
@@ -99,6 +128,7 @@ pytest -q
 
 ## Start here
 
+- `docs/ccoc_mltr_claim_firewall_2026-08-16.md` — hard boundary against MLTR repair theory
 - `docs/current_architecture.md` — current code/theorem map
 - `docs/residual_novelty_decision_2026-08-12.md` — controlling novelty decision
 - `docs/manuscript_readiness_audit.md` — first-paper claim boundary
@@ -111,5 +141,7 @@ pytest -q
 ## Development rule during cleanup
 
 Do not add a new theorem family while repository reduction is active unless it changes a material model premise and survives prior-art classification.
+
+Do not add source-relative minimal repair, transport defect, route-coherence, or history-completion theorem families here; those belong to MLTR.
 
 The current task is to make the surviving scientific result easier to see, not to increase theorem count.
