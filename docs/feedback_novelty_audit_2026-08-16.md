@@ -1,192 +1,149 @@
 # Deterministic feedback novelty audit — 2026-08-16
 
-> **Decision:** the deterministic feedback family is mathematically valid, but its general continuation-refinement headline is classical minimization / coarsest-stable-refinement substrate. Keep the executable modules and ecological witness families as follow-up examples; do not spend novelty language on the existence, fixed-point, unique-coarsest, or finite-stabilization statements.
+> **Decision:** the deterministic feedback program is mathematically valid, but its general continuation-refinement headline is classical minimization / coarsest-stable-refinement substrate. The current tree therefore keeps only two representative executable feedback examples; the remaining conclusions are retained in one consolidated record and Git history.
 
-## 1. Repository snapshot used for this audit
+## 1. Audit pin and governance finding
 
-Audit pin before this branch:
+Pre-cleanup pin:
 
 `4c7887c73ba8fa86a5e3883ebb6dce265b80fe7a`
 
-At that pin:
+`FREEZE.md` had reopened theorem development on 2026-08-11, so adding mathematics was not itself a freeze violation.
 
-- no pull request is open;
-- the most recent generic `tests` workflow on `main` succeeded;
-- PR #211 already consolidated PRs #204/#205/#207/#208/#210 and stopped additional same-premise deterministic feedback expansion;
-- the 2026-08-11 `FREEZE.md` reopening means that adding mathematics after July was not itself a freeze violation;
-- however, the 2026-08-12 residual-novelty memo had already declared fixed-grammar exact quotient/minimization and ordinary partition refinement non-novel substrate and had instructed the project not to proliferate new special-case theorem families without a materially new premise.
+The real control failure was different: `docs/residual_novelty_decision_2026-08-12.md` had already classified fixed-grammar exact quotient/minimization and partition-refinement machinery as non-novel substrate, but the feedback family was promoted before that gate was applied to its headline.
 
-Therefore the governance failure was **not** “new mathematics was forbidden by FREEZE.md.” The real failure was that the stronger novelty gate was not applied to the feedback family before theorem-family promotion.
+## 2. Prior-art anchors
 
-## 2. Primary prior-art comparison
+PR #210 starts from a supplied finite partition, repeatedly splits blocks until action successors are stable, and proves that the fixed point is exact and the unique coarsest exact refinement relative to retained coordinates.
 
-The general PR #210 construction starts from a supplied partition of finite states (here one hidden-mode block per explicit `(c,q)` fiber), repeatedly splits blocks until action successors are stable with respect to the current partition, and proves that the fixed point is exact and is the unique coarsest exact refinement relative to the retained explicit coordinates.
+That pattern is established prior-art territory.
 
-That mathematical pattern is established prior-art territory.
+### Hopcroft 1971
 
-### Hopcroft 1971 — finite-automaton minimization
-
-John E. Hopcroft, *An n log n Algorithm for Minimizing States in a Finite Automaton*, 1971, gives a partition-refinement algorithm for minimizing a finite automaton and determining state equivalence.
+John E. Hopcroft, *An n log n Algorithm for Minimizing States in a Finite Automaton*.
 
 Primary publisher record:
 
 - https://doi.org/10.1016/B978-0-12-417750-5.50022-1
 
-### Paige–Tarjan 1987 — relational coarsest partition
+### Paige–Tarjan 1987
 
-Robert Paige and Robert E. Tarjan, *Three Partition Refinement Algorithms*, SIAM Journal on Computing 16(6), 1987, explicitly treats the **relational coarsest partition** problem via partition refinement.
-
-Primary publisher record:
+Robert Paige and Robert E. Tarjan, *Three Partition Refinement Algorithms*, SIAM Journal on Computing 16(6), explicitly treats the relational coarsest partition problem.
 
 - https://doi.org/10.1137/0216062
 
-### Dean–Givan 1997 / Givan–Dean–Greig 2003 — coarsest homogeneous refinement
+### Dean–Givan 1997 / Givan–Dean–Greig 2003
 
-Thomas Dean and Robert Givan, *Model Minimization in Markov Decision Processes*, AAAI 1997, defines homogeneous state-space partitions and gives an algorithm for the **coarsest homogeneous refinement of any partition**, explicitly describing it as an adaptation of known automata-minimization algorithms.
-
-Primary conference record:
+Dean and Givan define homogeneous state-space partitions and the coarsest homogeneous refinement of an arbitrary initial partition, explicitly adapting automata-minimization ideas.
 
 - https://s.aaai.org/Library/AAAI/1997/aaai97-017.php
-
-The later full treatment is Robert Givan, Thomas Dean, Matthew Greig, *Equivalence notions and model minimization in Markov decision processes*, Artificial Intelligence 147 (2003), 163–223.
-
-Primary publisher record:
-
 - https://doi.org/10.1016/S0004-3702(02)00376-4
 
-These sources are enough to remove novelty budget from the general “start from an initial partition, refine to the unique coarsest stable exact partition” claim. A future literature review may add closer deterministic/bisimulation references, but the adjudication does not depend on finding a word-for-word ecological formulation.
+These anchors are sufficient to remove novelty budget from the general “refine an initial partition to the unique coarsest stable exact partition” claim.
 
 ## 3. PR #210 adjudication
 
-### Theorem 1 — current-type iff criterion
+### Current-type stability criterion
 
-**Verdict: classical substrate / no standalone novelty.**
+**Classical substrate.** Equal proposed labels must have equal current observables/legal rows and action successors that remain in equal labels. Useful ecological contract, not new quotient theory.
 
-The condition that states merged by a proposed label must agree on current observables/legal transitions and map under every action to the same successor label is the standard congruence/stability condition for an exact quotient.
+### Finite continuation refinement
 
-Keep it because it is a useful ecological contract and implementation check. Do not present it as a new mathematical theorem.
-
-### Theorem 2 — finite continuation refinement
-
-**Verdict: classical substrate / no standalone novelty.**
-
-Monotone splitting to a stable fixed point is the standard partition-refinement pattern. The bound
+**Classical substrate.** Monotone splitting to a stable fixed point is standard partition refinement. The bound
 
 \[
 N_{\rm refine}\le |C||Q|(|M|-1)
 \]
 
-is the elementary finite block-count termination bound: every strict event adds at least one block and each fiber has at most `|M|` blocks.
+is the elementary finite block-count termination argument.
 
-Keep it as an algorithmic construction and reproducibility route, not as a novelty-bearing theorem.
+### Unique minimum repair relative to `(c,q)`
 
-### Theorem 3 — unique minimum repair relative to explicit `(c,q)`
+**Classical substrate.** This is the coarsest stable refinement of the initial partition defined by retaining the ecological coordinates explicitly. It sits below the Tier A–D novelty ladder.
 
-**Verdict: classical substrate / no standalone novelty.**
+### Routed-context construction
 
-This is the coarsest stable refinement of a declared initial partition, with the ecological coordinates deliberately kept explicit. The relative-coordinate formulation is useful for interpretation but does not create a new minimization theorem.
-
-This statement should be removed from the family-level novelty headline rather than downgraded merely to the paper's positive-boundary Tier D.
-
-### Theorem 4 — routed-context family
-
-**Verdict: retain as a supporting sharpness witness; novelty unresolved.**
-
-The useful concrete package is:
+**Supporting witness; historical novelty unresolved.** The useful concrete package is
 
 \[
 \max_c |\tau_c(M)|=2,
 \qquad |C|=3r+1,
 \qquad |A|=2,
-\qquad |P^*_{R_0}|=2^r.
+\qquad |P^*_{R_0}|=2^r,
 \]
 
-This shows that a uniformly tiny instantaneous ecological typing need not bound future-response rank when hidden mode routes the future context path.
+with last-bit exposure at depth `2r-1`.
 
-The construction is worth keeping, but its proof is still a direct distinguishability construction over `2^r` hidden profiles. Treat it as an explicit constrained example until a targeted state-complexity / sequential-machine comparison establishes a stronger residual claim.
+The current tree preserves this conclusion in the consolidated feedback record rather than maintaining a separate general-refinement implementation.
 
-### Theorem 5 — exact exposure depth `2r-1`
+## 4. Earlier feedback results
 
-**Verdict: proof/witness detail, not novelty headline.**
+### PR #204 — feedback-cycle rank
 
-The sharp depth follows from the serial routed chain and inert off-phase actions. It is useful for explaining delayed exposure but belongs with the witness, not as a separate mathematical contribution.
-
-## 4. Earlier feedback modules
-
-### PR #204 — scalable feedback-gate rank
-
-**Keep as the strongest mechanism-specific ecological witness, not a general minimization theorem.**
-
-The useful result is the explicit causal ablation:
+**Strongest active negative/mechanistic example.** With both causal arrows the family stores `r` response bits; deleting either arrow collapses the burden to zero:
 
 \[
-K=r
-\quad\text{with both arrows,}\qquad
-K=0
-\quad\text{after deleting either arrow.}
+K=r \quad\to\quad K=0.
 \]
 
-This identifies one concrete mechanism that makes latent bits response-addressable. The injection/distinguishability argument itself is not novel. Any publication claim must be framed as a mechanism-specific construction or ecological corollary, not as a new state-minimization principle.
+Keep executable module `causal_model/feedback_gate_rank.py` and its focused test.
 
-### PR #205 — bounded-type feedback portability
+### PR #205 — copy-anonymous five-state collapse
 
-**Keep as a closed-form example; demote the theorem headline.**
+**Strongest active positive example.** Exact quotient size is five independent of physical replication. Keep executable module `causal_model/feedback_type_portability.py` and its focused test. The `5^q` product itself is ordinary product/common-refinement structure.
 
-The exact five-state quotient independent of physical replication is a clean symmetry/copy-anonymity example. The `5^q` multi-type product is ordinary product/common-refinement structure and should not carry novelty language.
+### PR #207 — master profiles
 
-### PR #207 — evolving feedback master types
-
-**Mostly substrate plus a witness.**
-
-The master signature
+**Substrate plus witness.** The context profile
 
 \[
 \tau^*(m)=(\tau_c(m))_{c\in C}
 \]
 
-is a joint response profile/common refinement across contexts. The rotating family with only two instantaneous types but `2^r` master classes is useful as a witness, not a new minimization theorem.
+is a joint response profile/common refinement. The rotating `2`-instantaneous-type versus `2^r`-future-class construction remains a historical supporting witness. Dedicated current-tree implementation retired.
 
-### PR #208 — future-context causal forgetting
+### PR #208 — future-context forgetting
 
-**Keep the causal interpretation; demote the general mathematics.**
+**Useful causal interpretation, not standalone minimization novelty.** A hidden distinction can be forgotten when no still-reachable legal future can expose it. Dedicated current-tree implementation retired.
 
-Restricting a response signature to still-reachable future contexts gives a useful ecological language for when hidden distinctions can be forgotten. The reachability-conditioned quotient and monotone loss of future distinctions are not a defensible standalone novelty claim without a more specific structural theorem.
+## 5. Current-tree decision
 
-## 5. Revised feedback-family status
+The feedback package now has only:
 
-The deterministic feedback package should be described as:
+- `causal_model/feedback_gate_rank.py`
+- `causal_model/feedback_type_portability.py`
+- `docs/feedback_portability_theorem_family_2026-08-15.md`
+- this novelty audit
 
-> **Ecological instantiations and sharp examples of classical exact response minimization.** The general continuation-stable repair is the coarsest stable refinement relative to retained ecological coordinates. CCOC's useful added content is the explicit ecological mechanism/witness design: feedback cycles can create response-addressable memory, copy-anonymous replication can collapse to a fixed closed form, irreversible context loss can remove distinctions, and mode-routed contexts can hide exponentially many future classes behind binary instantaneous types.
+as its active source/doc surface.
 
-This is a valid follow-up package, but it is **not** a new theorem family on the same novelty level as the first-paper cross-grammar separation candidate.
+Retired from the current tree:
+
+- PR #207/#208/#210 theorem modules and tests;
+- the superseded initial feedback-network experiment and test;
+- five per-PR feedback proof notes and the exploratory triage note.
+
+The complete pre-cleanup implementation/proof surface remains recoverable at audit pin `4c7887c73ba8fa86a5e3883ebb6dce265b80fe7a`.
 
 ## 6. First-paper consequence
 
 No first-paper proof dependency changes.
 
-Retain the 2026-08-12 decision:
+- **Tier A:** same-system cross-grammar response-interface separation;
+- **Tier B:** one-action maximal open-only innovation;
+- **Tier C:** bounded-local relay as constrained sharpness, historical firstness unresolved;
+- **Tier D:** conservative finite portability boundary.
 
-- **Tier A:** cross-grammar response-interface separation under a declared jointly realizable comparison family;
-- **Tier B:** the quantitative one-action extremal separation / maximum open-only innovation;
-- **Tier C:** bounded-local relay as constrained sharpness, with historical firstness gated by H1–H4;
-- **Tier D:** conservative finite portability as the constructive positive boundary.
+Fixed-grammar coarsest refinement is substrate below this ladder.
 
-Do not move the PR #210 coarsest-refinement theorem into Tier D. It sits below the tier ladder as formal substrate.
+## 7. Stop rule
 
-## 7. Governance correction
+Do not add another deterministic persistent-mode feedback theorem by changing only graph, gate count, type count, or finite context progression.
 
-Effective immediately for this repository:
+A new branch requires a material premise change: evolving hidden mode, stochastic feedback, partial observation, continuous/unbounded state with a nontrivial bound, or a genuinely new approximation/resource theorem.
 
-1. `docs/residual_novelty_decision_2026-08-12.md` is the controlling novelty gate for finite deterministic fixed-grammar minimization claims.
-2. `FREEZE.md` controls whether theorem development is procedurally allowed; it does **not** override the novelty gate.
-3. A theorem may be mathematically valid and still be barred from headline status by prior-art classification.
-4. Before a new theorem family is promoted, its own document must contain a short prior-art/status section mapping each headline claim to `substrate`, `supporting witness`, `residual candidate`, or `historically unresolved`.
-5. No further deterministic persistent-mode feedback theorem should be added without changing a material model premise already listed in the 2026-08-15 stop rule.
+## 8. Current project direction
 
-## 8. Manuscript reality check
+The current priority is **repository cleanup**, not new theorem development and not manuscript expansion inside CCOC.
 
-The absence of `.tex` files inside CCOC is **not itself a repository-policy failure**. Current policy explicitly assigns manuscript prose to the separate `rach-open-composition-paper` repository and tells CCOC not to duplicate prose.
-
-The actual failure is operational: that manuscript repository still does not exist. Issue #141 records this as a manual blocker because the connected GitHub tool surface cannot create repositories. Issue #192 therefore cannot start manuscript-side transfer.
-
-Once the manuscript repository exists, manuscript drafting should proceed from the narrow Tier A/B spine while H1–H4 wording remains conditional. Do not use the missing manuscript repository as a reason to generate another theorem family inside CCOC.
+Use this feedback pass as the template: retain a small number of representative executable results, preserve scientific conclusions in a canonical record, and let immutable Git history carry superseded implementations and detailed proof notes.
