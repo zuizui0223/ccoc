@@ -25,10 +25,8 @@ The strongest explicit family has, for every `m>=1`,
 
 \[
 |P_C|=2,
-\qquad
-|P_O|=2^{m+1},
-\qquad
-K_O-K_C=m,
+\qquad |P_O|=2^{m+1},
+\qquad K_O-K_C=m,
 \]
 
 while using one fixed four-symbol primitive alphabet, one newly legal primitive action, pairwise radius-one dynamics, maximum degree three, cut one, and logarithmic selected-coordinate access.
@@ -79,16 +77,13 @@ Canonical first-paper modules are listed in `docs/current_architecture.md`.
 
 Distinct follow-up modules remain explicit rather than being re-exported through one giant theory facade.
 
-### Deterministic feedback
+### Deterministic feedback — historical / routed
 
-The former five-module feedback theorem family has been reduced to two representative executable examples:
+CREST §11/§12 was applied on 2026-08-17.
 
-- `causal_model/feedback_gate_rank.py` — feedback-cycle memory with causal-arrow ablation;
-- `causal_model/feedback_type_portability.py` — replication-independent five-state positive example.
+The former feedback theorem family is no longer an active executable CCOC surface. The general continuation-refinement / unique-coarsest-repair object is a fixed-inherited-partition repair problem and routes to MLTR if developed further. The previously retained PR #204/#205 executable examples were also retired because they do not change the current CCOC CORE-2/CORE-3 theorem story.
 
-The general continuation-refinement / unique-coarsest-repair result is classical minimization substrate. PR #207/#208/#210 implementations and detailed proof notes are retained in Git history rather than the current tree.
-
-See:
+Historical records remain:
 
 - `docs/feedback_portability_theorem_family_2026-08-15.md`
 - `docs/feedback_novelty_audit_2026-08-16.md`
@@ -106,7 +101,7 @@ CCOC is currently in a **surface-reduction phase**. Files are classified as:
 - **HISTORICAL** — conclusion/provenance retained, implementation may live only in Git history;
 - **REMOVE** — duplicated or superseded current-tree surface.
 
-The deprecated `causal_model.current_theory` aggregate has been removed because no active repository code imported it. The broad package-root facade remains temporarily while old examples/scripts are audited.
+A valid theorem/example is not automatically a reason to keep its source/test bundle. The feedback CREST pass is the current precedent: once the family-level result is routed or demoted, representative executables may also be retired if they have no independent current role.
 
 Cleanup record:
 
@@ -116,7 +111,7 @@ Cleanup record:
 
 ## Reproducibility
 
-The historical paper-core replay remains:
+The paper-core replay remains:
 
 ```bash
 python scripts/verify_theorem_registry.py --check --write-report
@@ -140,7 +135,7 @@ pytest -q
 
 ## Development rule during cleanup
 
-Do not add a new theorem family while repository reduction is active unless it changes a material model premise and survives prior-art classification.
+Do not add a new theorem family while repository reduction is active unless it changes a material model premise and survives prior-art and CREST routing classification.
 
 Do not add source-relative minimal repair, transport defect, route-coherence, or history-completion theorem families here; those belong to MLTR.
 
