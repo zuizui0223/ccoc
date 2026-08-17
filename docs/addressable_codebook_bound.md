@@ -1,9 +1,10 @@
 # Addressable-codebook extension--compression bound
 
-> **Status:** post-reopening theorem-strengthening candidate. This note is not yet
-> part of the historical July 2026 `CORE-1`--`CORE-5` replay. It strictly weakens
-> the full-product premise of the v1 addressability theorem if the proof and
-> finite certificate review pass.
+> **Status:** proved post-reopening supporting strengthening of CORE-2. The result
+> has an explicit analytic pair-separation proof, finite operational certificates,
+> and regression tests. It is intentionally not promoted to a new headline
+> registry theorem and makes no novelty claim for generic separating-code or
+> automata-minimization machinery.
 
 ## Motivation
 
