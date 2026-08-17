@@ -1,46 +1,53 @@
-# RACH theorem map: core, selected extension, companions, and frozen shelves
+# CCOC current theorem and proof spine — 2026-08-17
 
-RACH does not treat every valid result as one long theorem chain. The repository has a frozen **portability core v1**, one selected post-v1 structural extension, an identifiability companion, and a legacy experimental-design shelf.
+CCOC has one current publication spine. This document lists only the present CORE-1–CORE-5 proof dependencies. Historical non-nested replacement, mechanism-uncertainty, evidence-design, feedback, ecological special-case, and other removed branches are not part of the current CCOC theorem chain.
 
-Read [portability core v1](portability_core_v1.md) for the canonical v1 statement, [non-nested replacement portability](non_nested_replacement_portability.md) for the selected extension, and [research priorities](research_priorities.md) for the current stop rule.
+## 1. CORE-1 — canonical exact dynamic interface
 
-## A. Portability core v1
+For a declared finite deterministic controlled system and legal grammar, define two states as equivalent when every legal finite word gives the same output trace.
 
-### A0. Finite-model prerequisite
+The canonical response quotient is the coarsest exact deterministic interface.
 
-A declared finite deterministic update system can be globally closing, recurrent, or multistable. Local transition syntax does not itself imply one endpoint.
+### Proof source
 
-### A1. Exact finite factorization
+`docs/dynamic_boundary_blankets.md` proves:
 
-For a declared finite grammar, an exact interface preserves current output, enabled legal actions, and successor summary after every legal action. The legal-word quotient is the coarsest such interface.
+1. finite counterfactual-horizon stabilization;
+2. right-congruence / dynamic-interface completeness;
+3. finite dynamic-blanket upper bounds; and
+4. the uniform blanket obstruction when combined with addressability.
+
+The executable implementations are `dynamic_boundary_blankets.py`, `grammar_aware_blankets.py`, and `shared_grammar.py`.
+
+This is foundational substrate. The current novelty claim does not rest on generic fixed-grammar minimization.
+
+---
+
+## 2. CORE-2 — cross-grammar extension–compression lower bound
+
+Let a declared comparison family contain a jointly realizable product
 
 \[
-\boxed{
-\text{finite update-closed boundary summary}
-\Rightarrow
-\text{exact finite macro-interface.}
-}
+I\times E_1\times\cdots\times E_q.
 \]
 
-### A2. Extension--compression obstruction
-
-For an addressable product subsystem
+If legal future words decode the inside coordinate and every exterior coordinate, then every two distinct product states are separated by a legal future trace. Therefore
 
 \[
-S^*\cong I\times E_1\times\cdots\times E_q,
-\]
-
-with legal decoder words for the inside coordinate and every exterior factor,
-
-\[
-\boxed{
 K_{\mathrm{open}}
 \ge
 \log_2|I|+\sum_j\log_2|E_j|.
-}
 \]
 
-If fixed closed context \(j\) factors through \((I,E_j)\), then
+If closed context `j` admits a supplied exact factorization through `(I,E_j)`, then
+
+\[
+K_{\mathrm{closed},j}
+\le
+\log_2|I|+\log_2|E_j|,
+\]
+
+and hence
 
 \[
 \boxed{
@@ -50,73 +57,110 @@ K_{\mathrm{open}}-\max_jK_{\mathrm{closed},j}
 }
 \]
 
-The binary relay tree is the sharpness witness, attaining \(K_{\mathrm{closed},j}=2\) and \(K_{\mathrm{open}}=m+1\) with constant local grammar, pairwise messages, and degree at most three.
+### Proof source
 
-### A3. Nested portability ladder
+- `docs/extension_compression_noncommutation.md`
+- `docs/portability_core_v1.md`
+- executable injection certificate in `causal_model/extension_compression_noncommutation.py`.
 
-| Level | Status | Premise | Conclusion |
-|---|---|---|---|
-| Boundedness | sufficient | common finite summary alphabet | uniform interface-size upper bound |
-| Coherent portability | sufficient | same macro output/action/transition system and label-coherent embeddings | one exact macro-law across nested stages |
-| Conservative extension | sufficient | fixed old meanings and label-deterministic new actions under monotone legal rows | one finite schema on the union grammar |
+The proof is an operational injection using declared decoder words, not an arithmetic assumption that independent memory contributions always add.
 
-### A4. Local fiber-split obstruction
+---
 
-A newly legal action or future word that separates two states in one proposed macro fiber invalidates that proposed merge. This is a local obstruction, not a theorem that every alternative macro-law must fail.
+## 3. CORE-3 — bounded-local extremal sharpness
 
-## B. Selected post-v1 extension: non-nested replacement and rewiring
-
-Nested embeddings need not exist after replacement, extinction, or rewiring. The selected extension uses declared total relations instead.
-
-### B1. Transport-coherent edge preservation
-
-If every finite stage already induces the same exact macro dynamics and each edge in a connected replacement graph has a total, label/output/legal-action preserving, successor-closed transport, one macro law is shared across the declared family. The relation may be many-to-one or one-to-many.
-
-### B2. Transported target exact factorization
-
-One exact source projection can construct the target projection. When a relation covers both product spaces, preserves output and equal legal-action rows, is successor-closed, and is label-consistent on every target fiber, define
+For every `m>=1`, the fixed-regular relay family has
 
 \[
-q_T(t)=q_S(s)\qquad ((s,t)\in R).
+|P_C|=2,
+\qquad
+|P_O|=2^{m+1},
+\qquad
+K_O-K_C=m,
 \]
 
-The target label is well-defined, grammar-aware exact, and induces the same macro dynamics as \(q_S\).
+under one fixed four-symbol primitive alphabet, with opening adding one primitive action, while the interaction graph remains a degree-at-most-three tree with one-edge focal/exterior cut and bounded local alphabets.
 
-### B3. Conservative transport with target-only actions
+### Proof source
 
-Target-only actions can be added without an embedding. A source exact projection and a total relation construct one conservative macro schema when source-legal actions remain legal and successor-closed, and every target-only action has uniform availability and one macro successor inside each derived target fiber.
+`docs/fixed_regular_extremal_theorem_2026-08-13.md` gives the all-`m` proof:
 
-The source realizes a restriction of the schema; the target realizes the expanded action rows. Thus non-nested replacement can transport conservative action growth, provided the new action does not split a macro fiber.
+1. fixed grammar and total local dynamics;
+2. closed all-word invariant;
+3. legal addressability of every exterior coordinate;
+4. discreteness of the open quotient;
+5. exact capacity sharpness;
+6. bounded locality and one-edge cut; and
+7. exact logarithmic query length.
 
-### B4. Local replacement obstruction
+Executable `certify_fixed_regular_extremal_theorem(m)` checks one finite supplied `m`; it is not the quantified proof itself.
 
-A newly legal word can split a previously carried merge. The certificate identifies the source pair, relation, future word, and target traces. This is exactly the failure mode excluded by B3's uniformity condition.
+CORE-3 is sharpness support for CORE-2, not a second independent headline lower bound.
 
-### B5. Scope boundary
+---
 
-Failure to supply B2 or B3 transport does not imply unbounded memory or failure of every alternative macro-law. B3 does not cover new actions with nonuniform availability or successor labels, nor stochasticity or approximate portability. Those cases remain `UNRESOLVED`.
+## 4. CORE-4 — positive conservative portability boundary
 
-## C. Identifiability companion
+CCOC retains a positive boundary showing when a finite macro-law can remain exact across declared nested extension.
 
-### C1. Delayed exterior exposure
+### Coherent portability
 
-For every finite adaptive policy, a delay-gated closed/open pair can agree on the complete policy transcript and separate later. Without an independent horizon and grammar contract, finite adaptive evidence yields `UNRESOLVED`, not closure.
+If every stage factors through one common finite macro dynamics and embeddings preserve macro labels, the stage laws are compatible restrictions of one portable law.
 
-### C2. Retained mechanism families
+Proof: `docs/coherent_portable_macrolaw.md`.
 
-A candidate-universal deterministic law exists exactly when all retained candidate-induced macro maps agree on all declared actions. Joint exterior--mechanism lower bounds require their own joint realization and separation premise.
+### Conservative legal-action expansion
 
-## D. Experimental-design legacy shelf
+If legal action rows grow monotonically, old action meanings never change, and each newly legal action has one label-deterministic successor inside a macro fiber, the union grammar carries one finite conservative macro schema.
 
-Reset panels, evidence coverage, cell-loss robustness, common-mode failures, and narrow observation-regime utilities remain executable regressions. They are conditional design results after a quotient or contract has already been fixed.
+Proof: `docs/conservative_macro_schema.md`.
 
-## E. Honest unresolved region
+These are sufficient positive criteria. They are not the unique source-relative repair problem of MLTR.
 
-No theorem classifies every composition family. `UNRESOLVED` covers families that supply neither a finite update-consistent factorization nor an independently decoded, jointly realizable addressability product. It also includes unconstrained non-nested rewiring, noisy/approximate portability, and composition-dependent candidate mechanisms.
+---
 
-## F. Priority order
+## 5. CORE-5 — local future-word/new-action obstruction
 
-1. Preserve the frozen v1 core and its public claim discipline.
-2. Treat B2, B3, and the newly-legal-word obstruction as the current stop point of non-nested portability.
-3. Do not add another relation variant unless it changes the transport contract itself.
-4. Keep candidate-dependent and approximate directions paused until a separate research decision is made.
+If two states in one proposed macro fiber are separated by a later legal word or newly legal action, the proposed merge cannot be exact.
+
+The proof is immediate from deterministic factorization: one quotient state cannot carry two distinct future traces or two different quotient successors under the same legal action.
+
+Proof/witness sources are the CORE-4 documents and modules.
+
+CORE-5 is a local warning. It does not by itself yield the global memory lower bound of CORE-2 or the unique coarsest inherited-law repair of MLTR.
+
+---
+
+## 6. Dependency graph
+
+```text
+CORE-1  canonical exact interface
+   |
+   +--> CORE-2  operational cross-grammar lower bound  [headline]
+   |        |
+   |        +--> CORE-3  bounded-local equality/sharpness witness
+   |
+   +--> CORE-4  positive sufficient portability boundary
+            |
+            +--> CORE-5  concrete local obstruction when a proposed fiber is split
+```
+
+The first-paper story is therefore not a catalogue of quotient theorems. It is one structural contrast:
+
+\[
+\boxed{
+\text{small exact interfaces in closed futures}
+\not\Rightarrow
+\text{one comparably small exact interface for an open future grammar},
+}
+\]
+
+with a sharp bounded-local witness and a separate positive boundary showing when portability can hold.
+
+---
+
+## 7. Proof/replay rule
+
+A quantified analytic theorem must have a written proof source. Finite certificates, tests, and replay artifacts are implementation guards and witnesses; they do not replace the quantified proof.
+
+The executable registry `docs/theorem_registry.json` remains the current machine-readable inventory. `docs/claim_status_audit.md` records the current proof status and non-claims. Historical theorem truth remains available through Git history and the historical archive, not through this current proof spine.
