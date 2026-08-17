@@ -65,10 +65,23 @@ A passing certificate does not establish historical novelty and does not validat
 
 Two current quantitative strengthenings are intentionally not promoted to additional headline theorems:
 
-1. **Constrained codebooks** — `addressable_codebooks.py`, `codebook_families.py`; weakens the full Cartesian-product premise while retaining an operational code-size lower bound.
-2. **Approximate addressability** — `approximate_addressability.py`; bounded decoding error retains an information lower bound via standard Fano/information machinery.
+### Constrained codebooks
 
-They are meaningful extensions of CORE-2, not separate CREST axes.
+- **Status:** analytic + executable supporting strengthening of CORE-2.
+- **Proof:** `docs/addressable_codebook_bound.md`.
+- **Executable surface:** `causal_model/addressable_codebooks.py`, `causal_model/codebook_families.py`, `tests/test_addressable_codebooks.py`.
+- **What is strengthened:** the full Cartesian-product premise is weakened to an arbitrary finite jointly realizable codebook whose coordinates are uniformly recoverable by declared future words.
+- **What is not claimed:** a codebook-domain closed factorization upper-bounds the full closed state space without an extra global contract; `Delta_0(C)` is not a necessary or complete invariant.
+
+### Approximate addressability
+
+- **Status:** analytic + executable companion strengthening of CORE-2.
+- **Proof:** `docs/approximate_addressability.md` using standard Fano and conditional-subadditivity arguments.
+- **Executable surface:** `causal_model/approximate_addressability.py`, `tests/test_approximate_addressability.py`.
+- **What is strengthened:** a fixed positive rate of coordinate-specific decodability with bounded average error still forces retained summary information; for a binary full product and fixed `epsilon<1/2`, the memory lower bound remains linear in the number of exterior coordinates.
+- **What is not claimed:** a new rate-distortion theorem, optimal approximate state abstraction, or an automatically inferred ecological noise model.
+
+Both strengthenings answer robustness/premise objections to CORE-2. They are not separate CREST axes and are not allowed to expand the first-paper theorem count by themselves.
 
 ## Current ownership firewall
 
