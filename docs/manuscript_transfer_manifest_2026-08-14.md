@@ -13,6 +13,7 @@ The first CCOC paper transfers only the theorem spine needed to answer one quest
 - `dynamic_boundary_blankets.py`
 - `shared_grammar.py`
 - `grammar_aware_blankets.py`
+- `addressable_completion_bounds.py` — retained because CORE-1's uniform-blanket obstruction directly depends on its canonical addressable product; it is not an independent headline claim
 
 ### Headline lower bound
 
@@ -50,7 +51,7 @@ These show that large open-interface inflation does not require a full independe
 
 ## Historicalized material
 
-Exact converse/reuse, generic canonical quotient, resource-accounting, observation-window, stochastic/ecological special-case, and other removed branches are Git-history provenance, not manuscript dependencies.
+Exact converse/reuse, generic canonical quotient branches beyond the retained foundation dependency, resource-accounting, observation-window, stochastic/ecological special-case, and other removed branches are Git-history provenance, not manuscript dependencies.
 
 The pre-removal recovery pin for this final internal-side-branch pass is:
 

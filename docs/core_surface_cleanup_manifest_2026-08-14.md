@@ -7,6 +7,7 @@
 - `dynamic_boundary_blankets.py`
 - `shared_grammar.py`
 - `grammar_aware_blankets.py`
+- `addressable_completion_bounds.py` — CORE-1 foundation dependency for the uniform-blanket obstruction
 - `extension_compression.py`
 - `extension_compression_noncommutation.py`
 - `operational_addressability.py`
@@ -44,7 +45,7 @@ Recovery pin: `0d3424a9090b86eae4e369d3749bbe39b6b03432`.
 This fourth pass historicalizes:
 
 - exact converse/reuse and terminal-grammar variants;
-- generic canonical boundary quotient and duplicate product-bound wrappers;
+- generic canonical boundary-quotient branches that are not the retained CORE-1 foundation dependency;
 - union-refinement/interface-inflation decomposition layers;
 - redundant single-action/resource closures subsumed by the fixed-regular extremal package;
 - observation-window completion executable theorem/witness;
@@ -66,4 +67,4 @@ Their dedicated tests, docs, scripts, and specialized workflows are retired with
 
 ## Stop rule
 
-After the fourth cleanup pass, broad repository reduction stops unless CI exposes a concrete dangling dependency. Further work should be novelty verification and manuscript transfer, not additional theorem or cleanup families.
+After the fourth cleanup pass, broad repository reduction stops unless CI exposes a concrete dangling dependency. Further work is novelty verification and manuscript transfer, not additional theorem or cleanup families.
