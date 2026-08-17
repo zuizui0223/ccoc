@@ -1,37 +1,43 @@
-# Deterministic feedback portability — consolidated record
+# Deterministic feedback portability — historical consolidated record
 
-> **Current status (2026-08-16):** feedback mathematics is **STOPPED / CONSOLIDATED**. The general continuation-refinement result from PR #210 is classical fixed-grammar minimization / coarsest-stable-refinement substrate. The current tree keeps only two representative executable examples. The removed implementations and detailed proof notes remain permanently recoverable from audit pin `4c7887c73ba8fa86a5e3883ebb6dce265b80fe7a` and their merged PRs.
+> **CREST gate applied 2026-08-17:** the deterministic feedback family is **HISTORICAL / ROUTED**, not a current CCOC research surface. Its general continuation-stable hidden-state refinement is a fixed-initial-partition coarsest stable refinement. Under the CREST synthesis gate, that is not a new CCOC noncommutation or impossibility result, and repair of a fixed inherited partition belongs to MLTR's source-relative repair layer.
 
-## 1. Scientific question retained
+The full pre-cleanup implementation remains recoverable at audit pin
 
-When hidden ecological interaction state changes later turnover, accessibility, or the future context path, which hidden distinctions must an exact macro-interface retain?
+`4c7887c73ba8fa86a5e3883ebb6dce265b80fe7a`.
 
-The answer is governed by future response distinctions, not raw hidden-state count, present abundance, or instantaneous type count.
+## 1. Scientific question retained as provenance
 
-## 2. Formal substrate — not a novelty claim
+The feedback work asked:
 
-For finite deterministic persistent hidden mode with explicit ecological coordinates `(c,q)`, start from one hidden-mode block in each `(c,q)` fiber and refine until every legal action has a uniform successor explicit state and successor block.
+> When hidden interaction state changes later turnover, accessibility, or future context paths, which hidden distinctions affect future ecological response?
 
-The fixed point is exact and is the coarsest stable refinement relative to the retained `(c,q)` coordinates. Finite termination follows from block-count growth.
+That ecological question remains useful. What is no longer retained as a separate theorem family is the claim that the answer should be promoted through a new unique-coarsest repair theorem.
 
-This is standard partition-refinement/minimization structure. Do not headline:
+## 2. CREST §11 / §12 verdict
 
-- the existence of the fixed point;
-- its unique-coarsest property;
-- the one-step quotient-stability criterion; or
-- the elementary finite split bound.
+### Family-level repair theorem — ROUTE TO MLTR
 
-Prior-art adjudication is in `docs/feedback_novelty_audit_2026-08-16.md`.
+Starting from one hidden-mode block in each retained `(c,q)` fiber and repeatedly splitting until outputs, legal actions, and successor blocks are stable yields the unique coarsest stable refinement of that initial partition.
 
-## 3. Active executable feedback surface
+This is mathematically valid, but it fails the CREST synthesis gate for CCOC:
 
-### A. Mechanism-specific negative witness — PR #204
+- it does not expose a new cross-grammar noncommutation;
+- it does not establish a new impossibility beyond existing CCOC lower-bound machinery;
+- its defining object is repair of a supplied retained partition;
+- therefore, if developed further, it belongs to MLTR's inherited-semantics / source-relative repair layer.
 
-Active module:
+No implementation is copied into MLTR because MLTR already owns the general source-relative repair problem. The feedback statement is kept here only as historical provenance.
 
-`causal_model/feedback_gate_rank.py`
+### Fixed-grammar minimization machinery — CLASSICAL SUBSTRATE
 
-An explicit cycle
+Finite termination, one-step stability tests, and unique-coarsest fixed points are partition-refinement/minimization substrate. They are not CCOC novelty claims.
+
+## 3. Historical examples
+
+### PR #204 — feedback-cycle rank
+
+A cycle
 
 \[
 \text{hidden interaction mode}
@@ -41,9 +47,7 @@ An explicit cycle
 \text{future accessibility}
 \]
 
-makes `r` latent mode bits exactly response-distinguishable while current graph/output/count summaries are identical.
-
-The useful causal result is the ablation:
+makes `r` latent mode bits response-distinguishable while present graph/output/count summaries are identical. The useful historical mechanism-specific fact is the ablation
 
 \[
 K=r \quad\text{with both arrows},
@@ -51,80 +55,69 @@ K=r \quad\text{with both arrows},
 K=0 \quad\text{if either arrow is removed}.
 \]
 
-The distinguishability/injection proof itself is substrate; the retained value is the explicit ecological mechanism that creates addressability.
+Under CREST this is best read as an ecological **future-addressability example** supporting the already-established CCOC idea that future operations can expose currently hidden distinctions. It does not add a new headline theorem beyond CORE-2/CORE-3, so its dedicated current-tree module/test are retired.
 
-### B. Closed-form positive example — PR #205
+### PR #205 — copy-anonymous five-state collapse
 
-Active module:
+For one copy-anonymous interaction type, arbitrary physical replication admits a five-state exact quotient; for fixed `q` independently controlled types the product has `5^q` states.
 
-`causal_model/feedback_type_portability.py`
-
-If physical copies are copy-anonymous and share one interaction type, arbitrary replication has a five-state exact response quotient independent of copy count. For fixed `q` independently controlled types the product has `5^q` states.
-
-The five-state collapse is the useful ecological example. The product construction is ordinary product/common-refinement structure.
-
-## 4. Historical conclusions retained without active modules
-
-The following valid conclusions are preserved here and in Git history, but no longer justify separate source/test/doc families in the current tree.
+This remains a useful historical positive example, but it is fixed-grammar quotient/product structure and does not change CCOC's cross-grammar headline. Its dedicated current-tree module/test are retired.
 
 ### PR #207 — master response profiles
 
-When context motion is mode-independent but response type depends on context, the stable hidden summary can be represented by the context profile
+The context profile
 
 \[
-\tau^*(m)=(\tau_c(m))_{c\in C}.
+\tau^*(m)=(\tau_c(m))_{c\in C}
 \]
 
-A rotating construction can have only two instantaneous types per context while producing `2^r` full future-response classes. Treat this as a witness, not a new minimization principle.
+summarizes future response across contexts. The rotating construction can have only two instantaneous types per context while producing `2^r` full future-response classes. Preserve as a witness, not as a new minimization principle.
 
 ### PR #208 — exact causal forgetting
 
-Under autonomous irreversible context motion, hidden distinctions needed only in permanently unreachable future contexts can be forgotten exactly. A chain can realize hidden-memory sequence
-
-\[
-r,r-1,\ldots,1,0.
-\]
-
-Retain the ecological interpretation: a hidden distinction ceases to matter when no legal future can route it back to the declared observable.
+Under irreversible context motion, a hidden distinction can be forgotten exactly when no remaining legal future can expose it. Preserve this causal interpretation as historical provenance.
 
 ### PR #210 — mode-routed future contexts
 
-If hidden mode changes the successor context itself, a routed family with one ecological macrostate, two actions, `3r+1` contexts, and at most two instantaneous feedback types per context can still require
+A routed finite family can have at most two instantaneous feedback types per context while requiring
 
 \[
 |P^*|=2^r,
 \qquad K=r,
 \]
 
-at the initial context. The last bit is first exposed at depth `2r-1`.
+at the initial context. The construction is a historical sharp example; its general repair procedure is classical/source-relative refinement rather than a new CCOC theorem.
 
-The routed family remains a useful sharp example. The general refinement theorem used to compute `P*` is classical substrate.
+## 4. Current-tree decision
 
-## 5. Why the old implementation family was retired
+There is now **no active deterministic-feedback source or focused-test surface in CCOC**.
 
-PRs #207, #208, and #210 formed a sequence of progressively more general deterministic refinements of the same future-response equivalence problem. After the 2026-08-16 novelty audit, keeping all three implementations, three tests, and separate proof notes imposed maintenance cost without preserving additional headline science.
+Retired from the current tree after the CREST gate:
 
-Their current-tree retirement does **not** erase the results:
+- `causal_model/feedback_gate_rank.py`
+- `tests/test_feedback_gate_rank.py`
+- `causal_model/feedback_type_portability.py`
+- `tests/test_feedback_type_portability.py`
 
-- merged PRs and commit history preserve the complete code/proofs;
-- audit pin `4c7887c73ba8fa86a5e3883ebb6dce265b80fe7a` reproduces the pre-cleanup family;
-- this document preserves the scientific statements that remain worth citing.
+Earlier PR #207/#208/#210 theorem modules/tests and exploratory feedback files were already retired in the previous cleanup.
 
-## 6. Stop rule
+This document and `docs/feedback_novelty_audit_2026-08-16.md` remain only as claim/provenance records.
 
-Do not add another deterministic persistent-mode feedback theorem by changing only graph layout, gate count, type count, or finite context progression.
+## 5. Routing rule
 
-A new feedback branch is justified only by a material premise change such as:
+Future work should be routed by the mathematical object, not by the word “feedback”:
 
-- evolving hidden mode;
-- stochastic feedback;
-- partial observation;
-- continuous/unbounded state with a nontrivial structural bound; or
-- a quantitative approximation/resource result not reducible to exact minimization or generic information inequalities.
+- **CCOC:** only if feedback yields a genuinely new open-future noncommutation, lower bound, or impossibility not already covered by CORE-2/CORE-3;
+- **MLTR:** if the main object is the unique/coarsest repair of a fixed inherited ecological partition;
+- **MRM:** if several retained feedback mechanisms disagree about future response;
+- **CED:** if the central question is what finite/noisy observation can certify about hidden feedback state.
 
-## 7. Current navigation
+Changing graph layout, gate count, context progression, or ecological naming is not sufficient to reopen a CCOC theorem family.
 
-- scientific/novelty audit: `docs/feedback_novelty_audit_2026-08-16.md`
-- active negative witness: `causal_model/feedback_gate_rank.py`
-- active positive example: `causal_model/feedback_type_portability.py`
-- historical full feedback family: Git commit `4c7887c73ba8fa86a5e3883ebb6dce265b80fe7a`
+## 6. Recovery
+
+Full pre-cleanup feedback surface:
+
+`4c7887c73ba8fa86a5e3883ebb6dce265b80fe7a`
+
+The 2026-08-17 retirement changes current-tree maintenance status, not the validity of the finite historical examples.
