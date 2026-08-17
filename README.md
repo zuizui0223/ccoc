@@ -27,7 +27,11 @@ The current strengthening surface adds two things that materially change this co
 - **constrained codebooks:** the lower bound does not require the full Cartesian product of exterior states; large inflation can survive strong compositional constraints;
 - **approximate addressability:** fixed decoding error does not immediately erase the memory lower bound.
 
-## Claim firewall
+## CREST role and claim firewall
+
+At program level, CCOC is the **future-sufficiency audit** of Contract-Relative Ecological State Theory (CREST): it asks which distinctions a declared future grammar can make operationally necessary.
+
+The canonical four-audit synthesis is maintained in MRM at [Contract-Relative Ecological State Theory (CREST)](https://github.com/zuizui0223/mrm/blob/main/docs/contract_relative_ecological_state_theory.md). CCOC remains a separate theorem and provenance unit; CREST does not merge the four quotient/refinement problems into one theorem.
 
 CCOC owns independently optimized closed-vs-open interface complexity. Companion ownership remains:
 
@@ -35,7 +39,7 @@ CCOC owns independently optimized closed-vs-open interface complexity. Companion
 - retained mechanism disagreement → **MRM**;
 - finite/noisy evidence, monitoring design, proof-carrying evidence admission → **CED**.
 
-CREST is the routing rule; shared vocabulary is not enough to keep a theorem family here.
+Passing the CCOC audit does not imply semantic coherence after replacement, robustness to retained mechanism uncertainty, or evidential licensing. CREST is the routing rule; shared vocabulary is not enough to keep a theorem family here.
 
 ## Current code surface
 
@@ -70,6 +74,7 @@ pytest -q
 
 ## Start here
 
+- [CREST program synthesis](https://github.com/zuizui0223/mrm/blob/main/docs/contract_relative_ecological_state_theory.md) — canonical four-audit program map and cross-repository firewalls
 - `docs/current_architecture.md` — current code/theorem map
 - `docs/core_surface_cleanup_manifest_2026-08-14.md` — executed cleanup decisions
 - `docs/residual_novelty_decision_2026-08-12.md` — novelty gate
