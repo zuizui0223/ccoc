@@ -1,149 +1,124 @@
-# Deterministic feedback novelty audit — 2026-08-16
+# Deterministic feedback novelty audit — CREST enforcement update
 
-> **Decision:** the deterministic feedback program is mathematically valid, but its general continuation-refinement headline is classical minimization / coarsest-stable-refinement substrate. The current tree therefore keeps only two representative executable feedback examples; the remaining conclusions are retained in one consolidated record and Git history.
+> **Final decision (2026-08-17):** the deterministic feedback family is mathematically valid but is no longer an active CCOC theorem surface. The general continuation-refinement / unique-coarsest-repair result is classical fixed-partition refinement and, under the CREST routing rule, any further inherited-partition repair development belongs to MLTR. The two previously retained executable examples are now historical as well.
 
-## 1. Audit pin and governance finding
+## 1. Audit history
 
 Pre-cleanup pin:
 
 `4c7887c73ba8fa86a5e3883ebb6dce265b80fe7a`
 
-`FREEZE.md` had reopened theorem development on 2026-08-11, so adding mathematics was not itself a freeze violation.
+The 2026-08-16 audit had already found that `FREEZE.md` reopening was not the substantive problem. The control failure was novelty-gate bypass: fixed-grammar minimization had already been classified as substrate, yet the feedback family was promoted before that gate was applied.
 
-The real control failure was different: `docs/residual_novelty_decision_2026-08-12.md` had already classified fixed-grammar exact quotient/minimization and partition-refinement machinery as non-novel substrate, but the feedback family was promoted before that gate was applied to its headline.
+The 2026-08-17 CREST pass adds a second, stronger governance test: a synthesis result must expose a genuinely new noncommutation, minimality statement, or impossibility rather than reproduce a companion theorem under renamed variables; work whose main object is inherited-law repair routes to MLTR.
 
-## 2. Prior-art anchors
+## 2. Prior-art boundary
 
-PR #210 starts from a supplied finite partition, repeatedly splits blocks until action successors are stable, and proves that the fixed point is exact and the unique coarsest exact refinement relative to retained coordinates.
+The general feedback repair starts from a supplied finite partition, repeatedly splits blocks until current output/legal-action/successor stability holds, and obtains the unique coarsest exact refinement relative to retained coordinates.
 
-That pattern is established prior-art territory.
+That pattern is established partition-refinement/minimization territory. Primary anchors recorded in the original audit include Hopcroft (1971), Paige–Tarjan (1987), and Dean–Givan / Givan–Dean–Greig.
 
-### Hopcroft 1971
+Therefore do not claim novelty for:
 
-John E. Hopcroft, *An n log n Algorithm for Minimizing States in a Finite Automaton*.
+- existence of the stable fixed point;
+- finite monotone refinement;
+- its unique-coarsest property relative to an initial partition;
+- elementary finite split bounds; or
+- ecological renaming of those constructions.
 
-Primary publisher record:
+## 3. CREST gate application
 
-- https://doi.org/10.1016/B978-0-12-417750-5.50022-1
+### §11 synthesis gate
 
-### Paige–Tarjan 1987
+The family-level “continuation-stable hidden repair” claim does **not** pass as a new CCOC synthesis theorem. Its mathematical output is the same kind of source/initial-partition-relative stable refinement already owned by MLTR's repair problem. It is neither a new cross-grammar noncommutation nor a new impossibility.
 
-Robert Paige and Robert E. Tarjan, *Three Partition Refinement Algorithms*, SIAM Journal on Computing 16(6), explicitly treats the relational coarsest partition problem.
+### §12 routing gate
 
-- https://doi.org/10.1137/0216062
+The defining question of the general repair theorem is:
 
-### Dean–Givan 1997 / Givan–Dean–Greig 2003
+> given retained coordinates / inherited labels, what is the coarsest exact refinement that repairs them under later legal behavior?
 
-Dean and Givan define homogeneous state-space partitions and the coarsest homogeneous refinement of an arbitrary initial partition, explicitly adapting automata-minimization ideas.
+That is an inherited-semantics repair object. If revived, it routes to MLTR rather than CCOC.
 
-- https://s.aaai.org/Library/AAAI/1997/aaai97-017.php
-- https://doi.org/10.1016/S0004-3702(02)00376-4
+No code migration is needed because MLTR already contains the general source-relative repair framework. Copying the feedback implementation there would merely duplicate machinery.
 
-These anchors are sufficient to remove novelty budget from the general “refine an initial partition to the unique coarsest stable exact partition” claim.
-
-## 3. PR #210 adjudication
-
-### Current-type stability criterion
-
-**Classical substrate.** Equal proposed labels must have equal current observables/legal rows and action successors that remain in equal labels. Useful ecological contract, not new quotient theory.
-
-### Finite continuation refinement
-
-**Classical substrate.** Monotone splitting to a stable fixed point is standard partition refinement. The bound
-
-\[
-N_{\rm refine}\le |C||Q|(|M|-1)
-\]
-
-is the elementary finite block-count termination argument.
-
-### Unique minimum repair relative to `(c,q)`
-
-**Classical substrate.** This is the coarsest stable refinement of the initial partition defined by retaining the ecological coordinates explicitly. It sits below the Tier A–D novelty ladder.
-
-### Routed-context construction
-
-**Supporting witness; historical novelty unresolved.** The useful concrete package is
-
-\[
-\max_c |\tau_c(M)|=2,
-\qquad |C|=3r+1,
-\qquad |A|=2,
-\qquad |P^*_{R_0}|=2^r,
-\]
-
-with last-bit exposure at depth `2r-1`.
-
-The current tree preserves this conclusion in the consolidated feedback record rather than maintaining a separate general-refinement implementation.
-
-## 4. Earlier feedback results
+## 4. Historical result-by-result verdict
 
 ### PR #204 — feedback-cycle rank
 
-**Strongest active negative/mechanistic example.** With both causal arrows the family stores `r` response bits; deleting either arrow collapses the burden to zero:
+**Historical mechanism-specific CCOC example, not active theorem surface.**
+
+With both ecological arrows present the construction exposes `r` latent response bits; removing either arrow collapses the burden to zero:
 
 \[
 K=r \quad\to\quad K=0.
 \]
 
-Keep executable module `causal_model/feedback_gate_rank.py` and its focused test.
+This remains a useful causal-addressability example, but CORE-2/CORE-3 already own the CCOC lower-bound/sharpness story. The example does not justify a dedicated current module/test after the CREST gate.
 
 ### PR #205 — copy-anonymous five-state collapse
 
-**Strongest active positive example.** Exact quotient size is five independent of physical replication. Keep executable module `causal_model/feedback_type_portability.py` and its focused test. The `5^q` product itself is ordinary product/common-refinement structure.
+**Historical positive example.**
+
+The five-state collapse across arbitrary replication is valid, but its mathematical engine is fixed-grammar quotienting plus product composition. It changes neither CCOC's cross-grammar lower bound nor MLTR's repair theorem. Dedicated source/test retired.
 
 ### PR #207 — master profiles
 
-**Substrate plus witness.** The context profile
-
-\[
-\tau^*(m)=(\tau_c(m))_{c\in C}
-\]
-
-is a joint response profile/common refinement. The rotating `2`-instantaneous-type versus `2^r`-future-class construction remains a historical supporting witness. Dedicated current-tree implementation retired.
+**Historical substrate plus witness.** The context profile is a joint future-response profile/common refinement. No active source required.
 
 ### PR #208 — future-context forgetting
 
-**Useful causal interpretation, not standalone minimization novelty.** A hidden distinction can be forgotten when no still-reachable legal future can expose it. Dedicated current-tree implementation retired.
+**Historical causal interpretation.** A hidden distinction can be forgotten when no reachable future can expose it. No active source required.
+
+### PR #210 — mode-routed future contexts
+
+**Historical sharp construction; repair theorem routed to MLTR.** The routed `2^r` future-class construction remains a finite example, but the general procedure computing the coarsest repair is not a CCOC novelty claim.
 
 ## 5. Current-tree decision
 
-The feedback package now has only:
+After CREST enforcement, deterministic feedback has **zero active executable files** in CCOC.
+
+Retired on 2026-08-17:
 
 - `causal_model/feedback_gate_rank.py`
+- `tests/test_feedback_gate_rank.py`
 - `causal_model/feedback_type_portability.py`
-- `docs/feedback_portability_theorem_family_2026-08-15.md`
-- this novelty audit
+- `tests/test_feedback_type_portability.py`
 
-as its active source/doc surface.
-
-Retired from the current tree:
+Already retired earlier:
 
 - PR #207/#208/#210 theorem modules and tests;
-- the superseded initial feedback-network experiment and test;
-- five per-PR feedback proof notes and the exploratory triage note.
+- exploratory feedback-network experiment/test;
+- per-PR proof-note proliferation.
 
-The complete pre-cleanup implementation/proof surface remains recoverable at audit pin `4c7887c73ba8fa86a5e3883ebb6dce265b80fe7a`.
+Preserved:
+
+- `docs/feedback_portability_theorem_family_2026-08-15.md` as historical scientific record;
+- this audit as the claim-control record;
+- immutable Git history and audit pin `4c7887c73ba8fa86a5e3883ebb6dce265b80fe7a`.
 
 ## 6. First-paper consequence
 
-No first-paper proof dependency changes.
+No CCOC paper-core proof dependency changes.
 
-- **Tier A:** same-system cross-grammar response-interface separation;
-- **Tier B:** one-action maximal open-only innovation;
-- **Tier C:** bounded-local relay as constrained sharpness, historical firstness unresolved;
-- **Tier D:** conservative finite portability boundary.
+The live hierarchy remains:
 
-Fixed-grammar coarsest refinement is substrate below this ladder.
+- `CORE-1`: exact interface foundation;
+- `CORE-2`: headline cross-grammar lower bound;
+- `CORE-3`: bounded-local sharpness;
+- `CORE-4` / `CORE-5`: supporting positive/negative boundaries only.
 
-## 7. Stop rule
+Feedback is not an additional theorem family in that hierarchy.
 
-Do not add another deterministic persistent-mode feedback theorem by changing only graph, gate count, type count, or finite context progression.
+## 7. Development stop / routing rule
 
-A new branch requires a material premise change: evolving hidden mode, stochastic feedback, partial observation, continuous/unbounded state with a nontrivial bound, or a genuinely new approximation/resource theorem.
+Do not add another deterministic persistent-mode feedback theorem by changing graph layout, gate count, type count, finite context progression, or ecological interpretation.
 
-## 8. Current project direction
+Route by object:
 
-The current priority is **repository cleanup**, not new theorem development and not manuscript expansion inside CCOC.
+- new open-future lower bound / noncommutation genuinely beyond CORE-2/CORE-3 → CCOC;
+- coarsest repair of a fixed inherited partition → MLTR;
+- retained alternative mechanisms → MRM;
+- finite/noisy evidence about hidden feedback state → CED.
 
-Use this feedback pass as the template: retain a small number of representative executable results, preserve scientific conclusions in a canonical record, and let immutable Git history carry superseded implementations and detailed proof notes.
+The CREST rule is considered operative only if future proposals are actually rejected or rerouted under this test.

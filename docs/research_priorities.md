@@ -1,4 +1,4 @@
-# Research priorities — 2026-08-16 cleanup phase
+# Research priorities — 2026-08-17 cleanup phase
 
 > **Current objective:** reduce CCOC to a clear publication core, a small set of genuinely distinct follow-up results, and an explicit compatibility shelf. Do not create new theorem families while this cleanup is active.
 
@@ -15,7 +15,7 @@ Preserve the first-paper claim spine:
 +
 \text{bounded-local realization}
 +
-\text{positive/reuse boundary}.
+\text{supporting positive/negative boundaries}.
 \]
 
 The key quantitative family remains
@@ -32,14 +32,15 @@ Fixed-grammar quotient/minimization, partition refinement, common refinement, ge
 
 Classify every remaining surface as `CURRENT`, `COMPATIBILITY`, `HISTORICAL`, or `REMOVE`.
 
-The feedback pass establishes the model:
+The 2026-08-17 feedback CREST pass establishes the stricter model:
 
-- keep one strong negative/mechanistic executable example;
-- keep one strong positive/closed-form executable example;
-- preserve weaker/generalized conclusions in one consolidated record and Git history;
-- delete redundant theorem modules, tests, detailed proof notes, and superseded exploratory experiments from the current tree.
+- apply the program-level novelty/routing gate to the family itself;
+- if the family-level theorem is a renamed companion result, route it rather than preserving a local duplicate;
+- do not keep symmetric “one negative + one positive” executable examples merely because they are valid;
+- preserve useful scientific conclusions in canonical provenance records and immutable Git history;
+- keep active source/tests only when they support the current CCOC theorem hierarchy or a genuinely distinct extension.
 
-Next target after feedback is the old package-root / candidate-panel / benchmark surface. Determine which names are still imported in-repository, then shrink the compatibility facade around the surviving consumers rather than keeping every historical implementation active.
+The next cleanup target remains the old package-root / candidate-panel / benchmark surface: determine which names are still imported in-repository, then shrink compatibility around surviving consumers.
 
 ## Priority 2 — claim-control consistency
 
@@ -50,9 +51,16 @@ Every active theorem family must state whether each headline claim is:
 - residual novelty candidate; or
 - historically unresolved.
 
+In addition, apply the CREST routing test:
+
+- open-future noncommutation / interface lower bound → CCOC;
+- coarsest repair of a fixed inherited law → MLTR;
+- retained mechanism disagreement → MRM;
+- finite/noisy evidence certification → CED.
+
 Do not allow mathematically correct substrate to regain headline status through new ecological naming.
 
-`docs/residual_novelty_decision_2026-08-12.md` remains the controlling gate for finite deterministic fixed-grammar minimization claims.
+`docs/residual_novelty_decision_2026-08-12.md` and `docs/ccoc_mltr_claim_firewall_2026-08-16.md` remain controlling CCOC gates.
 
 ## Priority 3 — retain external blockers without letting them drive code growth
 
@@ -64,26 +72,24 @@ These are literature/claim-control tasks. Waiting on them is not a reason to add
 
 The manuscript transfer plan remains valid, but manuscript creation is not the current task. First reduce CCOC so the eventual source pin has a small, defensible dependency graph.
 
-When cleanup reaches a stable point, the manuscript should transfer only CORE-1 through CORE-5 plus the fixed-regular extremal strengthening and the minimum required provenance.
+When cleanup reaches a stable point, the manuscript should transfer the current CORE-1–CORE-5 surface, fixed-regular extremal strengthening, and minimum required provenance. Supporting-boundary results must remain subordinate to CORE-2/CORE-3 rather than expanding into repair theory.
 
 ## Deterministic feedback status
 
-Feedback is **STOPPED / CONSOLIDATED**.
+Feedback is **HISTORICAL / ROUTED** after CREST §11/§12 enforcement.
 
-Active code:
+Active feedback code/tests:
 
-- `causal_model/feedback_gate_rank.py`
-- `causal_model/feedback_type_portability.py`
+- none.
 
-Consolidated scientific record:
+Historical scientific record:
 
 - `docs/feedback_portability_theorem_family_2026-08-15.md`
-
-Novelty audit:
-
 - `docs/feedback_novelty_audit_2026-08-16.md`
 
-The former PR #207/#208/#210 implementations are historical, not current-tree research surfaces. Full pre-cleanup recovery point:
+Family-level unique/coarsest hidden repair routes to MLTR if revisited. PR #204/#205 remain historical ecological examples rather than current executable CCOC surfaces.
+
+Full pre-cleanup recovery point:
 
 `4c7887c73ba8fa86a5e3883ebb6dce265b80fe7a`.
 
@@ -91,4 +97,4 @@ The former PR #207/#208/#210 implementations are historical, not current-tree re
 
 No new codebook families, feedback variants, panel/reset variants, capped-count special cases, one-guild mortality variants, Bernoulli-coupling variants, shortest-path variants, Fano/channel lemmas, generic contraction/small-gain theorems, symmetry/lumpability reformulations, or other new fixed-grammar minimization families.
 
-Do not add new documentation merely to describe the cleanup. Update the canonical architecture/manifest files instead.
+Do not add new documentation merely to describe cleanup. Update canonical architecture, audit, and manifest files instead.
