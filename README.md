@@ -72,9 +72,13 @@ python scripts/verify_paper_core.py --write-report
 pytest -q
 ```
 
+Finite certificates and replay verify current implementations; quantified theorem proofs are indexed separately in the proof spine below.
+
 ## Start here
 
 - [CREST program synthesis](https://github.com/zuizui0223/mrm/blob/main/docs/contract_relative_ecological_state_theory.md) — canonical four-audit program map and cross-repository firewalls
+- `docs/theorem_spine.md` — current CORE-1–5 proof dependency graph and analytic proof locations
+- `docs/claim_status_audit.md` — current proof status, executable surfaces, and non-claims
 - `docs/current_architecture.md` — current code/theorem map
 - `docs/core_surface_cleanup_manifest_2026-08-14.md` — executed cleanup decisions
 - `docs/residual_novelty_decision_2026-08-12.md` — novelty gate
