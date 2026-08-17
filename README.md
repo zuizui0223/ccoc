@@ -14,28 +14,19 @@ The first-paper spine is deliberately narrow:
 2. `CORE-2` — **cross-grammar extension/compression lower bound**, the headline theorem candidate;
 3. `CORE-3` — bounded-local extremal realization showing sharpness under simple local structure.
 
-Two additional executable results remain as supporting boundaries only:
-
-- `CORE-4` — a conservative sufficient condition under which one declared macro-law survives expansion;
-- `CORE-5` — a future-word/new-action split that refutes one proposed merge.
-
-They are not independent CCOC novelty claims and must not be expanded into a source-relative repair theory.
+`CORE-4` and `CORE-5` remain executable supporting boundaries only. They are not independent novelty claims and must not grow into source-relative repair theory.
 
 The strongest explicit family has, for every `m>=1`,
 
 \[
-|P_C|=2,
-\qquad |P_O|=2^{m+1},
-\qquad K_O-K_C=m,
+|P_C|=2,\qquad |P_O|=2^{m+1},\qquad K_O-K_C=m,
 \]
 
-while using one fixed four-symbol primitive alphabet, one newly legal primitive action, pairwise radius-one dynamics, maximum degree three, cut one, and logarithmic selected-coordinate access.
+with one fixed four-symbol primitive alphabet, one newly legal primitive action, pairwise radius-one dynamics, maximum degree three, cut one, and logarithmic selected-coordinate access.
 
 The safe headline is therefore a **same-system cross-grammar quantitative separation**, not the invention of finite-state minimization.
 
-## CCOC–MLTR claim firewall
-
-CCOC and [MLTR](https://github.com/zuizui0223/mltr) share exact-interface and refinement substrate but answer different quantified questions.
+## Claim firewall
 
 CCOC optimizes separately under each closed grammar and compares those minima with the minimum exact interface under a jointly open grammar:
 
@@ -51,19 +42,15 @@ Its target separation is
 \max_i K_i^*=O(1),\qquad K_O^*=\Omega(m).
 \]
 
-No inherited source partition is fixed, and the closed optima may be different.
+No inherited source partition is fixed, and the closed optima may differ.
 
-MLTR fixes an already accepted source macro-law, transports its labels through a declared structural change, and asks whether that inherited law remains exact and, if not, what unique coarsest exact refinement preserves its inherited semantics. **Minimal repair, transport defect, route coherence, and history completion belong to MLTR, not CCOC.**
+CREST routing keeps companion questions out of this repository's active theorem surface:
 
-See `docs/ccoc_mltr_claim_firewall_2026-08-16.md`.
+- fixed inherited-law repair, transport defect, route coherence, history completion → **MLTR**;
+- retained mechanism disagreement and candidate-safe prediction → **MRM**;
+- finite/noisy evidence, candidate-set certification, observation panels, detection failure, and monitoring risk → **CED**.
 
-## Novelty boundary
-
-Do **not** claim novelty for fixed-grammar quotient/minimization, input/context-restricted state reduction, partition refinement, common refinement, ordinary distinguishability, generic causal-cone locality, or generic information inequalities.
-
-The remaining first-paper candidate is the simultaneous quantitative package: very small closed interfaces and closed union, one tiny grammar opening, maximal new exact response memory, and the same bounded-local realization.
-
-Historical firstness of the bounded-local realization remains conditional on the H1–H4 primary-source compiler audit.
+See `docs/ccoc_mltr_claim_firewall_2026-08-16.md` and the program-level CREST document in `zuizui0223/mrm`.
 
 ## Current code surface
 
@@ -73,45 +60,28 @@ Preferred structural entrance:
 import causal_model.portability_core as rach
 ```
 
-Canonical first-paper modules are listed in `docs/current_architecture.md`.
+`causal_model/__init__.py` is no longer the old qualitative/panel facade. It retains only a small **transitional compatibility surface** for the deferred symbolic/certificate/admission provenance cluster. Those re-exports are not CCOC research claims and are scheduled for the next dependency audit.
 
-Distinct follow-up modules remain explicit rather than being re-exported through one giant theory facade.
+Canonical first-paper modules and distinct surviving extensions are listed in `docs/current_architecture.md`.
 
-### Deterministic feedback — historical / routed
+### Historical / routed families
 
-CREST §11/§12 was applied on 2026-08-17.
+Deterministic feedback was routed under CREST on 2026-08-17; its executable surface was retired while conclusions remain in Git history and the consolidated feedback records.
 
-The former feedback theorem family is no longer an active executable CCOC surface. The general continuation-refinement / unique-coarsest-repair object is a fixed-inherited-partition repair problem and routes to MLTR if developed further. The previously retained PR #204/#205 executable examples were also retired because they do not change the current CCOC CORE-2/CORE-3 theorem story.
-
-Historical records remain:
-
-- `docs/feedback_portability_theorem_family_2026-08-15.md`
-- `docs/feedback_novelty_audit_2026-08-16.md`
-
-Full pre-cleanup feedback surface:
-
-`4c7887c73ba8fa86a5e3883ebb6dce265b80fe7a`
+The former qualitative-candidate / observation-panel / benchmark surface was also routed on 2026-08-17. Its central objects are evidence certification, retained candidate sets, observation design, failure modes, and benchmarked panel choice, so they belong to CED/MRM rather than the CCOC open-future theorem. The dedicated family bundle is historical, except that `causal_model/admissibility.py` remains temporarily as a compatibility dependency of the deferred proof-carrying symbolic/certificate stack.
 
 ## Repository cleanup status
 
-CCOC is currently in a **surface-reduction phase**. Files are classified as:
+Files are classified as:
 
-- **CURRENT** — publication core or a distinct active extension;
-- **COMPATIBILITY** — still used by current repository consumers;
-- **HISTORICAL** — conclusion/provenance retained, implementation may live only in Git history;
-- **REMOVE** — duplicated or superseded current-tree surface.
+- **CURRENT** — publication core or a genuinely distinct active extension;
+- **COMPATIBILITY** — required by a live current-tree consumer;
+- **HISTORICAL** — conclusion/provenance retained in records and Git history;
+- **REMOVE** — duplicated, misrouted, or superseded current-tree surface.
 
-A valid theorem/example is not automatically a reason to keep its source/test bundle. The feedback CREST pass is the current precedent: once the family-level result is routed or demoted, representative executables may also be retired if they have no independent current role.
-
-Cleanup record:
-
-- `docs/core_surface_cleanup_manifest_2026-08-14.md`
-- `docs/package_boundary_plan.md`
-- `docs/research_priorities.md`
+A valid theorem, witness, or example is not automatically a reason to keep a dedicated executable bundle.
 
 ## Reproducibility
-
-The paper-core replay remains:
 
 ```bash
 python scripts/verify_theorem_registry.py --check --write-report
@@ -119,24 +89,20 @@ python scripts/verify_paper_core.py --write-report
 pytest -q
 ```
 
-`tests.yml` is the generic Python 3.10/3.11/3.12 test gate. Specialized workflows should remain only when they provide a distinct legacy, artifact, or frozen replay contract.
+`tests.yml` is the generic Python 3.10/3.11/3.12 gate. Specialized workflows survive only when they provide a distinct current replay or provenance contract.
 
 ## Start here
 
-- `docs/ccoc_mltr_claim_firewall_2026-08-16.md` — hard boundary against MLTR repair theory
 - `docs/current_architecture.md` — current code/theorem map
-- `docs/residual_novelty_decision_2026-08-12.md` — controlling novelty decision
-- `docs/manuscript_readiness_audit.md` — first-paper claim boundary
-- `docs/manuscript_transfer_manifest_2026-08-14.md` — eventual transfer contract
 - `docs/core_surface_cleanup_manifest_2026-08-14.md` — executed cleanup decisions
-- `docs/theorem_registry.md` — theorem provenance
-- `docs/nonempirical_scope.md` — ecological non-claims
-- `FREEZE.md` — historical freeze and reopening policy
+- `docs/residual_novelty_decision_2026-08-12.md` — novelty gate
+- `docs/ccoc_mltr_claim_firewall_2026-08-16.md` — CCOC/MLTR boundary
+- `docs/theorem_registry.md` — executable theorem registry / current theorem atlas
+- `docs/nonempirical_scope.md` — nonempirical scope policy
+- `docs/historical_theorem_archive.md` — historical theorem archive
+- `docs/manuscript_transfer_manifest_2026-08-14.md` — eventual manuscript handoff
+- `FREEZE.md` — historical freeze/reopen policy
 
-## Development rule during cleanup
+## Development rule
 
-Do not add a new theorem family while repository reduction is active unless it changes a material model premise and survives prior-art and CREST routing classification.
-
-Do not add source-relative minimal repair, transport defect, route-coherence, or history-completion theorem families here; those belong to MLTR.
-
-The current task is to make the surviving scientific result easier to see, not to increase theorem count.
+Do not add a theorem family while cleanup is active unless it changes a material model premise, survives prior-art classification, and passes CREST routing. The current task is to make the surviving CCOC result easier to see, not to increase theorem count.
