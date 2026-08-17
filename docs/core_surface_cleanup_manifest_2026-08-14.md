@@ -4,7 +4,7 @@
 
 ## 1. KEEP — publication core
 
-Retain the first-paper source set and fixed-regular strengthening:
+Retain:
 
 - `causal_model/dynamic_boundary_blankets.py`
 - `causal_model/shared_grammar.py`
@@ -22,99 +22,95 @@ Preserve theorem-registry and paper-core replay gates, claim/source audits, and 
 
 ## 2. KEEP — distinct follow-up surfaces
 
-A follow-up module stays only when it contributes a structurally distinct result rather than another spelling of fixed-grammar minimization or a result owned by a companion repository.
+A follow-up stays only when it changes a structural open-future premise and is not owned by a companion repository.
 
-Apply the routing boundary:
+Routing boundary:
 
 - open-future lower bound / noncommutation → CCOC;
 - fixed inherited-law repair → MLTR;
 - retained mechanism disagreement → MRM;
-- finite/noisy evidence certification → CED.
+- finite/noisy evidence certification / monitoring design → CED.
 
-## 3. FEEDBACK CLEANUP — CREST gate completed
+## 3. FEEDBACK CLEANUP — completed
 
-### Final verdict
+Deterministic feedback is **HISTORICAL / ROUTED**. The family-level coarsest hidden repair routes to MLTR. PR #204/#205 remain historical examples only.
 
-The deterministic feedback family is **HISTORICAL / ROUTED**.
-
-The family-level continuation-stable hidden repair is a coarsest stable refinement of a supplied retained partition. Under CREST §11/§12 it is not a new CCOC theorem; any further repair development routes to MLTR.
-
-### Retired on 2026-08-17
-
-The two previously retained representative examples no longer justify dedicated current-tree executable surfaces:
+Retired current-tree executable surface:
 
 - `causal_model/feedback_gate_rank.py`
 - `tests/test_feedback_gate_rank.py`
 - `causal_model/feedback_type_portability.py`
 - `tests/test_feedback_type_portability.py`
 
-PR #204 remains a historical mechanism-specific future-addressability/ablation example. PR #205 remains a historical copy-anonymous five-state quotient example.
+Canonical records remain in the two feedback audit documents. Full pre-cleanup recovery pin: `4c7887c73ba8fa86a5e3883ebb6dce265b80fe7a`.
 
-### Earlier retired implementations/tests
+## 4. QUALITATIVE CANDIDATE / PANEL / BENCHMARK CLEANUP — completed
 
-- `causal_model/evolving_feedback_master_types.py`
-- `causal_model/future_feedback_causal_forgetting.py`
-- `causal_model/state_dependent_feedback_closure.py`
-- their dedicated tests;
-- `experiments/feedback_network_nonreducibility.py` and its test;
-- superseded exploratory and per-PR proof notes.
+CREST routing classified this family as evidence/mechanism infrastructure rather than CCOC open-composition theory.
 
-Canonical surviving records:
+### Retired source modules
 
-- `docs/feedback_portability_theorem_family_2026-08-15.md`
-- `docs/feedback_novelty_audit_2026-08-16.md`
+- `causal_model/admissibility.py`
+- `causal_model/benchmarks.py`
+- `causal_model/ecological_program.py`
+- `causal_model/failure_modes.py`
+- `causal_model/generative_benchmarks.py`
+- `causal_model/observation_design.py`
+- `causal_model/observation_envelope.py`
+- `causal_model/panel_phase_benchmarks.py`
+- `causal_model/replaceability.py`
+- `causal_model/robust_panel_design.py`
 
-Full pre-cleanup recovery pin:
+Their dedicated regression tests, benchmark/observation experiments, example, and family-specific docs were retired with them.
 
-`4c7887c73ba8fa86a5e3883ebb6dce265b80fe7a`.
+### Routing
 
-The feedback pass now demonstrates that a governance gate can remove previously preserved executable examples rather than merely relabel them.
+- admissibility, noisy observation, observation envelopes, panel selection, panel robustness, and benchmark/calibration logic → CED if revisited;
+- retained mechanism/candidate uncertainty that changes future prediction → MRM if revisited.
 
-## 4. COMPATIBILITY CLEANUP — executed / continuing
+No source was copied into CED or MRM because those repositories already contain their own active formulations. The exact CCOC-era bundle remains recoverable from pre-removal main commit `bbe84993a369213f1a9739dba02fbed5e780ad00`.
 
-### Retired aggregate facades
+## 5. PACKAGE BOUNDARY — tightened
 
-No active repository code consumed these aggregates, so they were removed rather than kept indefinitely for hypothetical external imports:
+`causal_model/__init__.py` is now a minimal package marker. It does not re-export historical candidate/panel/evidence APIs.
 
-- `causal_model/current_theory.py`
-- `tests/test_current_theory.py`
-- `causal_model/identifiability_companion.py`
+Preferred publication API:
 
-### Package root still active
+```python
+import causal_model.portability_core as rach
+```
 
-`causal_model/__init__.py` still serves older examples/scripts that import qualitative/panel APIs from the package root. Do not add exports. The next large pass audits those consumer families, then shrinks the facade.
+Compatibility is retained only for a demonstrated live current-tree dependency, not hypothetical external consumers.
 
-## 5. WORKFLOW CLEANUP — executed where stale behavior was exposed
+## 6. DEFERRED DEPENDENCY CLUSTER
 
-`tests/conftest.py` marks non-paper-core tests as `legacy`, and `pyproject.toml` excludes them from default pytest. Specialized workflows survive only when they supply a distinct replay, deterministic artifact, or release/manuscript contract.
+The symbolic/certificate/admission/polyhedral cluster is **not** part of this cleanup wave. Current proof-carrying manifest code imports symbolic candidate/lifting objects, so this cluster must be audited as one dependency graph before removal.
 
-Previously removed stale workflows include delayed-addressability, candidate-safe, joint-open-candidate, delayed-joint, and binary-joint replay jobs whose active theorem ownership had already moved or been archived.
+Examples include:
 
-## 6. DOCUMENTATION DEDUPLICATION — executed
+- `symbolic_candidate_sets.py`
+- `anytime_symbolic_lifting.py`
+- `certificate_manifest.py`
+- admission transcript / proof-carrying / polyhedral verification modules.
 
-Current navigation is centered on `README.md`, `docs/current_architecture.md`, this cleanup manifest, and theorem/historical registries.
+## 7. WORKFLOW / DOCUMENTATION BOUNDARY
 
-Historical documents may retain former paths as provenance. A historical path is not a promise that the source remains executable in the current tree.
+Specialized workflows survive only if they supply a distinct current replay, deterministic artifact, or release/manuscript contract.
 
-## 7. Cleanup safety rules
+Current navigation is centered on `README.md`, `docs/current_architecture.md`, this manifest, and theorem/historical registries. Historical ledgers may name retired paths as provenance.
+
+## 8. Cleanup safety rules
 
 Before deleting a source bundle:
 
 1. inspect active imports and direct path references;
-2. preserve still-useful scientific conclusions in a canonical record;
-3. record an immutable recovery pin;
-4. remove dedicated tests/docs/workflows with no independent current role;
+2. preserve useful conclusions through existing canonical records or immutable Git history;
+3. record a recovery pin;
+4. retire dedicated tests/docs/examples/workflows with no independent current role;
 5. run current-core/provenance validation.
 
-A valid theorem, witness, or ecological example is not automatically a reason to keep a dedicated executable surface.
+A valid theorem, witness, benchmark, or ecological example is not automatically a reason to keep a current executable surface.
 
-## 8. Next pass
+## 9. Next pass
 
-Audit the package-root / candidate-panel / benchmark surface.
-
-Goal:
-
-- reduce `causal_model/__init__.py`;
-- identify duplicate candidate/panel implementations and examples;
-- keep compatibility only for live current-tree consumers;
-- enforce CREST routing before preserving any additional theorem family.
+Audit the symbolic/certificate/admission/polyhedral cluster and decide which parts are genuine CCOC release/provenance infrastructure versus CED-style evidence machinery.

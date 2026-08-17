@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This file describes the **current tree**, not the full historical theorem archive. Git history preserves retired theorem experiments and proof notes.
+This file describes the **current tree**, not the full historical theorem archive. Git history preserves retired theorem experiments, applications, and proof notes.
 
 ## 1. Publication core
 
@@ -27,9 +27,7 @@ Canonical modules:
 The strongest explicit family has
 
 \[
-|P_C|=2,
-\qquad |P_O|=2^{m+1},
-\qquad K_O-K_C=m,
+|P_C|=2,\qquad |P_O|=2^{m+1},\qquad K_O-K_C=m,
 \]
 
 with one fixed four-symbol primitive alphabet, one newly legal primitive action, degree at most three, cut one, and logarithmic selected-coordinate access.
@@ -50,37 +48,47 @@ with one fixed four-symbol primitive alphabet, one newly legal primitive action,
 
 ### Ecological structural layer
 
-Keep explicit deterministic, stochastic, cross-guild, and spatial modules only where they state a distinct structural result rather than a relabeling of fixed-grammar minimization.
+Keep deterministic, stochastic, cross-guild, or spatial modules only when they change a structural open-future premise rather than restating fixed-grammar minimization, candidate inference, or observation design.
 
-## 3. Deterministic feedback — historical only
+## 3. Routed historical families
 
-CREST §11/§12 was applied on 2026-08-17.
+### Deterministic feedback
 
-Verdict:
+CREST §11/§12 was applied on 2026-08-17. The family-level hidden repair routes to MLTR; the former PR #204/#205 examples remain historical evidence only. No feedback module or focused test remains active.
 
-- the general continuation-stable hidden repair is a fixed-initial-partition coarsest stable refinement and routes to **MLTR** if developed further;
-- PR #204's feedback-cycle rank remains a historical future-addressability example but is redundant with the current CCOC lower-bound/sharpness core;
-- PR #205's five-state copy-anonymous collapse remains a historical fixed-grammar positive example;
-- no deterministic-feedback module or focused test remains active in the current tree.
-
-Historical entrance:
+Historical records:
 
 - `docs/feedback_portability_theorem_family_2026-08-15.md`
 - `docs/feedback_novelty_audit_2026-08-16.md`
 
-Full pre-cleanup recovery pin:
+Pre-cleanup recovery pin: `4c7887c73ba8fa86a5e3883ebb6dce265b80fe7a`.
 
-`4c7887c73ba8fa86a5e3883ebb6dce265b80fe7a`.
+### Qualitative candidate / observation-panel / benchmark surface
 
-The feedback family is not an active development target and is not part of the publication-core theorem hierarchy.
+CREST routing was applied on 2026-08-17.
 
-## 4. Compatibility shelf
+The retired surface asked which candidate mechanism states survive observations, which observations or panels discriminate them, how noisy/shared failure changes that evidence, and how candidate/panel strategies benchmark. Those are **evidence-contract / mechanism-uncertainty** questions rather than CCOC's cross-grammar interface-complexity question.
 
-The broad package-root facade in `causal_model/__init__.py` remains temporarily because current repository examples/scripts still import older qualitative/panel names from the package root. No new theorem export should be added there.
+Routing:
 
-The deprecated `causal_model/current_theory.py` aggregate has been retired from the current tree because no active repository code imported it.
+- finite/noisy evidence, observation envelopes, failure modes, panel design, calibration/benchmarking → **CED**;
+- retained candidate mechanism uncertainty when it changes future response → **MRM**.
 
-Historical candidate-uncertainty, panel-design, benchmark, and observation-design branches remain compatibility/cleanup targets.
+The dedicated source/tests/docs/example/experiment bundle is historical. No code was copied into the companion repositories because both CED and MRM already contain their own active formulations; Git history remains provenance for the CCOC-era implementations.
+
+## 4. Package boundary
+
+The package root `causal_model/__init__.py` is now intentionally minimal. It does not re-export historical evidence, candidate, panel, or benchmark APIs.
+
+Use:
+
+```python
+import causal_model.portability_core as rach
+```
+
+for the publication-core API, or import a surviving extension module explicitly.
+
+Compatibility is kept only for a demonstrated live current-tree dependency, not for hypothetical external consumers.
 
 ## 5. Claim/provenance controls
 
@@ -89,26 +97,24 @@ Keep as durable controls:
 - theorem registry and verification scripts;
 - paper-core replay;
 - CCOC–MLTR claim firewall;
-- H1–H4 primary-source audit records;
+- primary-source novelty audits;
 - hypothesis-recovery pin/ledger;
 - manuscript-transfer manifest;
-- mechanism-to-data falsification contract.
+- historical theorem archive.
 
-Historical ledgers may mention source paths retired from the current tree. Such paths refer to the recorded historical commit, not to active modules.
+Historical ledgers may name paths no longer present in the current tree. Those paths refer to their recorded commits, not current APIs.
 
 ## 6. Cleanup rule
 
-For every remaining file, classify it as one of:
+Every remaining file must be one of:
 
-- **CURRENT** — needed by the publication core or a distinct active extension;
-- **COMPATIBILITY** — still imported/replayed but not a research surface;
-- **HISTORICAL** — scientific conclusion retained in records/Git history; source need not stay in the current tree;
-- **REMOVE** — duplicated implementation, duplicated explanation, superseded experiment, or infrastructure without a distinct replay role.
+- **CURRENT** — needed by publication core or a genuinely distinct extension;
+- **COMPATIBILITY** — required by a live current-tree consumer;
+- **HISTORICAL** — scientific conclusion/provenance retained in Git history;
+- **REMOVE** — duplicated, misrouted, or superseded surface.
 
-A valid theorem or ecological example is not automatically a reason to keep a dedicated module, test, document, and workflow indefinitely.
+A valid theorem, ecological example, benchmark, or utility is not automatically a reason to keep a dedicated current-tree implementation.
 
-## 7. Current cleanup direction
+## 7. Next cleanup direction
 
-The immediate goal is repository reduction, not theorem expansion and not manuscript growth inside CCOC.
-
-The feedback CREST pass establishes the stricter rule: once a family fails the program-level novelty/routing gate, representative executable examples are not retained merely for symmetry. Scientific conclusions stay in provenance records; active code must justify a current theorem role.
+The next dependency audit is the symbolic/certificate/admission/polyhedral cluster. It is deliberately separated from the qualitative panel cleanup because proof-carrying manifests currently import the symbolic candidate layer. Remove or route that cluster only after its surviving provenance contracts are explicit.
