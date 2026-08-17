@@ -1,20 +1,9 @@
-"""Public facade for the RACH/CCOC open-composition theorem core.
+"""Public CCOC open-composition theorem surface.
 
-This module exposes the finite theorem package used by the first paper together
-with post-reopening theorem strengthenings that directly modify the canonical
-portability claims:
-
-1. exact grammar-aware dynamic interfaces;
-2. operational addressability / extension--compression lower bounds;
-3. exact union-grammar refinement and full open-interface inflation decomposition;
-4. bounded-locality relay sharpness, including single-action innovation,
-   fixed regular-grammar arbitrary-size realization, absolute-memory sharpness,
-   and causal-cone latency bounds; and
-5. conservative macro schemas plus local fiber-split obstructions.
-
-Finite closure classification, non-nested replacement transport, candidate
-uncertainty, delayed-evidence limits, and experimental-design branches remain
-separate compatibility or companion material.
+This facade is intentionally narrower than the historical repository.  It exposes
+only the first-paper theorem spine plus the constrained-codebook and bounded-local
+strengthenings that directly sharpen that spine.  Approximate addressability is a
+distinct stronger-model extension and is imported explicitly from its own module.
 """
 
 from .dynamic_boundary_blankets import (
@@ -65,23 +54,7 @@ from .addressable_codebooks import (
     readout_symbol,
     standard_codebook_closed_projection,
 )
-from .codebook_families import (
-    fixed_weight_binary_codebook,
-    fixed_weight_binary_codebook_size,
-)
-from .union_grammar_refinement import (
-    PartitionRefinementCapacityCertificate,
-    UnionGrammarRefinementCertificate,
-    certify_partition_refinement_capacity,
-    certify_union_grammar_refinement,
-)
-from .interface_inflation import (
-    InterfaceInflationDecompositionCertificate,
-    OpenOnlyWordSplitWitness,
-    OperationalInterfaceInflationCertificate,
-    certify_interface_inflation_decomposition,
-    certify_operational_interface_inflation,
-)
+from .codebook_families import fixed_weight_binary_codebook, fixed_weight_binary_codebook_size
 from .relay_tree_compilation import (
     BoundedDegreeCompilationCertificate,
     RelayProtocolCertificate,
@@ -100,16 +73,6 @@ from .constant_alphabet_relay import (
     apply_global_action,
     certify_constant_alphabet_relay_sharpness,
     run_addressed_probe,
-)
-from .single_action_innovation import (
-    CLOSED_PRIMITIVE_ACTIONS,
-    NEWLY_LEGAL_PRIMITIVE_ACTIONS,
-    OPEN_PRIMITIVE_ACTIONS,
-    RelayInnovationSplitWitness,
-    SingleActionInnovationCertificate,
-    certify_single_action_innovation,
-    closed_fire_free_words,
-    open_addressed_probe_words,
 )
 from .fixed_regular_grammar_relay import (
     CLOSED_REGULAR_ACTIONS,
@@ -130,16 +93,6 @@ from .fixed_regular_grammar_relay import (
 from .extremal_open_composition import (
     FixedRegularExtremalTheoremCertificate,
     certify_fixed_regular_extremal_theorem,
-)
-from .innovation_capacity_latency import (
-    InnovationCapacityCertificate,
-    PrefixFreeAddressLatencyCertificate,
-    RelayLocalLatencyCertificate,
-    SingleActionSharpnessClosureCertificate,
-    certify_innovation_capacity,
-    certify_prefix_free_address_latency,
-    certify_relay_local_latency,
-    certify_single_action_sharpness_closure,
 )
 from .local_causal_cone import (
     DegreeBoundedCausalConeCertificate,
@@ -172,7 +125,6 @@ from .conservative_macro_schema import (
 )
 
 __all__ = [
-    # Exact grammar-aware interface.
     "FiniteControlledOutputSystem",
     "FinitePrefixGrammar",
     "GrammarAwareControlledSystem",
@@ -186,7 +138,6 @@ __all__ = [
     "certify_grammar_aware_canonical_interface",
     "certify_grammar_aware_dynamic_blanket",
     "certify_grammar_aware_refinement",
-    # V1 product addressability obstruction and open/closed comparison.
     "AddressableProductLowerBoundCertificate",
     "ClosedContextFactorizationCertificate",
     "certify_addressable_product_lower_bound",
@@ -200,7 +151,6 @@ __all__ = [
     "certify_canonical_operational_product",
     "readout_value",
     "standard_closed_projection",
-    # Post-reopening arbitrary-codebook strengthening.
     "OperationalAddressableCodebookCertificate",
     "OperationalCodebookClosedContextCertificate",
     "certify_operational_addressable_codebook",
@@ -214,17 +164,6 @@ __all__ = [
     "even_parity_codebook",
     "fixed_weight_binary_codebook",
     "fixed_weight_binary_codebook_size",
-    # Exact union-grammar refinement and open-only innovation.
-    "PartitionRefinementCapacityCertificate",
-    "UnionGrammarRefinementCertificate",
-    "certify_partition_refinement_capacity",
-    "certify_union_grammar_refinement",
-    "InterfaceInflationDecompositionCertificate",
-    "OpenOnlyWordSplitWitness",
-    "OperationalInterfaceInflationCertificate",
-    "certify_interface_inflation_decomposition",
-    "certify_operational_interface_inflation",
-    # Bounded-locality sharpness witnesses.
     "RelayTreeSharpnessCertificate",
     "certify_relay_tree_sharpness",
     "BoundedDegreeCompilationCertificate",
@@ -242,15 +181,6 @@ __all__ = [
     "apply_global_action",
     "run_addressed_probe",
     "certify_constant_alphabet_relay_sharpness",
-    "CLOSED_PRIMITIVE_ACTIONS",
-    "OPEN_PRIMITIVE_ACTIONS",
-    "NEWLY_LEGAL_PRIMITIVE_ACTIONS",
-    "RelayInnovationSplitWitness",
-    "SingleActionInnovationCertificate",
-    "closed_fire_free_words",
-    "open_addressed_probe_words",
-    "certify_single_action_innovation",
-    # Fixed regular-grammar arbitrary-m strengthening.
     "CLOSED_REGULAR_ACTIONS",
     "OPEN_REGULAR_ACTIONS",
     "NEW_REGULAR_ACTIONS",
@@ -265,18 +195,8 @@ __all__ = [
     "fixed_regular_output_trace",
     "all_regular_coordinate_states",
     "certify_fixed_regular_grammar_relay",
-    # Aggregate simultaneous extremal theorem surface.
     "FixedRegularExtremalTheoremCertificate",
     "certify_fixed_regular_extremal_theorem",
-    # Absolute innovation and locality latency closures.
-    "InnovationCapacityCertificate",
-    "PrefixFreeAddressLatencyCertificate",
-    "RelayLocalLatencyCertificate",
-    "SingleActionSharpnessClosureCertificate",
-    "certify_innovation_capacity",
-    "certify_prefix_free_address_latency",
-    "certify_relay_local_latency",
-    "certify_single_action_sharpness_closure",
     "LocalCausalConeCapacityCertificate",
     "DegreeBoundedCausalConeCertificate",
     "radius_ball",
@@ -284,7 +204,6 @@ __all__ = [
     "minimum_degree_bounded_horizon",
     "certify_local_causal_cone_capacity",
     "certify_degree_bounded_causal_cone",
-    # Positive conservative boundary and local obstruction.
     "PortableMacroDynamics",
     "StageMacroProjection",
     "StageEmbedding",
