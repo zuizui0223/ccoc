@@ -44,13 +44,12 @@ Retired current-tree executable surface:
 
 Canonical records remain in the two feedback audit documents. Full pre-cleanup recovery pin: `4c7887c73ba8fa86a5e3883ebb6dce265b80fe7a`.
 
-## 4. QUALITATIVE CANDIDATE / PANEL / BENCHMARK CLEANUP — completed
+## 4. QUALITATIVE CANDIDATE / PANEL / BENCHMARK CLEANUP — completed with one compatibility hold
 
 CREST routing classified this family as evidence/mechanism infrastructure rather than CCOC open-composition theory.
 
 ### Retired source modules
 
-- `causal_model/admissibility.py`
 - `causal_model/benchmarks.py`
 - `causal_model/ecological_program.py`
 - `causal_model/failure_modes.py`
@@ -63,16 +62,20 @@ CREST routing classified this family as evidence/mechanism infrastructure rather
 
 Their dedicated regression tests, benchmark/observation experiments, example, and family-specific docs were retired with them.
 
+### Temporary compatibility hold
+
+`causal_model/admissibility.py` remains temporarily as **COMPATIBILITY**, not CURRENT research. The deferred symbolic/certificate/admission/proof-carrying stack imports its common `MotifStatus`, `CoverageMode`, `ClaimCoverage`, and finite classification objects. It will be removed or reduced only when that whole dependency graph is audited.
+
 ### Routing
 
-- admissibility, noisy observation, observation envelopes, panel selection, panel robustness, and benchmark/calibration logic → CED if revisited;
+- admissibility/evidence classification, noisy observation, observation envelopes, panel selection, panel robustness, and benchmark/calibration logic → CED if revisited;
 - retained mechanism/candidate uncertainty that changes future prediction → MRM if revisited.
 
 No source was copied into CED or MRM because those repositories already contain their own active formulations. The exact CCOC-era bundle remains recoverable from pre-removal main commit `bbe84993a369213f1a9739dba02fbed5e780ad00`.
 
 ## 5. PACKAGE BOUNDARY — tightened
 
-`causal_model/__init__.py` is now a minimal package marker. It does not re-export historical candidate/panel/evidence APIs.
+`causal_model/__init__.py` no longer re-exports retired qualitative-program, panel, benchmark, failure-mode, or robust-panel APIs.
 
 Preferred publication API:
 
@@ -80,16 +83,17 @@ Preferred publication API:
 import causal_model.portability_core as rach
 ```
 
-Compatibility is retained only for a demonstrated live current-tree dependency, not hypothetical external consumers.
+A small transitional root compatibility surface remains only for deferred confidence/symbolic provenance tests. It is scheduled for removal with the next dependency-cluster audit.
 
 ## 6. DEFERRED DEPENDENCY CLUSTER
 
-The symbolic/certificate/admission/polyhedral cluster is **not** part of this cleanup wave. Current proof-carrying manifest code imports symbolic candidate/lifting objects, so this cluster must be audited as one dependency graph before removal.
+The symbolic/certificate/admission/polyhedral cluster is **not** part of this cleanup wave. Current proof-carrying manifest code imports symbolic candidate/lifting objects and the compatibility `admissibility.py` primitives, so this cluster must be audited as one dependency graph before removal.
 
 Examples include:
 
 - `symbolic_candidate_sets.py`
 - `anytime_symbolic_lifting.py`
+- `confidence_lifting.py`
 - `certificate_manifest.py`
 - admission transcript / proof-carrying / polyhedral verification modules.
 
@@ -113,4 +117,4 @@ A valid theorem, witness, benchmark, or ecological example is not automatically 
 
 ## 9. Next pass
 
-Audit the symbolic/certificate/admission/polyhedral cluster and decide which parts are genuine CCOC release/provenance infrastructure versus CED-style evidence machinery.
+Audit the symbolic/certificate/admission/polyhedral cluster and decide which parts are genuine CCOC release/provenance infrastructure versus CED-style evidence machinery. Remove `admissibility.py` and the transitional root re-exports only after that surviving contract is explicit.

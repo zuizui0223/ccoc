@@ -74,19 +74,19 @@ Routing:
 - finite/noisy evidence, observation envelopes, failure modes, panel design, calibration/benchmarking → **CED**;
 - retained candidate mechanism uncertainty when it changes future response → **MRM**.
 
-The dedicated source/tests/docs/example/experiment bundle is historical. No code was copied into the companion repositories because both CED and MRM already contain their own active formulations; Git history remains provenance for the CCOC-era implementations.
+The dedicated source/tests/docs/example/experiment bundle is historical. `causal_model/admissibility.py` is the one deliberate exception: it remains **COMPATIBILITY**, because the deferred symbolic/certificate/admission stack still imports its common status/coverage types and finite classifier. It is not a CCOC research surface and will be reconsidered with that whole dependency graph.
+
+No code was copied into the companion repositories because both CED and MRM already contain their own active formulations; Git history remains provenance for the CCOC-era implementations.
 
 ## 4. Package boundary
 
-The package root `causal_model/__init__.py` is now intentionally minimal. It does not re-export historical evidence, candidate, panel, or benchmark APIs.
-
-Use:
+Publication-core users should use:
 
 ```python
 import causal_model.portability_core as rach
 ```
 
-for the publication-core API, or import a surviving extension module explicitly.
+The package root is no longer a broad historical facade. It retains only transitional confidence/symbolic re-exports required by the deferred proof-carrying provenance cluster. Those names are compatibility, not publication API.
 
 Compatibility is kept only for a demonstrated live current-tree dependency, not for hypothetical external consumers.
 
@@ -117,4 +117,4 @@ A valid theorem, ecological example, benchmark, or utility is not automatically 
 
 ## 7. Next cleanup direction
 
-The next dependency audit is the symbolic/certificate/admission/polyhedral cluster. It is deliberately separated from the qualitative panel cleanup because proof-carrying manifests currently import the symbolic candidate layer. Remove or route that cluster only after its surviving provenance contracts are explicit.
+Audit the symbolic/certificate/admission/polyhedral cluster as one dependency graph. Its proof-carrying manifests currently depend on `admissibility.py`, symbolic candidate sets, and confidence-lifting objects; do not dismantle them piecemeal. Decide which pieces are genuine CCOC release/provenance infrastructure versus CED-style evidence machinery, then remove the transitional root exports and `admissibility.py` if no current CCOC contract still needs them.

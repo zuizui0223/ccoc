@@ -35,17 +35,16 @@ Deterministic feedback is historical after the CREST gate. Qualitative candidate
 
 ## 3. Package root
 
-`causal_model/__init__.py` is intentionally minimal and has no historical API facade.
+`causal_model/__init__.py` is no longer the former broad historical facade.
 
 Rules:
 
-- no new root re-exports;
 - publication users import `causal_model.portability_core`;
-- surviving extensions are imported explicitly by module;
+- retired qualitative-program, observation-panel, benchmark, failure-mode, and robust-panel APIs are not re-exported;
+- a small **transitional** root surface remains for confidence/symbolic names that are still exercised by the deferred proof-carrying provenance cluster;
+- those transitional re-exports are compatibility, not research API, and should disappear with the next cluster audit;
 - hypothetical external imports do not justify permanent retention of obsolete current-tree code;
 - Git history is the recovery mechanism for historical APIs.
-
-The old root facade was removed after its qualitative/panel consumer bundle was routed to CED/MRM and retired.
 
 ## 4. CREST routing boundary
 
@@ -60,7 +59,13 @@ Shared words such as `state`, `quotient`, `refinement`, `candidate`, or `uncerta
 
 ## 5. Deferred symbolic/certificate cluster
 
-Do not partially dismantle the current symbolic/certificate/admission/polyhedral stack. Proof-carrying manifests currently import symbolic candidate/lifting objects. Audit the whole dependency graph first, then retain only the part that serves a real CCOC provenance/release contract.
+Do not partially dismantle the current symbolic/certificate/admission/polyhedral stack. Proof-carrying manifests currently import symbolic candidate/lifting objects and `admissibility.py` compatibility primitives. Audit the whole dependency graph first, then retain only the part that serves a real CCOC provenance/release contract.
+
+Until that audit completes:
+
+- `causal_model/admissibility.py` is COMPATIBILITY;
+- confidence/symbolic root exports are COMPATIBILITY;
+- neither is a CCOC novelty surface.
 
 ## 6. Documentation boundary
 

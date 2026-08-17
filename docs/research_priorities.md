@@ -38,9 +38,11 @@ Apply CREST before preserving a theorem family:
 Completed CREST passes:
 
 1. **deterministic feedback** — historical/routed; current executable surface removed;
-2. **qualitative candidate / panel / benchmark** — historical/routed; dedicated current-tree source, tests, docs, example, and experiment bundle removed.
+2. **qualitative candidate / panel / benchmark** — historical/routed; dedicated family source, tests, docs, example, and experiment surface removed.
 
-The package root is no longer a legacy evidence/panel facade. Publication-core users should import `causal_model.portability_core` explicitly.
+`causal_model/admissibility.py` remains temporarily as a compatibility dependency of the deferred symbolic/certificate/admission cluster; this is not a research-surface exception.
+
+The package root has been reduced to publication guidance plus transitional confidence/symbolic re-exports required by that same deferred cluster. It must not regrow into a general compatibility facade.
 
 ## Priority 2 — claim-control consistency
 
@@ -61,9 +63,9 @@ Controlling gates:
 
 ## Priority 3 — next dependency audit
 
-Audit the **symbolic / certificate / admission / polyhedral** cluster as one dependency graph.
+Audit the **symbolic / confidence / certificate / admission / polyhedral** cluster as one dependency graph.
 
-Do not delete its symbolic candidate layer in isolation: current proof-carrying manifest examples import it. First decide which certificate/provenance contracts remain genuinely useful to the CCOC publication/release path and which are CED-style evidence infrastructure.
+Do not delete `admissibility.py` or symbolic candidate types in isolation: current proof-carrying manifest and admission code imports them. First decide which certificate/provenance contracts remain genuinely useful to the CCOC publication/release path and which are CED-style evidence infrastructure.
 
 ## Priority 4 — external novelty blockers
 
@@ -81,7 +83,7 @@ Family-level unique/coarsest hidden repair routes to MLTR if revisited. PR #204/
 
 ### Qualitative candidate / panel / benchmark
 
-The retired family concerns candidate admissibility, observation envelopes, noisy failure, discriminating panels, robust panel choice, and known-truth/generative benchmarking. Evidence/design work routes to CED; future-response candidate ambiguity routes to MRM. The CCOC-era implementation remains recoverable from the pre-removal main commit `bbe84993a369213f1a9739dba02fbed5e780ad00`.
+The retired family concerns candidate admissibility, observation envelopes, noisy failure, discriminating panels, robust panel choice, and known-truth/generative benchmarking. Evidence/design work routes to CED; future-response candidate ambiguity routes to MRM. The CCOC-era implementation remains recoverable from pre-removal main commit `bbe84993a369213f1a9739dba02fbed5e780ad00`.
 
 ## Explicit non-priorities
 

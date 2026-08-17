@@ -60,7 +60,7 @@ Preferred structural entrance:
 import causal_model.portability_core as rach
 ```
 
-`causal_model/__init__.py` is intentionally not a compatibility facade. Historical evidence/panel/candidate APIs are not re-exported from the package root.
+`causal_model/__init__.py` is no longer the old qualitative/panel facade. It retains only a small **transitional compatibility surface** for the deferred symbolic/certificate/admission provenance cluster. Those re-exports are not CCOC research claims and are scheduled for the next dependency audit.
 
 Canonical first-paper modules and distinct surviving extensions are listed in `docs/current_architecture.md`.
 
@@ -68,7 +68,7 @@ Canonical first-paper modules and distinct surviving extensions are listed in `d
 
 Deterministic feedback was routed under CREST on 2026-08-17; its executable surface was retired while conclusions remain in Git history and the consolidated feedback records.
 
-The former qualitative-candidate / observation-panel / benchmark surface was also routed on 2026-08-17. Its central objects are evidence certification, retained candidate sets, observation design, failure modes, and benchmarked panel choice, so they belong to CED/MRM rather than the CCOC open-future theorem. The dedicated source/test/doc/example/experiment bundle is historical rather than current code.
+The former qualitative-candidate / observation-panel / benchmark surface was also routed on 2026-08-17. Its central objects are evidence certification, retained candidate sets, observation design, failure modes, and benchmarked panel choice, so they belong to CED/MRM rather than the CCOC open-future theorem. The dedicated family bundle is historical, except that `causal_model/admissibility.py` remains temporarily as a compatibility dependency of the deferred proof-carrying symbolic/certificate stack.
 
 ## Repository cleanup status
 
@@ -97,7 +97,8 @@ pytest -q
 - `docs/core_surface_cleanup_manifest_2026-08-14.md` — executed cleanup decisions
 - `docs/residual_novelty_decision_2026-08-12.md` — novelty gate
 - `docs/ccoc_mltr_claim_firewall_2026-08-16.md` — CCOC/MLTR boundary
-- `docs/theorem_registry.md` — executable theorem registry
+- `docs/theorem_registry.md` — executable theorem registry / current theorem atlas
+- `docs/nonempirical_scope.md` — nonempirical scope policy
 - `docs/historical_theorem_archive.md` — historical theorem archive
 - `docs/manuscript_transfer_manifest_2026-08-14.md` — eventual manuscript handoff
 - `FREEZE.md` — historical freeze/reopen policy

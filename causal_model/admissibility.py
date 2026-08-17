@@ -1,0 +1,229 @@
+"""Generic robust-admissibility classification across analysis cells.
+
+A robustness cell is a fully declared analysis context: for example a prior,
+tolerance, sampling plan, or endpoint rule. Each cell supplies evaluated program
+runs and an acceptance indicator determined outside this module.
+
+These are bookkeeping classifications. They are conditional on the declared
+program grammar, parameter domain, observation encoding, acceptance rule, and
+selected robustness cells. Their claim coverage records whether a classification
+comes from sampled runs or complete cell-level search.
+"""
+
+from __future__ import annotations
+
+from dataclasses import dataclass
+from enum import Enum
+from typing import Iterable, Mapping
+
+
+class MotifStatus(str, Enum):
+    """Robust classification for one candidate motif."""
+
+    INVARIANT = "invariant"
+    EXCLUDED = "excluded"
+    UNRESOLVED = "unresolved"
+    UNSUPPORTED = "unsupported"
+
+
+class CoverageMode(str, Enum):
+    """Completeness of the candidate-program search within one cell."""
+
+    SAMPLED = "sampled"
+    EXHAUSTIVE = "exhaustive"
+    SOLVER_BACKED = "solver_backed"
+
+
+class ClaimCoverage(str, Enum):
+    """Whether a cross-cell classification is sampled or complete."""
+
+    SAMPLED = "sampled"
+    COMPLETE = "complete"
+    UNSUPPORTED = "unsupported"
+
+
+@dataclass(frozen=True)
+class ProgramRun:
+    """One qualitative program evaluation.
+
+    ``active_motifs`` must name only motifs in the declared grammar. Acceptance is
+    stored explicitly so the classifier does not conflate a simulation result with
+    an acceptance decision.
+    """
+
+    run_id: str
+    cell_id: str
+    active_motifs: frozenset[str]
+    accepted: bool
+
+
+@dataclass(frozen=True)
+class RobustnessCell:
+    """One required analysis context and its evaluated program runs."""
+
+    cell_id: str
+    description: str
+    runs: tuple[ProgramRun, ...]
+    required: bool = True
+    coverage_mode: CoverageMode = CoverageMode.SAMPLED
+
+    def __post_init__(self) -> None:
+        if not self.cell_id:
+            raise ValueError("cell_id must be non-empty")
+        if not isinstance(self.coverage_mode, CoverageMode):
+            raise ValueError("coverage_mode must be a CoverageMode")
+        for run in self.runs:
+            if run.cell_id != self.cell_id:
+                raise ValueError("every run in a cell must carry that cell_id")
+
+    @property
+    def accepted_runs(self) -> tuple[ProgramRun, ...]:
+        return tuple(run for run in self.runs if run.accepted)
+
+
+@dataclass(frozen=True)
+class MotifClassification:
+    """Classification plus evidence counts and claim coverage."""
+
+    motif: str
+    status: MotifStatus
+    accepted_run_count: int
+    active_accepted_count: int
+    inactive_accepted_count: int
+    empty_required_cells: tuple[str, ...]
+    cell_statuses: Mapping[str, MotifStatus]
+    claim_coverage: ClaimCoverage
+    required_cell_coverage: Mapping[str, CoverageMode]
+
+    @property
+    def active_fraction(self) -> float | None:
+        if self.accepted_run_count == 0:
+            return None
+        return self.active_accepted_count / self.accepted_run_count
+
+
+@dataclass(frozen=True)
+class AdmissibilityReport:
+    """Cross-cell robust-admissibility output for a declared motif vocabulary."""
+
+    motifs: tuple[str, ...]
+    classifications: Mapping[str, MotifClassification]
+    required_cells: tuple[str, ...]
+    empty_required_cells: tuple[str, ...]
+    required_cell_coverage: Mapping[str, CoverageMode]
+
+    def by_status(self, status: MotifStatus) -> tuple[str, ...]:
+        return tuple(
+            motif
+            for motif in self.motifs
+            if self.classifications[motif].status is status
+        )
+
+
+def _check_inputs(motifs: Iterable[str], cells: Iterable[RobustnessCell]) -> tuple[tuple[str, ...], tuple[RobustnessCell, ...]]:
+    motif_tuple = tuple(motifs)
+    if not motif_tuple:
+        raise ValueError("at least one declared motif is required")
+    if len(set(motif_tuple)) != len(motif_tuple):
+        raise ValueError("declared motifs must be unique")
+    if any(not motif for motif in motif_tuple):
+        raise ValueError("motif names must be non-empty")
+
+    cell_tuple = tuple(cells)
+    if not cell_tuple:
+        raise ValueError("at least one robustness cell is required")
+    ids = [cell.cell_id for cell in cell_tuple]
+    if len(set(ids)) != len(ids):
+        raise ValueError("robustness cell IDs must be unique")
+    if not any(cell.required for cell in cell_tuple):
+        raise ValueError("at least one required robustness cell is required")
+
+    vocabulary = set(motif_tuple)
+    for cell in cell_tuple:
+        for run in cell.runs:
+            unknown = set(run.active_motifs) - vocabulary
+            if unknown:
+                raise ValueError(
+                    f"run {run.run_id!r} in cell {cell.cell_id!r} contains unknown motifs: {sorted(unknown)}"
+                )
+    return motif_tuple, cell_tuple
+
+
+def _status_in_cell(motif: str, cell: RobustnessCell) -> MotifStatus:
+    accepted = cell.accepted_runs
+    if not accepted:
+        return MotifStatus.UNSUPPORTED
+    n_active = sum(motif in run.active_motifs for run in accepted)
+    if n_active == len(accepted):
+        return MotifStatus.INVARIANT
+    if n_active == 0:
+        return MotifStatus.EXCLUDED
+    return MotifStatus.UNRESOLVED
+
+
+def classify_motifs(
+    motifs: Iterable[str],
+    cells: Iterable[RobustnessCell],
+) -> AdmissibilityReport:
+    """Classify motifs across required robustness cells.
+
+    Optional cells are reported per-cell but never block a universal conclusion.
+    A required empty cell yields ``UNSUPPORTED`` for every motif because the
+    requested robustness domain has not been covered by accepted programs.
+    """
+    motif_tuple, cell_tuple = _check_inputs(motifs, cells)
+    required = tuple(cell for cell in cell_tuple if cell.required)
+    empty_required = tuple(cell.cell_id for cell in required if not cell.accepted_runs)
+    required_cell_coverage = {cell.cell_id: cell.coverage_mode for cell in required}
+    claim_coverage = (
+        ClaimCoverage.UNSUPPORTED
+        if empty_required
+        else (
+            ClaimCoverage.COMPLETE
+            if all(cell.coverage_mode is not CoverageMode.SAMPLED for cell in required)
+            else ClaimCoverage.SAMPLED
+        )
+    )
+
+    classifications: dict[str, MotifClassification] = {}
+    for motif in motif_tuple:
+        per_cell = {cell.cell_id: _status_in_cell(motif, cell) for cell in cell_tuple}
+        accepted_runs = tuple(run for cell in required for run in cell.accepted_runs)
+        active = sum(motif in run.active_motifs for run in accepted_runs)
+        inactive = len(accepted_runs) - active
+
+        if empty_required:
+            overall = MotifStatus.UNSUPPORTED
+        else:
+            required_statuses = [per_cell[cell.cell_id] for cell in required]
+            if all(status is MotifStatus.INVARIANT for status in required_statuses):
+                overall = MotifStatus.INVARIANT
+            elif all(status is MotifStatus.EXCLUDED for status in required_statuses):
+                overall = MotifStatus.EXCLUDED
+            else:
+                overall = MotifStatus.UNRESOLVED
+
+        classifications[motif] = MotifClassification(
+            motif=motif,
+            status=overall,
+            accepted_run_count=len(accepted_runs),
+            active_accepted_count=active,
+            inactive_accepted_count=inactive,
+            empty_required_cells=empty_required,
+            cell_statuses=per_cell,
+            claim_coverage=claim_coverage,
+            required_cell_coverage=required_cell_coverage,
+        )
+
+    return AdmissibilityReport(
+        motifs=motif_tuple,
+        classifications=classifications,
+        required_cells=tuple(cell.cell_id for cell in required),
+        empty_required_cells=empty_required,
+        required_cell_coverage=required_cell_coverage,
+    )
+
+
+def accepted_programs(cells: Iterable[RobustnessCell]) -> tuple[ProgramRun, ...]:
+    """Flatten accepted runs while retaining their declared robustness-cell IDs."""
+    return tuple(run for cell in cells for run in cell.accepted_runs)
