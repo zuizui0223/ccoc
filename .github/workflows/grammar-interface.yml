@@ -4,8 +4,8 @@ on:
   pull_request:
     paths:
       - 'causal_model/grammar_aware_blankets.py'
-      - 'causal_model/delayed_addressability.py'
       - 'causal_model/dynamic_boundary_blankets.py'
+      - 'causal_model/shared_grammar.py'
       - 'scripts/verify_grammar_aware_blankets.py'
       - 'tests/test_grammar_aware_blankets.py'
       - 'docs/grammar_aware_dynamic_blankets.md'
@@ -14,8 +14,8 @@ on:
     branches: [main]
     paths:
       - 'causal_model/grammar_aware_blankets.py'
-      - 'causal_model/delayed_addressability.py'
       - 'causal_model/dynamic_boundary_blankets.py'
+      - 'causal_model/shared_grammar.py'
       - 'scripts/verify_grammar_aware_blankets.py'
       - 'tests/test_grammar_aware_blankets.py'
       - 'docs/grammar_aware_dynamic_blankets.md'

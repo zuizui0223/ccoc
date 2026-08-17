@@ -1,83 +1,48 @@
 # CCOC package boundary — current tree versus history
 
-## Governing rule
+## Current rule
 
-The repository has three code layers:
+The package contains only:
 
-1. **publication core** — dependencies of the narrow open-composition paper;
-2. **distinct active extensions** — results that materially change the CCOC structural premise;
-3. **compatibility** — only code required by a demonstrated live current-tree consumer.
+1. the open-composition publication core;
+2. constrained codebook strengthening;
+3. approximate-addressability stronger-model extension;
+4. one tiny historical grammar forwarding shim still imported by CORE-4.
 
-Everything else belongs in Git history by default.
-
-## 1. Publication core
-
-Preferred entrance:
+Preferred publication entrance:
 
 ```python
 import causal_model.portability_core as rach
 ```
 
-Registry anchors remain CORE-1 through CORE-5. Fixed-regular extremal strengthening remains active through its explicit modules.
+The package root remains minimal and exports no historical companion APIs.
 
-Do not expand the publication package to expose every follow-up theorem.
+## What no longer counts as CURRENT
 
-## 2. Active extensions
+A mathematically correct result is historicalized when it is only:
 
-A module qualifies only when it contributes a distinct structural open-future result rather than another finite quotient/refinement, evidence layer, candidate-inference layer, proof-admission layer, or companion-repository theorem.
+- another exact converse or stable-refinement formulation;
+- a canonical quotient restatement of fixed-grammar minimization;
+- resource/accounting algebra built on already known capacity bounds;
+- an ecological special case that does not sharpen the CCOC lower bound;
+- a companion evidence, mechanism, or inherited-law problem owned by CED/MRM/MLTR.
 
-Current examples include exact converse/reuse, selected resource tradeoffs, and delimited ecological/stochastic/spatial results pending their own audit.
+## Active strengthenings
 
-## 3. Package root
+### Codebooks
 
-`causal_model/__init__.py` is a minimal package marker.
+Keep because they weaken the full Cartesian-product premise to an arbitrary finite jointly realizable comparison codebook.
 
-Rules:
+### Approximate addressability
 
-- publication users import `causal_model.portability_core`;
-- historical qualitative/panel/evidence/certificate APIs are not re-exported;
-- surviving extensions are imported explicitly by module;
-- hypothetical external imports and legacy tests in Git history do not justify current compatibility code;
-- Git history is the recovery mechanism for historical APIs.
+Keep because it changes exact decodability to bounded-error decodability and returns a quantitative memory lower bound. The information-theoretic tools themselves are explicitly non-novel substrate.
 
-## 4. CREST routing boundary
+## Compatibility
 
-Before adding or retaining a family:
+`delayed_addressability.py` is only a forwarding shim to `shared_grammar.py`. It survives because `coherent_portable_macrolaw.py` still imports that former path. Do not add theorem logic or new consumers to it.
 
-- open-future interface noncommutation / lower bound → CCOC;
-- fixed inherited-law repair → MLTR;
-- retained mechanism disagreement → MRM;
-- finite/noisy evidence certification, observation design, monitoring risk, or proof-carrying evidence admission → CED.
+## Current provenance
 
-Shared words such as `state`, `quotient`, `refinement`, `candidate`, `certificate`, or `uncertainty` do not override this ownership rule.
-
-## 5. Current provenance path
-
-Current release/provenance is intentionally small:
-
-- theorem registry + integrity verifier;
-- paper-core replay;
-- current structural workflows;
-- immutable Git pins/history.
-
-The former symbolic confidence/certificate/admission/polyhedral stack is historical. It had no current script/workflow/registry dependency and therefore is not a compatibility layer.
-
-## 6. Documentation boundary
-
-Each active theorem family should have at most one canonical scientific entrance document plus a claim-control/prior-art document when necessary. Historical details remain in Git history rather than separate current proof notes.
-
-## 7. Test boundary
-
-Keep tests for active sources and explicit current provenance contracts. Delete dedicated tests when their source bundle is retired; a deselected legacy test is not itself a retention reason.
-
-## 8. Workflow boundary
-
-Keep one generic full-suite matrix and specialized workflows only where they add a distinct current structural replay or provenance artifact. Theorem-named workflow count should fall as active surfaces are retired.
-
-## 9. Sources of truth
-
-- `docs/current_architecture.md` — current architecture;
-- `docs/core_surface_cleanup_manifest_2026-08-14.md` — executed deletion decisions;
-- theorem and historical registries — executable versus archived theorem status.
+Theorem registry, paper-core replay, current structural workflows, and immutable Git pins/history are the authoritative provenance path.
 
 Deletion from `main` is not deletion from scientific provenance.

@@ -1,123 +1,66 @@
 # Current CCOC architecture — 2026-08-17
 
-## Purpose
-
-This file describes the **current tree**, not the full historical theorem archive. Git history preserves retired theorem experiments, applications, evidence machinery, and proof notes.
-
 ## 1. Publication core
 
-The narrow first-paper structural core remains:
+The current executable spine is:
 
 1. exact grammar-aware response interfaces;
-2. cross-grammar extension/compression obstruction;
-3. bounded-local extremal witness;
-4. conservative portability boundary;
-5. local future-word/fiber-split obstruction.
+2. cross-grammar addressability / extension-compression lower bound;
+3. bounded-local sharpness realization;
+4. conservative positive boundary;
+5. local future-word/new-action obstruction.
 
 Canonical modules:
 
-- `causal_model/grammar_aware_blankets.py`
-- `causal_model/extension_compression_noncommutation.py`
-- `causal_model/relay_tree_compilation.py`
-- `causal_model/coherent_portable_macrolaw.py`
-- `causal_model/conservative_macro_schema.py`
-- `causal_model/fixed_regular_grammar_relay.py`
-- `causal_model/extremal_open_composition.py`
+- `dynamic_boundary_blankets.py`
+- `shared_grammar.py`
+- `grammar_aware_blankets.py`
+- `extension_compression.py`
+- `extension_compression_noncommutation.py`
+- `operational_addressability.py`
+- `relay_tree_compilation.py`
+- `constant_alphabet_relay.py`
+- `fixed_regular_grammar_relay.py`
+- `extremal_open_composition.py`
+- `local_causal_cone.py`
+- `coherent_portable_macrolaw.py`
+- `conservative_macro_schema.py`
+- `portability_core.py`
 
-The strongest explicit family has
+## 2. Retained quantitative strengthening
 
-\[
-|P_C|=2,\qquad |P_O|=2^{m+1},\qquad K_O-K_C=m,
-\]
+### Constrained codebooks
 
-with one fixed four-symbol primitive alphabet, one newly legal primitive action, degree at most three, cut one, and logarithmic selected-coordinate access.
+`addressable_codebooks.py` and `codebook_families.py` weaken the full-product premise: jointly realizable states may obey parity, fixed-richness, or other constraints while open addressability still forces a large exact interface. `docs/composition_code_rate.md` records the corresponding correlated-composition interpretation.
 
-## 2. Active follow-up theorem surfaces
+### Approximate addressability
 
-### Exact converse/reuse
+`approximate_addressability.py` changes the model premise from exact coordinate recovery to bounded decoding error. It is retained as a stronger-model extension, while explicitly conceding that the Fano/information machinery itself is classical.
 
-- `action_grammar_closure.py`
-- `grammar_expansion_closure.py`
-- `grammar_interface_reuse.py`
-- `terminal_grammar_portability.py`
+## 3. Historicalized internal side branches
 
-### Resource layer
+The following formerly active branches are valid but no longer justify current executable surfaces:
 
-- `portability_adaptation_tradeoff.py`
-- retained boundary-time / staged-exposure results
+- exact converse/reuse and terminal-grammar variants;
+- generic canonical exterior quotient / boundary blanket constructions;
+- duplicate addressable-product wrappers;
+- interface-inflation and union-refinement decompositions;
+- single-action and absolute-capacity/resource corollaries already subsumed by the fixed-regular extremal package;
+- observation-window completion as an ecological corollary/witness of the same open-addressability mechanism;
+- budget/depletion, continuous-time, mortality, capacity, saturation, stochastic, cross-guild, spatial, and adaptation-tradeoff special cases.
 
-### Ecological structural layer
+These results remain recoverable from pre-removal main commit `0d3424a9090b86eae4e369d3749bbe39b6b03432` and historical documentation where retained.
 
-Keep deterministic, stochastic, cross-guild, or spatial modules only when they change a structural open-future premise rather than restating fixed-grammar minimization, candidate inference, or observation/evidence design.
+## 4. Compatibility
 
-`observation_window_completion.py` remains structural CCOC work because it asks how hidden exterior completion changes the safe open-future interface, not how a monitoring protocol certifies a candidate set.
+`delayed_addressability.py` remains temporarily as a tiny compatibility shim forwarding generic grammar types to current CORE-4 code. It contains no theorem logic. Remove it only after the remaining import is migrated directly to `shared_grammar.py`.
 
-## 3. Routed historical families
+No other historical family is retained merely for hypothetical external imports.
 
-### Deterministic feedback
+## 5. Current provenance
 
-CREST §11/§12 was applied on 2026-08-17. The family-level hidden repair routes to MLTR; the former PR #204/#205 examples remain historical evidence only. No feedback module or focused test remains active.
+Current reproducibility is theorem-registry integrity + paper-core replay + the surviving structural workflows + immutable Git history. Historical side-branch workflows and dedicated tests are removed with their source bundles.
 
-Historical records remain in the consolidated feedback audit documents and Git history.
+## 6. Next action
 
-### Qualitative candidate / observation-panel / benchmark surface
-
-The family asked which candidate mechanism states survive observations, which panels discriminate them, how noisy/shared failure changes that evidence, and how candidate/panel strategies benchmark. Those are evidence-contract / mechanism-uncertainty questions.
-
-Routing:
-
-- finite/noisy evidence, observation envelopes, failure modes, panel design, calibration/benchmarking → **CED**;
-- retained candidate mechanism uncertainty when it changes future response → **MRM**.
-
-The dedicated executable bundle is historical.
-
-### Symbolic / certificate / admission / polyhedral proof-carrying surface
-
-The third CREST pass found no current verifier script or workflow for this stack. Its active dependency graph consisted of legacy tests and mutually dependent evidence objects: retained candidate sets, confidence lifting, certificate manifests, exact linear/polyhedral proof bundles, admission transcripts, replay artifacts, and signed checkpoints.
-
-That object is **proof-carrying evidence admission**, not CCOC open-future interface theory. It therefore routes to **CED** if revived. The complete CCOC-era implementation remains recoverable from pre-removal main commit `0bc467004a8da9931f6a87d15048199f4b004fce`.
-
-No symbolic/confidence/certificate/admission/polyhedral module remains a current CCOC compatibility dependency.
-
-## 4. Package boundary
-
-Publication-core users should use:
-
-```python
-import causal_model.portability_core as rach
-```
-
-The package root is a minimal package marker. Historical evidence/candidate/proof APIs are not re-exported.
-
-Compatibility survives only for a demonstrated current-tree consumer, not because an old legacy test can still be run from Git history.
-
-## 5. Claim/provenance controls
-
-Keep as durable controls:
-
-- theorem registry and verification scripts;
-- paper-core replay;
-- CCOC–MLTR claim firewall;
-- primary-source novelty audits;
-- hypothesis-recovery pin/ledger;
-- manuscript-transfer manifest;
-- historical theorem archive.
-
-These are the actual current provenance system. Retired proof-carrying evidence code is not required by any of them.
-
-Historical ledgers may name paths no longer present in the current tree. Those paths refer to recorded commits, not current APIs.
-
-## 6. Cleanup rule
-
-Every remaining file must be one of:
-
-- **CURRENT** — needed by publication core or a genuinely distinct extension;
-- **COMPATIBILITY** — required by a live current-tree consumer;
-- **HISTORICAL** — scientific conclusion/provenance retained in Git history;
-- **REMOVE** — duplicated, misrouted, or superseded surface.
-
-A valid theorem, ecological example, benchmark, certificate system, or proof tool is not automatically a reason to keep a current-tree implementation.
-
-## 7. Next cleanup direction
-
-With the three largest misrouted families removed, the next pass should classify the remaining structural extensions themselves: which genuinely change the CCOC open-future premise and which are merely supporting/classical corollaries that can be historicalized without weakening CORE-1–CORE-5.
+After this structural-surface pass, stop broad deletion. The remaining active tree should be small enough for a final manuscript-core dependency audit and primary-source novelty gate rather than another theorem-development cycle.
