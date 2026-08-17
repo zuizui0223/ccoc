@@ -1,4 +1,4 @@
-# Current CCOC architecture — 2026-08-16
+# Current CCOC architecture — 2026-08-17
 
 ## Purpose
 
@@ -52,34 +52,35 @@ with one fixed four-symbol primitive alphabet, one newly legal primitive action,
 
 Keep explicit deterministic, stochastic, cross-guild, and spatial modules only where they state a distinct structural result rather than a relabeling of fixed-grammar minimization.
 
-## 3. Deterministic feedback — reduced active surface
+## 3. Deterministic feedback — historical only
 
-Entrance:
+CREST §11/§12 was applied on 2026-08-17.
 
-`docs/feedback_portability_theorem_family_2026-08-15.md`
+Verdict:
 
-Claim-control audit:
+- the general continuation-stable hidden repair is a fixed-initial-partition coarsest stable refinement and routes to **MLTR** if developed further;
+- PR #204's feedback-cycle rank remains a historical future-addressability example but is redundant with the current CCOC lower-bound/sharpness core;
+- PR #205's five-state copy-anonymous collapse remains a historical fixed-grammar positive example;
+- no deterministic-feedback module or focused test remains active in the current tree.
 
-`docs/feedback_novelty_audit_2026-08-16.md`
+Historical entrance:
 
-Only two feedback implementations remain active:
+- `docs/feedback_portability_theorem_family_2026-08-15.md`
+- `docs/feedback_novelty_audit_2026-08-16.md`
 
-- `causal_model/feedback_gate_rank.py` — mechanism-specific feedback-cycle rank plus causal-arrow ablation;
-- `causal_model/feedback_type_portability.py` — replication-independent five-state positive example.
-
-The former PR #207/#208/#210 implementations were retired from the current tree because they are increasingly general fixed-grammar refinement variants of the same classical substrate. Their scientific conclusions are summarized in the consolidated feedback document and their full code/proofs remain at pre-cleanup audit pin
+Full pre-cleanup recovery pin:
 
 `4c7887c73ba8fa86a5e3883ebb6dce265b80fe7a`.
 
-No deterministic persistent-mode feedback variant is an active development target.
+The feedback family is not an active development target and is not part of the publication-core theorem hierarchy.
 
 ## 4. Compatibility shelf
 
 The broad package-root facade in `causal_model/__init__.py` remains temporarily because current repository examples/scripts still import older qualitative/panel names from the package root. No new theorem export should be added there.
 
-The deprecated `causal_model/current_theory.py` aggregate has been retired from the current tree because no active repository code imported it; only its dedicated compatibility test and historical documentation referenced it. Its final implementation remains recoverable from the pre-cleanup Git pin.
+The deprecated `causal_model/current_theory.py` aggregate has been retired from the current tree because no active repository code imported it.
 
-Historical candidate-uncertainty, panel-design, benchmark, and observation-design branches are the next compatibility/reproducibility family to audit.
+Historical candidate-uncertainty, panel-design, benchmark, and observation-design branches remain compatibility/cleanup targets.
 
 ## 5. Claim/provenance controls
 
@@ -87,6 +88,7 @@ Keep as durable controls:
 
 - theorem registry and verification scripts;
 - paper-core replay;
+- CCOC–MLTR claim firewall;
 - H1–H4 primary-source audit records;
 - hypothesis-recovery pin/ledger;
 - manuscript-transfer manifest;
@@ -103,10 +105,10 @@ For every remaining file, classify it as one of:
 - **HISTORICAL** — scientific conclusion retained in records/Git history; source need not stay in the current tree;
 - **REMOVE** — duplicated implementation, duplicated explanation, superseded experiment, or infrastructure without a distinct replay role.
 
-A valid theorem is not automatically a reason to keep a dedicated module, test, document, and workflow indefinitely.
+A valid theorem or ecological example is not automatically a reason to keep a dedicated module, test, document, and workflow indefinitely.
 
 ## 7. Current cleanup direction
 
 The immediate goal is repository reduction, not theorem expansion and not manuscript growth inside CCOC.
 
-After the feedback and `current_theory` cleanup, the next high-value pass is the old package-root / candidate-panel / benchmark surface: identify in-repository import consumers, retain one compatibility route where required, and retire duplicated implementations only after the surviving regression path is explicit.
+The feedback CREST pass establishes the stricter rule: once a family fails the program-level novelty/routing gate, representative executable examples are not retained merely for symmetry. Scientific conclusions stay in provenance records; active code must justify a current theorem role.
