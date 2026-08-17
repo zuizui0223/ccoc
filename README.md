@@ -48,7 +48,7 @@ CREST routing keeps companion questions out of this repository's active theorem 
 
 - fixed inherited-law repair, transport defect, route coherence, history completion → **MLTR**;
 - retained mechanism disagreement and candidate-safe prediction → **MRM**;
-- finite/noisy evidence, candidate-set certification, observation panels, detection failure, and monitoring risk → **CED**.
+- finite/noisy evidence, candidate-set certification, observation panels, proof-carrying evidence admission, detection failure, and monitoring risk → **CED**.
 
 See `docs/ccoc_mltr_claim_firewall_2026-08-16.md` and the program-level CREST document in `zuizui0223/mrm`.
 
@@ -60,26 +60,30 @@ Preferred structural entrance:
 import causal_model.portability_core as rach
 ```
 
-`causal_model/__init__.py` is no longer the old qualitative/panel facade. It retains only a small **transitional compatibility surface** for the deferred symbolic/certificate/admission provenance cluster. Those re-exports are not CCOC research claims and are scheduled for the next dependency audit.
+`causal_model/__init__.py` is intentionally a minimal package marker and does not re-export historical companion APIs.
 
 Canonical first-paper modules and distinct surviving extensions are listed in `docs/current_architecture.md`.
 
 ### Historical / routed families
 
-Deterministic feedback was routed under CREST on 2026-08-17; its executable surface was retired while conclusions remain in Git history and the consolidated feedback records.
+CREST has now been applied to three residual families:
 
-The former qualitative-candidate / observation-panel / benchmark surface was also routed on 2026-08-17. Its central objects are evidence certification, retained candidate sets, observation design, failure modes, and benchmarked panel choice, so they belong to CED/MRM rather than the CCOC open-future theorem. The dedicated family bundle is historical, except that `causal_model/admissibility.py` remains temporarily as a compatibility dependency of the deferred proof-carrying symbolic/certificate stack.
+- deterministic feedback → historical / MLTR-routed at the family-repair level;
+- qualitative candidate / observation-panel / benchmark machinery → historical / CED-MRM routed;
+- symbolic confidence lifting / certificate manifests / admission transcripts / exact polyhedral proof-carrying evidence → historical / CED routed.
+
+The CCOC-era implementations remain recoverable from Git history; they are not current CCOC theorem APIs.
 
 ## Repository cleanup status
 
 Files are classified as:
 
 - **CURRENT** — publication core or a genuinely distinct active extension;
-- **COMPATIBILITY** — required by a live current-tree consumer;
-- **HISTORICAL** — conclusion/provenance retained in records and Git history;
+- **COMPATIBILITY** — required by a demonstrated live current-tree consumer;
+- **HISTORICAL** — conclusion/provenance retained in Git history or canonical records;
 - **REMOVE** — duplicated, misrouted, or superseded current-tree surface.
 
-A valid theorem, witness, or example is not automatically a reason to keep a dedicated executable bundle.
+A valid theorem, witness, proof tool, or example is not automatically a reason to keep a dedicated executable bundle.
 
 ## Reproducibility
 
@@ -89,7 +93,7 @@ python scripts/verify_paper_core.py --write-report
 pytest -q
 ```
 
-`tests.yml` is the generic Python 3.10/3.11/3.12 gate. Specialized workflows survive only when they provide a distinct current replay or provenance contract.
+`tests.yml` is the generic Python 3.10/3.11/3.12 gate. Specialized workflows survive only when they provide a distinct current structural replay or provenance contract.
 
 ## Start here
 

@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This file describes the **current tree**, not the full historical theorem archive. Git history preserves retired theorem experiments, applications, and proof notes.
+This file describes the **current tree**, not the full historical theorem archive. Git history preserves retired theorem experiments, applications, evidence machinery, and proof notes.
 
 ## 1. Publication core
 
@@ -48,7 +48,9 @@ with one fixed four-symbol primitive alphabet, one newly legal primitive action,
 
 ### Ecological structural layer
 
-Keep deterministic, stochastic, cross-guild, or spatial modules only when they change a structural open-future premise rather than restating fixed-grammar minimization, candidate inference, or observation design.
+Keep deterministic, stochastic, cross-guild, or spatial modules only when they change a structural open-future premise rather than restating fixed-grammar minimization, candidate inference, or observation/evidence design.
+
+`observation_window_completion.py` remains structural CCOC work because it asks how hidden exterior completion changes the safe open-future interface, not how a monitoring protocol certifies a candidate set.
 
 ## 3. Routed historical families
 
@@ -56,27 +58,26 @@ Keep deterministic, stochastic, cross-guild, or spatial modules only when they c
 
 CREST §11/§12 was applied on 2026-08-17. The family-level hidden repair routes to MLTR; the former PR #204/#205 examples remain historical evidence only. No feedback module or focused test remains active.
 
-Historical records:
-
-- `docs/feedback_portability_theorem_family_2026-08-15.md`
-- `docs/feedback_novelty_audit_2026-08-16.md`
-
-Pre-cleanup recovery pin: `4c7887c73ba8fa86a5e3883ebb6dce265b80fe7a`.
+Historical records remain in the consolidated feedback audit documents and Git history.
 
 ### Qualitative candidate / observation-panel / benchmark surface
 
-CREST routing was applied on 2026-08-17.
-
-The retired surface asked which candidate mechanism states survive observations, which observations or panels discriminate them, how noisy/shared failure changes that evidence, and how candidate/panel strategies benchmark. Those are **evidence-contract / mechanism-uncertainty** questions rather than CCOC's cross-grammar interface-complexity question.
+The family asked which candidate mechanism states survive observations, which panels discriminate them, how noisy/shared failure changes that evidence, and how candidate/panel strategies benchmark. Those are evidence-contract / mechanism-uncertainty questions.
 
 Routing:
 
 - finite/noisy evidence, observation envelopes, failure modes, panel design, calibration/benchmarking → **CED**;
 - retained candidate mechanism uncertainty when it changes future response → **MRM**.
 
-The dedicated source/tests/docs/example/experiment bundle is historical. `causal_model/admissibility.py` is the one deliberate exception: it remains **COMPATIBILITY**, because the deferred symbolic/certificate/admission stack still imports its common status/coverage types and finite classifier. It is not a CCOC research surface and will be reconsidered with that whole dependency graph.
+The dedicated executable bundle is historical.
 
-No code was copied into the companion repositories because both CED and MRM already contain their own active formulations; Git history remains provenance for the CCOC-era implementations.
+### Symbolic / certificate / admission / polyhedral proof-carrying surface
+
+The third CREST pass found no current verifier script or workflow for this stack. Its active dependency graph consisted of legacy tests and mutually dependent evidence objects: retained candidate sets, confidence lifting, certificate manifests, exact linear/polyhedral proof bundles, admission transcripts, replay artifacts, and signed checkpoints.
+
+That object is **proof-carrying evidence admission**, not CCOC open-future interface theory. It therefore routes to **CED** if revived. The complete CCOC-era implementation remains recoverable from pre-removal main commit `0bc467004a8da9931f6a87d15048199f4b004fce`.
+
+No symbolic/confidence/certificate/admission/polyhedral module remains a current CCOC compatibility dependency.
 
 ## 4. Package boundary
 
@@ -86,9 +87,9 @@ Publication-core users should use:
 import causal_model.portability_core as rach
 ```
 
-The package root is no longer a broad historical facade. It retains only transitional confidence/symbolic re-exports required by the deferred proof-carrying provenance cluster. Those names are compatibility, not publication API.
+The package root is a minimal package marker. Historical evidence/candidate/proof APIs are not re-exported.
 
-Compatibility is kept only for a demonstrated live current-tree dependency, not for hypothetical external consumers.
+Compatibility survives only for a demonstrated current-tree consumer, not because an old legacy test can still be run from Git history.
 
 ## 5. Claim/provenance controls
 
@@ -102,7 +103,9 @@ Keep as durable controls:
 - manuscript-transfer manifest;
 - historical theorem archive.
 
-Historical ledgers may name paths no longer present in the current tree. Those paths refer to their recorded commits, not current APIs.
+These are the actual current provenance system. Retired proof-carrying evidence code is not required by any of them.
+
+Historical ledgers may name paths no longer present in the current tree. Those paths refer to recorded commits, not current APIs.
 
 ## 6. Cleanup rule
 
@@ -113,8 +116,8 @@ Every remaining file must be one of:
 - **HISTORICAL** — scientific conclusion/provenance retained in Git history;
 - **REMOVE** — duplicated, misrouted, or superseded surface.
 
-A valid theorem, ecological example, benchmark, or utility is not automatically a reason to keep a dedicated current-tree implementation.
+A valid theorem, ecological example, benchmark, certificate system, or proof tool is not automatically a reason to keep a current-tree implementation.
 
 ## 7. Next cleanup direction
 
-Audit the symbolic/certificate/admission/polyhedral cluster as one dependency graph. Its proof-carrying manifests currently depend on `admissibility.py`, symbolic candidate sets, and confidence-lifting objects; do not dismantle them piecemeal. Decide which pieces are genuine CCOC release/provenance infrastructure versus CED-style evidence machinery, then remove the transitional root exports and `admissibility.py` if no current CCOC contract still needs them.
+With the three largest misrouted families removed, the next pass should classify the remaining structural extensions themselves: which genuinely change the CCOC open-future premise and which are merely supporting/classical corollaries that can be historicalized without weakening CORE-1–CORE-5.
