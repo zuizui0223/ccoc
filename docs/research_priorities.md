@@ -26,34 +26,26 @@ The key quantitative family remains
 
 Fixed-grammar minimization, partition refinement, common refinement, generic distinguishability, generic information inequalities, and generic locality remain substrate rather than novelty claims.
 
-## Priority 1 — repository reduction
+## Priority 1 — repository reduction through CREST
 
-Apply CREST before preserving a theorem family:
+Owner routing:
 
 - open-future noncommutation / interface lower bound → CCOC;
 - fixed inherited-law repair → MLTR;
 - retained mechanism disagreement → MRM;
-- finite/noisy evidence certification and monitoring design → CED.
+- finite/noisy evidence certification and monitoring/proof-carrying evidence design → CED.
 
-Completed CREST passes:
+Completed passes:
 
-1. **deterministic feedback** — historical/routed; current executable surface removed;
-2. **qualitative candidate / panel / benchmark** — historical/routed; dedicated family source, tests, docs, example, and experiment surface removed.
+1. deterministic feedback — historical/routed;
+2. qualitative candidate / panel / benchmark — historical/routed;
+3. symbolic confidence / certificate / admission / polyhedral proof-carrying evidence — historical/routed.
 
-`causal_model/admissibility.py` remains temporarily as a compatibility dependency of the deferred symbolic/certificate/admission cluster; this is not a research-surface exception.
-
-The package root has been reduced to publication guidance plus transitional confidence/symbolic re-exports required by that same deferred cluster. It must not regrow into a general compatibility facade.
+The third pass removes the last reason for `causal_model/admissibility.py` and the transitional package-root confidence/symbolic exports. Current CCOC provenance is theorem-registry + paper-core replay + immutable Git history, not the retired admission stack.
 
 ## Priority 2 — claim-control consistency
 
-Every active family must be classified as:
-
-- classical substrate;
-- supporting witness/example;
-- residual novelty candidate; or
-- historically unresolved.
-
-Then it must pass the CREST owner test. Mathematically correct work does not remain in CCOC merely because it was developed here first.
+Every active family must be classified as classical substrate, supporting witness/example, residual novelty candidate, or historically unresolved, and then pass the CREST owner test.
 
 Controlling gates:
 
@@ -61,11 +53,13 @@ Controlling gates:
 - `docs/ccoc_mltr_claim_firewall_2026-08-16.md`
 - program-level CREST routing in `zuizui0223/mrm`.
 
-## Priority 3 — next dependency audit
+## Priority 3 — audit surviving structural extensions
 
-Audit the **symbolic / confidence / certificate / admission / polyhedral** cluster as one dependency graph.
+The next target is no longer evidence plumbing. Review remaining non-core structural modules such as exact converse/reuse, approximate/addressability/resource, and ecological/stochastic/spatial branches.
 
-Do not delete `admissibility.py` or symbolic candidate types in isolation: current proof-carrying manifest and admission code imports them. First decide which certificate/provenance contracts remain genuinely useful to the CCOC publication/release path and which are CED-style evidence infrastructure.
+For each, ask one question: **does this result change the CCOC open-future structural claim, or is it a supporting/classical consequence that can live in Git history?**
+
+Do not remove `observation_window_completion.py` by name alone; it is currently classified as an open-future structural completion result.
 
 ## Priority 4 — external novelty blockers
 
@@ -73,20 +67,16 @@ H1–H4 primary-source acquisition and the Tier-A quantitative prior-art gate re
 
 ## Priority 5 — manuscript later, from the cleaned surface
 
-When cleanup stabilizes, transfer only the current CORE-1–CORE-5 surface, fixed-regular extremal strengthening, and minimum required provenance. CREST itself remains a program-level synthesis, not a reason to restructure the CCOC or MLTR manuscripts.
+When cleanup stabilizes, transfer only CORE-1–CORE-5, fixed-regular extremal strengthening, and minimum required provenance. CREST remains program-level synthesis and should not force manuscript restructuring.
 
-## Historical routed families
+## Recovery pins
 
-### Feedback
-
-Family-level unique/coarsest hidden repair routes to MLTR if revisited. PR #204/#205 remain historical ecological examples. Recovery pin: `4c7887c73ba8fa86a5e3883ebb6dce265b80fe7a`.
-
-### Qualitative candidate / panel / benchmark
-
-The retired family concerns candidate admissibility, observation envelopes, noisy failure, discriminating panels, robust panel choice, and known-truth/generative benchmarking. Evidence/design work routes to CED; future-response candidate ambiguity routes to MRM. The CCOC-era implementation remains recoverable from pre-removal main commit `bbe84993a369213f1a9739dba02fbed5e780ad00`.
+- feedback pre-cleanup: `4c7887c73ba8fa86a5e3883ebb6dce265b80fe7a`
+- qualitative/panel bundle before removal: `bbe84993a369213f1a9739dba02fbed5e780ad00`
+- proof-carrying evidence stack before removal: `0bc467004a8da9931f6a87d15048199f4b004fce`
 
 ## Explicit non-priorities
 
-No new panel/reset variants, benchmark families, confidence-lifting variants, feedback variants, codebook variants, mortality special cases, shortest-path variants, Fano/channel lemmas, generic contraction theorems, or renamed finite-state refinement results.
+No new panel/reset variants, confidence-lifting variants, manifest/transcript variants, polyhedral admission layers, feedback variants, codebook variants, mortality special cases, shortest-path variants, Fano/channel lemmas, generic contraction theorems, or renamed finite-state refinement results.
 
 Do not create new cleanup documents. Update canonical architecture, priorities, and manifest files instead.

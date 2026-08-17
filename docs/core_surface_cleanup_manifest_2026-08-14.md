@@ -20,62 +20,53 @@ Retain:
 
 Preserve theorem-registry and paper-core replay gates, claim/source audits, and exact source pins.
 
-## 2. KEEP — distinct follow-up surfaces
-
-A follow-up stays only when it changes a structural open-future premise and is not owned by a companion repository.
-
-Routing boundary:
+## 2. ROUTING BOUNDARY
 
 - open-future lower bound / noncommutation → CCOC;
 - fixed inherited-law repair → MLTR;
 - retained mechanism disagreement → MRM;
-- finite/noisy evidence certification / monitoring design → CED.
+- finite/noisy evidence certification, monitoring design, or proof-carrying evidence admission → CED.
 
 ## 3. FEEDBACK CLEANUP — completed
 
-Deterministic feedback is **HISTORICAL / ROUTED**. The family-level coarsest hidden repair routes to MLTR. PR #204/#205 remain historical examples only.
+Deterministic feedback is HISTORICAL / ROUTED. The family-level coarsest hidden repair routes to MLTR. PR #204/#205 remain historical examples only.
 
-Retired current-tree executable surface:
+Recovery pin: `4c7887c73ba8fa86a5e3883ebb6dce265b80fe7a`.
 
-- `causal_model/feedback_gate_rank.py`
-- `tests/test_feedback_gate_rank.py`
-- `causal_model/feedback_type_portability.py`
-- `tests/test_feedback_type_portability.py`
+## 4. QUALITATIVE CANDIDATE / PANEL / BENCHMARK CLEANUP — completed
 
-Canonical records remain in the two feedback audit documents. Full pre-cleanup recovery pin: `4c7887c73ba8fa86a5e3883ebb6dce265b80fe7a`.
+Candidate admissibility, noisy observation, observation envelopes, panel design/robustness, and benchmark/calibration logic are historical/routed to CED or MRM by central object.
 
-## 4. QUALITATIVE CANDIDATE / PANEL / BENCHMARK CLEANUP — completed with one compatibility hold
+Recovery pin: `bbe84993a369213f1a9739dba02fbed5e780ad00`.
 
-CREST routing classified this family as evidence/mechanism infrastructure rather than CCOC open-composition theory.
+## 5. SYMBOLIC / CERTIFICATE / ADMISSION / POLYHEDRAL CLEANUP — completed
 
-### Retired source modules
+The third CREST pass found that the proof-carrying evidence stack had:
 
-- `causal_model/benchmarks.py`
-- `causal_model/ecological_program.py`
-- `causal_model/failure_modes.py`
-- `causal_model/generative_benchmarks.py`
-- `causal_model/observation_design.py`
-- `causal_model/observation_envelope.py`
-- `causal_model/panel_phase_benchmarks.py`
-- `causal_model/replaceability.py`
-- `causal_model/robust_panel_design.py`
+- no current verifier script;
+- no dedicated current workflow;
+- no theorem-registry or paper-core dependency;
+- only legacy tests, examples, and mutually dependent evidence objects keeping it alive.
 
-Their dedicated regression tests, benchmark/observation experiments, example, and family-specific docs were retired with them.
+The retired bundle includes:
 
-### Temporary compatibility hold
+- finite/symbolic confidence lifting and all-look coverage contracts;
+- symbolic candidate/universe extension machinery;
+- certificate and tiered-manifest systems;
+- canonical manifest JSON and decision audit;
+- exact rational/linear/polyhedral proof compilers and inclusion schemas;
+- exact admission gates;
+- admission, compiled, native-tiered, and signed transcript/checkpoint systems;
+- replayable proof/role/plan artifacts;
+- dedicated legacy tests, docs, and examples.
 
-`causal_model/admissibility.py` remains temporarily as **COMPATIBILITY**, not CURRENT research. The deferred symbolic/certificate/admission/proof-carrying stack imports its common `MotifStatus`, `CoverageMode`, `ClaimCoverage`, and finite classification objects. It will be removed or reduced only when that whole dependency graph is audited.
+This is **proof-carrying evidence admission**, so it routes to CED if revived. It is not needed by current CCOC release provenance.
 
-### Routing
+Recovery pin: `0bc467004a8da9931f6a87d15048199f4b004fce`.
 
-- admissibility/evidence classification, noisy observation, observation envelopes, panel selection, panel robustness, and benchmark/calibration logic → CED if revisited;
-- retained mechanism/candidate uncertainty that changes future prediction → MRM if revisited.
+## 6. PACKAGE BOUNDARY — minimal
 
-No source was copied into CED or MRM because those repositories already contain their own active formulations. The exact CCOC-era bundle remains recoverable from pre-removal main commit `bbe84993a369213f1a9739dba02fbed5e780ad00`.
-
-## 5. PACKAGE BOUNDARY — tightened
-
-`causal_model/__init__.py` no longer re-exports retired qualitative-program, panel, benchmark, failure-mode, or robust-panel APIs.
+`causal_model/__init__.py` is a minimal package marker with no historical companion API exports.
 
 Preferred publication API:
 
@@ -83,38 +74,32 @@ Preferred publication API:
 import causal_model.portability_core as rach
 ```
 
-A small transitional root compatibility surface remains only for deferred confidence/symbolic provenance tests. It is scheduled for removal with the next dependency-cluster audit.
+Compatibility is retained only for a demonstrated live current-tree dependency. Legacy tests in Git history do not create such a dependency.
 
-## 6. DEFERRED DEPENDENCY CLUSTER
+## 7. CURRENT PROVENANCE SYSTEM
 
-The symbolic/certificate/admission/polyhedral cluster is **not** part of this cleanup wave. Current proof-carrying manifest code imports symbolic candidate/lifting objects and the compatibility `admissibility.py` primitives, so this cluster must be audited as one dependency graph before removal.
+The actual current provenance/reproducibility system is:
 
-Examples include:
+- `docs/theorem_registry.json` + `scripts/verify_theorem_registry.py`;
+- `scripts/verify_paper_core.py` and its paper-core artifact;
+- current structural theorem workflows;
+- immutable Git history and recovery pins.
 
-- `symbolic_candidate_sets.py`
-- `anytime_symbolic_lifting.py`
-- `confidence_lifting.py`
-- `certificate_manifest.py`
-- admission transcript / proof-carrying / polyhedral verification modules.
-
-## 7. WORKFLOW / DOCUMENTATION BOUNDARY
-
-Specialized workflows survive only if they supply a distinct current replay, deterministic artifact, or release/manuscript contract.
-
-Current navigation is centered on `README.md`, `docs/current_architecture.md`, this manifest, and theorem/historical registries. Historical ledgers may name retired paths as provenance.
+The retired certificate/admission stack is not part of this path.
 
 ## 8. Cleanup safety rules
 
 Before deleting a source bundle:
 
 1. inspect active imports and direct path references;
-2. preserve useful conclusions through existing canonical records or immutable Git history;
-3. record a recovery pin;
-4. retire dedicated tests/docs/examples/workflows with no independent current role;
-5. run current-core/provenance validation.
+2. inspect scripts and workflows for real current replay use;
+3. preserve useful conclusions in existing canonical records or immutable Git history;
+4. record a recovery pin;
+5. retire dedicated tests/docs/examples with no independent current role;
+6. run current-core/provenance validation.
 
-A valid theorem, witness, benchmark, or ecological example is not automatically a reason to keep a current executable surface.
+A valid theorem, witness, benchmark, certificate system, or proof tool is not automatically a reason to keep a current executable surface.
 
 ## 9. Next pass
 
-Audit the symbolic/certificate/admission/polyhedral cluster and decide which parts are genuine CCOC release/provenance infrastructure versus CED-style evidence machinery. Remove `admissibility.py` and the transitional root re-exports only after that surviving contract is explicit.
+Audit surviving non-core structural extensions themselves. Keep only results that materially change the CCOC open-future premise or supply necessary sharpness/provenance; historicalize classical/supporting branches that no longer justify dedicated current-tree code.

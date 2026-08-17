@@ -18,32 +18,26 @@ Preferred entrance:
 import causal_model.portability_core as rach
 ```
 
-Historical registry anchors remain CORE-1 through CORE-5. Fixed-regular extremal strengthening remains active through:
-
-- `causal_model/fixed_regular_grammar_relay.py`
-- `causal_model/extremal_open_composition.py`
+Registry anchors remain CORE-1 through CORE-5. Fixed-regular extremal strengthening remains active through its explicit modules.
 
 Do not expand the publication package to expose every follow-up theorem.
 
 ## 2. Active extensions
 
-A module qualifies only when it contributes a distinct structural open-future result rather than another finite quotient/refinement, evidence layer, candidate-inference layer, or companion-repository theorem.
+A module qualifies only when it contributes a distinct structural open-future result rather than another finite quotient/refinement, evidence layer, candidate-inference layer, proof-admission layer, or companion-repository theorem.
 
-Current examples include exact converse/reuse, selected resource tradeoffs, and delimited ecological/stochastic/spatial results.
-
-Deterministic feedback is historical after the CREST gate. Qualitative candidate, observation-panel, and benchmark modules are also historical/routed.
+Current examples include exact converse/reuse, selected resource tradeoffs, and delimited ecological/stochastic/spatial results pending their own audit.
 
 ## 3. Package root
 
-`causal_model/__init__.py` is no longer the former broad historical facade.
+`causal_model/__init__.py` is a minimal package marker.
 
 Rules:
 
 - publication users import `causal_model.portability_core`;
-- retired qualitative-program, observation-panel, benchmark, failure-mode, and robust-panel APIs are not re-exported;
-- a small **transitional** root surface remains for confidence/symbolic names that are still exercised by the deferred proof-carrying provenance cluster;
-- those transitional re-exports are compatibility, not research API, and should disappear with the next cluster audit;
-- hypothetical external imports do not justify permanent retention of obsolete current-tree code;
+- historical qualitative/panel/evidence/certificate APIs are not re-exported;
+- surviving extensions are imported explicitly by module;
+- hypothetical external imports and legacy tests in Git history do not justify current compatibility code;
 - Git history is the recovery mechanism for historical APIs.
 
 ## 4. CREST routing boundary
@@ -53,19 +47,20 @@ Before adding or retaining a family:
 - open-future interface noncommutation / lower bound → CCOC;
 - fixed inherited-law repair → MLTR;
 - retained mechanism disagreement → MRM;
-- finite/noisy evidence certification, observation design, monitoring risk → CED.
+- finite/noisy evidence certification, observation design, monitoring risk, or proof-carrying evidence admission → CED.
 
-Shared words such as `state`, `quotient`, `refinement`, `candidate`, or `uncertainty` do not override this ownership rule.
+Shared words such as `state`, `quotient`, `refinement`, `candidate`, `certificate`, or `uncertainty` do not override this ownership rule.
 
-## 5. Deferred symbolic/certificate cluster
+## 5. Current provenance path
 
-Do not partially dismantle the current symbolic/certificate/admission/polyhedral stack. Proof-carrying manifests currently import symbolic candidate/lifting objects and `admissibility.py` compatibility primitives. Audit the whole dependency graph first, then retain only the part that serves a real CCOC provenance/release contract.
+Current release/provenance is intentionally small:
 
-Until that audit completes:
+- theorem registry + integrity verifier;
+- paper-core replay;
+- current structural workflows;
+- immutable Git pins/history.
 
-- `causal_model/admissibility.py` is COMPATIBILITY;
-- confidence/symbolic root exports are COMPATIBILITY;
-- neither is a CCOC novelty surface.
+The former symbolic confidence/certificate/admission/polyhedral stack is historical. It had no current script/workflow/registry dependency and therefore is not a compatibility layer.
 
 ## 6. Documentation boundary
 
@@ -73,11 +68,11 @@ Each active theorem family should have at most one canonical scientific entrance
 
 ## 7. Test boundary
 
-Keep tests for active sources and explicit live compatibility/provenance contracts. Delete a dedicated test when its source bundle is retired and no frozen replay calls it.
+Keep tests for active sources and explicit current provenance contracts. Delete dedicated tests when their source bundle is retired; a deselected legacy test is not itself a retention reason.
 
 ## 8. Workflow boundary
 
-Keep one generic full-suite matrix and specialized workflows only where they add a distinct current replay or provenance artifact. Theorem-named workflow count should fall as active theorem surfaces are retired.
+Keep one generic full-suite matrix and specialized workflows only where they add a distinct current structural replay or provenance artifact. Theorem-named workflow count should fall as active surfaces are retired.
 
 ## 9. Sources of truth
 
