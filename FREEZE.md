@@ -1,97 +1,72 @@
-# Freeze and reopening record: open-composition theorem repository
+# Freeze and submission-mode record: open-composition theorem repository
 
 ## Current status
 
-**Development reopened on 2026-08-11.**
+The July 2026 freeze remains a stable reproducibility checkpoint for the first theorem-first manuscript **Causal Compression under Open Composition**.
 
-The July 2026 freeze is retained as a stable reproducibility checkpoint for the
-first theorem-first manuscript **Causal Compression under Open Composition**. It
-no longer prohibits new theorem development in this repository.
+Development was reopened on 2026-08-11 to test and strengthen the theorem spine. That strengthening phase is now complete for the first paper. As of 2026-08-19, CCOC is in **submission-conversion mode**.
 
-The historical frozen paper core was:
+## Historical frozen paper core
 
 1. `CORE-1` — exact grammar-aware interfaces;
-2. `CORE-2` — operational addressability and extension--compression
-   noncommutation;
-3. `CORE-3` — bounded-degree relay sharpness;
-4. `CORE-4` — conservative macro-schema portability; and
+2. `CORE-2` — operational addressability and extension–compression separation;
+3. `CORE-3` — bounded-local relay sharpness;
+4. `CORE-4` — conservative macro-schema portability;
 5. `CORE-5` — local future-word / new-action fiber-split obstruction.
 
-These identifiers and their deterministic replay remain provenance anchors for
-v1. New work may strengthen, weaken assumptions of, replace, or supersede a
-canonical claim, but it must say explicitly how it relates to this baseline.
+These identifiers remain provenance anchors. Later strengthenings may refine assumptions or sharpness, but the first-paper theorem count is frozen unless a concrete claim failure forces replacement mathematics.
 
-## Historical freeze point
+## Current development rule
 
-On 2026-07-02 the repository was frozen to stabilize the first open-composition
-manuscript and its reproducibility surface. During that period, changes were
-restricted to claim-narrowing corrections, deterministic replay repairs,
-security/dependency maintenance, and archival metadata.
-
-That policy is now historical. The freeze commit remains useful because it gives
-a fixed reference against which post-freeze theorem changes can be compared.
-
-## Reopened development rule
-
-New mathematics is permitted again, subject to the following discipline:
-
-- do not develop directly on `main`; use a branch and pull request;
-- identify the exact canonical assumption or conclusion being changed;
-- keep proof statements separate from finite computational replay;
-- provide counterexamples or fail-closed tests for weakened assumptions where
-  feasible;
-- preserve a reproducible route to the July 2026 v1 theorem package; and
+- do not develop directly on `main`; use branch/PR review;
+- manuscript, documentation, and cleanup changes are allowed when they improve submission readiness;
+- new mathematics is admitted only if it repairs a failed premise or materially strengthens the first-paper claim;
+- do not add a special case merely to increase theorem count;
+- keep analytic proof statements separate from finite computational replay;
+- preserve reproducible access to historical checkpoints;
 - do not infer empirical ecological validity from the abstract finite model.
 
-The immediate reopened priority is the `CORE-2`/`CORE-3` novelty spine:
+## Current first-paper priority
 
-> determine whether the full product-indexed subset and joint-realisability
-> assumptions can be weakened while retaining a quantitative
-> extension--compression lower bound, and determine whether bounded-degree,
-> pairwise, constant-local-grammar constructions remain sharp under the weaker
-> hypothesis.
+The main task is no longer theorem expansion. It is:
 
-A new special case is not sufficient reason to add a theorem. Priority goes to
-strict assumption weakening, stronger lower bounds, sharper necessity/sufficiency
-boundaries, or genuinely stronger sharpness constructions.
+1. complete the self-contained manuscript under `manuscript/`;
+2. maintain the conservative novelty boundary;
+3. finish theorem/source/claim traceability;
+4. build the agreed figure set;
+5. pin an immutable submission SHA and rerun theorem registry, paper core, and full tests;
+6. perform journal-specific and final human submission review.
 
-## Scope separation retained after reopening
+## Scope separation
 
-- Non-nested replacement, extinction, recolonization, and rewiring transport is
-  developed in `zuizui0223/mltr` unless a result directly strengthens the
-  open-composition theorem.
-- Delayed exposure, finite-evidence limits, candidate mechanism uncertainty, and
-  panel-design results remain companion directions rather than automatic parts
-  of the CCOC theorem spine.
-- Stochastic, approximate, continuous-state, simultaneous-action, and empirical
-  extensions may now be proposed, but should not be mixed into the core without
-  a separate scope decision.
+- open-composition future-sufficiency mathematics → `zuizui0223/ccoc`;
+- non-nested replacement/rewiring transport → `zuizui0223/mltr`;
+- mechanism uncertainty → `zuizui0223/mrm`;
+- evidence/reportability → `zuizui0223/ced`;
+- cross-contract synthesis → `zuizui0223/crest`.
+
+Approximate addressability remains a secondary CCOC strengthening. Evidence, mechanism, inherited-law repair, field-protocol, and other historical branches do not return to the first-paper spine without an explicit scope decision.
 
 ## Reproducibility checkpoint
 
-The historical v1 replay remains:
+The historical replay route remains:
 
 ```bash
 python -m pip install -e '.[dev]'
 python scripts/verify_theorem_registry.py --check --write-report
 python scripts/verify_paper_core.py --write-report
+pytest -q
 ```
 
-A successful replay validates the declared finite witnesses and provenance paths
-of the v1 package; it is not an automated proof of the all-system theorems and
-does not validate an observed ecosystem.
+A successful replay validates declared finite witnesses, regressions, and provenance paths. It does not prove the analytic theorem family, validate a real ecosystem, or establish historical novelty.
 
-## Stable historical reference
+## Repository locations
 
-The July 2026 freeze commit remains the stable historical reference for the first
-paper core. Post-reopening releases should use new immutable tags rather than
-moving or rewriting that checkpoint.
-
-## Development locations
-
-| Research direction | Repository |
+| Research surface | Location |
 |---|---|
-| Open-composition theorem strengthening and sharpness | `zuizui0223/ccoc` |
-| Open-composition manuscript prose, bibliography, figures, and submission files | `rach-open-composition-paper` |
-| Exact macro-law transport through replacement and rewiring | `zuizui0223/mltr` |
-| Other extensions | `zuizui0223/ccoc` only after an explicit theorem-scope decision, otherwise a dedicated repository |
+| theorem code and tests | `causal_model/`, `tests/`, `scripts/` in CCOC |
+| manuscript prose and submission structure | `manuscript/` in CCOC |
+| proof/source/claim controls | `docs/` in CCOC |
+| historical archive | immutable Git history and compact archive records |
+
+There is no separate manuscript repository.
