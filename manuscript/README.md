@@ -17,7 +17,9 @@ This directory keeps submission prose inside the CCOC repository. It does not du
 - `main.md` — working main text through Discussion;
 - `related_work.md` — source-checked Related Work draft and conservative contribution boundary;
 - `supplement.md` — manuscript-facing theorem/proof spine, theorem numbering, source mapping, and replay contract;
-- `figures_spec.md` — fixed four-figure contract linked to Sections 1–6 and the Discussion;
+- `figures_spec.md` — fixed four-figure contract;
+- `figures/` — rendered SVG figures plus manuscript captions;
+- `references.bib` — bibliography records verified in the current Related Work pass;
 - `PROVENANCE.md` — theorem-code/replay traceability.
 
 The Related Work draft currently verifies Hartmanis–Stearns (1962), Paull–Unger (1959), Wang–Brayton (1993), Aziz et al. (1993), and Watanabe–Brayton (1993). Kim–Newborn and universal sequential-machine compilation remain attribution follow-up, not submission blockers, because the manuscript does not claim historical firstness for contextual minimization or bounded-local compilation.
@@ -35,12 +37,12 @@ The Related Work draft currently verifies Hartmanis–Stearns (1962), Paull–Un
 
 The supplement carries Theorem S1 (cross-grammar addressability), Theorem S2 (fixed-regular extremal family), Theorem S3 (positive coherent portability), and Proposition S4 (forced split), with CORE-1–CORE-5 mappings.
 
-The four figures are fixed as:
+The four rendered figures are:
 
-1. same plant, different future grammar;
-2. operational addressability/injection lower bound;
-3. one-action extremal bounded-local relay;
-4. portability versus a future-word forced split.
+1. `figures/fig1_future_grammar.svg` — same plant, different future grammar;
+2. `figures/fig2_operational_lower_bound.svg` — operational addressability/injection lower bound;
+3. `figures/fig3_extremal_relay.svg` — one-action extremal bounded-local relay;
+4. `figures/fig4_portability_split.svg` — portability versus a future-word forced split.
 
 ## Proof policy
 
@@ -48,11 +50,10 @@ Analytic proofs must be self-contained in manuscript/supplement prose. Python ce
 
 ## Remaining submission path
 
-1. render the four figures from `figures_spec.md`;
-2. integrate final figure calls/captions and Related Work citations into `main.md`;
-3. journal-format bibliography, declarations, and supplement;
-4. run final theorem-registry, paper-core, and full pytest replay on one immutable submission SHA;
-5. perform final human claim/authorship/funding/competing-interest/AI-disclosure review.
+1. integrate the rendered figure files/captions and bibliography keys into the final journal-formatted source;
+2. finish journal-format bibliography, declarations, and supplement;
+3. run final theorem-registry, paper-core, and full pytest replay on one immutable submission SHA;
+4. perform final human claim/authorship/funding/competing-interest/AI-disclosure review.
 
 No new theorem family is part of the first-paper path unless a current claim fails during final verification.
 
