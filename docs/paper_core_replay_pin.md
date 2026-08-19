@@ -1,35 +1,46 @@
 # Paper-core reproducibility pin
 
-> **Status:** publication provenance record. This file records the latest successful paper-core replay that covers the theorem-code surface. Documentation/manuscript-only commits after that replay do not invalidate the theorem-code anchor, but a final submission snapshot must record both the manuscript SHA and the theorem replay SHA.
+> **Status:** publication provenance record, refreshed 2026-08-19. This file records the latest successful replay known to cover the theorem-code surface currently carried by CCOC. Later changes through the current submission-cleanup main are documentation/manuscript only.
 
-## Canonical theorem replay anchor
+## Canonical theorem-code merge anchor
 
-- theorem-code commit: `305106d739de7cd188a5d67d0810155948704ae0`
-- workflow: `Paper-core reproducibility`
-- workflow run: `31475391886` (`run_number=32`)
-- event: `push` on `main`
-- conclusion: `success`
+- current theorem-code merge commit: `b4cdb994a0fb0eb7d1d5be410a267ea983287281`
+- source PR: #218, *Reduce non-core structural side branches*
+- validated PR head: `1dae2af844251c994ab528b6b9e8d092c79169da`
+
+A repository compare from the squash-merge commit `b4cdb994...` to submission-cleanup main `421e6999f20083a4749815301b633a6f77c8ad87` shows only README, documentation, claim-control, and `manuscript/` changes. No `causal_model/`, `tests/`, `scripts/`, or active workflow code changed after that theorem-code merge.
+
+## Successful validation on the PR head
+
+All relevant runs completed successfully on `1dae2af844251c994ab528b6b9e8d092c79169da`:
+
+- **Theorem registry integrity** — run `32013744855`, run number 400 — success;
+- **Grammar interface certificate replay** — run `32013744852`, run number 34 — success;
+- **Paper-core reproducibility** — run `32013744906`, run number 130 — success;
+- **tests** — run `32013744974`, run number 1125 — success.
+
+The full test matrix passed on Python **3.10, 3.11, and 3.12**.
+
+### Paper-core artifact
+
 - artifact name: `paper-core-reproducibility`
-- artifact id: `9095585378`
-- artifact digest: `sha256:531d927238b225323c55f613b04c8ec953ef0358900989de74d485a60ce3a25c`
-- artifact expiry reported by GitHub: `2026-11-09T08:55:42Z`
+- artifact id: `9282749044`
+- digest: `sha256:e93e8ebcf924e5680fc02952c2fa300d8fab0a36dedb1f7f2f37d07902a0c140`
+- created: `2026-08-17T09:10:33Z`
+- reported expiry: `2026-11-15T09:08:53Z`
 
-The workflow validates theorem-registry provenance, the allowlisted CORE regression suite, and `scripts/verify_paper_core.py`, then writes the machine-readable replay reports.
+## Submission provenance model
 
-## Current use
+CCOC manuscript work lives inside the same repository under `manuscript/`. Submission provenance therefore has two layers:
 
-CCOC manuscript work now lives inside the same repository under `manuscript/`. Therefore submission provenance has two layers:
+1. **submission snapshot SHA** — the exact CCOC commit containing the manuscript, claim controls, and repository surface submitted to the journal;
+2. **theorem replay anchor** — the successful theorem-code validation above, or a later successful replay if any theorem/test/script/registry/workflow path changes.
 
-1. **submission snapshot SHA** — exact CCOC commit containing the manuscript, claim controls, and current repository surface;
-2. **theorem replay anchor** — most recent successful paper-core run covering the theorem-code state used by that snapshot.
-
-If no paper-core theorem/test/script/registry file changed after the replay anchor, the historical successful replay remains valid for the theorem code while later documentation/manuscript commits are separately pinned by the submission snapshot SHA.
-
-If any paper-core theorem/test/script/registry path changes, this replay pin becomes stale and a new successful run is required before submission.
+Documentation/manuscript-only commits do not invalidate the theorem-code replay. Any change to the paper-core theorem/test/script/registry/workflow surface does.
 
 ## Final submission rule
 
-Before submission:
+Immediately before submission, run on the intended submission snapshot:
 
 ```bash
 python scripts/verify_theorem_registry.py --check --write-report
@@ -37,16 +48,16 @@ python scripts/verify_paper_core.py --write-report
 pytest -q
 ```
 
-Record the exact successful commit and preserve the generated replay reports with the submission/release materials. Never cite `main` or `latest` as proof provenance.
+Record the exact successful SHA and preserve the generated replay reports with durable submission/release materials. Never cite `main` or `latest` as proof provenance.
 
-Because GitHub Actions artifacts expire, the final manuscript/release workflow should preserve the machine-readable reports in a durable release or supplement.
+Because GitHub Actions artifacts expire, preserve final machine-readable reports in a durable release or supplement.
 
 ## Claim boundary
 
-A successful replay demonstrates consistency of declared finite certificates, regressions, registry provenance, and synthetic witness instances. It does not:
+A successful replay establishes consistency of declared finite certificates, regressions, registry provenance, and synthetic witness instances. It does not:
 
 - prove the general analytic theorems;
-- identify the ecological future grammar from observations;
+- infer the ecological future grammar from observations;
 - validate a real ecosystem;
 - establish historical priority;
-- turn a bounded-local sharpness witness into a firstness claim.
+- turn the bounded-local relay into a firstness claim.
