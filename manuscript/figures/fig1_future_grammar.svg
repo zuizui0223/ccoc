@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="860" viewBox="0 0 1400 860">
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#333"/></marker></defs>
+<rect width="1400" height="860" fill="white"/>
+<text x="60" y="55" font-family="Arial" font-size="30" font-weight="700">Figure 1. Same system, different future grammar</text>
+<text x="70" y="115" font-family="Arial" font-size="24" font-weight="700">A  Fixed controlled system</text>
+<circle cx="250" cy="260" r="58" fill="#f3f3f3" stroke="#222" stroke-width="3"/><text x="220" y="268" font-family="Arial" font-size="22">focal</text>
+<circle cx="520" cy="175" r="46" fill="#fafafa" stroke="#555" stroke-width="2"/><circle cx="520" cy="260" r="46" fill="#fafafa" stroke="#555" stroke-width="2"/><circle cx="520" cy="345" r="46" fill="#fafafa" stroke="#555" stroke-width="2"/>
+<text x="500" y="181" font-family="Arial" font-size="19">E₁</text><text x="500" y="266" font-family="Arial" font-size="19">E₂</text><text x="500" y="351" font-family="Arial" font-size="19">E₃</text>
+<line x1="308" y1="245" x2="472" y2="185" stroke="#777" stroke-width="2"/><line x1="308" y1="260" x2="472" y2="260" stroke="#777" stroke-width="2"/><line x1="308" y1="275" x2="472" y2="335" stroke="#777" stroke-width="2"/>
+<text x="95" y="405" font-family="Arial" font-size="19">Plant and transition rules stay fixed.</text>
+<text x="760" y="115" font-family="Arial" font-size="24" font-weight="700">B  Closed grammar</text>
+<rect x="740" y="145" width="560" height="240" rx="18" fill="#fafafa" stroke="#888" stroke-width="2"/>
+<circle cx="835" cy="260" r="44" fill="#f3f3f3" stroke="#222" stroke-width="3"/><text x="812" y="268" font-family="Arial" font-size="20">focal</text>
+<circle cx="1090" cy="190" r="38" fill="#fff" stroke="#777"/><circle cx="1090" cy="260" r="38" fill="#fff" stroke="#777"/><circle cx="1090" cy="330" r="38" fill="#fff" stroke="#777"/>
+<line x1="879" y1="260" x2="1050" y2="260" stroke="#222" stroke-width="4" marker-end="url(#a)"/><line x1="879" y1="245" x2="1050" y2="200" stroke="#bbb" stroke-width="2" stroke-dasharray="7 7"/><line x1="879" y1="275" x2="1050" y2="320" stroke="#bbb" stroke-width="2" stroke-dasharray="7 7"/>
+<text x="780" y="365" font-family="Arial" font-size="18">Only one pathway is legally exposable; many microstates share one response class.</text>
+<text x="70" y="485" font-family="Arial" font-size="24" font-weight="700">C  Open grammar</text>
+<rect x="60" y="510" width="1240" height="230" rx="18" fill="#fafafa" stroke="#888" stroke-width="2"/>
+<circle cx="195" cy="625" r="44" fill="#f3f3f3" stroke="#222" stroke-width="3"/><text x="172" y="633" font-family="Arial" font-size="20">focal</text>
+<circle cx="505" cy="560" r="38" fill="#fff" stroke="#555"/><circle cx="505" cy="625" r="38" fill="#fff" stroke="#555"/><circle cx="505" cy="690" r="38" fill="#fff" stroke="#555"/>
+<line x1="239" y1="610" x2="465" y2="570" stroke="#222" stroke-width="3" marker-end="url(#a)"/><line x1="239" y1="625" x2="465" y2="625" stroke="#222" stroke-width="3" marker-end="url(#a)"/><line x1="239" y1="640" x2="465" y2="680" stroke="#222" stroke-width="3" marker-end="url(#a)"/>
+<text x="610" y="585" font-family="Arial" font-size="22">Previously dormant modules become legally addressable.</text>
+<text x="610" y="635" font-family="Arial" font-size="22">Old response class splits under the larger future contract.</text>
+<text x="610" y="695" font-family="Arial" font-size="24" font-weight="700">closed functional equivalence ≠ open-future causal equivalence</text>
+<text x="60" y="815" font-family="Arial" font-size="17">Conceptual diagram only: opening changes legal futures, not the physical plant.</text>
+</svg>
