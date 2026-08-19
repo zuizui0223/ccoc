@@ -1,6 +1,6 @@
 # CCOC current-tree cleanup manifest
 
-> **Updated 2026-08-17.** Git history is the archive; current `main` carries only the publication core and genuinely distinct strengthenings.
+> **Updated 2026-08-19.** Git history is the archive; current `main` carries only the publication core, manuscript surface, and genuinely distinct strengthenings.
 
 ## KEEP — publication core
 
@@ -26,7 +26,14 @@
 - `codebook_families.py`
 - `approximate_addressability.py`
 
-Codebooks weaken the full-product realizability premise. Approximate addressability changes exact recovery to bounded-error recovery. These pass the post-cleanup retention rule.
+Codebooks weaken the full-product realizability premise. Approximate addressability changes exact recovery to bounded-error recovery. Neither expands the first-paper headline theorem count.
+
+## KEEP — submission surface
+
+- `manuscript/` — manuscript prose and submission-facing structure inside CCOC
+- `docs/submission_conversion_decision_2026-08-19.md`
+- `docs/cleanup_consolidation_2026-08-19.md`
+- theorem/claim/source traceability documents required to audit the paper
 
 ## HISTORICAL / ROUTED — completed passes
 
@@ -42,29 +49,26 @@ Recovery pin: `0bc467004a8da9931f6a87d15048199f4b004fce`.
 ### Non-core internal structural side branches
 Recovery pin: `0d3424a9090b86eae4e369d3749bbe39b6b03432`.
 
-This fourth pass historicalizes:
+Historicalized families include exact converse/reuse and terminal-grammar variants; generic canonical boundary quotients beyond the retained foundation dependency; union-refinement/interface-inflation decomposition layers; redundant single-action/resource closures; observation-window completion; budget/depletion/capacity/saturation/adaptation variants; continuous-time, mortality, stochastic, cross-guild, spatial, evidence, mechanism, and inherited-law branches.
 
-- exact converse/reuse and terminal-grammar variants;
-- generic canonical boundary-quotient branches that are not the retained CORE-1 foundation dependency;
-- union-refinement/interface-inflation decomposition layers;
-- redundant single-action/resource closures subsumed by the fixed-regular extremal package;
-- observation-window completion executable theorem/witness;
-- budget/depletion/capacity/saturation/adaptation resource variants;
-- continuous-time, mortality, stochastic, cross-guild, and spatial ecological special cases.
+Their dedicated executable surfaces belong in Git history or their owning repositories, not current CCOC.
 
-Their dedicated tests, docs, scripts, and specialized workflows are retired with them.
+## REMOVED — obsolete manuscript split
 
-## COMPATIBILITY
+The separate `rach-open-composition-paper` plan is abandoned. `docs/manuscript_repo_bootstrap_manifest.md` is removed. Manuscript drafting now lives under `manuscript/` in CCOC.
 
-`delayed_addressability.py` remains only as a tiny forwarding shim for a current CORE-4 import. It has no theorem logic. No other historical surface is retained for hypothetical compatibility.
+## COMPATIBILITY DEBT
+
+`delayed_addressability.py` remains only as a tiny forwarding shim for live imports. It has no theorem logic and is the final accepted compatibility artifact. Remove it after those imports are migrated to `shared_grammar.py`.
 
 ## Current provenance path
 
 - theorem registry + integrity verifier;
 - paper-core replay;
 - surviving structural workflows;
+- in-repository manuscript traceability;
 - immutable Git pins/history.
 
 ## Stop rule
 
-After the fourth cleanup pass, broad repository reduction stops unless CI exposes a concrete dangling dependency. Further work is novelty verification and manuscript transfer, not additional theorem or cleanup families.
+Further deletion requires a concrete duplicate, dead dependency, or manuscript irrelevance. The main line is now manuscript consolidation and submission QA rather than new theorem accumulation.
