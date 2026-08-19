@@ -16,11 +16,13 @@ This directory keeps submission prose inside the CCOC repository. It does not du
 
 - `main.md` — working main text through Discussion;
 - `related_work.md` — source-checked Related Work draft and conservative contribution boundary;
+- `supplement.md` — manuscript-facing theorem/proof spine, theorem numbering, source mapping, and replay contract;
+- `figures_spec.md` — fixed four-figure contract linked to Sections 1–6 and the Discussion;
 - `PROVENANCE.md` — theorem-code/replay traceability.
 
 The Related Work draft currently verifies Hartmanis–Stearns (1962), Paull–Unger (1959), Wang–Brayton (1993), Aziz et al. (1993), and Watanabe–Brayton (1993). Kim–Newborn and universal sequential-machine compilation remain attribution follow-up, not submission blockers, because the manuscript does not claim historical firstness for contextual minimization or bounded-local compilation.
 
-## Planned structure
+## Fixed paper architecture
 
 1. Ecological question: closed-context functional equivalence versus open-future causal equivalence
 2. Exact grammar-aware response interface
@@ -31,9 +33,28 @@ The Related Work draft currently verifies Hartmanis–Stearns (1962), Paull–Un
 7. Ecological interpretation and limitations
 8. Discussion + source-checked Related Work
 
+The supplement carries Theorem S1 (cross-grammar addressability), Theorem S2 (fixed-regular extremal family), Theorem S3 (positive coherent portability), and Proposition S4 (forced split), with CORE-1–CORE-5 mappings.
+
+The four figures are fixed as:
+
+1. same plant, different future grammar;
+2. operational addressability/injection lower bound;
+3. one-action extremal bounded-local relay;
+4. portability versus a future-word forced split.
+
 ## Proof policy
 
 Analytic proofs must be self-contained in manuscript/supplement prose. Python certificates are reproducibility support only.
+
+## Remaining submission path
+
+1. render the four figures from `figures_spec.md`;
+2. integrate final figure calls/captions and Related Work citations into `main.md`;
+3. journal-format bibliography, declarations, and supplement;
+4. run final theorem-registry, paper-core, and full pytest replay on one immutable submission SHA;
+5. perform final human claim/authorship/funding/competing-interest/AI-disclosure review.
+
+No new theorem family is part of the first-paper path unless a current claim fails during final verification.
 
 ## Provenance
 
