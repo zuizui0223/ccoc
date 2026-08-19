@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="980" viewBox="0 0 1500 980">
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#333"/></marker></defs>
+<rect width="1500" height="980" fill="white"/>
+<text x="55" y="55" font-family="Arial" font-size="30" font-weight="700">Figure 3. One-action extremal bounded-local witness</text>
+<text x="70" y="115" font-family="Arial" font-size="24" font-weight="700">A  Fixed relay network</text>
+<circle cx="330" cy="190" r="44" fill="#f3f3f3" stroke="#222" stroke-width="3"/><text x="302" y="198" font-family="Arial" font-size="19">ROOT</text>
+<circle cx="330" cy="310" r="34" fill="#fff" stroke="#555"/><circle cx="230" cy="420" r="32" fill="#fff" stroke="#555"/><circle cx="430" cy="420" r="32" fill="#fff" stroke="#555"/>
+<circle cx="180" cy="540" r="30" fill="#fafafa" stroke="#555"/><circle cx="280" cy="540" r="30" fill="#fafafa" stroke="#555"/><circle cx="380" cy="540" r="30" fill="#fafafa" stroke="#555"/><circle cx="480" cy="540" r="30" fill="#fafafa" stroke="#555"/>
+<line x1="330" y1="234" x2="330" y2="276" stroke="#333" stroke-width="3"/><line x1="310" y1="337" x2="250" y2="393" stroke="#333" stroke-width="3"/><line x1="350" y1="337" x2="410" y2="393" stroke="#333" stroke-width="3"/>
+<line x1="217" y1="447" x2="190" y2="510" stroke="#333" stroke-width="3"/><line x1="243" y1="447" x2="270" y2="510" stroke="#333" stroke-width="3"/><line x1="417" y1="447" x2="390" y2="510" stroke="#333" stroke-width="3"/><line x1="443" y1="447" x2="470" y2="510" stroke="#333" stroke-width="3"/>
+<text x="166" y="547" font-family="Arial" font-size="18">b₁</text><text x="266" y="547" font-family="Arial" font-size="18">b₂</text><text x="366" y="547" font-family="Arial" font-size="18">…</text><text x="465" y="547" font-family="Arial" font-size="18">b_m</text>
+<text x="90" y="610" font-family="Arial" font-size="18">tree, degree ≤ 3; one edge separates ROOT from the exterior relay body</text>
+<text x="680" y="115" font-family="Arial" font-size="24" font-weight="700">B  Closed grammar</text>
+<rect x="670" y="145" width="720" height="180" rx="16" fill="#fafafa" stroke="#777" stroke-width="2"/>
+<text x="720" y="205" font-family="Arial" font-size="28">L_C = {0, 1, tick}*</text>
+<text x="720" y="252" font-family="Arial" font-size="22">fire is illegal; address and tick are already legal</text>
+<text x="720" y="295" font-family="Arial" font-size="25" font-weight="700">|P_C| = 2,  K_C = 1</text>
+<text x="680" y="385" font-family="Arial" font-size="24" font-weight="700">C  Open grammar</text>
+<rect x="670" y="415" width="720" height="240" rx="16" fill="#fafafa" stroke="#777" stroke-width="2"/>
+<text x="720" y="475" font-family="Arial" font-size="28">L_O = {0, 1, fire, tick}*</text>
+<text x="720" y="520" font-family="Arial" font-size="22">Only fire becomes newly legal.</text>
+<text x="720" y="570" font-family="Arial" font-size="24">query leaf j:  a_j · fire · tick^(d_j+1)</text>
+<line x1="960" y1="595" x2="1240" y2="595" stroke="#333" stroke-width="3" marker-end="url(#a)"/><text x="1010" y="585" font-family="Arial" font-size="19">returns b_j to ROOT</text>
+<text x="70" y="710" font-family="Arial" font-size="24" font-weight="700">D  Extremal quantitative result</text>
+<rect x="60" y="740" width="1330" height="165" rx="16" fill="#fafafa" stroke="#555" stroke-width="2"/>
+<text x="115" y="800" font-family="Arial" font-size="30" font-weight="700">|P_O| = 2^(m+1)   and   K_O − K_C = m</text>
+<text x="115" y="848" font-family="Arial" font-size="22">fixed four-symbol action alphabet · bounded local alphabets · degree ≤ 3 · one-edge focal/exterior cut</text>
+<text x="115" y="885" font-family="Arial" font-size="22">worst query length = 2⌈log₂ m⌉ + 2</text>
+<text x="60" y="950" font-family="Arial" font-size="17">Explicit sharpness witness only; no claim of historical firstness for bounded-local compilation.</text>
+</svg>
