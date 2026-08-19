@@ -1,14 +1,10 @@
 # Paper-core reproducibility pin
 
-> **Status:** publication provenance record, 2026-08-12. This file records the
-> latest successful `Paper-core reproducibility` run that includes the current
-> theorem-code surface. It is not a release tag and it is not a substitute for the
-> manuscript proofs.
+> **Status:** publication provenance record. This file records the latest successful paper-core replay that covers the theorem-code surface. Documentation/manuscript-only commits after that replay do not invalidate the theorem-code anchor, but a final submission snapshot must record both the manuscript SHA and the theorem replay SHA.
 
-## Canonical replay anchor
+## Canonical theorem replay anchor
 
 - theorem-code commit: `305106d739de7cd188a5d67d0810155948704ae0`
-- commit title: `Generalize relay latency with a bounded-local causal-cone bound`
 - workflow: `Paper-core reproducibility`
 - workflow run: `31475391886` (`run_number=32`)
 - event: `push` on `main`
@@ -18,58 +14,39 @@
 - artifact digest: `sha256:531d927238b225323c55f613b04c8ec953ef0358900989de74d485a60ce3a25c`
 - artifact expiry reported by GitHub: `2026-11-09T08:55:42Z`
 
-The workflow executes theorem-registry provenance validation, the allowlisted
-`CORE-1`–`CORE-5` regression suite, and `scripts/verify_paper_core.py`, then uploads
-`artifacts/paper_core_reproducibility_report.json` and
-`artifacts/theorem_registry_report.json`.
+The workflow validates theorem-registry provenance, the allowlisted CORE regression suite, and `scripts/verify_paper_core.py`, then writes the machine-readable replay reports.
 
-## Why this remains the theorem replay anchor after later documentation commits
+## Current use
 
-At the time this record was created, current `main` was
+CCOC manuscript work now lives inside the same repository under `manuscript/`. Therefore submission provenance has two layers:
 
-`892192ab730e0ef2f6995d3905d90a6aeb477e00`.
+1. **submission snapshot SHA** — exact CCOC commit containing the manuscript, claim controls, and current repository surface;
+2. **theorem replay anchor** — most recent successful paper-core run covering the theorem-code state used by that snapshot.
 
-A repository compare from the successful replay SHA `305106d7...` to that main
-head showed four later commits affecting only:
+If no paper-core theorem/test/script/registry file changed after the replay anchor, the historical successful replay remains valid for the theorem code while later documentation/manuscript commits are separately pinned by the submission snapshot SHA.
 
-- `README.md`;
-- `docs/manuscript_traceability.md`;
-- `docs/quantitative_prior_art_matrix.md`;
-- `docs/universal_compilation_reduction_risk.md`;
-- `docs/universal_compilation_source_audit.md`;
-- `docs/universal_compiler_acquisition_log_2026-08-12.md`.
+If any paper-core theorem/test/script/registry path changes, this replay pin becomes stale and a new successful run is required before submission.
 
-No `causal_model/`, `tests/`, `scripts/`, theorem-registry, or paper-core workflow
-file changed in that interval. Therefore run `31475391886` is the most recent
-successful replay of the theorem-code state currently carried by the archive;
-subsequent changes are claim-control/provenance documentation.
+## Final submission rule
 
-This statement is deliberately narrower than saying that every later commit was
-executed by the workflow.
+Before submission:
 
-## Submission transfer rule
+```bash
+python scripts/verify_theorem_registry.py --check --write-report
+python scripts/verify_paper_core.py --write-report
+pytest -q
+```
 
-When `rach-open-composition-paper` is created, record both:
+Record the exact successful commit and preserve the generated replay reports with the submission/release materials. Never cite `main` or `latest` as proof provenance.
 
-1. the final CCOC/RACH commit or release used by the manuscript; and
-2. this successful theorem replay anchor, or a later successful replay if theorem
-   code changes before submission.
-
-If any file under the paper-core workflow's theorem/test/script path filter changes
-later, this pin becomes stale and a newer successful run must replace it.
-
-Because GitHub Actions artifacts expire, the manuscript/release workflow should
-preserve the machine-readable replay reports in a permanent release or supplement
-before the reported artifact expiry date. The artifact's current availability is
-not itself a permanence guarantee.
+Because GitHub Actions artifacts expire, the final manuscript/release workflow should preserve the machine-readable reports in a durable release or supplement.
 
 ## Claim boundary
 
-A successful replay demonstrates consistency of the declared finite certificates,
-regressions, registry provenance, and synthetic witness instances. It does not:
+A successful replay demonstrates consistency of declared finite certificates, regressions, registry provenance, and synthetic witness instances. It does not:
 
-- prove the manuscript's general analytic theorems;
-- identify an ecological grammar from observations;
+- prove the general analytic theorems;
+- identify the ecological future grammar from observations;
 - validate a real ecosystem;
-- resolve historical priority or the universal-compilation novelty risk in issue
-  #122.
+- establish historical priority;
+- turn a bounded-local sharpness witness into a firstness claim.
