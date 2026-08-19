@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#333"/></marker></defs>
+<rect width="1400" height="900" fill="white"/>
+<text x="55" y="55" font-family="Arial" font-size="30" font-weight="700">Figure 4. Portability versus forced split</text>
+<text x="75" y="120" font-family="Arial" font-size="24" font-weight="700">A  Positive case: new behavior is uniform inside the old fiber</text>
+<ellipse cx="280" cy="280" rx="180" ry="120" fill="#fafafa" stroke="#555" stroke-width="2"/>
+<circle cx="230" cy="265" r="26" fill="#fff" stroke="#333"/><circle cx="330" cy="295" r="26" fill="#fff" stroke="#333"/><text x="210" y="270" font-family="Arial" font-size="18">x</text><text x="315" y="300" font-family="Arial" font-size="18">y</text><text x="205" y="385" font-family="Arial" font-size="19">same macro fiber Q</text>
+<circle cx="610" cy="280" r="55" fill="#f3f3f3" stroke="#333" stroke-width="2"/><text x="580" y="288" font-family="Arial" font-size="19">Q′</text>
+<line x1="255" y1="255" x2="555" y2="270" stroke="#333" stroke-width="3" marker-end="url(#a)"/><line x1="355" y1="295" x2="555" y2="290" stroke="#333" stroke-width="3" marker-end="url(#a)"/>
+<text x="390" y="235" font-family="Arial" font-size="18">new legal action a</text><text x="400" y="335" font-family="Arial" font-size="18">same macro successor/output</text>
+<text x="780" y="120" font-family="Arial" font-size="24" font-weight="700">B  Nested-stage coherence</text>
+<rect x="770" y="160" width="510" height="240" rx="16" fill="#fafafa" stroke="#777" stroke-width="2"/>
+<text x="810" y="220" font-family="Arial" font-size="21">Stage m:      x,y ↦ Q</text><text x="810" y="275" font-family="Arial" font-size="21">Embedding: old labels preserved</text><text x="810" y="330" font-family="Arial" font-size="21">Stage m+1:  same macro dynamics</text><text x="810" y="375" font-family="Arial" font-size="21" font-weight="700">⇒ one portable macro-law</text>
+<text x="75" y="495" font-family="Arial" font-size="24" font-weight="700">C  Negative case: newly legal future splits an old fiber</text>
+<ellipse cx="280" cy="650" rx="180" ry="120" fill="#fafafa" stroke="#555" stroke-width="2"/>
+<circle cx="230" cy="635" r="26" fill="#fff" stroke="#333"/><circle cx="330" cy="665" r="26" fill="#fff" stroke="#333"/><text x="210" y="640" font-family="Arial" font-size="18">x</text><text x="315" y="670" font-family="Arial" font-size="18">y</text>
+<circle cx="600" cy="590" r="48" fill="#f3f3f3" stroke="#333" stroke-width="2"/><circle cx="600" cy="720" r="48" fill="#f3f3f3" stroke="#333" stroke-width="2"/><text x="580" y="596" font-family="Arial" font-size="18">Q₁</text><text x="580" y="726" font-family="Arial" font-size="18">Q₂</text>
+<line x1="255" y1="625" x2="550" y2="595" stroke="#333" stroke-width="3" marker-end="url(#a)"/><line x1="355" y1="675" x2="550" y2="710" stroke="#333" stroke-width="3" marker-end="url(#a)"/>
+<text x="390" y="610" font-family="Arial" font-size="18">future word w</text><text x="390" y="715" font-family="Arial" font-size="18">different trace/successor</text>
+<text x="780" y="495" font-family="Arial" font-size="24" font-weight="700">D  Decision rule</text>
+<rect x="770" y="530" width="530" height="250" rx="16" fill="#fafafa" stroke="#777" stroke-width="2"/>
+<text x="810" y="595" font-family="Arial" font-size="22">new behavior uniform within old fibers</text><text x="890" y="635" font-family="Arial" font-size="23" font-weight="700">⇒ portability may hold</text><text x="810" y="700" font-family="Arial" font-size="22">new behavior splits an old fiber</text><text x="875" y="740" font-family="Arial" font-size="23" font-weight="700">⇒ that merge is not portable</text>
+<text x="65" y="860" font-family="Arial" font-size="17">The positive theorem is sufficient; the negative panel is a local obstruction to one proposed merge.</text>
+</svg>
