@@ -26,6 +26,8 @@ The central distinction is
 
 The statement does not mean that every open system is irreducibly complex. Nor does it claim that context-dependent state minimization is itself new. The narrower quantitative question is how large the exact response-interface penalty can become when the physical system is held fixed and only the legal future grammar is enlarged.
 
+**Figure 1** summarizes this contract: the controlled plant is unchanged, but the set of legal futures expands, and a state merge that was exact under the closed grammar can be split by the newly admissible future.
+
 ### 1.1 State identity depends on the future contract
 
 Suppose two global configurations currently produce the same focal output. Under a restricted future in which only one interaction pathway can ever be activated, the configurations may remain indistinguishable for every legal future word. An exact model for that restricted task may therefore merge them. If a larger future grammar later allows another pathway to be selectively exposed, the same pair may cease to be mergeable.
@@ -147,7 +149,7 @@ d_j\!\left(
 
 for every jointly realizable comparison state. The decoder for one module must work independently of the values of the other coordinates.
 
-The condition is operational rather than merely combinatorial: each distinction counted in the lower bound has an explicit legal future experiment that can expose it.
+The condition is operational rather than merely combinatorial: each distinction counted in the lower bound has an explicit legal future experiment that can expose it. **Figure 2** shows this pair-separation mechanism and the resulting injection into open response classes.
 
 ### 3.2 Addressability lower bound
 
@@ -303,6 +305,8 @@ Because a two-class quotient on a domain of size \(2^{m+1}\) can gain at most \(
 
 The primitive action alphabet is fixed at four symbols for all \(m\), and the closed/open grammar descriptions are constant size. The result therefore does not arise by giving every new exterior coordinate its own primitive action name. The same addressing grammar is reused as the system grows; what scales is the amount of dormant state that a legal future can navigate to and expose.
 
+**Figure 3** displays the relay, the single newly legal `fire` action, and the simultaneous bounds on quotient size, degree, local alphabets, cut width, and access length.
+
 ## 5. Bounded-local sharpness realization
 
 A centralized decoder could trivially store all \(m\) exterior bits and reveal them on demand. That would leave open whether the separation is merely an artifact of global access or a large local rule. The relay construction removes that explanation.
@@ -370,7 +374,7 @@ This sufficient condition is stronger than merely bounding the number of coarse 
 
 The corresponding local obstruction is immediate. If two old states are merged by a proposed macrostate, remain merged after embedding, but a newly legal future word produces different focal traces from their images, then that proposed merge cannot belong to an exact portable macro-law. The future word is an explicit certificate of why the old equivalence failed.
 
-The positive and negative results therefore meet at the same conceptual boundary: future expansion is harmless exactly in examples where newly legal behavior continues to factor through the old macro semantics; it forces refinement when it exposes distinctions internal to an old macro fiber.
+The positive and negative results therefore meet at the same conceptual boundary: future expansion is harmless exactly in examples where newly legal behavior continues to factor through the old macro semantics; it forces refinement when it exposes distinctions internal to an old macro fiber. **Figure 4** contrasts these two cases.
 
 ## 7. Ecological interpretation
 
@@ -400,13 +404,13 @@ Accordingly, the ecological contribution of the theorem is diagnostic and concep
 
 ## 8. Discussion
 
-### 8.1 The contribution is quantitative, not the slogan that context matters
+### 8.1 Relation to contextual minimization and state-reduction ancestry
 
-State reduction under input restrictions, environment-dependent minimization, and related context-sensitive equivalence ideas have substantial classical ancestry. The paper therefore does not assign novelty to the observation that a richer set of inputs or futures can refine a state partition.
+Classical incompletely specified-machine minimization, environment/input-dependent reduction, interacting-FSM optimization, and reduction/realization noncommutation already establish that state reduction depends on the behavior or environment one asks a machine to preserve. The source-checked comparison is summarized in `manuscript/related_work.md`.
 
-The narrower contribution is the controlled quantitative comparison used here: the same system can possess a tiny exact response interface under the closed grammar while a minimal opening of legal future behavior activates the maximum possible additional exact response distinction on the comparison domain. The explicit local construction shows that this separation survives fixed primitive controls, bounded local state, pairwise radius-one dynamics, bounded degree, and a one-edge focal/exterior cut.
+The present paper therefore does not assign novelty to the slogan that context matters, to generic quotient refinement under a richer test family, to pair-separation/cardinality lower bounds, or to noncommutation in the abstract. The narrower comparison is quantitative and contract-specific: one fixed controlled family retains a two-class exact response quotient under the closed grammar, while legalizing one primitive action makes the open quotient discrete on \(2^{m+1}\) comparison states, and the same extremal gap is realized under a fixed four-symbol alphabet, bounded local alphabets, pairwise radius-one dynamics, maximum degree three, a one-edge focal/exterior cut, and logarithmic causal access.
 
-A source-checked Related Work section will distinguish this claim from classical contextual minimization, incomplete-machine reduction, promise/domain restrictions, reduction/realization noncommutation, modular sequential-machine synthesis, and modern causal or compositional abstraction. Historical firstness of the relay realization is not needed for the main argument.
+Historical firstness of generic bounded-local compilation is not required for this argument. The relay is used as an explicit constrained sharpness construction.
 
 ### 8.2 What the lower bound says about ecological state choice
 
@@ -428,14 +432,6 @@ Finally, interface memory is only one notion of ecological complexity. The resul
 
 The first-paper result leaves several mathematically distinct directions: approximate or stochastic portability rather than approximate addressability alone; necessity or converse conditions for delimited classes of grammar expansion; coupled tradeoffs among response memory, control, and latency; and ecological structural assumptions that would upper-bound addressability from dispersal or network constraints. These are follow-up problems rather than prerequisites for the present manuscript.
 
-## Supplement plan
+## Supplement
 
-The supplement will contain:
-
-- complete analytic proofs with theorem numbering matched to the main text;
-- theorem-to-code and theorem-to-test traceability;
-- finite replay specification and immutable Git provenance;
-- constrained-codebook details and examples;
-- bounded-local construction details and local causal-cone support;
-- approximate-addressability extension as secondary material;
-- source-checked Related Work audit supporting the conservative novelty boundary.
+The manuscript-facing supplement is `manuscript/supplement.md`. It contains the proof spine, theorem-to-CORE/source traceability, and final replay contract. Figure production is controlled by `manuscript/figures_spec.md`.
