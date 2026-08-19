@@ -27,6 +27,10 @@ The current strengthening surface adds two things that materially change this co
 - **constrained codebooks:** the lower bound does not require the full Cartesian product of exterior states; large inflation can survive strong compositional constraints;
 - **approximate addressability:** fixed decoding error does not immediately erase the memory lower bound.
 
+## Submission mode
+
+The first paper is now in **submission-conversion mode**, not theorem-expansion mode. The current task is to finish the narrow prior-art/compiler gates, pin one immutable theorem SHA, and transfer only the publication core into a dedicated manuscript workspace. See [`docs/submission_conversion_decision_2026-08-19.md`](docs/submission_conversion_decision_2026-08-19.md).
+
 ## CREST role and claim firewall
 
 At program level, CCOC is the **future-sufficiency audit** of Contract-Relative Ecological State Theory (CREST): it asks which distinctions a declared future grammar can make operationally necessary.
@@ -77,11 +81,12 @@ Finite certificates and replay verify current implementations; quantified theore
 ## Start here
 
 - [CREST program synthesis](https://github.com/zuizui0223/mrm/blob/main/docs/contract_relative_ecological_state_theory.md) — canonical four-audit program map and cross-repository firewalls
+- `docs/submission_conversion_decision_2026-08-19.md` — current first-paper submission-conversion plan and stop rule
 - `docs/theorem_spine.md` — current CORE-1–5 proof dependency graph and analytic proof locations
 - `docs/claim_status_audit.md` — current proof status, executable surfaces, and non-claims
 - `docs/current_architecture.md` — current code/theorem map
 - `docs/core_surface_cleanup_manifest_2026-08-14.md` — executed cleanup decisions
-- `docs/residual_novelty_decision_2026-08-12.md` — novelty gate
+- `docs/residual_novelty_decision_2026-08-13.md` — current novelty gate
 - `docs/ccoc_mltr_claim_firewall_2026-08-16.md` — CCOC/MLTR boundary
 - `docs/theorem_registry.md` — executable theorem registry / current theorem atlas
 - `docs/nonempirical_scope.md` — nonempirical scope policy
