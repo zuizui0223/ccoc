@@ -22,20 +22,28 @@ The strongest explicit family has
 |P_C|=2,\qquad |P_O|=2^{m+1},\qquad K_O-K_C=m.
 \]
 
-The current strengthening surface adds two things that materially change this core claim:
+Two retained strengthenings support rather than expand the first-paper spine:
 
-- **constrained codebooks:** the lower bound does not require the full Cartesian product of exterior states; large inflation can survive strong compositional constraints;
-- **approximate addressability:** fixed decoding error does not immediately erase the memory lower bound.
+- **constrained codebooks:** large inflation does not require the full Cartesian product of exterior states;
+- **approximate addressability:** bounded decoding error does not immediately erase the memory lower bound.
 
 ## Submission mode
 
-The first paper is now in **submission-conversion mode**, not theorem-expansion mode. The current task is to finish the narrow prior-art/compiler gates, pin one immutable theorem SHA, and transfer only the publication core into a dedicated manuscript workspace. See [`docs/submission_conversion_decision_2026-08-19.md`](docs/submission_conversion_decision_2026-08-19.md).
+The first paper is in **submission-conversion mode**, not theorem-expansion mode. Manuscript preparation stays inside this repository under [`manuscript/`](manuscript/); no separate manuscript repository is required.
+
+Current operational documents:
+
+- [`docs/submission_conversion_decision_2026-08-19.md`](docs/submission_conversion_decision_2026-08-19.md) — journal/claim strategy;
+- [`docs/cleanup_consolidation_2026-08-19.md`](docs/cleanup_consolidation_2026-08-19.md) — single-repository retention rule;
+- [`docs/manuscript_transfer_manifest_2026-08-14.md`](docs/manuscript_transfer_manifest_2026-08-14.md) — in-repository manuscript integration contract.
+
+The bounded-local relay is used as a constrained extremal/sharpness realization **without historical-firstness language**. The H1–H4 classical compiler audit remains useful Related Work provenance but is non-blocking for manuscript drafting.
 
 ## CREST role and claim firewall
 
 At program level, CCOC is the **future-sufficiency audit** of Contract-Relative Ecological State Theory (CREST): it asks which distinctions a declared future grammar can make operationally necessary.
 
-The canonical four-audit synthesis is maintained in MRM at [Contract-Relative Ecological State Theory (CREST)](https://github.com/zuizui0223/mrm/blob/main/docs/contract_relative_ecological_state_theory.md). CCOC remains a separate theorem and provenance unit; CREST does not merge the four quotient/refinement problems into one theorem.
+The dedicated CREST synthesis lives at [zuizui0223/crest](https://github.com/zuizui0223/crest). CCOC remains a separate theorem and provenance unit; CREST does not merge the four quotient/refinement problems into one theorem.
 
 CCOC owns independently optimized closed-vs-open interface complexity. Companion ownership remains:
 
@@ -43,7 +51,7 @@ CCOC owns independently optimized closed-vs-open interface complexity. Companion
 - retained mechanism disagreement → **MRM**;
 - finite/noisy evidence, monitoring design, proof-carrying evidence admission → **CED**.
 
-Passing the CCOC audit does not imply semantic coherence after replacement, robustness to retained mechanism uncertainty, or evidential licensing. CREST is the routing rule; shared vocabulary is not enough to keep a theorem family here.
+Passing the CCOC audit does not imply semantic coherence after replacement, robustness to retained mechanism uncertainty, or evidential licensing.
 
 ## Current code surface
 
@@ -61,9 +69,9 @@ Historical converse/reuse, generic canonical-quotient, resource-accounting, obse
 
 Files are classified as:
 
-- **CURRENT** — publication core or a genuinely distinct strengthening;
-- **COMPATIBILITY** — required by a demonstrated live current-tree consumer;
-- **HISTORICAL** — valid conclusion/provenance retained in Git history or canonical records;
+- **CURRENT** — publication core, manuscript surface, or genuinely distinct strengthening;
+- **COMPATIBILITY** — a demonstrated temporary live dependency only;
+- **HISTORICAL** — valid conclusion/provenance recoverable from Git history or compact archive records;
 - **REMOVE** — duplicate, misrouted, or superseded current-tree surface.
 
 A valid theorem or ecological example is not automatically a reason to keep a dedicated executable bundle.
@@ -76,22 +84,22 @@ python scripts/verify_paper_core.py --write-report
 pytest -q
 ```
 
-Finite certificates and replay verify current implementations; quantified theorem proofs are indexed separately in the proof spine below.
+Finite certificates and replay verify current implementations; quantified theorem proofs are indexed separately.
 
 ## Start here
 
-- [CREST program synthesis](https://github.com/zuizui0223/mrm/blob/main/docs/contract_relative_ecological_state_theory.md) — canonical four-audit program map and cross-repository firewalls
-- `docs/submission_conversion_decision_2026-08-19.md` — current first-paper submission-conversion plan and stop rule
-- `docs/theorem_spine.md` — current CORE-1–5 proof dependency graph and analytic proof locations
-- `docs/claim_status_audit.md` — current proof status, executable surfaces, and non-claims
+- `manuscript/README.md` — first-paper manuscript workspace and section order
+- `docs/submission_conversion_decision_2026-08-19.md` — current submission plan
+- `docs/cleanup_consolidation_2026-08-19.md` — current cleanup/retention rule
+- `docs/theorem_spine.md` — CORE-1–5 proof dependency graph and analytic proof locations
+- `docs/claim_status_audit.md` — proof status, executable surfaces, and non-claims
 - `docs/current_architecture.md` — current code/theorem map
 - `docs/core_surface_cleanup_manifest_2026-08-14.md` — executed cleanup decisions
-- `docs/residual_novelty_decision_2026-08-13.md` — current novelty gate
+- `docs/residual_novelty_decision_2026-08-13.md` — novelty boundary
 - `docs/ccoc_mltr_claim_firewall_2026-08-16.md` — CCOC/MLTR boundary
-- `docs/theorem_registry.md` — executable theorem registry / current theorem atlas
+- `docs/theorem_registry.md` — executable theorem registry
 - `docs/nonempirical_scope.md` — nonempirical scope policy
 - `docs/historical_theorem_archive.md` — historical theorem archive
-- `docs/manuscript_transfer_manifest_2026-08-14.md` — manuscript handoff
 - `FREEZE.md` — historical freeze/reopen policy
 
 ## Development rule
