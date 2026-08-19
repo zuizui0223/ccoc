@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="860" viewBox="0 0 1400 860">
+<defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#333"/></marker></defs>
+<rect width="1400" height="860" fill="white"/>
+<text x="55" y="55" font-family="Arial" font-size="30" font-weight="700">Figure 2. Operational lower-bound mechanism</text>
+<text x="70" y="120" font-family="Arial" font-size="24" font-weight="700">A  Comparison state</text>
+<rect x="70" y="150" width="440" height="120" rx="16" fill="#fafafa" stroke="#555" stroke-width="2"/>
+<text x="145" y="222" font-family="Arial" font-size="32">( i , e₁ , e₂ , … , e_q )</text>
+<text x="570" y="120" font-family="Arial" font-size="24" font-weight="700">B  Legal decoder words</text>
+<rect x="560" y="150" width="760" height="245" rx="16" fill="#fafafa" stroke="#555" stroke-width="2"/>
+<text x="600" y="205" font-family="Arial" font-size="22">r₀ → exposes i</text><text x="600" y="255" font-family="Arial" font-size="22">r₁ → exposes e₁</text><text x="600" y="305" font-family="Arial" font-size="22">r_j → exposes e_j</text><text x="600" y="355" font-family="Arial" font-size="22">r_q → exposes e_q</text>
+<text x="930" y="285" font-family="Arial" font-size="21">Each counted distinction has an explicit legal future test.</text>
+<text x="70" y="455" font-family="Arial" font-size="24" font-weight="700">C  Pair separation</text>
+<rect x="70" y="485" width="560" height="180" rx="16" fill="#fafafa" stroke="#777" stroke-width="2"/>
+<text x="105" y="535" font-family="Arial" font-size="21">s = (i, …, e_j, …)</text><text x="105" y="585" font-family="Arial" font-size="21">t = (i, …, e′_j, …),  e_j ≠ e′_j</text>
+<line x1="345" y1="545" x2="520" y2="545" stroke="#333" stroke-width="3" marker-end="url(#a)"/><text x="390" y="530" font-family="Arial" font-size="19">r_j</text>
+<text x="340" y="630" font-family="Arial" font-size="20" font-weight="700">different focal traces</text>
+<text x="700" y="455" font-family="Arial" font-size="24" font-weight="700">D  Consequence</text>
+<rect x="690" y="485" width="630" height="210" rx="16" fill="#fafafa" stroke="#777" stroke-width="2"/>
+<text x="750" y="555" font-family="Arial" font-size="28" font-weight="700">K_open ≥ log₂|I| + Σ_j log₂|E_j|</text>
+<text x="745" y="610" font-family="Arial" font-size="21">Closed context j can remain small when all legal traces factor through (I, E_j).</text>
+<text x="745" y="662" font-family="Arial" font-size="20">The bound is an injection/distinguishability argument—not an assumed additive law.</text>
+<text x="70" y="790" font-family="Arial" font-size="22" font-weight="700">Operational addressability ⇒ pairwise future distinguishability ⇒ large exact open quotient</text>
+</svg>
