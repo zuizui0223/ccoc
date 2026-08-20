@@ -39,6 +39,12 @@ Current operational documents:
 
 The bounded-local relay is used as a constrained extremal/sharpness realization **without historical-firstness language**. The H1–H4 classical compiler audit remains useful Related Work provenance but is non-blocking for manuscript drafting.
 
+## Hypothesis recovery status
+
+The repository-bounded reverse-recovery pass covers the complete issue set, PR history, closed-unmerged PRs, branch audit, scientific docs, theorem/status maps, and module inventory. The canonical recovery record preserves proved, refuted, corrected, deferred, abandoned, experimental, and historical hypotheses rather than only successful theorems.
+
+The post-cleanup status is summarized in [`docs/hypothesis_recovery_post_cleanup_status_2026-08-20.md`](docs/hypothesis_recovery_post_cleanup_status_2026-08-20.md). In particular, deterministic feedback is no longer an active CCOC first-paper program; it remains recovered provenance and is routed to MLTR if revived. The current first-paper theorem selection is complete.
+
 ## CREST role and claim firewall
 
 At program level, CCOC is the **future-sufficiency audit** of Contract-Relative Ecological State Theory (CREST): it asks which distinctions a declared future grammar can make operationally necessary.
@@ -90,6 +96,7 @@ Finite certificates and replay verify current implementations; quantified theore
 
 - `manuscript/README.md` — first-paper manuscript workspace and section order
 - `docs/submission_conversion_decision_2026-08-19.md` — current submission plan
+- `docs/hypothesis_recovery_post_cleanup_status_2026-08-20.md` — recovered-hypothesis inventory synchronized with the current post-cleanup program
 - `docs/cleanup_consolidation_2026-08-19.md` — current cleanup/retention rule
 - `docs/theorem_spine.md` — CORE-1–5 proof dependency graph and analytic proof locations
 - `docs/claim_status_audit.md` — proof status, executable surfaces, and non-claims
