@@ -1,0 +1,54 @@
+name: Theoretical Ecology submission bundle
+
+on:
+  pull_request:
+    paths:
+      - 'manuscript/**'
+      - 'scripts/build_theoretical_ecology_submission.py'
+      - '.github/workflows/theoretical-ecology-submission.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'manuscript/**'
+      - 'scripts/build_theoretical_ecology_submission.py'
+      - '.github/workflows/theoretical-ecology-submission.yml'
+  workflow_dispatch:
+
+jobs:
+  build-submission:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install build dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y pandoc texlive-latex-base texlive-latex-recommended texlive-fonts-recommended
+          python -m pip install --upgrade pip
+          python -m pip install -e '.[dev]' cairosvg
+
+      - name: Verify theorem registry
+        run: python scripts/verify_theorem_registry.py --check --write-report
+
+      - name: Verify paper core
+        run: python scripts/verify_paper_core.py --write-report
+
+      - name: Run Python test suite
+        run: pytest -q
+
+      - name: Build and verify journal submission bundle
+        run: python scripts/build_theoretical_ecology_submission.py --check --build
+
+      - name: Upload journal submission bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: ccoc-theoretical-ecology-submission
+          path: |
+            manuscript/submission/build/CCOC_Theoretical_Ecology_submission_bundle.zip
+            manuscript/submission/build/submission_report.json
+          if-no-files-found: error
