@@ -6,6 +6,13 @@ on:
       - 'manuscript/**'
       - 'scripts/build_theoretical_ecology_submission.py'
       - '.github/workflows/theoretical-ecology-submission.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'manuscript/**'
+      - 'scripts/build_theoretical_ecology_submission.py'
+      - '.github/workflows/theoretical-ecology-submission.yml'
   workflow_dispatch:
 
 jobs:
