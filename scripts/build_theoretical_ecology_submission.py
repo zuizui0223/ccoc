@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build and verify the journal-facing CCOC submission package.
 
-The canonical scientific sources remain under manuscript/. This script creates a
+Canonical scientific sources remain under manuscript/. This script creates a
 submission preview without changing theorem claims. Author-controlled fields stay
 explicitly unresolved until a human author supplies them.
 """
@@ -138,6 +138,30 @@ def strip_development_header(text: str) -> str:
     return text
 
 
+def normalize_math_delimiters(text: str) -> str:
+    """Convert canonical backslash math delimiters to Pandoc dollar math.
+
+    The scientific Markdown uses LaTeX-style \(...\) and \[...\]. Pandoc's
+    Markdown reader otherwise interprets the delimiters as escaped punctuation,
+    which can place commands such as \mathcal outside math mode in generated TeX.
+    This transformation is build-only and does not modify canonical sources.
+    """
+
+    text = re.sub(
+        r"\\\[(.*?)\\\]",
+        lambda m: "\n$$\n" + m.group(1).strip() + "\n$$\n",
+        text,
+        flags=re.S,
+    )
+    text = re.sub(
+        r"\\\((.*?)\\\)",
+        lambda m: "$" + m.group(1).strip() + "$",
+        text,
+        flags=re.S,
+    )
+    return text
+
+
 def inject_keywords(text: str) -> str:
     marker = "## 1. Ecological question"
     keyword_line = "**Keywords:** " + "; ".join(KEYWORDS) + "\n\n"
@@ -194,6 +218,7 @@ def assemble_submission_markdown(image_extension: str) -> str:
     text = inject_related_work_citations(text)
     text = inject_figures(text, image_extension)
     text = replace_internal_supplement_note(text)
+    text = normalize_math_delimiters(text)
     declarations = DECLARATIONS_MD.read_text(encoding="utf-8").strip()
     return (
         author_front_matter()
@@ -212,6 +237,7 @@ def validate() -> dict:
     abstract_words = word_count(abstract)
     cover = COVER_LETTER_MD.read_text(encoding="utf-8")
     declarations = DECLARATIONS_MD.read_text(encoding="utf-8")
+    references = REFERENCES_BIB.read_text(encoding="utf-8")
 
     blockers: list[str] = []
     if not (150 <= abstract_words <= 250):
@@ -238,7 +264,7 @@ def validate() -> dict:
         "AzizEtAl1993",
         "WatanabeBrayton1993",
     ):
-        if key not in REFERENCES_BIB.read_text(encoding="utf-8"):
+        if key not in references:
             blockers.append(f"missing bibliography key: {key}")
 
     report = {
@@ -281,7 +307,9 @@ def convert_figures() -> None:
         raise RuntimeError("cairosvg is required to build figure variants") from exc
 
     for name, source, _caption, _anchor in FIGURES:
-        cairosvg.svg2png(url=str(source), write_to=str(BUILD / f"{name}.png"), output_width=1800)
+        cairosvg.svg2png(
+            url=str(source), write_to=str(BUILD / f"{name}.png"), output_width=1800
+        )
         cairosvg.svg2pdf(url=str(source), write_to=str(BUILD / f"{name}.pdf"))
         cairosvg.svg2eps(url=str(source), write_to=str(BUILD / f"{name}.eps"))
 
@@ -308,53 +336,60 @@ def build(report: dict) -> None:
     docx_md.write_text(assemble_submission_markdown("png"), encoding="utf-8")
     tex_md.write_text(assemble_submission_markdown("pdf"), encoding="utf-8")
 
-    run([
-        "pandoc",
-        docx_md.name,
-        "--standalone",
-        "--from=markdown+tex_math_dollars+raw_tex",
-        "-o",
-        "CCOC_Theoretical_Ecology.docx",
-    ])
+    run(
+        [
+            "pandoc",
+            docx_md.name,
+            "--standalone",
+            "--from=markdown+tex_math_dollars+raw_tex",
+            "-o",
+            "CCOC_Theoretical_Ecology.docx",
+        ]
+    )
 
-    run([
-        "pandoc",
-        tex_md.name,
-        "--standalone",
-        "--from=markdown+tex_math_dollars+raw_tex",
-        "-t",
-        "latex",
-        "-o",
-        "main.tex",
-    ])
+    run(
+        [
+            "pandoc",
+            tex_md.name,
+            "--standalone",
+            "--from=markdown+tex_math_dollars+raw_tex",
+            "-t",
+            "latex",
+            "-o",
+            "main.tex",
+        ]
+    )
     run(["pdflatex", "-interaction=nonstopmode", "-halt-on-error", "main.tex"])
     if (BUILD / "main.pdf").exists():
         (BUILD / "main.pdf").replace(BUILD / "CCOC_Theoretical_Ecology.pdf")
 
-    supplement_text = SUPPLEMENT_MD.read_text(encoding="utf-8")
+    supplement_text = normalize_math_delimiters(
+        SUPPLEMENT_MD.read_text(encoding="utf-8")
+    )
     supplement_source = BUILD / "online_resource_1.md"
     supplement_source.write_text(
         "---\ntitle: \"Online Resource 1: Analytic proofs and replay traceability\"\nauthor:\n  - \"[AUTHOR INPUT REQUIRED]\"\n---\n\n"
         + supplement_text,
         encoding="utf-8",
     )
-    run([
-        "pandoc",
-        supplement_source.name,
-        "--standalone",
-        "--from=markdown+tex_math_dollars+raw_tex",
-        "--pdf-engine=pdflatex",
-        "-o",
-        "Online_Resource_1.pdf",
-    ])
+    run(
+        [
+            "pandoc",
+            supplement_source.name,
+            "--standalone",
+            "--from=markdown+tex_math_dollars+raw_tex",
+            "--pdf-engine=pdflatex",
+            "-o",
+            "Online_Resource_1.pdf",
+        ]
+    )
 
-    run([
-        "pandoc",
-        str(COVER_LETTER_MD),
-        "--standalone",
-        "-o",
-        "Cover_Letter_Template.docx",
-    ])
+    cover_source = BUILD / "cover_letter.md"
+    cover_source.write_text(
+        normalize_math_delimiters(COVER_LETTER_MD.read_text(encoding="utf-8")),
+        encoding="utf-8",
+    )
+    run(["pandoc", cover_source.name, "--standalone", "-o", "Cover_Letter_Template.docx"])
 
     shutil.copy2(REFERENCES_BIB, BUILD / "references.bib")
     shutil.copy2(SUBMISSION / "metadata.yaml", BUILD / "metadata.yaml")
@@ -376,7 +411,9 @@ def build(report: dict) -> None:
         "Cover_Letter_Template.docx",
     ]
     report_path = BUILD / "submission_report.json"
-    report_path.write_text(json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8")
+    report_path.write_text(
+        json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+    )
 
     bundle_members = [
         "CCOC_Theoretical_Ecology.docx",
@@ -387,6 +424,10 @@ def build(report: dict) -> None:
         "Fig2.eps",
         "Fig3.eps",
         "Fig4.eps",
+        "Fig1.pdf",
+        "Fig2.pdf",
+        "Fig3.pdf",
+        "Fig4.pdf",
         "references.bib",
         "Cover_Letter_Template.docx",
         "cover_letter_template.md",
@@ -403,9 +444,15 @@ def build(report: dict) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--check", action="store_true", help="validate journal-facing structural requirements")
-    parser.add_argument("--build", action="store_true", help="build Word/LaTeX/PDF submission preview")
-    parser.add_argument("--write-report", action="store_true", help="write the structural report without building")
+    parser.add_argument(
+        "--check", action="store_true", help="validate journal-facing structural requirements"
+    )
+    parser.add_argument(
+        "--build", action="store_true", help="build Word/LaTeX/PDF submission preview"
+    )
+    parser.add_argument(
+        "--write-report", action="store_true", help="write the structural report without building"
+    )
     args = parser.parse_args()
 
     if not (args.check or args.build or args.write_report):
