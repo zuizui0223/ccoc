@@ -45,19 +45,31 @@ The repository-bounded reverse-recovery pass covers the complete issue set, PR h
 
 The post-cleanup status is summarized in [`docs/hypothesis_recovery_post_cleanup_status_2026-08-20.md`](docs/hypothesis_recovery_post_cleanup_status_2026-08-20.md). In particular, deterministic feedback is no longer an active CCOC first-paper program; it remains recovered provenance and is routed to MLTR if revived. The current first-paper theorem selection is complete.
 
-## CREST role and claim firewall
+## CREST role: future insufficiency of a present-state merge
 
-At program level, CCOC is the **future-sufficiency audit** of Contract-Relative Ecological State Theory (CREST): it asks which distinctions a declared future grammar can make operationally necessary.
+The dedicated synthesis lives at [zuizui0223/crest](https://github.com/zuizui0223/crest). The current program architecture is documented in [the trajectory-first CREST map](https://github.com/zuizui0223/crest/blob/main/docs/trajectory_first_program_architecture_2026-08-22.md).
 
-The dedicated CREST synthesis lives at [zuizui0223/crest](https://github.com/zuizui0223/crest). CCOC remains a separate theorem and provenance unit; CREST does not merge the four quotient/refinement problems into one theorem.
+CREST now starts from temporally extended ecological worlds and asks when a present snapshot can be compressed into an adequate scientific state. Within that hierarchy, CCOC is a **structural obstruction theory for future sufficiency**.
 
-CCOC owns independently optimized closed-vs-open interface complexity. Companion ownership remains:
+Let two ecological worlds share the same present snapshot or current macro-description. CCOC asks whether opening the declared future grammar can expose a response distinction that the present merge erased. Its program-level reading is therefore
+
+\[
+\boxed{
+\text{same present description}
+\not\Rightarrow
+\text{same required state under an enlarged future grammar}.
+}
+\]
+
+This is one reason a present snapshot can fail to be a sufficient CREST state. CCOC does not by itself decide whether an inherited category remains semantically coherent after replacement, whether retained mechanisms agree, or whether field evidence identifies the required distinction.
+
+CCOC remains a separate theorem and provenance unit. CREST does not merge the companion theorem programs into one theorem.
+
+Companion ownership remains:
 
 - fixed inherited-law repair / transport defect / history → **MLTR**;
 - retained mechanism disagreement → **MRM**;
 - finite/noisy evidence, monitoring design, proof-carrying evidence admission → **CED**.
-
-Passing the CCOC audit does not imply semantic coherence after replacement, robustness to retained mechanism uncertainty, or evidential licensing.
 
 ## Current code surface
 
