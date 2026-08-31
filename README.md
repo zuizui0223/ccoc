@@ -6,6 +6,32 @@ CCOC is a theorem-first mathematical-ecology repository for one finite question:
 
 The current formal scope is finite and mostly deterministic. Passing certificates establish properties of declared finite models; they do not validate an observed ecosystem.
 
+## Program position
+
+CCOC is a **representation theory**, not an inference method.
+
+Given a fully declared finite controlled system and a declared grammar of legal futures, CCOC asks which distinctions an exact response interface must retain. Its central quantity is response-interface size, for example
+
+\[
+K_{\mathcal L}=\log_2|Q_{\mathcal L}|,
+\]
+
+not uncertainty about which causal mechanism is true.
+
+This separates CCOC from two nearby programmes that share some historical vocabulary but answer different questions:
+
+| Programme | Scientific object | What changes | Primary output |
+|---|---|---|---|
+| **CCOC** | exact representation of a declared controlled system | legal future grammar / addressability | required response-interface information |
+| **RACH (microdonta)** | epistemic uncertainty over admissible mechanism hypotheses | observations and conditioning | residual mechanism uncertainty and next-observation value |
+| **channel-identification boundary (N1–N4)** | identification of latent multiplicative channels | observation class and calibration assumptions | point, partial, or non-identification and breakdown factors |
+
+A useful distinction is that an informative observation can reduce expected residual uncertainty in RACH, whereas it does not reduce a CCOC lower bound once the finite model contract and future grammar are fixed. Conversely, opening the legal future grammar can force CCOC to retain more state information even though the underlying controlled system is unchanged.
+
+The programmes have historical ancestry in common, but their current claims, manuscripts, validation objects, and publication roles are separate. Historical recovery documents may retain old RACH/CCOC wording as provenance; current-facing CCOC surfaces must identify this repository as CCOC.
+
+See [`docs/program_positioning_2026-08-31.md`](docs/program_positioning_2026-08-31.md) for the normative boundary.
+
 ## Core result
 
 The first-paper spine is deliberately narrow:
@@ -76,7 +102,7 @@ Companion ownership remains:
 Preferred entrance:
 
 ```python
-import causal_model.portability_core as rach
+import causal_model.portability_core as ccoc
 ```
 
 The facade contains only the manuscript theorem spine plus codebook and bounded-local strengthenings. `approximate_addressability.py` remains an explicit stronger-model extension rather than part of the paper-core facade.
@@ -106,6 +132,7 @@ Finite certificates and replay verify current implementations; quantified theore
 
 ## Start here
 
+- `docs/program_positioning_2026-08-31.md` — normative CCOC/RACH/channel-boundary separation and naming rule
 - `manuscript/README.md` — first-paper manuscript workspace and section order
 - `docs/submission_conversion_decision_2026-08-19.md` — current submission plan
 - `docs/hypothesis_recovery_post_cleanup_status_2026-08-20.md` — recovered-hypothesis inventory synchronized with the current post-cleanup program
@@ -123,4 +150,4 @@ Finite certificates and replay verify current implementations; quantified theore
 
 ## Development rule
 
-Do not add a theorem family unless it changes a material premise, survives prior-art classification, and passes CREST routing. New ecological relabelings, exact converse variants, or resource corollaries do not qualify by themselves.
+Do not add a theorem family unless it changes a material premise, survives prior-art classification, and passes CREST routing. New ecological relabelings, exact converse variants, resource corollaries, mechanism-inference methods, or proxy-identification results do not qualify by themselves.
