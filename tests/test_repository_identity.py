@@ -34,7 +34,7 @@ def test_program_positioning_keeps_representation_inference_boundary_explicit():
     text = (ROOT / "docs" / "program_positioning_2026-08-31.md").read_text(
         encoding="utf-8"
     )
-    assert "CCOC is a **representation theory" in text
+    assert "**CCOC is a representation theory" in text
     assert "RACH asks what we still do not know" in text
     assert "N1" in text
     assert "Historical recovery documents may retain" in text
