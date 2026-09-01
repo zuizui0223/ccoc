@@ -29,8 +29,9 @@ ACTIVE_PAPER_TEST_FILES = frozenset(
         # CORE-4 and CORE-5: conservative portability and fiber split.
         "test_coherent_portable_macrolaw.py",
         "test_conservative_macro_schema.py",
-        # Publication-surface and provenance protections.
+        # Publication-surface, identity, and provenance protections.
         "test_public_theory_surfaces.py",
+        "test_repository_identity.py",
         "test_theorem_registry.py",
         "test_paper_core_reproducibility.py",
     }
